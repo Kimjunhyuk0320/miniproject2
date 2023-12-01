@@ -41,4 +41,5 @@ build/
 bin/
 ./bin/
 
-logsnode_modules/
+logs
+node_modules/
