@@ -34,32 +34,38 @@ public class FileApiController {
      * @param response
      * @throws Exception
      */
-    @GetMapping(value="/{fileNo}")
-    public void fileDownload(@PathVariable("fileNo") int fileNo
+    @GetMapping("/{fileNo}")
+    public ResponseEntity<?> fileDownload(@PathVariable("fileNo") int fileNo
                              ,HttpServletResponse response) throws Exception {
 
         int result = fileService.download(fileNo, response);
 
         if(result == 0) {
             response.setStatus(response.SC_BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }else{
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-    }
 
-    @GetMapping(value="/img/{fileNo}")
-    public void thumbnail(@PathVariable("fileNo") int fileNo, 
+    }
+    // 이미지 띄우기
+    @GetMapping("/img/{fileNo}")
+    public ResponseEntity<?> thumbnail(@PathVariable("fileNo") int fileNo, 
                                 HttpServletResponse response ) throws Exception{
         int result = fileService.thumbnail(fileNo, response);
         if( result == 0 ){
             response.setStatus(response.SC_BAD_REQUEST);
-        }                                
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }else{
+            return new ResponseEntity<>(HttpStatus.OK);
+        }                          
     }
 
-    @PostMapping(value="")
-    public ResponseEntity<Integer> uploadImg(List<MultipartFile> file) throws Exception {
-        log.info("#########테스트입니다 1111############");
+    // 파일 업로드
+    @PostMapping("")
+    public ResponseEntity<?> uploadImg(List<MultipartFile> file) throws Exception {
         Integer fileNo = fileService.uploadImg(file);
-        log.info("컨트롤러 응답 반환 파일 번호 : " + fileNo);
-         return new ResponseEntity<Integer>(fileNo, HttpStatus.OK);
+        return new ResponseEntity<Integer>(fileNo, HttpStatus.OK);
     }
     
 
@@ -71,7 +77,7 @@ public class FileApiController {
      * @throws Exception
      */
     @DeleteMapping("")
-    public ResponseEntity<String> deleteFile(Files file) throws Exception {
+    public ResponseEntity<?> deleteFile(Files file) throws Exception {
         log.info("[DELETE] - /file");
         int fileNo = file.getFileNo();
         log.info("fileNo : " + fileNo);
