@@ -226,6 +226,7 @@ public class TeamController {
 
   }
 
+  
   @GetMapping(value="/app")
   public String application(Model model,Team team) {
 

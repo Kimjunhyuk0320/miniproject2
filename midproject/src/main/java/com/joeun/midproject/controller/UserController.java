@@ -53,6 +53,7 @@ public class UserController {
    * 로그인 화면
    * @return
    */
+  
   @GetMapping(value="/login")
   public String login(@CookieValue(value = "remember-id", required = false) Cookie cookie, Model model ) {
     String userId = "";
@@ -67,7 +68,7 @@ public class UserController {
     model.addAttribute("username", userId);
     model.addAttribute("rememberId", rememberId);
 
-    return "login";
+    return userId;
   }
   
   // 회원가입
