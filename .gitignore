@@ -40,3 +40,5 @@ build/
 # bin
 bin/
 ./bin/
+
+logsnode_modules/
