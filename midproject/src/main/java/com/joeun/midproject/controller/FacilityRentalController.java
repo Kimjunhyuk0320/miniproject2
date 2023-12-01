@@ -269,7 +269,7 @@ public class FacilityRentalController {
 
         int result = facilityRentalService.reqDenied(bookingRequests);
         
-        return "redirect:/user/receivedList";
+        return "redirect:/facilityRental/user/receivedList";
     }
     
     @PostMapping(value="/reqAccept")

@@ -1,5 +1,6 @@
 package com.joeun.midproject.api;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.joeun.midproject.dto.BookingRequests;
-import com.joeun.midproject.dto.FacilityRental;
-import com.joeun.midproject.dto.Files;
-import com.joeun.midproject.dto.PageInfo;
-import com.joeun.midproject.dto.Team;
 import com.joeun.midproject.mapper.TeamMapper;
 import com.joeun.midproject.service.CommentService;
 import com.joeun.midproject.service.FacilityRentalService;
@@ -28,15 +25,12 @@ import com.joeun.midproject.service.TeamService;
 import groovy.util.logging.Slf4j;
 
 @Slf4j
-@RequestMapping("/api/fr")
 @RestController
-public class FacilityRentalController {
+@RequestMapping("/booking")
+public class BookingController {
 
     @Autowired
     private FacilityRentalService facilityRentalService;
-    
-    @Autowired
-    private FileService fileService;
     
     @Autowired
     private TeamMapper teamMapper;
@@ -44,79 +38,81 @@ public class FacilityRentalController {
     @Autowired
     private TeamService teamService;
 
+    @Autowired
+    private FileService fileService;
 
-    @GetMapping()
-    public ResponseEntity<PageInfo> pageInfo(PageInfo pageInfo) {
-
-        try {
-            pageInfo.setTable("facility_rental");
-            pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
-
-            PageInfo pageInfoResult = teamService.pageInfo(pageInfo);
-            return new ResponseEntity<>(pageInfoResult, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping()
-    public ResponseEntity<List<FacilityRental>> getAll(Team team) {
-        try {
-            List<FacilityRental> pageListResult = facilityRentalService.pageFrList(team);
-            return new ResponseEntity<>(pageListResult, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+    @Autowired
+    private CommentService commentService;
     
-    @GetMapping("/{frNo}")
-    public ResponseEntity<FacilityRental> getOne(@PathVariable Integer frNo,Files files) {
+    @GetMapping()
+    public ResponseEntity<List<BookingRequests>> rreqList(Principal principal) {
         try {
-            FacilityRental facilityRental = facilityRentalService.select(frNo);     // 게시글 정보
-            files.setParentTable("facilityRental");
-            files.setParentNo(frNo);
-            facilityRental.setFileList(fileService.listByParent(files));
-            return new ResponseEntity<>(facilityRental, HttpStatus.OK);
+            List<BookingRequests> rreqList = facilityRentalService.rreqList(principal.getName());
+            return new ResponseEntity<>(rreqList, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<BookingRequests>> rrList(Principal principal) {
+
+        try {
+            List<BookingRequests> rrList = facilityRentalService.rrList(principal.getName());
+            return new ResponseEntity<>(rrList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @PostMapping()
-    public ResponseEntity<Integer> create(@RequestBody FacilityRental facilityRental) {
-        facilityRental.setAccount(facilityRental.getAccount1()+"/"+facilityRental.getAccount2());
+    public ResponseEntity<Integer> reservation(@RequestBody BookingRequests bookingRequests) {
+
         try {
-            int result = facilityRentalService.insert(facilityRental);
+            int result = facilityRentalService.reservation(bookingRequests);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
-    @PutMapping()
-    public ResponseEntity<Integer> update(@RequestBody FacilityRental facilityRental) {
-        facilityRental.setAccount(facilityRental.getAccount1()+"/"+facilityRental.getAccount2());
+    @PutMapping("/denied")
+    public ResponseEntity<Integer> reqDenied(@RequestBody BookingRequests bookingRequests) {
         try {
-            int result = facilityRentalService.update(facilityRental);
+            int result = facilityRentalService.reqDenied(bookingRequests);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/accept")
+    public ResponseEntity<Integer> reqAccept(@RequestBody BookingRequests bookingRequests) {
+        try {
+            int result = facilityRentalService.reqAccept(bookingRequests);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/confirm")
+    public ResponseEntity<Integer> reqConfirm(@RequestBody BookingRequests bookingRequests) {
+        try {
+            int result = facilityRentalService.reqConfirm(bookingRequests);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
-    @DeleteMapping("/{frNo}")
-    public ResponseEntity<?> destroy(@PathVariable Integer frNo) {
+    @DeleteMapping("/{brNo}")
+    public ResponseEntity<Integer> destroy(@PathVariable Integer brNo, BookingRequests bookingRequests) {
+        bookingRequests.setBrNo(brNo);
         try {
-            int result = facilityRentalService.delete(frNo);
+            int result = facilityRentalService.delReq(bookingRequests);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
-    
-
-
 
 }

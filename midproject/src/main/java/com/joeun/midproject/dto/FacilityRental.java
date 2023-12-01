@@ -29,4 +29,5 @@ public class FacilityRental {
 
     private List<MultipartFile> file;
     private Files thumbnail;
+    private List<Files> fileList;
 }
