@@ -1,5 +1,5 @@
 package com.joeun.midproject.api;
 
-public class LiveBoardController {
+public class FileApiController {
     
 }
