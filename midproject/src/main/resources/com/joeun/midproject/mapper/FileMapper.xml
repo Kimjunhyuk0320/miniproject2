@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" -->
+<mapper namespace="com.joeun.midproject.mapper.FileMapper">
+
+    <!-- 파일 목록 -->
+    <select id="list" resultType="Files">
+        SELECT *
+        FROM file
+        ORDER BY upd_date DESC
+    </select>
+
+    <!-- 파일 목록 - 부모 테이블 기준 -->
+    <!-- * 파일이 종속되는 테이블을 기준으로 파일 목록을 조회 -->
+    <!-- * 게시글 번호 10
+           📄 파일 번호 1
+           📄 파일 번호 2
+           📄 파일 번호 3
+     -->
+    <select id="listByParent" resultType="Files">
+        SELECT *
+        FROM file
+        WHERE parent_table = #{parentTable}
+          AND parent_no = #{parentNo}
+        ORDER BY upd_date DESC
+    </select>
+
+    <!-- 파일 조회 -->
+    <select id="select" resultType="Files">
+        SELECT *
+        FROM file
+        WHERE file_no = #{fileNo}
+    </select>
+
+    <!-- 파일 조회 -->
+    <select id="selectThumbnail" resultType="Files">
+        SELECT *
+        FROM file
+        WHERE parent_table = #{parentTable}
+        AND parent_no = #{parentNo}
+        AND file_code = 0
+    </select>
+
+    <!-- 파일 등록 -->
+    <insert id="insert">
+        INSERT INTO file(parent_table, parent_no, file_name, origin_name, path, file_size, file_code)
+        VALUES (#{parentTable}, #{parentNo}, #{fileName}, #{originName}, #{path}, #{fileSize}, #{fileCode})
+    </insert>
+
+    <!-- 파일 수정 -->
+    <update id="update">
+        UPDATE file
+           SET file_name = #{fileName}
+              ,origin_name = #{originName}
+              ,path = #{path}
+              ,file_size = #{fileSize}
+              ,file_code = #{fileCode}
+              ,upd_date = now()
+        WHERE parent_no = #{parentNo}
+        AND parent_table = #{parentTable}
+    </update>
+
+    <!-- 파일 삭제 -->
+    <delete id="delete">
+        DELETE FROM file
+        WHERE file_no = #{fileNo}
+    </delete>
+
+    <!-- 파일 목록 삭제 - 부모 테이블 기준 파일 목록 삭제 -->
+    <delete id="deleteByParent">
+        DELETE FROM file
+        WHERE parent_table = #{parentTable}
+          AND parent_no = #{parentNo}
+    </delete>
+    
+    <select id="maxPk" resultType="int">
+        SELECT MAX(file_no)
+        FROM file
+    </select>
+    
+</mapper>

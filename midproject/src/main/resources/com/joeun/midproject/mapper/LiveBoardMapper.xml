@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" -->
+<mapper namespace="com.joeun.midproject.mapper.LiveBoardMapper">
+
+     <!-- 게시글 목록 -->
+    <select id="list" resultType="LiveBoard">
+        SELECT *
+        FROM live_board
+        ORDER BY upd_date DESC, board_no DESC
+    </select>
+
+     <!-- 게시글 목록(페이징) -->
+    <select id="liveBoardPageList" resultType="LiveBoard">
+        SELECT *
+        FROM live_board
+        WHERE
+        <choose>
+            <when test="searchType == 0">(title LIKE "%${keyword}%" OR content LIKE "%${keyword}%" OR writer LIKE "%${keyword}%") </when>
+            <when test="searchType == 1">title LIKE "%${keyword}%"</when>
+            <when test="searchType == 2">content LIKE "%${keyword}%"</when>
+            <when test="searchType == 3">(title LIKE "%${keyword}%" OR content LIKE "%${keyword}%")</when>
+            <when test="searchType == 4">writer LIKE "%${keyword}%"</when>
+        </choose>
+    ORDER BY 
+        <choose>
+            <when test="order == 0">upd_date DESC</when>
+            <when test="order == 1">upd_date ASC</when>
+            <when test="order == 2">price DESC</when>
+        </choose>
+    LIMIT #{pageNo}, #{rows};
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insert">
+        INSERT INTO live_board( title, writer, username, content, crew, price, live_date, 
+                                live_time, location, address, max_tickets, upd_date, sold_out )
+        VALUES ( #{title}, #{writer}, #{username}, 
+                    #{content},  #{crew}, #{price}, #{liveDate}, 
+                     #{liveTime}, #{location}, #{address}, 
+                     #{maxTickets}, now(), 0 )
+    </insert>
+
+    <!-- 게시글 조회 -->
+    <select id="select" resultType="LiveBoard">
+        SELECT *
+        FROM live_board
+        WHERE board_no = #{boardNo}
+    </select>
+    
+    <!-- 게시글 수정 -->
+	<update id="update">
+        UPDATE live_board
+        SET 
+           title =  #{title},
+           writer = #{writer},
+           username = #{username},
+           content = #{content},
+           crew = #{crew},
+           price = #{price},
+           live_date = #{liveDate},
+           live_time = #{liveTime},
+           location = #{location},
+           max_tickets = #{maxTickets},
+           upd_date = now()
+        WHERE board_no = #{boardNo}
+    </update>
+
+    <delete id="delete">
+    
+    DELETE FROM `live_board`
+    WHERE board_no = #{boardNo}
+    AND 0 = (SELECT COUNT(*) FROM `ticket_purchases` WHERE board_no = #{boardNo} AND refund = 0)
+
+    </delete>
+
+
+
+    <!-- 게시글 매진으로 변경 -->
+    <update id="soldOut">
+        UPDATE live_board
+        SET 
+           sold_out = 1
+        WHERE board_no = #{boardNo}
+    </update>
+
+   <!-- 게시글 번호 최댓값 -->
+    <select id="maxPk" resultType="int">
+        SELECT MAX(board_no)
+        FROM live_board
+    </select>
+
+
+
+</mapper>

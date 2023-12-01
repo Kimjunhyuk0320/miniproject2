@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" -->
+<mapper namespace="com.joeun.midproject.mapper.UserMapper">
+
+
+    <!-- 회원 등록 -->
+    <insert id="insert">
+        INSERT INTO `user`( username, password, name, nickname,auth,email,phone,enabled,upd_date )
+        VALUES ( #{username}, #{password}, #{name} ,#{nickname},#{auth},#{email}, #{phone}, 0, now() )
+    </insert>
+
+    <!-- 회원 조회 -->
+    <select id="read" resultType="Users">
+        SELECT * FROM `user` WHERE username = #{username}
+    </select>
+
+    <!-- 회원 닉네임 조회 -->
+    <select id="readOnlyNickname" resultType="Users">
+        SELECT * FROM `user` WHERE nickname = #{nickname}
+    </select>
+
+    <!-- 회원 연락처 조회 -->
+    <select id="readOnlyPhone" resultType="Users">
+        SELECT * FROM `user` WHERE phone = #{phone}
+    </select>
+
+    <!-- 회원 정보 수정 -->
+	<update id="update">
+        UPDATE user
+        SET 
+            password = #{password}
+            ,nickname = #{nickname}
+            ,phone = #{phone}
+            ,auth = #{auth}
+            ,email = #{email}
+        WHERE username = #{username}
+    </update>
+
+    <update id="profileSet">
+        UPDATE `user`
+        SET profile_no = #{profileNo}
+        WHERE username = #{username}
+    </update>
+
+</mapper>

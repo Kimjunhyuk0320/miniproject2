@@ -1,0 +1,97 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/UI/user/layout/main_layout}"
+      >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/myInfo.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body layout:fragment="content">
+    
+    <div class="background">
+        <div style="height: 1000px;"></div>
+    </div>
+
+    <div class="profile____card">
+        <div class="cover">
+            
+        </div>
+
+        <div class="profile__">
+            <div class="pic__">
+                 <!-- 프로필 사진 쏴주기 -->
+                <th:block sec:authorize="isAuthenticated()">
+                    <th:block  th:if="${#authentication.principal.users.profileNo != 0}">
+                        <img th:src="|/file/img/${#authentication.principal.users.profileNo}|" alt="프로필사진" id="profile Img" style="width:100px; height:100px; border-radius: 100%; box-shadow: 0px 0px 15px gray;">
+                    </th:block>
+                    <th:block th:if="${#authentication.principal.users.profileNo == 0}">
+                        <img src="/img/defaultProfile.png" alt="프로필사진" id="profile Img" style="width:100px; height:100px; border-radius: 100%; box-shadow: 0px 0px 15px gray;">
+                    </th:block>
+                </th:block>
+            </div>
+
+            <div class="above-fold">
+                <div class="name">
+                    <p th:text="${#authentication.principal.users.name}"></p>
+                </div>
+                <div class="role">
+                    <p th:text="${#authentication.principal.users.nickname}"></p>
+                </div>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p style="display: inline-block;">회원님은</p>
+                    <p th:text="${#authentication.principal.users.auth}"  style="display: inline-block;"></p>
+                    <p style="display: inline-block;">이십니다.</p>
+                </div>
+
+                <div class="row__">
+                    <a href="/update"><div class="button__">내 정보 수정</div></a>
+                    <a href="#" onclick="logOut()"><div class="button__">로그아웃</div></a>
+                </div>
+
+                <div id="expand-button__">
+                  ↓
+                </div>
+            </div>
+
+            <div class="below-fold">
+                <div class="about">
+                    <h5>아이디</h3>
+                    <p th:text="${#authentication.principal.users.username}"></p>
+                </div>
+                <div class="about">
+                    <h5>연락처</h3>
+                    <p th:text="${#authentication.principal.users.phone}"></p>
+                </div>
+                <div class="about">
+                    <h5>이메일</h5>
+                    <p th:text="${#authentication.principal.users.email}"></p>
+                </div>
+                <div class="about">
+                    <h5>정보 수정 일자</h5>
+                    <p th:text="${#dates.format(#authentication.principal.users.updDate,'yyyy-MM-dd HH:mm:ss')}"></p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $('#expand-button__').click(function() {
+            $('.profile____card').toggleClass('expand');
+        })
+    </script>
+
+</body>
+</html>
+

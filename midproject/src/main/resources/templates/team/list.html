@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/UI/user/layout/main_layout}">
+
+<head>
+    <title>공연 팀 모집 목록</title>
+    <link rel="stylesheet" href="/css/teamList.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+
+<div layout:fragment="content">
+
+
+
+    <div id="topContent">
+        <h1>공연팀 모집</h1>
+        <p>공연팀 모집에 대한 소식을 알려드립니다.</p>
+        <hr>
+    </div>
+
+    <div id="teamListContainer">
+        <!-- 검색/필터 -->
+        <div class="page-box">
+            <div class="item">
+                <!-- 검색 -->
+                <div class="search_item">
+                    <select name="search-type" id="search-type" class="input-search">
+                        <option value="0">전체</option>
+                        <option value="1">제목</option>
+                        <option value="2">내용</option>
+                        <option value="3">제목+내용</option>
+                        <option value="4">작성자</option>
+                    </select>
+                    <input type="text" name="keyword" id="keyword" class="input-search" placeholder="여기에 검색해보세요">
+                    <a href="javascript:;" class="btn" id="btn-search">
+                        <img src="https://www.dacorkorea.com/images/icon-search.png" alt="search"
+                            style="width: 23px; padding-top: 5px;">
+                    </a>
+
+                </div>
+            </div>
+            <!-- 필터 -->
+            <div class="item">
+                <th:block sec:authorize="hasRole('ROLE_BAND')">
+                    <a href="/team/insert"><button id="filter-btn">작성하기</button></a>
+                </th:block>
+                <select name="rows" id="rows" class="input-search">
+                    <option value="5">5개씩 보기</option>
+                    <option value="10">10개씩 보기</option>
+                    <option value="30">30개씩 보기</option>
+                    <option value="50">50개씩 보기</option>
+                </select>
+                <select name="order" id="order" class="input-search">
+                    <option value="0">최근 순</option>
+                    <option value="1">오래된 순</option>
+                    <option value="2">조회수 순</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tableContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="80">번호</th>
+                        <th width="100">마감</th>
+                        <th width="200">제목</th>
+                        <th width="100">작성자</th>
+                        <th width="95">팀 모집 현황</th>
+                        <th width="70">지역</th>
+                        <th width="80">가격</th>
+                        <th width="100">공연일자</th>
+                        <th width="100">갱신일자</th>
+                        <th width="65">조회수</th>
+                    </tr>
+                </thead>
+                <tbody id="team-data">
+                </tbody>
+            </table>
+        </div>
+
+
+        <div id="paginationContainer">
+
+            <!-- 페이지네이션 -->
+            <div class="pagination_count">
+                <a href="javascript:;" class="page-arrow" id="first">
+                    <img src="/img/right_S.png" width="15px" style="transform: rotate(180deg);">
+                </a>
+                <a href="javascript:;" class="page-arrow" id="prev">&lsaquo;</a>
+
+                <div class="page-list">
+                    <a href="javascript:;" class="page-no">1</a>
+                    <a href="javascript:;" class="page-no">2</a>
+                    <a href="javascript:;" class="page-no">3</a>
+                    <a href="javascript:;" class="page-no">4</a>
+                    <a href="javascript:;" class="page-no">5</a>
+                    <a href="javascript:;" class="page-no">6</a>
+                    <a href="javascript:;" class="page-no">7</a>
+                    <a href="javascript:;" class="page-no">8</a>
+                    <a href="javascript:;" class="page-no">9</a>
+                    <a href="javascript:;" class="page-no">10</a>
+                </div>
+
+                <a href="javascript:;" class="page-arrow" id="next">&rsaquo;</a>
+                <a href="javascript:;" class="page-arrow" id="last">
+                    <img src="/img/right_S.png" width="15px">
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="a">
+        <div class="staticContainer">
+            <div class="staticTextSection">
+                <h1>오늘의 추천밴드</h1>
+                <h2>유다빈 밴드</h2>
+                <hr>
+                <p>
+                    한 순간들도 빠짐없이 사랑했던 모든 순간과 진정한 안녕을 말할 때, 마지막으로 딱 한 번만 나를 다정하게 기억해 주기를
+                </p>
+                <!-- <p>이런 식으로 추가하면 될 듯</p> -->
+            </div>
+            <div class="staticVideoSection">
+                <!-- YouTube Video Embed Code -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/wmMrFpemJNY" frameborder="0"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="topContent">
+        <h1>공지사항</h1>
+        <p>공연팀 모집에 대한 공지사항입니다.</p>
+        <hr>
+    </div> -->
+
+    <div class="common_container liveDom">
+        <div class="container__">
+            <div class="inner">
+                <div class="bx_info">
+                    <div class="bx_inner">
+                        <div class="lst_info">
+                            <a href="#" class="lst_poster" style="background-image: url(../img/teamList2.png);">
+                                <span class="blind">공연 이미지</span>
+                            </a>
+                            <div class="bx_lst_view swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                                <div class="lst_wrap swiper-wrapper">
+                                    <div class="lst_inner swiper-slide swiper-slide-active" style="width: 384px;">
+                                        <div class="item_info">
+                                            <a href="#" class="lnk_info">
+                                                <em class="label">타이틀</em>
+                                                <span class="tit">[Online] 2023 KIMHYUNJOONG SPECIAL LIVE SHOW &lt;
+                                                    HENECIA, Let's
+                                                    party! &gt;
+                                                </span>
+                                                <span class="ico ico_mark">
+                                                    <span class="blind"><i class="fi fi-rr-comment"></i></span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="item_info">
+                                            <a href="#" class="lnk_info">
+                                                <em class="label">공연시간</em>
+                                                <span class="tit">2023.11.11(토) 7:05PM</span>
+                                                <span class="ico ico_date">
+                                                    <span class="blind"><i class="fi fi-rr-calendar"></i></span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="lst_inner swiper-slide swiper-slide-next" style="width: 384px;">
+                                        <div class="item_info">
+                                                <div class="lst_cast_wrap type_only">
+                                                    <ul class="lst_cast swiper-wrapper" style="display: block;">
+                                                        <li class="item_cast swiper-slide">
+                                                            <span class="img_cast" style="background-image: url(&quot;//image.toast.com/aaaaab/ticketlink/TKL_4/다음수정김현중픽스.jpg&quot;);"></span>
+                                                            <em class="name_cast">김현중</em>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="item_info">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="lst_info">
+                            <a href="#" class="lst_poster" style="background-image: url(../img/teamList1.png);">
+                                <span class="blind">공연 이미지</span>
+                            </a>
+                            <div class="bx_lst_view swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                                <div class="lst_wrap swiper-wrapper">
+                                    <div class="lst_inner swiper-slide swiper-slide-active" style="width: 384px;">
+                                        <div class="item_info">
+                                            <a href="#" class="lnk_info">
+                                                <em class="label">타이틀</em>
+                                                <span class="tit">[Online] 2023 KIMHYUNJOONG SPECIAL LIVE SHOW &lt;
+                                                    HENECIA, Let's
+                                                    party! &gt;
+                                                </span>
+                                                <span class="ico ico_mark">
+                                                    <span class="blind"><i class="fi fi-rr-comment"></i></span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="item_info">
+                                            <a href="#" class="lnk_info">
+                                                <em class="label">공연시간</em>
+                                                <span class="tit">2023.11.11(토) 7:05PM</span>
+                                                <span class="ico ico_date">
+                                                    <span class="blind"><i class="fi fi-rr-calendar"></i></span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="lst_inner swiper-slide swiper-slide-next" style="width: 384px;">
+                                        <div class="item_info">
+                                                <div class="lst_cast_wrap type_only">
+                                                    <ul class="lst_cast swiper-wrapper" style="display: block;">
+                                                        <li class="item_cast swiper-slide">
+                                                            <span class="img_cast" style="background-image: url(&quot;//image.toast.com/aaaaab/ticketlink/TKL_4/다음수정김현중픽스.jpg&quot;);"></span>
+                                                            <em class="name_cast">김현중</em>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="item_info">
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        // 페이지 관련 변수
+        let page = 1 // 현재 페이지 번호
+        let rows = 10 // 페이지당 게시글 수
+        let pageCount = 10 // 노출 페이지 개수
+        let totalCount = 0 // 전체 게시글 수
+        // 검색 관련 변수
+        let searchType = 0 // 검색 조건
+        let keyword = '' // 검색어
+        // 순서 변수
+        let order = 0 // 기본값 : 최근 순
+
+        // 게시글 목록 요청
+        getPageList()
+        initPage()
+        initRows()
+
+
+        // 페이지 번호
+        function initPage() {
+
+            // 페이지 번호 정보
+            let data = {
+                'pageNo': page,
+                'rows': rows,
+                'pageCount': pageCount,
+                'totalCount': totalCount,
+                'searchType': searchType,
+                'keyword': keyword,
+            }
+
+            const url = 'http://localhost:8080/team/pageInfo'
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: data,
+                success: function (response) {
+                    let pageInfo = response
+                    console.log(response);
+
+                    let start = pageInfo.startPage
+                    let end = pageInfo.endPage
+                    let first = pageInfo.firstPage
+                    let last = pageInfo.lastPage
+                    let prev = pageInfo.prev
+                    let next = pageInfo.next
+
+                    // 게시글 건 수
+                    let totalCount = pageInfo.totalCount
+                    $('#totalCount').text(totalCount)
+
+                    let pagination = ''
+                    for (let i = start; i <= end; i++) {
+                        let a = `<a href='javascript:;' class='page-no' data='${i}'>${i}</a>`
+                        pagination += a
+                    }
+
+                    // 페이지 출력
+                    $('.page-list').html(pagination)
+                    // 화살표 페이지 번호
+                    $('#first').attr('data', first)
+                    $('#last').attr('data', last)
+                    $('#prev').attr('data', prev)
+                    $('#next').attr('data', next)
+
+                    $('.page-no').removeClass('on')
+                    // 현재 페이지 지정
+                    $('.page-no[data=' + page + ']').addClass('on')
+
+                    // 화살표 버튼 유효성 처리
+                    $('.page-arrow').show()
+                    if (page == 1) {
+                        $('#prev').hide()
+                    }
+
+                    if (page == last) {
+                        $('#next').hide()
+                    }
+
+
+                    // 페이지 번호 클릭 이벤트
+                    $('.page-no, .page-arrow').on('click', function () {
+
+                        // 이벤트 제거 - 이벤트 정의가 쌓이는 것을 방지
+                        $('.page-no, .page-arrow').off()
+
+                        // 페이지 번호
+                        let clickedPage = $(this).attr('data')
+                        page = clickedPage
+                        getPageList() // 페이지 목록 갱신
+                        initPage() // 페이지 번호 갱신
+                    })
+
+
+
+                },
+                error: function (request, status, error) {
+                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error)
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error);
+                }
+            })
+
+        }
+
+        // 게시글 목록 - 페이징
+        function getPageList() {
+            const url = 'http://localhost:8080/team/pageList'
+
+            let data = {
+                'pageNo': page,
+                'rows': rows,
+                'searchType': searchType,
+                'keyword': keyword,
+                'order': order,
+            }
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: data,
+                success: function (response) {
+                    let teamList = response
+
+                    displayList(teamList)
+                },
+                error: function (request, status, error) {
+                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error)
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error);
+                }
+            })
+        }
+
+
+        // [컴포넌트] 게시글 목록 - 페이징
+        function getComponentList() {
+            const url = 'http://localhost:8080/team/component/list'
+
+            // let data = {
+            //     'pageNo': page,
+            //     'rows': rows,
+            //     'searchType': searchType,
+            //     'keyword': keyword,
+            //     'order': order,
+            // }
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                // data: data,
+                success: function (response) {
+                    let teamList = response
+                    console.log(teamList);
+                    $(`#team-data`).html(teamList)
+                },
+                error: function (request, status, error) {
+                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error)
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error);
+                }
+            })
+        }
+
+
+
+        // 게시글 목록 출력
+        function displayList(teamList) {
+            console.log(teamList)
+            // 게시글 목록 존재여부
+            if (teamList.length == 0) {
+                let msg = '조회된 데이터가 없습니다.'
+                console.log(msg);
+
+                let tr = `<tr>
+                            <td colspan="9">${msg}</td>
+                            </tr>
+                            `
+                $('#team-data').html(tr)
+                $(`#paginationContainer`).html(``)
+                return
+            }
+
+            // 게시글 목록 출력
+            let teamData = ''
+            for (let i = 0; i < teamList.length; i++) {
+
+                let tr = `
+                <tr onclick="readEvent(${teamList[i].teamNo})">
+                    <td> ${teamList[i].teamNo}</td>
+                    <td> ${teamList[i].confirmed !=0 ?'마감':'모집중'}</td>
+                    <td>${teamList[i].title}</td>
+                    <td>${teamList[i].writer}</td>
+                    <td>${teamList[i].recStatus}/${teamList[i].capacity}</td>
+                    <td>${teamList[i].location}</td>
+                    <td>${teamList[i].price}</td>
+                    <td>${teamList[i].liveDate}</td>
+                    <td>${new Date(teamList[i].updDate).toISOString().split("T")[0]}</td>
+                    <td>${teamList[i].views}</td>
+            </tr>
+            `
+                teamData += tr
+            }
+            $('#team-data').html(teamData)
+        }
+
+
+        // 검색 클릭 이벤트
+        $('#btn-search').on('click', function () {
+            initPage()
+            search()
+        })
+
+        // 페이지당 게시글 수 - 변경 이벤트
+        $('#rows').on('change', function () {
+            rows = $(this).val()
+            page = 1
+            initPage()
+            getPageList()
+        })
+
+        // 보여줄 게시글 수 갱신
+        function initRows() {
+            $('#rows').val(rows)
+        }
+
+
+        // 검색 - 키 입력 이벤트
+        $('#keyword').on('keyup', function (event) {
+            console.log(event.keyCode);
+
+            // 엔터
+            if (event.keyCode == 13) {
+                initPage()
+                search()
+            }
+        })
+
+
+        // 검색
+        function search() {
+            // 검색 조건 (serach-type)
+            // 검색어    (keyword)
+            searchType = $('#search-type').val()
+            keyword = $('#keyword').val()
+
+            let data = {
+                'searchType': searchType,
+                'keyword': keyword,
+                'rows': rows,
+                'pageNo': page,
+                'pageCount': pageCount,
+                'order': order,
+            }
+
+            const url = 'http://localhost:8080/team/pageList'
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: data,
+                success: function (response) {
+                    let teamList = response
+
+                    displayList(teamList)
+
+                    page = 1
+                    initPage()
+
+                },
+                error: function (request, status, error) {
+                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error);
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                        "error:" + error);
+                }
+            })
+        }
+
+
+        // 순서 필터 - 변경 이벤트
+        $('#order').on('change', function () {
+
+            order = $(this).val()
+
+            let data = {
+                searchType: searchType,
+                keyword: keyword,
+                rows: rows,
+                pageNo: page,
+                pageCount: pageCount,
+                order: order,
+            }
+
+            const url = 'http://localhost:8080/team/pageList'
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: data,
+                success: function (response) {
+                    let teamList = response
+
+                    displayList(teamList)
+
+                    page = 1
+                    initPage()
+
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText +
+                        "\n" + "error:" + error);
+                }
+            })
+
+
+        })
+
+
+        let readEvent = function (teamNo) {
+
+            location.href = `/team/read?teamNo=${teamNo}`
+        }
+    </script>
+    </body>
+
+</html>

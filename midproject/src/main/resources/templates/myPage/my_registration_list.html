@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/UI/user/layout/noActiveFooter_layout}">
+
+<head>
+    <title>내가 신청한 참가 내역</title>
+    <link rel="stylesheet" href="/css/teamList.css">
+</head>
+
+<body layout:fragment="content">
+
+    <div id="topContent">
+        <h1>내가 신청한 참가 내역</h1>
+        <p>어떤 팀과 함께 공연을 계획중이신가요? 멋진 공연을 기대할게요!</p>
+        <hr>
+    </div>
+
+    <div id="teamListContainer">
+        <div class="tableContainer">
+            <table style="margin-bottom: 100px;">
+                <thead>
+                    <tr>
+                        <th width="50">번호</th>
+                        <th width="300">모집글 제목</th>
+                        <th width="100">참가자 아이디</th>
+                        <th width="100">승인 상태</th>
+                        <th width="100">신청 일자</th>
+                        <th width="100">연락처</th>
+                        <th width="100">입금여부</th>
+                        <th width="100">참가취소</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <th:block th:if="${reqTeamAppList != null}" th:each="reqTeam : ${reqTeamAppList}">
+
+                    <tr>
+                        <td th:text="${reqTeam.appNo}"></td>
+                        <td th:text="${reqTeam.teamTitle}" th:onclick="'readTeam('+${reqTeam.teamNo}+')'"></td>
+                        <td th:text="${reqTeam.username}"></td>
+                        <th:block th:if="${reqTeam.approvalStatus==0}">
+                            <td>미확인</td>
+                        </th:block>
+                        <th:block th:if="${reqTeam.approvalStatus==1}">
+                            <td>승인</td>
+                        </th:block>
+                        <th:block th:if="${reqTeam.approvalStatus==2}">
+                            <td>거절</td>
+                        </th:block>
+                        <td th:text="${#dates.format(reqTeam.updDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text = "${reqTeam.phone}"></td>
+                        <th:block th:if="${reqTeam.depositStatus==1}">
+                            <td>입금확정</td>
+                        </th:block>
+                        <th:block th:if="${reqTeam.depositStatus==0}">
+                            <td>미입금</td>
+                        </th:block>
+                        <th:block th:if="${reqTeam.depositStatus==0}">
+                        <td>
+                            <form action="/team/app/delete" method="POST">
+
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                                <input type="hidden" name="appNo" th:value="${reqTeam.appNo}">
+
+                                <input type="submit" value="참가취소">
+                                
+
+                            </form>
+                        </td>
+                    </th:block>
+                    </tr>
+                </th:block>
+                <th:block th:if="${reqTeamAppList.isEmpty()}">
+                    <tr>
+                        <td colspan="8">조회된 데이터가 없습니다.</td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+
+
+    <script>
+
+        let readTeam = function(teamNo){
+
+            location.href = `/team/read?teamNo=${teamNo}`
+
+        }
+
+    </script>
+</body>
+</html>

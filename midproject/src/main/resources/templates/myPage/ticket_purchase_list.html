@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/UI/user/layout/noActiveFooter_layout}">
+
+<head>
+    <title>티켓 구매 내역</title>
+    <link rel="stylesheet" href="/css/teamList.css">
+</head>
+
+<body layout:fragment="content">
+
+    <div id="topContent">
+        <h1>티켓 구매 내역</h1>
+        <p>회원님이 구매한 태켓 내역입니다. 공연명과 공연일자를 꼭 확인해 주세요.</p>
+        <hr>
+    </div>
+    <input type="hidden" id="phone" name="phone" th:value="${#authentication.principal.users.phone}" >
+
+    <div id="teamListContainer">
+        <div class="tableContainer">
+            <table style="margin-bottom: 100px;">
+                <thead>
+                    <tr>
+                        <th width="300">예매 번호</th>
+                        <th width="300">공연명</th>
+                        <th width="100">공연일자</th>
+                        <th width="100">예매자명</th>
+                        <th width="80">예매상태</th>
+                        <th width="100">구매일자</th>
+                    </tr>
+                </thead>
+                <tbody id="ticket-data">
+                    <tr>
+                        <td>123</td>
+                        <td>123</td>
+                        <td>123</td>
+                        <td>123</td>
+                        <td>123</td>
+                        <td>123</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+        getList()
+
+
+        // 게시글 목록
+        function getList() {
+            const url = 'http://localhost:8080/listByPhone'
+            let phone = $('#phone').val()
+            let data = {
+                'phone' : phone
+            }
+
+            // alert(form.nickname.value);
+            $.ajax({
+                url             :   url,
+                type            :   'GET',
+                data            :   data,
+                
+                success         : function(response) {
+                    let ticketList = response
+
+                     // 게시글 목록 존재여부
+                    if( ticketList.length == 0 ) {
+                        let msg = '조회된 데이터가 없습니다.'
+                        console.log(msg);
+
+                        let tr = `<tr>
+                                    <td colspan="6">${msg}</td>
+                                    </tr>
+                                    `
+                        $('#ticket-data').html(tr)
+                        return
+                    }
+
+                    // 게시글 목록 출력
+                    let ticketData = ''
+                    for(let i = 0 ; i < ticketList.length ; i++ ){
+                        const reservationNo = ticketList[i].reservationNo
+                        const boardNo = ticketList[i].boardNo
+                        const title = `<a href='http://localhost:8080/liveBoard/read?boardNo=${boardNo}'>${ticketList[i].title}</a>`
+
+                        const liveDate = ticketList[i].liveDate
+                       
+
+                         // new Date()를 사용하여 현재 날짜를 가져와서 변수에 할당
+                        let currentDate = new Date();
+                        let updDate = new Date(ticketList[i].updDate);
+
+                        // currentDate와 updDate를 필요한 형식으로 변환 (예: YYYY-MM-DD)
+                        currentDate = currentDate.toISOString().split("T")[0];
+                        updDate = updDate.toISOString().split("T")[0];
+                        let refund = ticketList[i].refund
+                        if (refund == 0){
+                            refund = '결제완료'
+                        }
+                        let tr = `<tr>
+                                    <td>${reservationNo}</td>
+                                    <td>${title}</td>
+                                    <td>${liveDate}</td>
+                                    <td>${ticketList[i].name}</td>
+                                    <td>${refund}</td>
+                                    <td>${updDate}</td>
+                                    </tr>
+                                    `
+                                    ticketData += tr
+                    }
+                    $('#ticket-data').html(ticketData)
+
+                },
+                error           : function(request, status, error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+
+            })
+
+        }
+
+
+    </script>
+</body>
+</html>

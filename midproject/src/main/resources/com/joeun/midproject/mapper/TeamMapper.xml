@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" -->
+<mapper namespace="com.joeun.midproject.mapper.TeamMapper">
+
+
+  <select id="list" resultType="Team">
+      SELECT t.*,count(a.team_no) AS recStatus FROM team_recruitments AS t LEFT JOIN team_applications AS a ON (t.team_no = a.team_no AND a.deposit_status = 1) GROUP BY t.team_no ORDER BY t.upd_date DESC
+  </select>
+
+
+
+  <update id="addView">
+    UPDATE `team_recruitments` SET views = (views + 1) WHERE team_no = #{teamNo}
+  </update>
+
+  <select id="read" resultType="Team">
+  
+    SELECT t.*,count(a.team_no) AS recStatus FROM team_recruitments AS t LEFT JOIN team_applications AS a ON (t.team_no = a.team_no AND a.deposit_status = 1) WHERE t.team_no = #{teamNo} GROUP BY t.team_no;
+
+  </select>
+
+  <insert id="insert">
+    INSERT INTO `team_recruitments`
+    (title,
+    writer,
+    username,
+    content,
+    location,
+    address,
+    live_date,
+    live_st_time,
+    live_end_time,
+      price,
+      capacity,
+      account,
+      views,
+      confirmed,
+      upd_date)
+     VALUES
+      (#{title},
+      #{writer},
+      #{username},
+      #{content},
+      #{location},
+      #{address},
+      #{liveDate},
+      #{liveStTime},
+      #{liveEndTime},
+      #{price},
+      #{capacity},
+      #{account},
+      0,
+      0,
+      now())
+
+  </insert>
+
+  <update id="update">
+
+    UPDATE `team_recruitments`
+     SET
+     title = #{title},
+      writer = #{writer},
+       content = #{content},
+        location = #{location},
+        address = #{address},
+         live_date = #{liveDate},
+          live_st_time = #{liveStTime},
+          live_end_time = #{liveEndTime},
+           price = #{price},
+            capacity = #{capacity},
+             account = #{account},
+              upd_date = now()
+              WHERE
+              team_no =#{teamNo}
+
+  </update>
+
+  <delete id = "delete">
+
+    DELETE FROM `team_recruitments`
+    <if test="recStatus == 0">
+    WHERE team_no = #{teamNo}
+    </if>
+    <if test="recStatus != 0">
+    WHERE 1<![CDATA[ <> ]]>1
+    </if>
+
+    </delete>
+
+  <select id="listByConfirmedLive" resultType="Team">
+  
+  SELECT t.*, c.crew AS crew, c.upd_date AS confirmedDate
+   FROM `team_recruitments` AS t
+   JOIN `confirmed_live` AS c
+   ON (t.team_no = c.team_no)
+   WHERE t.username = #{username}
+   ORDER BY c.upd_date DESC
+
+  </select>
+
+<select id="totalCount">
+
+<choose>
+<when test="table == 'confirmed_live'">
+SELECT
+COUNT(t.team_no)
+FROM ${table} AS l
+JOIN team_recruitments t
+ON (l.team_no = t.team_no)
+WHERE
+ <choose>
+            <when test="searchType == 0">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%" OR t.writer LIKE "%${keyword}%") </when>
+            <when test="searchType == 1">t.title LIKE "%${keyword}%"</when>
+            <when test="searchType == 2">t.content LIKE "%${keyword}%"</when>
+            <when test="searchType == 3">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%")</when>
+            <when test="searchType == 4">t.writer LIKE "%${keyword}%"</when>
+        </choose>
+
+</when>
+
+<otherwise>
+SELECT
+COUNT(*)
+FROM ${table}
+WHERE
+        <choose>
+            <when test="searchType == 0">(title LIKE "%${keyword}%" OR content LIKE "%${keyword}%" OR writer LIKE "%${keyword}%") </when>
+            <when test="searchType == 1">title LIKE "%${keyword}%"</when>
+            <when test="searchType == 2">content LIKE "%${keyword}%"</when>
+            <when test="searchType == 3">(title LIKE "%${keyword}%" OR content LIKE "%${keyword}%")</when>
+            <when test="searchType == 4">writer LIKE "%${keyword}%"</when>
+        </choose>
+
+
+</otherwise>
+</choose>
+</select>
+
+
+<!-- Get page information and paged items -->
+<select id="pageInfo" resultType="PageInfo">
+<![CDATA[
+  SELECT
+
+            IF(CEIL(#{pageNo} / #{pageCount}) = 1, 1, (CEIL(#{pageNo} / #{pageCount}) - 1) * #{pageCount} + 1) AS startPage,
+            
+            IF(CEIL(#{pageNo} / #{pageCount}) * #{pageCount} > CEIL(#{totalCount} / #{rows}), CEIL(#{totalCount} / #{rows}), CEIL(#{pageNo} / #{pageCount}) * #{pageCount}) AS endPage,
+            
+            1 AS firstPage,
+            
+            CEIL(#{totalCount} / #{rows}) AS lastPage,
+            
+            IF(#{pageNo} > 1, #{pageNo} - 1, 1) AS prev,
+            
+            IF(#{pageNo} < CEIL(#{totalCount} / #{rows}), #{pageNo} + 1, CEIL(#{totalCount} / #{rows})) AS next,
+
+            #{totalCount} AS totalCount
+  
+  ]]>
+</select>
+
+<parameterMap type="Team" id="teamMap">
+    <parameter property="pageNo" jdbcType="INTEGER" javaType="java.lang.Integer" mode="IN"/>
+    <parameter property="rows" jdbcType="INTEGER" javaType="java.lang.Integer" mode="IN"/>
+</parameterMap>
+
+
+  <select id="pageList" resultType="Team" parameterMap="teamMap">
+  
+  SELECT t.*,count(a.team_no) AS recStatus
+   FROM team_recruitments AS t LEFT JOIN team_applications AS a
+    ON (t.team_no = a.team_no AND a.deposit_status = 1)
+   WHERE
+        <choose>
+            <when test="searchType == 0">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%" OR t.writer LIKE "%${keyword}%") </when>
+            <when test="searchType == 1">t.title LIKE "%${keyword}%"</when>
+            <when test="searchType == 2">t.content LIKE "%${keyword}%"</when>
+            <when test="searchType == 3">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%")</when>
+            <when test="searchType == 4">t.writer LIKE "%${keyword}%"</when>
+        </choose>
+         GROUP BY t.team_no
+    ORDER BY 
+        <choose>
+            <when test="order == 0">t.upd_date DESC</when>
+            <when test="order == 1">t.title DESC</when>
+            <when test="order == 2">t.views DESC</when>
+        </choose>
+    LIMIT #{pageNo}, #{rows};
+  </select>
+
+   <select id="listByConfirmedLive2" resultType="Team" parameterMap="teamMap">
+  
+  SELECT t.*, c.crew AS crew, c.upd_date AS confirmedDate
+   FROM `team_recruitments` AS t
+   JOIN `confirmed_live` AS c
+   ON (t.team_no = c.team_no)
+   WHERE (t.username = #{username} 
+   OR 
+   #{username} IN 
+   (SELECT a.username 
+   FROM team_recruitments AS t 
+   JOIN team_applications AS a 
+   ON (t.team_no = a.team_no)))
+   
+   AND
+        <choose>
+            <when test="searchType == 0">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%" OR t.writer LIKE "%${keyword}%") </when>
+            <when test="searchType == 1">t.title LIKE "%${keyword}%"</when>
+            <when test="searchType == 2">t.content LIKE "%${keyword}%"</when>
+            <when test="searchType == 3">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%")</when>
+            <when test="searchType == 4">t.writer LIKE "%${keyword}%"</when>
+        </choose>
+    ORDER BY 
+        <choose>
+            <when test="order == 0">t.upd_date DESC</when>
+            <when test="order == 1">t.title DESC</when>
+            <when test="order == 2">t.views DESC</when>
+        </choose>
+    LIMIT #{pageNo}, #{rows};
+  </select>
+
+
+  <update id="confirmed">
+    UPDATE `team_recruitments` SET confirmed = 1
+    WHERE team_no = #{teamNo}
+  </update>
+
+</mapper>

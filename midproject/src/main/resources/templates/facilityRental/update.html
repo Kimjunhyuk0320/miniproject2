@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/UI/user/layout/main_layout}"
+      >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대관 게시글 수정</title>
+    <link rel="stylesheet" href="/css/update.css">
+    <!-- 하단 버튼만을 위한 css -->
+    <style>
+        .bottomSubmit {
+            text-align: center;
+        }
+
+        .centered-buttons {
+            display: inline-block; 
+        }
+
+        .centered-buttons button {
+            margin: 0 10px; 
+            background-color: rgb(41, 43, 50);
+            width: 200px;
+            height: 50px;
+            color: white;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .centered-buttons button:hover {
+            margin: 0 10px; 
+            scale: 103%;
+            background-color: rgb(58, 59, 63);
+            width: 200px;
+            height: 50px;
+            color: white;
+        }
+    </style>
+</head>
+<body layout:fragment="content">
+    <div id="topContent">
+        <h1>대관 게시글 수정</h1>
+        <p>대관 게시글을 수정합니다. 꼼꼼하게 작성해 주세요.</p>
+        <hr>
+    </div>
+    <div id="insertContainer">
+        <form action="/facilityRental/update" method="POST" id="form" enctype="multipart/form-data">
+            <!-- csrf -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="_csrf" />
+            <input type="hidden" name="frNo" th:value="${facilityRental.frNo}" id="frNo">
+
+            <div class="tableContainer">
+                <table>
+                    <tr>
+                        <td>제목</td>
+                        <td>
+                            <input type="text" name="title" th:value="${facilityRental.title}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>가격</td>
+                        <td>
+                            <input type="text" name="price" th:value="${facilityRental.price}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>대관일자</td>
+                        <td>
+                            <input type="text" name="liveDate" th:value="${facilityRental.liveDate}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>계좌번호</td>
+                        <td class="account-inputs">
+                            <select name="account1" id="account1">
+                                <option value="신한은행" th:selected="${facilityRental.account1=='신한은행'}">신한은행</option>
+                                <option value="우리은행" th:selected="${facilityRental.account1=='우리은행'}">우리은행</option>
+                                <option value="하나은행" th:selected="${facilityRental.account1=='하나은행'}">하나은행</option>
+                                <option value="SC은행" th:selected="${facilityRental.account1=='SC은행'}">SC은행</option>
+                                <option value="도이치은행" th:selected="${facilityRental.account1=='도이치은행'}">도이치은행</option>
+                                <option value="뱅크오브아메리카" th:selected="${facilityRental.account1=='뱅크오브아메리카'}">뱅크오브아메리카</option>
+                                <option value="수협은행" th:selected="${facilityRental.account1=='수협은행'}">수협은행</option>
+                                <option value="제주은행" th:selected="${facilityRental.account1=='제주은행'}">제주은행</option>
+                                <option value="카카오뱅크" th:selected="${facilityRental.account1=='카카오뱅크'}">카카오뱅크</option>
+                                <option value="케이뱅크" th:selected="${facilityRental.account1=='케이뱅크'}">케이뱅크</option>
+                                <option value="한국씨티은행" th:selected="${facilityRental.account1=='한국씨티은행'}">한국씨티은행</option>
+                                <option value="BNP파리바은행" th:selected="${facilityRental.account1=='BNP파리바은행'}">BNP파리바은행</option>
+                                <option value="HSBC은행" th:selected="${facilityRental.account1=='HSBC은행'}">HSBC은행</option>
+                                <option value="JP모건체이스은행" th:selected="${facilityRental.account1=='JP모건체이스은행'}">JP모건체이스은행</option>
+                                <option value="산림조합중앙회" th:selected="${facilityRental.account1=='산림조합중앙회'}">산림조합중앙회</option>
+                                <option value="새마을금고은행" th:selected="${facilityRental.account1=='새마을금고은행'}">새마을금고은행</option>
+                                <option value="저축은행" th:selected="${facilityRental.account1=='저축은행'}">저축은행</option>
+                                <option value="신협중앙회" th:selected="${facilityRental.account1=='신협중앙회'}">신협중앙회</option>
+                                <option value="우체국" th:selected="${facilityRental.account1=='우체국'}">우체국</option>
+                            </select>
+                            <input type="text" name="account2" th:value="${facilityRental.account2}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>지역</td>
+                        <td>
+                            <select name="location">
+                                <option value="경기" th:selected="${facilityRental.location == '경기'}">경기</option>
+                                <option value="서울" th:selected="${facilityRental.location == '서울'}">서울</option>
+                                <option value="부산" th:selected="${facilityRental.location == '부산'}">부산</option>
+                                <option value="경남" th:selected="${facilityRental.location == '경남'}">경남</option>
+                                <option value="인천" th:selected="${facilityRental.location == '인천'}">인천</option>
+                                <option value="경북" th:selected="${facilityRental.location == '경북'}">경북</option>
+                                <option value="대구" th:selected="${facilityRental.location == '대구'}">대구</option>
+                                <option value="충남" th:selected="${facilityRental.location == '충남'}">충남</option>
+                                <option value="전남" th:selected="${facilityRental.location == '전남'}">전남</option>
+                                <option value="전북" th:selected="${facilityRental.location == '전북'}">전북</option>
+                                <option value="충북" th:selected="${facilityRental.location == '충북'}">충북</option>
+                                <option value="강원" th:selected="${facilityRental.location == '강원'}">강원</option>
+                                <option value="대전" th:selected="${facilityRental.location == '대전'}">대전</option>
+                                <option value="광주" th:selected="${facilityRental.location == '광주'}">광주</option>
+                                <option value="울산" th:selected="${facilityRental.location == '울산'}">울산</option>
+                                <option value="제주" th:selected="${facilityRental.location == '제주'}">제주</option>
+                                <option value="세종" th:selected="${facilityRental.location == '세종'}">세종</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>장소</td>
+                        <td>
+                            <input type="text" name="address" th:value="${facilityRental.address}">
+                        </td>
+                    </tr>
+                    <!-- 이미지 추가에 대한 것 -->
+                    <tr>
+                        <td class="label">썸네일</td>
+                        <td class="data">
+                            <!-- 썸네일 업로드 -->
+                            <div class="dropzone">
+                                <input type="file" id="thumbnail" accept="image/*" name="file">
+                                <a href="javascript:;" class="btn btn-sm btn-thumb-remove hide">삭제</a>
+                                <div class="drop-img flex col main-center sub-center">
+                                    <div class="upload-box">
+                                    </div>
+                                    <div class="img-box hide"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                   <!-- 글 작성 에디터 -->
+                   <tr>
+                        <td>게시글 적성 에디터</td>
+                        <td class="data">
+                            <textarea name="content" id="content" cols="30" rows="10" 
+                            class="input-textarea" th:text="${facilityRental.content}"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="bottomSubmit">
+                            <div class="centered-buttons">
+                                <button type="button" onclick="moveList()">목록</button>
+                                <button type="button" onclick="actionUpdate()">수정</button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+        </form>
+    </div>
+    
+
+    <script>
+
+        let form = document.getElementById('form')
+
+        function check(regExp, element, msg) {
+            if( regExp.test(element.value)) {			
+                return true
+            }
+            alert(msg)
+            element.select()
+            element.focus()
+            return false
+        }
+
+
+        // 수정하기
+        function actionUpdate() {
+            let title = form.title
+            let address = form.address
+            let account2 = form.account2
+            let price = form.price
+            let msg = ''
+            
+          
+            
+            let titleCheck = /^.{3,40}$/
+            msg = '제목은 3 ~ 40 글자 사이로 작성해주십시오.'
+            if( !check(titleCheck, title, msg) ) return false
+            
+            
+            let addressCheck = /^.{5,20}$/
+            msg = '주소는 5 ~ 20 글자 사이로 작성해주십시오.'
+            if( !check(addressCheck, address, msg) ) return false
+
+            let account2Check = /^.{10,20}$/
+            msg = '계좌번호는 알맞은 형태로 작성해주십시오..'
+            if( !check(account2Check, account2, msg) ) return false
+
+            let priceCheck = /^d{1,8}$/
+            msg = '가격은 8자릿수 안의 정수로 입력해주십시오'
+            if( !check(priceCheckCheck, priceCheck, msg) ) return false
+
+
+           form.submit()
+        }
+
+        
+        let frNo = $('#frNo').val()
+
+        
+        // 목록으로 이동
+        function moveList() {
+            location.href = "/facilityRental/list"
+        }
+
+
+        var toolbar = [
+            // 글꼴 설정
+            ['fontname', ['fontname']],
+            // 글자 크기 설정
+            ['fontsize', ['fontsize']],
+            // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+            // 글자색
+            ['color', ['forecolor','color']],
+            // 표만들기
+            ['table', ['table']],
+            // 글머리 기호, 번호매기기, 문단정렬
+            ['para', ['ul', 'ol', 'paragraph']],
+            // 줄간격
+            ['height', ['height']],
+            // 그림첨부, 링크만들기, 동영상첨부
+            ['insert',['picture','link','video']],
+            // 코드보기, 확대해서보기, 도움말
+            ['view', ['codeview','fullscreen', 'help']]
+        ];
+
+        var setting = {
+            height : 300,
+            minHeight : null,
+            maxHeight : null,
+            focus : true,
+            lang : 'ko-KR',
+            toolbar : toolbar,
+            callbacks : { 
+
+                onImageUpload : function(files, editor, welEditable) {
+                    for (var i = files.length - 1; i >= 0; i--) {
+                        uploadImage(files[i], this);
+                    }
+                }
+            }
+        };
+
+
+        $('#content').summernote(setting)
+        let _csrf_name = $('#_csrf').attr('name')
+        let _csrf_value = $('#_csrf').val()  
+        
+        // 에디터 파일 업로드
+        function uploadImage(file, element) {
+            const fileUrl = 'http://localhost:8080/file'
+            const url = 'http://localhost:8080/file'
+
+            let formData = new FormData()
+            formData.append(_csrf_name, _csrf_value )
+            formData.append("file", file)
+            $.ajax({
+                url : url,
+                type : "post",
+                data : formData,
+                contentType : false,
+                processData : false,
+                success : function(response) {
+                    let fileNo = response
+                    // let img = `<img src="${fileUrl}/img/${fileNo}">`
+                    let imgUrl = `${fileUrl}/img/${fileNo}`
+                    // 업로드된 이미지url 를 에디터에 추가
+                    $(element).summernote('editor.insertImage', imgUrl)
+                },
+                error : function(error) {
+
+                }
+                
+            })
+        }
+
+
+        let fileList = null
+
+        // 화면이 가장 처음 열릴 때 바뀌게 될 이미지 박스를 숨김
+            $(document).ready(function(e){
+            $('.img-box').hide()            // 기본 이미지 숨김
+            $('.btn-thumb-remove').hide()   // 삭제 버튼 숨김
+            // $('#file-name').hide()          // 파일명이 나오는 인풋 태그를 숨김
+        })
+
+        // 드랍존에 이미지를 올렸을 때
+        $('.dropzone').on('dragover', function(e) {
+            e.preventDefault() // 이벤트의 기본 액션 방지
+
+            $(this).addClass('over')
+        })
+
+        // 드랍존에 이미지를 벗어날 때
+        $('.dropzone').on('dragleave', function(e) {
+            e.preventDefault() // 이벤트의 기본 액션 방지
+
+            $(this).removeClass('over')
+        })
+
+        // 드랍존에 이미지를 놓았을 때
+        $('.dropzone').on('drop', function(e) {
+            e.preventDefault() // 이벤트의 기본 액션 방지
+            $(this).removeClass('over')
+            
+            console.log(e);
+
+            fileList = e.originalEvent.dataTransfer.files
+
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+
+                let reader = new FileReader()
+
+                // 파일 로드 시
+                reader.onload = function(event) {
+                    let source =  event.target.result   // 파일 데이터
+                    let img = `<img src="${source}" >`
+                    $('.btn-thumb-remove').show()               // 삭제 버튼 보여주기
+                    $('.drop-img .img-box').show().html(img)    // 이미지 보여주기
+                    $('.drop-img .upload-box').hide()           // 업로드 영역 숨김
+                    // 파일 데이터를 변수에 저장
+                    let fileData = event.target.result;
+
+                    // 파일 데이터를 직접 설정 (주의: 보안 정책에 따라 허용되지 않을 수 있음)
+                    try {
+                        $('#thumbnail').val(fileData);
+                    } catch (error) {
+                        console.error(error);
+                        alert("파일 데이터를 설정할 수 없습니다. 브라우저 보안 정책을 확인하세요.");
+                    }
+                }
+                reader.readAsDataURL(file)
+            }
+
+        })
+
+        // 썸네일 삭제 - 클릭 이벤트
+        $('.btn-thumb-remove').on('click', function() {
+            $('#thumbnail').val(null)       // 등록 파일정보 제거
+            $('.upload-box').show()         // 업로드 영역 보여주기
+            $('.img-box').empty().hide()    // 썸네일 숨김
+            $('.btn-thumb-remove').hide()   // 삭제 버튼 숨김
+        })
+
+
+
+
+
+        // 파일 변경 이벤트
+        $('#thumbnail').on('change', function(e) {
+            fileList = e.target.files       // 변경된 파일 목록
+
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+
+                let reader = new FileReader() 
+
+                // 파일 로드 시
+                reader.onload = function(event) {
+                    let source =  event.target.result   // 파일 데이터
+                    let img = `<img src="${source}" >`
+                    $('.btn-thumb-remove').show()
+                    $('.drop-img .img-box').show().html(img)
+                    $('.drop-img .upload-box').hide()
+                }
+                
+                reader.readAsDataURL(file)
+            }
+        })
+
+    </script>
+</body>
+</html>
