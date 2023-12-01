@@ -28,25 +28,27 @@ public class TeamServiceImpl implements TeamService{
   public int insert(Team team) {
 
     int result = teamMapper.insert(team);
-
-    return result;
+    if(result>0){
+      return teamMapper.maxPk();
+    }else return 0;
   }
 
   @Override
   public int update(Team team) {
 
     int result = teamMapper.update(team);
-
-
-    return result;
+    if(result>0){
+      return team.getTeamNo();
+    }else return 0;
   }
   
   @Override
   public int delete(Team team) {
     int result = teamMapper.delete(team);
   
-  
-    return result;
+    if(result>0){
+      return team.getTeamNo();
+    }else return 0;
   }
   
   @Override

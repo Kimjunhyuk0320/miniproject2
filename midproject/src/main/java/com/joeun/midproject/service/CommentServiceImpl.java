@@ -30,8 +30,10 @@ public class CommentServiceImpl implements CommentService{
   public int commentInsert(Comment comment) {
 
     int result = commentMapper.commentInsert(comment);
-
-    return result;
+    if(result>0){
+      return commentMapper.maxPk();
+    }else
+    return 0;
   }
 
   @Override
@@ -39,7 +41,11 @@ public class CommentServiceImpl implements CommentService{
 
 
     int result = commentMapper.commentDelete(comment);
-    return result;
+
+    if(result>0){
+      return comment.getCommentNo();
+    }else
+    return 0;
   }
   
   @Override
@@ -47,6 +53,9 @@ public class CommentServiceImpl implements CommentService{
     
     
     int result = commentMapper.commentUpdate(comment);
+    if(result>0){
+      return comment.getCommentNo();
+    }else
     return result;
   }
   

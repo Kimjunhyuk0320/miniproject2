@@ -14,44 +14,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joeun.midproject.dto.BookingRequests;
-import com.joeun.midproject.dto.FacilityRental;
-import com.joeun.midproject.dto.Files;
 import com.joeun.midproject.dto.PageInfo;
 import com.joeun.midproject.dto.Team;
 import com.joeun.midproject.mapper.TeamMapper;
 import com.joeun.midproject.service.CommentService;
-import com.joeun.midproject.service.FacilityRentalService;
-import com.joeun.midproject.service.FileService;
+import com.joeun.midproject.service.TeamAppService;
 import com.joeun.midproject.service.TeamService;
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
-@RequestMapping("/api/fr")
 @RestController
-public class FacilityRentalController {
-
-    @Autowired
-    private FacilityRentalService facilityRentalService;
+@RequestMapping("/api/team")
+public class TeamApiController {
     
-    @Autowired
-    private FileService fileService;
-    
-    @Autowired
-    private TeamMapper teamMapper;
-
     @Autowired
     private TeamService teamService;
 
+    @Autowired
+    private TeamMapper teamMapper;
 
-    @GetMapping()
-    public ResponseEntity<PageInfo> pageInfo(PageInfo pageInfo) {
+    @GetMapping("/pageInfo")
+    public ResponseEntity<PageInfo> getPage(@RequestBody PageInfo pageInfo) {
+        pageInfo.setTable("team_recruitments");
+        pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
 
         try {
-            pageInfo.setTable("facility_rental");
-            pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
-
             PageInfo pageInfoResult = teamService.pageInfo(pageInfo);
             return new ResponseEntity<>(pageInfoResult, HttpStatus.OK);
         } catch (Exception e) {
@@ -60,33 +49,33 @@ public class FacilityRentalController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<FacilityRental>> getAll(Team team) {
+    public ResponseEntity<List<Team>> getAll(@RequestBody Team team) {
+        log.info("this is /api/team");
         try {
-            List<FacilityRental> pageListResult = facilityRentalService.pageFrList(team);
-            return new ResponseEntity<>(pageListResult, HttpStatus.OK);
+            List<Team> teamList = teamService.pageList(team);
+            log.info(teamList.toString());
+            return new ResponseEntity<>(teamList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
-    @GetMapping("/{frNo}")
-    public ResponseEntity<FacilityRental> getOne(@PathVariable Integer frNo,Files files) {
+    @GetMapping("/{teamNo}")
+    public ResponseEntity<Team> getOne(@PathVariable Integer teamNo,Team team) {
         try {
-            FacilityRental facilityRental = facilityRentalService.select(frNo);     // 게시글 정보
-            files.setParentTable("facilityRental");
-            files.setParentNo(frNo);
-            facilityRental.setFileList(fileService.listByParent(files));
-            return new ResponseEntity<>(facilityRental, HttpStatus.OK);
+            team.setTeamNo(teamNo);
+            Team readTeam = teamService.read(team);
+            return new ResponseEntity<>(readTeam, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @PostMapping()
-    public ResponseEntity<Integer> create(@RequestBody FacilityRental facilityRental) {
-        facilityRental.setAccount(facilityRental.getAccount1()+"/"+facilityRental.getAccount2());
+    public ResponseEntity<Integer> create(@RequestBody Team team) {
         try {
-            int result = facilityRentalService.insert(facilityRental);
+            team.setAccount(team.getAccount1()+"/"+team.getAccount2());
+            int result = teamService.insert(team);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -94,29 +83,25 @@ public class FacilityRentalController {
     }
     
     @PutMapping()
-    public ResponseEntity<Integer> update(@RequestBody FacilityRental facilityRental) {
-        facilityRental.setAccount(facilityRental.getAccount1()+"/"+facilityRental.getAccount2());
+    public ResponseEntity<Integer> update(@RequestBody Team team) {
+        team.setAccount(team.getAccount1()+"/"+team.getAccount2());
+        int result = teamService.update(team);
         try {
-            int result = facilityRentalService.update(facilityRental);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
-    @DeleteMapping("/{frNo}")
-    public ResponseEntity<?> destroy(@PathVariable Integer frNo) {
+    @DeleteMapping("/{teamNo}")
+    public ResponseEntity<Integer> destroy(@PathVariable Integer teamNo,Team team) {
+        team.setTeamNo(teamNo);
+        int result = teamService.delete(team);
+
         try {
-            int result = facilityRentalService.delete(frNo);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
-    
-
-
-
 }

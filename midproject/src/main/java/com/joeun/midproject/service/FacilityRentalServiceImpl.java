@@ -120,6 +120,10 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
 
             fileMapper.insert(uploadedFile);
         }
+
+        if(result>0){
+            return facilityRental.getFrNo();
+        }else
         return result;
     }
 
@@ -179,7 +183,10 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
             int updateResult = fileMapper.update(uploadedFile);
             System.out.println(updateResult);
         }
-        return result;
+        if(result>0){
+            return facilityRental.getFrNo();
+        }else
+        return 0;
     }
 
 
@@ -187,7 +194,10 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
     @Override
     public int delete(int frNo) throws Exception {
         int result = facilityRentalMapper.delete(frNo);
-        return result;
+        if(result>0){
+            return frNo;
+        }else
+        return 0;
     }
 
     // 대관 예약 신청
@@ -229,8 +239,10 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
 
 
 
-
-        return result;
+        if(result>0){
+            return bookingRequestsMapper.maxPk();
+        }else
+        return 0;
     }
 
     @Override
@@ -247,8 +259,10 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
 
 
         int result = bookingRequestsMapper.delReq(bookingRequests);
-
-        return result;
+        if(result>0){
+            return bookingRequests.getBrNo();
+        }else
+        return 0;
     }
 
     @Override
@@ -263,8 +277,10 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
     public int reqDenied(BookingRequests bookingRequests) throws Exception {
 
         int result = bookingRequestsMapper.reqDenied(bookingRequests);
-
-        return result;
+        if(result>0){
+            return bookingRequests.getBrNo();
+        }else
+        return 0;
 
     }
 
@@ -309,8 +325,10 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
   
 
 
-
-        return result;
+        if(result>0){
+            return bookingRequests.getBrNo();
+        }else
+        return 0;
     }
     
     @Override

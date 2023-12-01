@@ -37,5 +37,8 @@ public interface BookingRequestsMapper {
 
     //예약 확정 시 대관에 확정자 닉네임 등록   
     public int confirmUsername(BookingRequests bookingRequests) throws Exception;
+
+    //가장 최근 등록된 예약 PK
+    public int maxPk();
     
 }

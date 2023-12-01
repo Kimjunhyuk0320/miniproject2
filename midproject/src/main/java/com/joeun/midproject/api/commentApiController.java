@@ -19,14 +19,14 @@ import com.joeun.midproject.service.CommentService;
 import groovy.util.logging.Slf4j;
 
 @Slf4j
-@RequestMapping("/comment")
-public class commentController {
+@RequestMapping("/api/comment")
+public class commentApiController {
     
     @Autowired
   private CommentService commentService;
 
     @GetMapping()
-    public ResponseEntity<List<Comment>> getAll(Comment comment) {
+    public ResponseEntity<List<Comment>> getAll(@RequestBody Comment comment) {
 
         try {
             List<Comment>commentList = commentService.commentList(comment);

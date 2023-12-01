@@ -60,6 +60,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         VALUES (#{frNo}, #{username}, #{phone},0,0,now())
     </insert>
 
+    <select id="maxPk">
+
+    SELECT MAX(app_no) FROM `booking_requests`
+    
+  </select>
+
     <delete id="delReq">
     
     DELETE FROM booking_requests

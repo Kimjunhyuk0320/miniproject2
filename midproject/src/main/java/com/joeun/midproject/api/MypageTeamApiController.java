@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.joeun.midproject.dto.PageInfo;
@@ -21,8 +22,8 @@ import com.joeun.midproject.service.TeamService;
 import groovy.util.logging.Slf4j;
 
 @Slf4j
-@RequestMapping("/user")
-public class MypageTeamController {
+@RequestMapping("/api/user")
+public class MypageTeamApiController {
 
 
     @Autowired
@@ -63,7 +64,7 @@ public class MypageTeamController {
     }
 
     @GetMapping("/pageInfo")
-    public ResponseEntity<PageInfo> pageInfo(PageInfo pageInfo) {
+    public ResponseEntity<PageInfo> pageInfo(@RequestBody PageInfo pageInfo) {
         pageInfo.setTable("confirmed_live");
         pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
 
@@ -76,7 +77,7 @@ public class MypageTeamController {
     }
 
     @GetMapping("/confirmedLiveList")
-    public ResponseEntity<List<Team>> confirmedLiveList(Team team) {
+    public ResponseEntity<List<Team>> confirmedLiveList(@RequestBody Team team) {
         List<Team> pageListResult = teamService.listByConfirmedLive2(team);
 
         try {
@@ -87,7 +88,7 @@ public class MypageTeamController {
     }
 
     @GetMapping("/readApp")
-    public ResponseEntity<TeamApp> readApp(TeamApp teamApp) {
+    public ResponseEntity<TeamApp> readApp(@RequestBody TeamApp teamApp) {
         
         try {
             TeamApp readApp = teamAppService.read(teamApp);

@@ -59,6 +59,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   </insert>
 
+  <select id="maxPk">
+    SELECT MAX(team_no) FROM `team_recruitments`
+  </select>
+
   <update id="update">
 
     UPDATE `team_recruitments`

@@ -1,7 +1,5 @@
 package com.joeun.midproject.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joeun.midproject.dto.PageInfo;
 import com.joeun.midproject.dto.Team;
+import com.joeun.midproject.dto.TeamApp;
 import com.joeun.midproject.mapper.TeamMapper;
 import com.joeun.midproject.service.CommentService;
 import com.joeun.midproject.service.TeamAppService;
@@ -25,80 +23,96 @@ import groovy.util.logging.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/team")
-public class TeamController {
-    
+@RequestMapping("/api/team/app")
+public class TeamAppApiController {
+
     @Autowired
     private TeamService teamService;
 
     @Autowired
+    private TeamAppService teamAppService;
+
+    @Autowired
     private TeamMapper teamMapper;
 
-    @GetMapping("/pageInfo")
-    public ResponseEntity<PageInfo> getPage(PageInfo pageInfo) {
-        pageInfo.setTable("team_recruitments");
-        pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
+    @Autowired
+    private CommentService commentService;
 
-        try {
-            PageInfo pageInfoResult = teamService.pageInfo(pageInfo);
-            return new ResponseEntity<>(pageInfoResult, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @GetMapping()
-    public ResponseEntity<List<Team>> getAll(Team team) {
-        try {
-            List<Team> teamList = teamService.pageList(team);
-            return new ResponseEntity<>(teamList, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     
-    @GetMapping("/{teamNo}")
-    public ResponseEntity<Team> getOne(@PathVariable Integer teamNo,Team team) {
-        try {
-            team.setTeamNo(teamNo);
-            Team readTeam = teamService.read(team);
-            return new ResponseEntity<>(readTeam, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     
+    // @GetMapping("/{teamNo}")
+    // public ResponseEntity<Team> getOne(@PathVariable Integer teamNo) {
+    //     try {
+    //         Team appAboutTeam = 
+    //         return new ResponseEntity<>("GetOne Result", HttpStatus.OK);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
+    
+
+
+
+
+
+
+    //🤞🤞🤞🤞
+    //★★★★★★★★★★★★★★★★★★★★
+    //컴포넌트 측에서 props로 temaNo를 registration으로 내려줘야합니다.
+    //★★★★★★★★★★★★★★★★★★
+    //🤞🤞🤞🤞
+
+
     @PostMapping()
-    public ResponseEntity<Integer> create(@RequestBody Team team) {
+    public ResponseEntity<Integer> create(@RequestBody TeamApp teamApp) {
         try {
-            team.setAccount(team.getAccount1()+"/"+team.getAccount2());
-            int result = teamService.insert(team);
+            int result = teamAppService.insert(teamApp);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
-    @PutMapping()
-    public ResponseEntity<Integer> update(@RequestBody Team team) {
-        team.setAccount(team.getAccount1()+"/"+team.getAccount2());
-        int result = teamService.update(team);
+    @PutMapping("/accept")
+    public ResponseEntity<Integer> accept(@RequestBody TeamApp teamApp) {
         try {
+            int result = teamAppService.accept(teamApp);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    @DeleteMapping("/{teamNo}")
-    public ResponseEntity<Integer> destroy(@PathVariable Integer teamNo,Team team) {
-        team.setTeamNo(teamNo);
-        int result = teamService.delete(team);
 
+    @PutMapping("/denied")
+    public ResponseEntity<Integer> denied(@RequestBody TeamApp teamApp) {
         try {
+            int result = teamAppService.denied(teamApp);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/confirmed")
+    public ResponseEntity<Integer> confirmed(@RequestBody TeamApp teamApp) {
+        try {
+            int result = teamAppService.confirmed(teamApp);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @DeleteMapping("/{teamAppNo}")
+    public ResponseEntity<Integer> destroy(@PathVariable Integer teamAppNo,TeamApp teamApp) {
+        teamApp.setAppNo(teamAppNo);
+        try {
+            int result = teamAppService.delete(teamApp);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

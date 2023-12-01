@@ -33,5 +33,7 @@ public interface TeamMapper {
   public int totalCount(PageInfo pageInfo);
 
   public int confirmed(Team team);
+
+  public int maxPk();
   
 }

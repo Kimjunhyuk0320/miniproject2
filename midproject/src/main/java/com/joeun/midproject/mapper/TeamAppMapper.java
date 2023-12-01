@@ -32,6 +32,8 @@ public interface TeamAppMapper {
   
   public int insertLive(TeamApp teamApp);
 
+  public int maxPk();
+
 
 
 }

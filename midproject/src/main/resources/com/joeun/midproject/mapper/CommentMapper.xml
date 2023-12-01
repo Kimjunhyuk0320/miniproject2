@@ -29,6 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 </insert>
 
+<select id="maxPk">
+
+  SELECT MAX(app_no) FROM `comment`
+    
+</select>
+
 <update id="commentUpdate">
 
   UPDATE `comment`

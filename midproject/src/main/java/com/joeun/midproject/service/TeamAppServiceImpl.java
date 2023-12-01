@@ -77,8 +77,9 @@ public class TeamAppServiceImpl implements TeamAppService{
 
 
 
-
-    return result;
+    if(result>0){
+      return teamAppMapper.maxPk();
+    }else return 0;
   }
 
   @Override
@@ -154,8 +155,10 @@ public class TeamAppServiceImpl implements TeamAppService{
 
 
 
-
-    return result;
+    if(result>0){
+      return teamApp.getAppNo();
+    }
+    return 0;
   }
 
   @Override
@@ -322,9 +325,10 @@ public class TeamAppServiceImpl implements TeamAppService{
   public int delete(TeamApp teamApp) {
 
     int result = teamAppMapper.delete(teamApp);
-
-
-    return result;
+    if(result>0){
+      return teamApp.getAppNo();
+    }else
+    return 0;
   }
   
 }

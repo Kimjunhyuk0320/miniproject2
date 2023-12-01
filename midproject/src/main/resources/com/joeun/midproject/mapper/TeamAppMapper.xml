@@ -45,6 +45,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   </insert>
 
+  <select id="maxPk">
+
+    SELECT MAX(app_no) FROM `team_applications`
+    
+  </select>
+
   <update id="accept">
 
   UPDATE `team_applications` SET approval_status = 1 WHERE app_no = #{appNo}

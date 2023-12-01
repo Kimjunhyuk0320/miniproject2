@@ -18,5 +18,7 @@ public interface CommentMapper {
   public int commentDelete(Comment comment);
 
   public int commentUpdate(Comment comment);
+
+  public int maxPk();
   
 }

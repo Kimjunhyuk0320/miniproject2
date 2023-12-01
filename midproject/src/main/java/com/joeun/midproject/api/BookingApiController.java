@@ -26,25 +26,14 @@ import groovy.util.logging.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/booking")
-public class BookingController {
+@RequestMapping("/api/booking")
+public class BookingApiController {
 
     @Autowired
     private FacilityRentalService facilityRentalService;
     
-    @Autowired
-    private TeamMapper teamMapper;
-
-    @Autowired
-    private TeamService teamService;
-
-    @Autowired
-    private FileService fileService;
-
-    @Autowired
-    private CommentService commentService;
     
-    @GetMapping()
+    @GetMapping("/rreq")
     public ResponseEntity<List<BookingRequests>> rreqList(Principal principal) {
         try {
             List<BookingRequests> rreqList = facilityRentalService.rreqList(principal.getName());
@@ -54,7 +43,7 @@ public class BookingController {
         }
     }
 
-    @GetMapping()
+    @GetMapping("/rr")
     public ResponseEntity<List<BookingRequests>> rrList(Principal principal) {
 
         try {
