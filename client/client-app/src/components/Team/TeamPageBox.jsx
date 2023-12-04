@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const TeamPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,setSearchType}) => {
     
@@ -41,7 +42,9 @@ const TeamPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,
                     </div>
                 </div>
                 <div className="item">
-                        <a href="/team/insert"><button id="filter-btn">작성하기</button></a>
+                        <Link to="/team/insert">
+                            <button id="filter-btn">작성하기</button>
+                        </Link>
                     <select name="rows" id="rows" className="input-search" value={rows} onChange={
                         (e)=>{
                             setRows(e.target.value)

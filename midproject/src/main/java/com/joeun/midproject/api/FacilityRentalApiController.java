@@ -46,7 +46,7 @@ public class FacilityRentalApiController {
 
 
     @GetMapping("/pageInfo")
-    public ResponseEntity<PageInfo> pageInfo(@RequestBody PageInfo pageInfo) {
+    public ResponseEntity<PageInfo> pageInfo( PageInfo pageInfo) {
 
         try {
             pageInfo.setTable("facility_rental");
@@ -60,7 +60,7 @@ public class FacilityRentalApiController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<FacilityRental>> getAll(@RequestBody Team team) {
+    public ResponseEntity<List<FacilityRental>> getAll( Team team) {
         try {
             List<FacilityRental> pageListResult = facilityRentalService.pageFrList(team);
             return new ResponseEntity<>(pageListResult, HttpStatus.OK);

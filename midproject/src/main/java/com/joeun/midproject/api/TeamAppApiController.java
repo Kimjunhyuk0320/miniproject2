@@ -19,7 +19,8 @@ import com.joeun.midproject.service.CommentService;
 import com.joeun.midproject.service.TeamAppService;
 import com.joeun.midproject.service.TeamService;
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
 @RestController
@@ -66,6 +67,9 @@ public class TeamAppApiController {
 
     @PostMapping()
     public ResponseEntity<Integer> create(@RequestBody TeamApp teamApp) {
+
+        log.info("--------------------------------");
+        log.info(teamApp.toString());
         try {
             int result = teamAppService.insert(teamApp);
             return new ResponseEntity<>(result, HttpStatus.OK);

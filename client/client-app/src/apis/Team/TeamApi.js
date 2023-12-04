@@ -20,3 +20,8 @@ export const teamDelete = (teamNo)=>{
     return axios.delete(`/api/team/${teamNo}`)
 }
 
+export const teamReg = (teamApp)=>{
+    return axios.post(`/api/team/app`,teamApp)
+}
+
+

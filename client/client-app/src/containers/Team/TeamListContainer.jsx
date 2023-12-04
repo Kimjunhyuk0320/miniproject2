@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import TeamList from '../../components/Team/TeamList'
 import * as teamApi from '../../apis/Team/TeamApi'
 import TeamPagenation from '../../components/Team/TeamPagenation'
-import TeamPageBox from './TeamPageBox'
+import TeamPageBox from '../../components/Team/TeamPageBox'
 
 const TeamListContainer = () => {
 
@@ -53,7 +53,7 @@ const TeamListContainer = () => {
     // },[pageInfo])
 
     const [pageNo, setPage] = useState(1);
-    const [rows, setRows] = useState(8);
+    const [rows, setRows] = useState(10);
     const [pageCount, setPageCount] = useState(10);
     const [totalCount, setTotalCount] = useState(0);
     const [searchType, setSearchType] = useState(0);
@@ -82,10 +82,6 @@ const TeamListContainer = () => {
       initPage()
     },[pageNo, keyword, order, rows])
 
-    const pageNoHandler = (e)=>{
-      // setPageNo(e.target.dataset.data)
-    }
-
   return (
     <>
         <TeamPageBox rows={rows}
@@ -97,7 +93,7 @@ const TeamListContainer = () => {
          searchType={searchType}
          setSearchType={setSearchType}></TeamPageBox>
         <TeamList teamList={teamList}></TeamList>
-        <TeamPagenation pageInfo={pageInfo}></TeamPagenation>
+        <TeamPagenation pageInfo={pageInfo} setPage={setPage}></TeamPagenation>
     </>
   )
 }
