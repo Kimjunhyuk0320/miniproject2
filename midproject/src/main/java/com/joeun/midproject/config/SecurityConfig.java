@@ -118,6 +118,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                               );
 
       
+        http.csrf().disable();                    
     }
 
     // 👮‍♂️🔐사용자 인증 관리 메소드

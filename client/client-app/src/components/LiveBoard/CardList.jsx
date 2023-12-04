@@ -1,9 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CardList = ({ liveBoardList }) => {
   return (
-    <div>
-      CardList
       <div className="container card_list">
         <div className="row" id="team-data">
           {liveBoardList.length === 0 ? (
@@ -13,14 +12,14 @@ const CardList = ({ liveBoardList }) => {
           ) : (
             liveBoardList.map((liveBoard) => (
               <div className="card col-3" key={liveBoard.boardNo}>
-                <a href={`/liveBoard/read?boardNo=${liveBoard.boardNo}`}>
-                  {liveBoard.thumbnail !== null && (
-                    <img src={`api/file/img/${liveBoard.thumbnail.fileNo}`} id="card-img" alt="thumbnail" />
-                  )}
-                </a>
+                  <Link to={`/liveBoard/${liveBoard.boardNo}`}>
+                    {liveBoard.thumbnail !== null && (
+                      <img src={`/api/file/img/${liveBoard.thumbnail.fileNo}`} id="card-img" alt="thumbnail" />
+                    )}
+                  </Link>
                 <div className="card-body">
                   <h5 className="card-title">
-                    <a href={`/liveBoard/read?boardNo=${liveBoard.boardNo}`}>{liveBoard.title}</a>
+                    <Link to={`/liveBoard/${liveBoard.boardNo}`}>{liveBoard.title}</Link>
                   </h5>
                   <p className="card-text">{liveBoard.crew}</p>
                   {liveBoard.soldOut === 0 ? (
@@ -36,7 +35,6 @@ const CardList = ({ liveBoardList }) => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 
