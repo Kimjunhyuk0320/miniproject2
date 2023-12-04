@@ -27,14 +27,10 @@ const LiveBoardListContainer = () => {
   }
 
   // 현재 페이지가 변화했을 때,  검색을 눌렀을 때, 조회 순서가 변화했을때, 페이지당 게시글 수가 변화했을때 게시글 목록 조회 및 페이지네이션 변경
-  useEffect(()=>{
+  useEffect(() => {
     getLiveBoardList()
     initPage();
-  },[pageNo, keyword, order, rows])
- 
-
-
-
+  }, [pageNo, keyword, order, rows])
 
 
 
@@ -42,9 +38,9 @@ const LiveBoardListContainer = () => {
     <div>
       <h1>LiveBoardListContainer</h1>
       <PageBox rows={rows} setRows={setRows} searchType={searchType} setSearchType={setSearchType} setKeyword={setKeyword}
-                order={order} setOrder={setOrder} setPageNo={setPageNo} />
-      <CardList liveBoardList={liveBoardList}/>
-      <Pagenation pageInfo={pageInfo} setPageNo ={setPageNo} />
+        order={order} setOrder={setOrder} setPageNo={setPageNo} />
+      <CardList liveBoardList={liveBoardList} />
+      <Pagenation pageInfo={pageInfo} setPageNo={setPageNo} />
     </div>
   )
 }
