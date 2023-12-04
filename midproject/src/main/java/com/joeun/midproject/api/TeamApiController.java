@@ -23,7 +23,6 @@ import com.joeun.midproject.service.TeamAppService;
 import com.joeun.midproject.service.TeamService;
 
 import lombok.extern.slf4j.Slf4j;
-@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping("/api/team")
@@ -36,7 +35,7 @@ public class TeamApiController {
     private TeamMapper teamMapper;
 
     @GetMapping("/pageInfo")
-    public ResponseEntity<PageInfo> getPage(@RequestBody PageInfo pageInfo) {
+    public ResponseEntity<PageInfo> getPage( PageInfo pageInfo) {
         pageInfo.setTable("team_recruitments");
         pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
 
@@ -49,7 +48,7 @@ public class TeamApiController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Team>> getAll(@RequestBody Team team) {
+    public ResponseEntity<List<Team>> getAll( Team team) {
         log.info("this is /api/team");
         try {
             List<Team> teamList = teamService.pageList(team);
@@ -81,9 +80,10 @@ public class TeamApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @PutMapping()
     public ResponseEntity<Integer> update(@RequestBody Team team) {
+        log.info("접근성공");
         team.setAccount(team.getAccount1()+"/"+team.getAccount2());
         int result = teamService.update(team);
         try {

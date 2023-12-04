@@ -41,7 +41,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     content,
     upd_date,
     approval_status,
-    deposit_status) VALUES (#{teamNo},#{title},#{phone},#{username},#{bandName},#{content},now(),0,0)
+    deposit_status)
+     VALUES
+    (#{teamNo},
+    #{title},
+    #{phone},
+    #{username},
+    #{bandName},
+    #{content},
+    now(),
+    0,
+    0)
 
   </insert>
 

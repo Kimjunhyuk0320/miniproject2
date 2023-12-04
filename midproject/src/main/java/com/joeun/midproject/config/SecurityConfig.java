@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -68,9 +69,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 인가 처리
         // 람다식 
+        http.csrf().disable();
         http
             .authorizeRequests((authorize) -> authorize
                                 .antMatchers("/**").permitAll()
+                                .antMatchers("/api/**").permitAll()    // /static/~ 정적자원 인가처리
                                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()    // /static/~ 정적자원 인가처리
                               )
         ;
@@ -115,6 +118,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                               );
 
       
+        http.csrf().disable();                    
     }
 
     // 👮‍♂️🔐사용자 인증 관리 메소드
