@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as myPages from '../../apis/myPage/myPageApi';
+import './TableList.css';
 
 
 const TicketPurchaseList = () => {
@@ -23,12 +24,12 @@ const TicketPurchaseList = () => {
         return ticketList.map((ticket, index) => {
             return (
                 <tr key={index}>
-                    <td>{ticket.bookingNumber}</td>
-                    <td>{ticket.showName}</td>
-                    <td>{ticket.showDate}</td>
-                    <td>{ticket.bookerName}</td>
-                    <td>{ticket.bookingStatus}</td>
-                    <td>{ticket.purchaseDate}</td>
+                    <td>{ticket.reservationNo}</td>
+                    <td>{ticket.title}</td>
+                    <td>{ticket.liveDate}</td>
+                    <td>{ticket.name}</td>
+                    <td>{ticket.refund}</td>
+                    <td>{ticket.updDate}</td>
                 </tr>
             );
         });
