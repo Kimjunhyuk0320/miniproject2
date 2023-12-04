@@ -9,18 +9,16 @@ const TeamListContainer = () => {
       pageNo : 1,
       rows : 10,
       pageCount : 10,
-      totalCount,
-      searchType,
-      keyword,
-      order
+      totalCount : 0,
+      searchType : 0,
+      keyword : '',
+      order: 0
     }
     const [pagenation,setPagenation] = useState([])
     const [teamList,setTeamList] = useState([])
     const [pageInfo, setPageInfo] = useState(initPageInfo)
     
-    // pageNo, orws, serachType, keywor, order
     const handlePage = () => {
-      // setPageInfo( {...pageInfo, keyword} )
 
     }
 
@@ -31,24 +29,25 @@ const TeamListContainer = () => {
       keyword:pageInfo.keyword,
       order:pageInfo.order
     }
-
+    
     const getTeamList = async (pageInfo,team)=>{
       const responsePage = await teamApi.pageInfo(pageInfo)
-      const {startPage,endPage,firstPage,lastPage,prev,next} = await responsePage.json()
+      const {startPage,endPage,firstPage,lastPage,prev,next,totalCount} = await responsePage.json()
       setPagenation({
         startPage,
         endPage,
         firstPage,
         lastPage,
         prev,
-        next})
+        next,
+        totalCount})
+        
       const responseList = await teamApi.teamList(team);
       const dataList = await responseList.json()
       setTeamList(dataList)
     }
 
     useEffect(()=>{
-      setPageInfo()
       getTeamList(pageInfo,team)
     },[pageInfo])
 
@@ -58,6 +57,7 @@ const TeamListContainer = () => {
 
   return (
     <>
+        <h1>{pagenation.totalCount}</h1>
         <TeamList teamList={teamList}></TeamList>
         <TeamPagenation pagenation={pagenation}></TeamPagenation>
     </>
