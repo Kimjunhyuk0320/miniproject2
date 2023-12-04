@@ -4,10 +4,10 @@ import CardList from '../../components/LiveBoard/CardList'
 import Pagenation from '../../components/LiveBoard/Pagenation'
 import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
 const LiveBoardListContainer = () => {
-  const [pageNo, setPage] = useState(1);
+  const [pageNo, setPageNo] = useState(1);
   const [rows, setRows] = useState(8);
-  const [pageCount, setPageCount] = useState(10);
-  const [totalCount, setTotalCount] = useState(0);
+  const pageCount = 10
+  const totalCount = 0
   const [searchType, setSearchType] = useState(0);
   const [keyword, setKeyword] = useState('');
   const [order, setOrder] = useState(0);
@@ -17,14 +17,12 @@ const LiveBoardListContainer = () => {
   const getLiveBoardList = async () => {
     const response = await liveBoards.getPageList(pageNo, rows, searchType, keyword, order);
     const data = await response.data
-    console.log(data)
     setLiveBoardList(data)
   }
 
   const initPage = async () => {
     const response = await liveBoards.initPage(pageNo, rows, pageCount, totalCount, searchType, keyword)
     const data = await response.data
-    console.log(data)
     setPageInfo(data)
   }
 
@@ -44,9 +42,9 @@ const LiveBoardListContainer = () => {
     <div>
       <h1>LiveBoardListContainer</h1>
       <PageBox rows={rows} setRows={setRows} searchType={searchType} setSearchType={setSearchType} setKeyword={setKeyword}
-                order={order} setOrder={setOrder} />
+                order={order} setOrder={setOrder} setPageNo={setPageNo} />
       <CardList liveBoardList={liveBoardList}/>
-      <Pagenation pageInfo={pageInfo} />
+      <Pagenation pageInfo={pageInfo} setPageNo ={setPageNo} />
     </div>
   )
 }
