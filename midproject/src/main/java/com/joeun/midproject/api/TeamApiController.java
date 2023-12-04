@@ -36,7 +36,7 @@ public class TeamApiController {
     private TeamMapper teamMapper;
 
     @GetMapping("/pageInfo")
-    public ResponseEntity<PageInfo> getPage(@RequestBody PageInfo pageInfo) {
+    public ResponseEntity<PageInfo> getPage( PageInfo pageInfo) {
         pageInfo.setTable("team_recruitments");
         pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
 
@@ -49,7 +49,7 @@ public class TeamApiController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Team>> getAll(@RequestBody Team team) {
+    public ResponseEntity<List<Team>> getAll( Team team) {
         log.info("this is /api/team");
         try {
             List<Team> teamList = teamService.pageList(team);
