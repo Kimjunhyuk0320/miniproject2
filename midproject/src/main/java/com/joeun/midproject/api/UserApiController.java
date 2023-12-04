@@ -126,7 +126,7 @@ public class UserApiController {
     @RequestMapping("/listByPhone")
     public ResponseEntity<List<Ticket>> listByPhone(Users users) throws Exception {
         List<Ticket> ticketList = userService.listByPhone(users);
-        // ticketList.add(new Ticket());
+        ticketList.add(new Ticket());
         return new ResponseEntity<List<Ticket>>(ticketList, HttpStatus.OK);
     }
 
