@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, setOrder }) => {
+const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, setOrder, setPageNo }) => {
 
   const handleChangeSearchType = (e) => {
     setSearchType(e.target.value)
@@ -9,10 +9,12 @@ const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, s
 
   const handleChangeRows = (e) => {
     setRows(e.target.value)
+    setPageNo(1)
   }
 
   const handleChangeOrder = (e) => {
     setOrder(e.target.value)
+    setPageNo(1)
   }
 
   const handleChangeInputValue = (e) => {
@@ -21,6 +23,7 @@ const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, s
 
   const onClickPage = () => {
     setKeyword(inputValue)
+    setPageNo(1)
   }
   const [inputValue, setInputValue] = useState('')
 
