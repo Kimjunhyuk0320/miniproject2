@@ -18,21 +18,20 @@ const FacilityRentalList = ({frList}) => {
 
                     <div class="card col-3">
                      <Link to={`fr/${fr.frNo}`}>
-                   {fr.thumbnail != null) {
-                       </Link>
-                       tr += `
-                                   <img src="/file/img/${teamList[i].thumbnail.fileNo}" id="card-img">
-                               `
-                           }else{
-                       tr += `
-                                   <img src="/img/defaultImage.png" id="card-img">
-                               `
-                       
+                   {fr.thumbnail &&(
+                    <img src={`/api/file/img/${fr.thumbnail.fileNo}`} id="card-img"/>
+                   )}
+                   {
+                    fr.thumbnail || (
+                        <img src="/img/defaultImage.png" id="card-img"></img>
+                    )
+                   }
+                   </Link>
+                       <div class="card-body">
+                               <h5 class="card-title">{fr.title}</h5>
                    }
                    tr += `
-                           <div class="card-body">
-                               <a href="/facilityRental/read?frNo=${teamList[i].frNo}">
-                               <h5 class="card-title">${teamList[i].title}</h5>
+                           
                                </a>
                                <p class="card-text">${teamList[i].writer}</p>
                                <p class="card-text">${teamList[i].location}</p>
