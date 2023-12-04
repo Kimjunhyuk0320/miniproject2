@@ -128,7 +128,8 @@ public class LiveBoardApiController {
     
     // 티켓 수량 비동기 조회
     @PostMapping("/ticketNum")
-    public ResponseEntity<?> ticketNum(@RequestBody Ticket ticket, @RequestBody int count) {
+    public ResponseEntity<?> ticketNum(@RequestBody Ticket ticket) {
+        Integer count = ticket.getCount();
         try {
             int boardNo = ticket.getBoardNo();
             int totalTicketCount = liveBoardService.select(boardNo).getMaxTickets();
@@ -151,7 +152,8 @@ public class LiveBoardApiController {
     
     // 티켓 구매 처리
     @PostMapping("/purchase")
-    public ResponseEntity<?> ticket(@RequestBody Ticket ticket, @RequestBody int count) {
+    public ResponseEntity<?> ticket(@RequestBody Ticket ticket) {
+        Integer count = ticket.getCount();
         try {
             int boardNo = ticket.getBoardNo();
             int totalTicketCount = liveBoardService.select(boardNo).getMaxTickets();

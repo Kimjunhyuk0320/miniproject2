@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, setOrder, setPageNo }) => {
 
@@ -31,9 +32,6 @@ const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, s
 
 
   return (
-    <div>
-      PageBox
-      <div id="teamListContainer">
         <div className="page-box">
             <div className="item">
                 <div className="search_item">
@@ -45,13 +43,13 @@ const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, s
                         <option value="4">작성자</option>
                     </select>
                     <input type="text" name="keyword" id="keyword" className="input-search" value={inputValue} onChange={handleChangeInputValue}/>
-                    <a className="btn" id="btn-search" onClick={onClickPage}>
-                        <img src="https://www.dacorkorea.com/images/icon-search.png" alt="search" />
-                    </a>
+                    <Link className="btn" id="btn-search" onClick={onClickPage}>
+                      <img src="https://www.dacorkorea.com/images/icon-search.png" alt="search" style={{ width: '23px', paddingTop: '5px' }} />
+                    </Link>
                 </div>
             </div>
             <div className="item">
-                    <a href="/liveBoard/insert"><button id="filter-btn">작성하기</button></a>
+                    <Link href="/liveBoard/insert"><button id="filter-btn">작성하기</button></Link>
                 <select name="rows" id="rows" className="input-search" value={rows} onChange={handleChangeRows}>
                     <option value="4">4개씩 보기</option>
                     <option value="8">8개씩 보기</option>
@@ -65,8 +63,6 @@ const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, s
                 </select>
             </div>
         </div>
-      </div>
-    </div>
   )
 }
 

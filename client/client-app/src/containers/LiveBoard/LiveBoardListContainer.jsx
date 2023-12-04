@@ -39,8 +39,7 @@ const LiveBoardListContainer = () => {
 
 
   return (
-    <div>
-      <h1>LiveBoardListContainer</h1>
+    <div id="teamListContainer">
       <PageBox rows={rows} setRows={setRows} searchType={searchType} setSearchType={setSearchType} setKeyword={setKeyword}
                 order={order} setOrder={setOrder} setPageNo={setPageNo} />
       <CardList liveBoardList={liveBoardList}/>

@@ -13,4 +13,5 @@ public class Ticket {
     private String liveDate;
     private String updDate;
     private int refund;
+    private Integer count;
 }
