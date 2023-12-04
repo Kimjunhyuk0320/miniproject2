@@ -8,8 +8,10 @@
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 
 <body layout:fragment="content">
@@ -19,7 +21,7 @@
                 <div class="headerCon">
                     <a href="/liveBoard">
                         <img src="/img/loginWhite.png" style="margin-top: 10px; height: 50px; object-fit: cover;">
-                    </a>   
+                    </a>
                     <div class="toggle"></div>
                 </div>
                 <!-- 동영상 -->
@@ -34,7 +36,7 @@
                     <h2>Making live shows</h2>
                     <h3>more accessible than ever before</h3>
                     <p>
-                        LiveDom에 오신 것을 환영합니다. LiveDom은 클럽 대관, 공연 예약, 공연 팀 모집의 세 가지 주요 서비스를 제공하는 공간입니다. 
+                        LiveDom에 오신 것을 환영합니다. LiveDom은 클럽 대관, 공연 예약, 공연 팀 모집의 세 가지 주요 서비스를 제공하는 공간입니다.
                         좋아하는 아티스트의 공연을 예약하고, 나만의 공연을 계획하며, 같은 꿈을 꾸는 아티스트들과 팀을 이루는 음악적 여정을 LiveDom에서 시작해보세요. <br>
                         LiveDom에서는 여러분이 공연의 주인공이 됩니다. 여러분의 라이브를 만나보세요!
                     </p>
@@ -63,21 +65,21 @@
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </form>
                 <ul>
-                    <li><a href="/facilityRental/list"><i class="fi fi-rr-calendar-clock"></i>   클럽대관</a></li>
+                    <li><a href="/facilityRental/list"><i class="fi fi-rr-calendar-clock"></i> 클럽대관</a></li>
                     <br>
-                    <li><a href="/liveBoard"><i class="fi fi-rs-music-alt"></i>   공연보기</a></li>
+                    <li><a href="/liveBoard"><i class="fi fi-rs-music-alt"></i> 공연보기</a></li>
                     <br>
-                    <li><a href="/team"><i class="fi fi-rs-chart-tree"></i>   공연팀 모집</a></li>
+                    <li><a href="/team"><i class="fi fi-rs-chart-tree"></i> 공연팀 모집</a></li>
                     <br>
                     <th:block sec:authorize="isAnonymous()">
-                        <li><a href="/join"><i class="fi fi-rr-user-add"></i>   회원가입</a></li>
+                        <li><a href="/join"><i class="fi fi-rr-user-add"></i> 회원가입</a></li>
                         <br>
-                        <li><a href="/login"><i class="fi fi-rr-sign-in-alt"></i>   로그인</a></li>
+                        <li><a href="/login"><i class="fi fi-rr-sign-in-alt"></i> 로그인</a></li>
                     </th:block>
                     <th:block sec:authorize="isAuthenticated()">
-                        <li><a href="/myPage"><i class="fi fi-rr-sign-in-alt"></i>   마이페이지</a></li>
+                        <li><a href="/myPage"><i class="fi fi-rr-sign-in-alt"></i> 마이페이지</a></li>
                         <br>
-                        <li><a a href="#" onclick="logOut()"><i class="fi fi-rr-sign-out-alt"></i>   로그아웃</a></li>
+                        <li><a a href="#" onclick="logOut()"><i class="fi fi-rr-sign-out-alt"></i> 로그아웃</a></li>
                     </th:block>
                 </ul>
             </div>
@@ -127,6 +129,8 @@
             </div>
         </div>
     </section>
+
+
     <section class="section4" style="height: 100vh; background-color: black;">
         <div class="section2_box">
             <div class="box_inner_R">
@@ -151,7 +155,8 @@
                 <div class="box_inner_L_both">
                     <div class="staticVideoSection">
                         <!-- YouTube Video Embed Code -->
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/TZrYtpmclzA" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/TZrYtpmclzA" frameborder="0"
+                            allowfullscreen></iframe>
                     </div>
                     <div class="box_inner_R_bottom">
                         <div class="box_inner_R_top">
@@ -175,81 +180,20 @@
                         <img src="/img/mainimg11.png" alt="">
                     </div>
                 </div>
-                <!-- <div class="box_inner_R_bottom">
-                    <div class="img_box">
-                        <img src="/img/mainimg4.png" alt="">
-                        <img src="/img/mainimg5.png" alt="">
-                        <img src="/img/mainimg6.png" alt="">
-                    </div>
-                </div> -->
             </div>
             <div class="box_inner_L">
                 <div class="box_inner_L_both" style="height: 50vh;">
-                    <div class="staticVideoSection"  style="height: 50vh;">
+                    <div class="staticVideoSection" style="height: 50vh;">
                         <!-- YouTube Video Embed Code -->
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/OZJ6nRCkAjo" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/OZJ6nRCkAjo" frameborder="0"
+                            allowfullscreen></iframe>
                     </div>
-                    <!-- <div class="box_inner_R_bottom">
-                        <div class="box_inner_R_top">
-                            <h1>클럽 대ㄴㄴㄴㄴ</h1>
-                            <h1>무대가 필요한 순간</h1>
-                            <h1>Live Dom이 함께합니다.</h1>
-                            <h1 style="text-decoration: underline;">자세히 보기</h1>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
     </section>
-
-
-    <!-- <section class="section5">
-    </section>
-
-    
-    <section class="section3" style="height: 100vh;">
-        <div class="box_scoll">
-            <h1 style="text-align: center; color: white;">LiveDom에서!</h1>
-
-            <div class="scroller" data-speed="fast">
-            <ul class="tag-list scroller__inner">
-                <li>홍대</li>
-                <li>성수</li>
-                <li>을지로</li>
-                <li>명동</li>
-                <li>이태원</li>
-                <li>잠실</li>
-                <li>압구정</li>
-                <li>마포</li>
-                <li>서초</li>
-            </ul>
-            </div>
-
-            <div class="scroller" data-direction="right" data-speed="slow">
-                <div class="scroller__inner">
-                    <img src="/img/clubr1.jpeg" alt="" />
-                    <img src="/img/clubr2.jpeg" alt="" />
-                    <img src="/img/clubr3.jpeg" alt="" />
-                    <img src="/img/clubr4.jpeg" alt="" />
-                    <img src="/img/clubr1.jpeg" alt="" />
-                    <img src="/img/clubr2.jpeg" alt="" />
-                    <img src="/img/clubr3.jpeg" alt="" />
-                    <img src="/img/clubr4.jpeg" alt="" />
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-
 
     <script>
-        // $(document).ready(function () {
-        //     setTimeout(function () {
-        //         $(".video_detail_text").addClass("show");
-        //     }, 500);
-        // });
-
         $(".click_for_scroll").click(function () {
             $('html, body').animate({
                 scrollTop: $(".section2").offset().top
@@ -266,28 +210,26 @@
 
         const scrollers = $(".scroller");
 
-
-
         if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        addAnimation();
+            addAnimation();
         }
 
         function addAnimation() {
-        scrollers.each(function () {
-            $(this).attr("data-animated", true);
+            scrollers.each(function () {
+                $(this).attr("data-animated", true);
 
-            const scrollerInner = $(this).find(".scroller__inner");
-            const scrollerContent = Array.from(scrollerInner.children());
+                const scrollerInner = $(this).find(".scroller__inner");
+                const scrollerContent = Array.from(scrollerInner.children());
 
-            scrollerContent.forEach((item) => {
-            const duplicatedItem = $(item).clone(true);
-            duplicatedItem.attr("aria-hidden", true);
-            scrollerInner.append(duplicatedItem);
+                scrollerContent.forEach((item) => {
+                    const duplicatedItem = $(item).clone(true);
+                    duplicatedItem.attr("aria-hidden", true);
+                    scrollerInner.append(duplicatedItem);
+                });
             });
-        });
         }
 
-        function logOut(){
+        function logOut() {
             let form = $('#logoutForm')
             form.submit()
         }
@@ -298,4 +240,3 @@
 </body>
 
 </html>
-
