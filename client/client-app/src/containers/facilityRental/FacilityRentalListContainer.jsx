@@ -47,7 +47,7 @@ const facilityRentalListContainer = () => {
          searchType={searchType}
          setSearchType={setSearchType}>
     </TeamPageBox>
-    <FacilityRentalList frList={frList}></FacilityRentalList>
+    {/* <FacilityRentalList frList={frList}></FacilityRentalList> */}
     <TeamPagenation pageInfo={pageInfo} setPage={setPage}></TeamPagenation>
     </>
   )

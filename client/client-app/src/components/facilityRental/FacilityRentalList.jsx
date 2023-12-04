@@ -1,56 +1,52 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const FacilityRentalList = ({frList}) => {
+const FacilityRentalList = ({ frList }) => {
 
 
-  return (
-    <>
-        <div class="container card_list">
-            <div class="row" id="team-data">
+    return (
+        <>
+            <div className="container card_list">
+                <div className="row" id="team-data">
 
-                {frList.length==0?(
-                    <div class="card-body">
-                    <h5 class="card-text" style="text-align : center; padding:10px; font-size:12px;">조회된 데이터가 없습니다.</h5>
-                 </div>
-                ) : (
-                frList.map((fr)=>(
+                    {frList.length == 0 ? (
+                        <div className="card-body">
+                            <h5 className="card-text" style={{textAlign : 'center', padding:'10px', fontSize:'12px'}}>조회된 데이터가 없습니다.</h5>
+                        </div>
+                    ) : (
+                        frList.map((fr) => (
+                            <div className="card col-3">
+                                <Link to={`fr/${fr.frNo}`}>
 
-                    <div class="card col-3">
-                     <Link to={`fr/${fr.frNo}`}>
-                   {fr.thumbnail &&(
-                    <img src={`/api/file/img/${fr.thumbnail.fileNo}`} id="card-img"/>
-                   )}
-                   {
-                    fr.thumbnail || (
-                        <img src="/img/defaultImage.png" id="card-img"></img>
-                    )
-                   }
-                   </Link>
-                       <div class="card-body">
-                               <h5 class="card-title">{fr.title}</h5>
-                   }
-                   tr += `
-                           
-                               </a>
-                               <p class="card-text">${teamList[i].writer}</p>
-                               <p class="card-text">${teamList[i].location}</p>
-                               <p class="card-text">${teamList[i].price}</p>
-                               <p class="card-text card-text-date">${teamList[i].liveDate}</p>
-                               `
-                   if (teamList[i].confirmed == 1) {
-                       tr += `
-                                   <p class="card-text" style="background-color: red; color: yellow; display: inline; border-radius: 3px; padding: 3px 5px; font-size: 11px">마감</p>                       
-                                   `
-                   }
-                   tr += `
-                           </div>
+                                    {fr.thumbnail && (
+                                        <img src={`/api/file/img/${fr.thumbnail.fileNo}`} id="card-img" />
+                                    )}
+
+                                    {
+                                        fr.thumbnail || (
+                                            <img src="/img/defaultImage.png" id="card-img"></img>
+                                        )
+                                    }
+                                </Link>
+
+                                    <div className="card-body">
+                                <Link to={`fr/${fr.frNo}`}>
+                                    <h5 className="card-title">{fr.title}</h5>
+                                </Link>
+                                <p className="card-text">{fr.writer}</p>
+                                <p className="card-text">{fr.location}</p>
+                                <p className="card-text">{fr.price}</p>
+                                <p className="card-text card-text-date">{fr.liveDate}</p>
+                                {
+                                    fr.confirmed == 1 && (
+                                        <p className="card-text" style={{backgroundColor: 'red', color: 'yellow', display: 'inline', borderRadius: '3px' ,padding: '3px 5px', fontSize: '11px'}}>마감</p>
+                                    )
+                                }
+                            </div>
                        </div>
-             }
-                ))
-                )
+                )))}
             </div>
-        </div>
+        </div >
     </>
   )
 }
