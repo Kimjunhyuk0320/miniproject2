@@ -30,7 +30,7 @@ const LiveBoardListContainer = () => {
   useEffect(()=>{
     getLiveBoardList()
     initPage();
-  },[pageNo, keyword, order, rows, getLiveBoardList, initPage])
+  },[pageNo, keyword, order, rows])
  
 
 
