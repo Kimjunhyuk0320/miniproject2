@@ -84,7 +84,7 @@ public class LiveBoardController {
     
     
     List<LiveBoard> pageListResult = liveBoardService.liveBoardPageList(team);
-    
+    log.info(pageListResult +"");
     
     return pageListResult;
   }

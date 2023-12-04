@@ -47,8 +47,10 @@ public class LiveBoardApiController {
     // 페이지 네이션을 이용한 게시글 목록 불러오기
     @GetMapping("/liveBoardPageList")
     public ResponseEntity<?> liveBoardPageList(Team team) {
+        log.info("[GET] - /liveBoard/liveBoardPageList");
         try {
             List<LiveBoard> pageListResult = liveBoardService.liveBoardPageList(team);
+            log.info(pageListResult + "");
             return new ResponseEntity<>(pageListResult, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
