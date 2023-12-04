@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PageBox from '../../components/LiveBoard/PageBox'
 import CardList from '../../components/LiveBoard/CardList'
 import Pagenation from '../../components/LiveBoard/Pagenation'
-import * as liveBoards from '../../apis/liveBoardApi'
+import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
 const LiveBoardListContainer = () => {
   const [pageNo, setPage] = useState(1);
   const [rows, setRows] = useState(8);
