@@ -20,7 +20,7 @@ const Pagenation = ({pageInfo, setPageNo}) => {
 
 
   return (
-    <div>Pagenation
+    <div>
        <div id="paginationContainer">
             <div className="pagination_count">
                 <Link className="page-arrow" id="first" onClick={()=>{clickPage(first)}}>

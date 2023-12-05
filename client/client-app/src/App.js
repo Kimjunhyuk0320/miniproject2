@@ -1,14 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import MyInfo from './containers/MyPage/MyInfo';
-import MyPage from './containers/MyPage/MyPage';
+import MyInfoContainer from './containers/MyPage/MyInfoContainer';
+import TeamInsertContainer from './containers/Team/TeamInsertContainer';
 import TeamListContainer from './containers/Team/TeamListContainer';
 import TeamReadContainer from './containers/Team/TeamReadContainer';
-import TeamUpdateContainer from './containers/Team/TeamUpdateContainer';
 import TeamRegContainer from './containers/Team/TeamRegContainer';
-import TeamInsertContainer from './containers/Team/TeamInsertContainer';
+import TeamUpdateContainer from './containers/Team/TeamUpdateContainer';
 import Index from './pages/Index';
-import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import LiveBoardList from './pages/LiveBoard/LiveBoardList';
 import LiveBoardRead from './pages/LiveBoard/LiveBoardRead';
 import LiveBoardUpdate from './pages/LiveBoard/LiveBoardUpdate';
@@ -16,6 +14,9 @@ import FacilityRentalListContainer from './containers/facilityRental/FacilityRen
 import FacilityRentalReadContainer from './containers/facilityRental/FacilityRentalReadContainer';
 import FacilityRentalUpdateContainer from './containers/facilityRental/FacilityRentalUpdateContainer';
 import FacilityRentalInsertContainer from './containers/facilityRental/FacilityRentalInsertContainer';
+import MyPage from './pages/MyPage/MyPage';
+import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
+import TicketSalesList from './components/Mypage/TicketSalesList';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
       <Routes>
         <Route path='/' element={ <Index/> } />
         <Route path='/MyPage' element={ <MyPage/> } />
-        <Route path='/MyInfo' element={ <MyInfo/> } />
+        <Route path='/MyInfo' element={ <MyInfoContainer/> } />
+        <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
         <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
         <Route path='/liveBoard' element={ <LiveBoardList/> }/>
         <Route path='/liveBoard/:no' element={ <LiveBoardRead/> }/>

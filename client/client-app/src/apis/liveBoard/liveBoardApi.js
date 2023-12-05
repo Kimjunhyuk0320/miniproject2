@@ -11,13 +11,3 @@ export const getTicketNum = (boardNo, name, phone, count) => axios.post(`/api/li
 
 export const ticketPurchase = (boardNo, name, phone, count) => axios.post('/api/liveBoard/purchase', {boardNo, name, phone, count})
 
-export const getCommentList = (boardNo) => axios.get(`/api/liveBoard/commentList?boardNo=${boardNo}`)
-
-export const insertComment = (parentNo, parentTable, writer, content, username, profileNo ) => 
-        axios.get(`/api/liveBoard/commentInsert?parentNo=${parentNo}&parentTable=${parentTable}&writer=${writer}&content=${content}&username=${username}&profileNo=${profileNo}`)
-
-export const updateComment = (commentNo, writer, content ) => 
-        axios.get(`/api/liveBoard/commentUpdate?commentNo=${commentNo}&writer=${writer}&content=${content}`)
-
-export const deleteComment = (commentNo ) => 
-        axios.get(`/api/liveBoard/commentDelete?commentNo=${commentNo}`)
