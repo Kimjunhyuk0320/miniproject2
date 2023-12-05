@@ -11,7 +11,7 @@ const LiveBoardRead = () => {
 
   
   return (
-    <div id='LiveBoardRead'>
+    <div className='LiveBoardRead'>
       <div className='totalContainer'>
           <LiveBoardReadContainer no={no}/>
           <CommentContainer no={no} parentTable={parentTable}/>

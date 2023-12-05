@@ -19,7 +19,7 @@ const CardList = ({ liveBoardList }) => {
                   </Link>
                 <div className="card-body">
                   <h5 className="card-title">
-                    <Link to={`/liveBoard/${liveBoard.boardNo}`}>{liveBoard.title}</Link>
+                    <Link className='a'  to={`/liveBoard/${liveBoard.boardNo}`}>{liveBoard.title}</Link>
                   </h5>
                   <p className="card-text">{liveBoard.crew}</p>
                   {liveBoard.soldOut === 0 ? (

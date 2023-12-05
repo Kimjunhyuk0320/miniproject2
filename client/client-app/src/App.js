@@ -19,6 +19,7 @@ import TeamUpdatePage from './pages/Team/TeamUpdatePage';
 import TeamInsertPage from './pages/Team/TeamInsertPage';
 import TeamRegPage from './pages/Team/TeamRegPage';
 import TeamRegListPage from './pages/Team/TeamRegListPage';
+import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
         <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
         <Route path='/liveBoard' element={ <LiveBoardList/> }/>
+        <Route path='/liveBoard/insert' element={ <LiveBoardInsert/> }/>
         <Route path='/liveBoard/:no' element={ <LiveBoardRead/> }/>
         <Route path='/liveBoard/update/:no' element={ <LiveBoardUpdate/> }/>
         <Route path='/teamList' element={ <TeamListPage/> } />
