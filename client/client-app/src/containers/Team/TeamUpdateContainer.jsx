@@ -3,11 +3,9 @@ import TeamUpdate from '../../components/Team/TeamUpdate'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
 
-const TeamUpdateContainer = () => {
-  const {teamNo} = useParams()
+const TeamUpdateContainer = ({teamNo}) => {
   const [title,setTitle] = useState('')
   const [writer,setWriter] = useState('')
-  const [username,setUsername] = useState('')
   const [content,setContent] = useState('')
   const [location,setLocation] = useState('')
   const [address,setAddress] = useState('')

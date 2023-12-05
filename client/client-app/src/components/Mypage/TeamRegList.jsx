@@ -2,7 +2,9 @@ import React from 'react'
 import * as format from '../../apis/format/format'
 import { Link } from 'react-router-dom'
 
-const TeamRegList = ({ sets }) => {
+const TeamRegList = ({ sets,tllList }) => {
+
+  tllList = tllList ?? []
 
   return (
     <>
@@ -14,7 +16,7 @@ const TeamRegList = ({ sets }) => {
 
       <div id="teamListContainer">
         <div className="tableContainer">
-          <table style={{ marginBottom: '100px' }}>
+          <table style={{marginBottom:'100px'}}>
             <thead>
               <tr>
                 <th width="120">모집글 번호</th>
@@ -31,16 +33,14 @@ const TeamRegList = ({ sets }) => {
             </thead>
             <tbody>
               {
-                sets.tllList || (
+                tllList.length === 0 && (
                   <tr>
                     <td colSpan="10">조회된 내역이 없습니다.</td>
                   </tr>
                 )
               }
               {
-                sets.tllList && sets.tllList.map((tll) => {
-                  return (
-                    <>
+                tllList && tllList.map((tll) => (
                       <tr className="read-app-list-row">
 
                         <td>{tll.teamNo}</td>
@@ -56,36 +56,35 @@ const TeamRegList = ({ sets }) => {
                         <td>
                           {tll.username}
                         </td>
-                        {tll.approvalStatus == 0 && <td>미확인</td>}
-                        {tll.approvalStatus == 1 && <td>승인</td>}
-                        {tll.approvalStatus == 2 && <td>거절</td>}
-                        {tll.depositStatus == 1 && <td>입금확정</td>}
-                        {tll.depositStatus == 0 && <td>미입금</td>}
+                        {tll.approvalStatus === 0 && <td>미확인</td>}
+                        {tll.approvalStatus === 1 && <td>승인</td>}
+                        {tll.approvalStatus === 2 && <td>거절</td>}
+                        {tll.depositStatus === 1 && <td>입금확정</td>}
+                        {tll.depositStatus === 0 && <td>미입금</td>}
 
 
                         <td>
-                          {tll.approvalStatus == 1 && tll.depositStatus == 0 && <input type="button" value="입금확인" className="btn-cancel" onClick={() => {
+                          {tll.approvalStatus === 1 && tll.depositStatus === 0 && <input type="button" value="입금확인" className="btn-cancel" onClick={() => {
                             sets.confirmed(tll.appNo)
                           }} />}
 
                         </td>
 
                         <td>
-                          {tll.approvalStatus == 0 && <input type="button"value="참가승인" className="btn-cancel" onClick={() => {
+                          {tll.approvalStatus === 0 && <input type="button"value="참가승인" className="btn-cancel" onClick={() => {
                             sets.accept(tll.appNo)
                           }} />}
                         </td>
 
                         <td>
-                          {tll.approvalStatus == 0 && <input type="button" value="참가거절" className="btn-cancel" onClick={() => {
+                          {tll.approvalStatus === 0 && <input type="button" value="참가거절" className="btn-cancel" onClick={() => {
                             sets.denied(tll.appNo)
                           }} />}
                         </td>
 
                       </tr>
-                    </>
                   )
-                })
+                )
 
               }
             </tbody>

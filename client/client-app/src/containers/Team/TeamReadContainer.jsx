@@ -3,8 +3,7 @@ import TeamRead from '../../components/Team/TeamRead'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
 
-const TeamReadContainer = () => {
-  const {teamNo} = useParams()
+const TeamReadContainer = ({teamNo}) => {
   const [team, setTeam] = useState({})
   const navi = useNavigate()
 

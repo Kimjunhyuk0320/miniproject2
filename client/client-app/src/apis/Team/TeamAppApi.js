@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 export const teamAppListByLeader = (username)=>{
-    return axios.get(`/api/user/team/listByLeader`,username)
+    return axios.get(`/api/user/team/listByLeader?username=${username}`)
 }
 
 export const readApp = (appNo)=>{

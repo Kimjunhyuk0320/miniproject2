@@ -43,7 +43,7 @@ public class MypageTeamApiController {
 
 
     @GetMapping("/listByLeader")
-    public ResponseEntity<List<TeamApp>> listByLeader(@RequestBody TeamApp teamApp, Principal principal) {
+    public ResponseEntity<List<TeamApp>> listByLeader( TeamApp teamApp, Principal principal) {
 
         log.info(teamApp.toString());
         try {
