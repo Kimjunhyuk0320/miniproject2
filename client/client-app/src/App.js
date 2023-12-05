@@ -1,11 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import MyInfoContainer from './containers/MyPage/MyInfoContainer';
-import TeamInsertContainer from './containers/Team/TeamInsertContainer';
-import TeamListContainer from './containers/Team/TeamListContainer';
-import TeamReadContainer from './containers/Team/TeamReadContainer';
-import TeamRegContainer from './containers/Team/TeamRegContainer';
-import TeamUpdateContainer from './containers/Team/TeamUpdateContainer';
 import Index from './pages/Index';
 import LiveBoardList from './pages/LiveBoard/LiveBoardList';
 import LiveBoardRead from './pages/LiveBoard/LiveBoardRead';
@@ -18,6 +13,13 @@ import MyPage from './pages/MyPage/MyPage';
 import MyInfo from './pages/MyPage/MyInfo';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import TicketSalesList from './pages/MyPage/TicketSalesList';
+import TicketSalesList from './components/Mypage/TicketSalesList';
+import TeamListPage from './pages/Team/TeamListPage';
+import TeamReadPage from './pages/Team/TeamReadPage';
+import TeamUpdatePage from './pages/Team/TeamUpdatePage';
+import TeamInsertPage from './pages/Team/TeamInsertPage';
+import TeamRegPage from './pages/Team/TeamRegPage';
+import TeamRegListPage from './pages/Team/TeamRegListPage';
 
 function App() {
   return (
@@ -31,11 +33,12 @@ function App() {
         <Route path='/liveBoard' element={ <LiveBoardList/> }/>
         <Route path='/liveBoard/:no' element={ <LiveBoardRead/> }/>
         <Route path='/liveBoard/update/:no' element={ <LiveBoardUpdate/> }/>
-        <Route path='/teamList' element={ <TeamListContainer/> } />
-        <Route path='/team/:teamNo' element={ <TeamReadContainer/> } />
-        <Route path='/team/update/:teamNo' element={ <TeamUpdateContainer/> } />
-        <Route path='/team/insert' element={ <TeamInsertContainer/> } />
-        <Route path='/team/app/:teamNo' element={ <TeamRegContainer/> } />
+        <Route path='/teamList' element={ <TeamListPage/> } />
+        <Route path='/team/:teamNo' element={ <TeamReadPage/> } />
+        <Route path='/team/update/:teamNo' element={ <TeamUpdatePage/> } />
+        <Route path='/team/insert' element={ <TeamInsertPage/> } />
+        <Route path='/team/app/:teamNo' element={ <TeamRegPage/> } />
+        <Route path='/mypage/tllList' element={ <TeamRegListPage/> } />
         <Route path='/frList' element={ <FacilityRentalListContainer/> } />
         <Route path='/fr/:frNo' element={ <FacilityRentalReadContainer/> } />
         <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdateContainer/> } />

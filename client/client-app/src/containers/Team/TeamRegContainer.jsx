@@ -3,9 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
 import TeamReg from '../../components/Team/TeamReg';
 
-const TeamRegContainer = () => {
-
-    const {teamNo} = useParams();
+const TeamRegContainer = ({teamNo}) => {
 
     const [title,setTitle] = useState('')
     const [bandName,setBandName] = useState('')

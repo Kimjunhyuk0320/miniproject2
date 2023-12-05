@@ -84,9 +84,8 @@ public class TeamAppServiceImpl implements TeamAppService{
 
   @Override
   public List<TeamApp> listByLeader(TeamApp teamApp) {
-
+    System.out.println(teamApp.getUsername());
     List<TeamApp> listByLider = teamAppMapper.listByLeader(teamApp);
-
     return listByLider;
 
   }
