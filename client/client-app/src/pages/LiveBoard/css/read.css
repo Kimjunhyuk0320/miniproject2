@@ -1,47 +1,48 @@
 @media (max-width: 1320px) {
-  /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
-  body {
-      min-width: 1320px; /* 최소 너비를 1000px로 설정 */
-  }
+    /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
+    #LiveBoardRead body {
+        min-width: 1320px; /* 최소 너비를 1000px로 설정 */
+    }
 }
 
-* {
+#LiveBoardRead * {
     margin: 0px;
     padding: 0px;
 }
 
-ul, ol {
+#LiveBoardRead ul,
+#LiveBoardRead ol {
     list-style: none;
 }
 
-body {
+#LiveBoardRead body {
     background: rgb(248, 249, 250);
     /* margin-top: 150px; */
 }
 
-a {
-    text-decoration: none
+#LiveBoardRead a {
+    text-decoration: none;
 }
 
-.totalContainer {
+#LiveBoardRead .totalContainer {
     width: 1200px;
     margin: auto;
 }
 
-.topContentContainer {
+#LiveBoardRead .topContentContainer {
     display: flex;
     justify-content: center;
     margin-top: 50px;
 }
 
-.topContentContainer .imgContainer img {
+#LiveBoardRead .topContentContainer .imgContainer img {
     width: 450px;
     height: 550px;
     object-fit: cover;
     border-radius: 15px;
 }
 
-.topContentContainer .contentContainer {
+#LiveBoardRead .topContentContainer .contentContainer {
     /* test */
     /* background-color: blanchedalmond; */
     margin-left: 20px;
@@ -49,13 +50,13 @@ a {
 }
 
 /* 테이블 관련 */
-.tableContainer {
+#LiveBoardRead .tableContainer {
     display: flex;
     justify-content: center;
     border-radius: 15px;
 }
 
-table {
+#LiveBoardRead table {
     width: 1000px;
     border-collapse: collapse;
     overflow: hidden;
@@ -63,12 +64,12 @@ table {
 }
 
 /* 하트 css */
-.titleBox {
+#LiveBoardRead .titleBox {
     display: flex;
     justify-content: space-between;
 }
 
-.titleBox h1 {
+#LiveBoardRead .titleBox h1 {
     font-size: 45px;
 }
 
@@ -82,7 +83,7 @@ table {
 } */
 
 /* 실질적 하트 모양 */
-.heartInner {
+#LiveBoardRead .heartInner {
     position: relative;
     width: 50px;
     margin-top: 8px;
@@ -91,8 +92,8 @@ table {
     animation: beat 1s infinite;
 }
 
-.heartInner::before,
-.heartInner::after {
+#LiveBoardRead .heartInner::before,
+#LiveBoardRead .heartInner::after {
     content: '';
     position: absolute;
     top: 0;
@@ -102,19 +103,19 @@ table {
     background: red;
 }
 
-.heartInner::before {
+#LiveBoardRead .heartInner::before {
     left: 17px;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
 }
 
-.heartInner::after {
+#LiveBoardRead .heartInner::after {
     left: 0;
     transform: rotate(45deg);
     transform-origin: 100% 100%;
 }
 
-.heartInner .heartText {
+#LiveBoardRead .heartInner .heartText {
     position: absolute;
     right: 20px;
     top: 2px;
@@ -125,7 +126,7 @@ table {
     /* background-color: blue; */
 }
 
-.heartInner .heartText p {
+#LiveBoardRead .heartInner .heartText p {
     color: white;
 }
 
@@ -138,29 +139,28 @@ table {
     }
 }
 
-
-th,
-td {
+#LiveBoardRead th,
+#LiveBoardRead td {
     padding: 10px 35px;
     background-color: rgba(255, 255, 255, 0.2);
     color: black;
     text-align: left;
 }
 
-th {
+#LiveBoardRead th {
     background-color: rgb(41, 43, 50);;
     color: white;
     text-align: center;
 }
 
-#countFor {
+#LiveBoardRead #countFor {
     display: flex;
     align-items: center;
     margin-top: 0.5rem;
 }
 
 /* +,- 버튼 관련 */
-.countBtn {
+#LiveBoardRead .countBtn {
     border: none;
     height: 0;
     width: 20px;
@@ -170,22 +170,23 @@ th {
     margin-left: 5px;
 }
 
-#aaaa {
+#LiveBoardRead #aaaa {
     display: block;
 }
+
 /* 매진여부 */
-#countNum {
+#LiveBoardRead #countNum {
     text-align: center;
 }
 
 /* 하단 컨테이너 */
-.bottomContainer {
+#LiveBoardRead .bottomContainer {
     display: flex;
     justify-content: center;
     margin: 15px;
 }
 
-.bottomContainer button{
+#LiveBoardRead .bottomContainer button{
     width: 150px;
     height: 50px;
     border: none;
@@ -195,18 +196,18 @@ th {
     margin-right: 10px;
 }
 
-.bottomContainerForRental button,
-.bottomContainerForRental th {
+#LiveBoardRead .bottomContainerForRental button,
+#LiveBoardRead .bottomContainerForRental th {
     display: inline-block;
     margin-right: 10px;
 }
 
-.bottomContainerForRental div {
+#LiveBoardRead .bottomContainerForRental div {
     display: inline-block;
 }
 
 /* 티켓 구매 버튼 */
-#btn-purchase {
+#LiveBoardRead #btn-purchase {
     width: 200px;
     height: 50px;
     border: none;
@@ -215,55 +216,55 @@ th {
     color: white;
 }
 
-.textContainer {
+#LiveBoardRead .textContainer {
     padding: 20px;
     border: 1px black;
 }
 
 /* 댓글 관련 */
-#comment-list{
+#LiveBoardRead #comment-list {
     margin-top: 10px;
     padding: 20px;
     margin-bottom: 100px;
     /* border-top: 1px solid black; */
     /* background-color: blanchedalmond; */
 }
+
 /* 댓글 하나에 대한 css */
-.comment-box {
-    background-color: ghostwhite;
+#LiveBoardRead .comment-box {
+    background-color: rgba(248, 248, 255, 0);
     /* border-bottom: 1px solid black; */
     margin: 20px 0 20px 10px ;
 }
 
-.top .itemSt {
+#LiveBoardRead .top .itemSt {
     display: flex;
     justify-content: space-between;
 }
 
-.comment-writer {
+#LiveBoardRead .comment-writer {
     font-size: 25px;
 }
 
-.comment-date {
+#LiveBoardRead .comment-date {
     margin-left: 20px;
 }
 
-.input-box {
+#LiveBoardRead .input-box {
     display: flex;
     padding: 20px;
-
 }
 
 /* 자바스크립트 댓글쪽 */
-.commentContainer {
-    display: flex;
+#LiveBoardRead .commentContainer {
+    display: flex
 }
 
-.commentContainer .imgDiv {
+#LiveBoardRead .commentContainer .imgDiv {
     /* background-color: bisque; */
 }
 
-.imgDiv img {
+#LiveBoardRead .imgDiv img {
     width: 60px;
     height: 60px;
     margin-top: 10px;
@@ -272,29 +273,31 @@ th {
     margin-right: 10px;
 }
 
-#comment-content {
+#LiveBoardRead #comment-content {
     margin-left: 10px;
     overflow: hidden;
     width: 1090px;
     border: none;
-    background-color: rgb(248, 249, 250);
+    background-color: rgba(248, 249, 250, 0);
+    border-bottom: 1px solid black;
+    color:  black;
+    resize: none;
+    outline: none;
+}
+
+#LiveBoardRead .input-update-content {
+    margin-left: 10px;
+    overflow: hidden;
+    width: 1090px;
+    border: none;
+    background-color: rgba(248, 249, 250, 0);
+    color: black;
     border-bottom: 1px solid black;
     resize: none;
     outline: none;
 }
 
-#input-update-content {
-    margin-left: 10px;
-    overflow: hidden;
-    width: 1090px;
-    border: none;
-    background-color: rgb(248, 249, 250);
-    border-bottom: 1px solid black;
-    resize: none;
-    outline: none;
-}
-
-.btn-box-can {
+#LiveBoardRead .btn-box-can {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -304,10 +307,11 @@ th {
     border-radius: 30px;
     background-color: rgb(248, 249, 250);
     font-size: 20px;
+    margin-left: 10px;
 }
 
 /* 댓글 취소 버튼 */
-.btn-box-can {
+#LiveBoardRead .btn-box-can {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -319,12 +323,13 @@ th {
     font-size: 20px;
     margin-left: 10px;
 }
-.btn-box-can:hover {
+
+#LiveBoardRead .btn-box-can:hover {
     background-color: rgba(168, 168, 168, 0.404);
 }
 
 /* 댓글 등록 버튼 */
-.btn-box {
+#LiveBoardRead .btn-box {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -335,7 +340,8 @@ th {
     background-color: blue;
     font-size: 20px;
 }
-.btn-box:hover {
+
+#LiveBoardRead .btn-box:hover {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -346,26 +352,25 @@ th {
     background-color: rgb(142, 142, 213);
     font-size: 20px;
 }
-.btn-box a{
-    color: white;
-}
-.btn-box a:hover{
+
+#LiveBoardRead .btn-box a {
     color: white;
 }
 
-.btn-box-can a{
+#LiveBoardRead .btn-box a:hover {
+    color: white;
+}
+
+#LiveBoardRead .btn-box-can a {
     color: black;
 }
 
-#red-btn {
+#LiveBoardRead #red-btn {
     background-color: rgba(255, 0, 0, 0.551);
     margin-right: auto;
 }
 
-#blue-btn {
+#LiveBoardRead #blue-btn {
     background-color: rgba(0, 0, 255, 0.525);
     /* margin-right: auto; */
 }
-
-
-
