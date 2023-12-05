@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.joeun.midproject.dto.BookingRequests;
 import com.joeun.midproject.dto.FacilityRental;
@@ -25,7 +27,8 @@ import com.joeun.midproject.service.FacilityRentalService;
 import com.joeun.midproject.service.FileService;
 import com.joeun.midproject.service.TeamService;
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
 @RequestMapping("/api/fr")
@@ -83,32 +86,33 @@ public class FacilityRentalApiController {
     }
     
     @PostMapping()
-    public ResponseEntity<Integer> create(@RequestBody FacilityRental facilityRental) {
+    public ResponseEntity<String> create( FacilityRental facilityRental) {
         facilityRental.setAccount(facilityRental.getAccount1()+"/"+facilityRental.getAccount2());
+        log.info(facilityRental.toString());
         try {
             int result = facilityRentalService.insert(facilityRental);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @PutMapping()
-    public ResponseEntity<Integer> update(@RequestBody FacilityRental facilityRental) {
+    public ResponseEntity<String> update( FacilityRental facilityRental) {
         facilityRental.setAccount(facilityRental.getAccount1()+"/"+facilityRental.getAccount2());
         try {
             int result = facilityRentalService.update(facilityRental);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @DeleteMapping("/{frNo}")
-    public ResponseEntity<?> destroy(@PathVariable Integer frNo) {
+    public ResponseEntity<String> destroy(@PathVariable Integer frNo) {
         try {
             int result = facilityRentalService.delete(frNo);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

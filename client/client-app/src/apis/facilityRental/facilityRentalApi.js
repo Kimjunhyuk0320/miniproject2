@@ -8,15 +8,23 @@ export const frList = (team)=>{
     return axios.get(`/api/fr?pageNo=${team.pageNo}&rows=${team.rows}&searchType=${team.searchType}&keyword=${team.keyword}&order=${team.order}`)
 }
 export const frRead = (frNo)=>{
-    return axios.get(`/api/fr?frNo=${frNo}`)
+    return axios.get(`/api/fr/${frNo}`)
 }
 
 export const frInsert = (fr) =>{
-    return axios.post(`/api/fr`,fr)
+    return axios.post(`/api/fr`,fr,{
+        headers:{
+            'Content-Type' : 'multipart/form-data'
+        }
+    })
 }
 
 export const frUpdate = (fr)=>{
-    return axios.put(`/api/fr`,fr)
+    return axios.put(`/api/fr`,fr,{
+        headers:{
+            'Content-Type' : 'multipart/form-data'
+        }
+    })
 }
 
 export const frDelete = (frNo)=>{

@@ -12,6 +12,10 @@ import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import LiveBoardList from './pages/LiveBoard/LiveBoardList';
 import LiveBoardRead from './pages/LiveBoard/LiveBoardRead';
 import LiveBoardUpdate from './pages/LiveBoard/LiveBoardUpdate';
+import FacilityRentalListContainer from './containers/facilityRental/FacilityRentalListContainer';
+import FacilityRentalReadContainer from './containers/facilityRental/FacilityRentalReadContainer';
+import FacilityRentalUpdateContainer from './containers/facilityRental/FacilityRentalUpdateContainer';
+import FacilityRentalInsertContainer from './containers/facilityRental/FacilityRentalInsertContainer';
 
 function App() {
   return (
@@ -29,6 +33,10 @@ function App() {
         <Route path='/team/update/:teamNo' element={ <TeamUpdateContainer/> } />
         <Route path='/team/insert' element={ <TeamInsertContainer/> } />
         <Route path='/team/app/:teamNo' element={ <TeamRegContainer/> } />
+        <Route path='/frList' element={ <FacilityRentalListContainer/> } />
+        <Route path='/fr/:frNo' element={ <FacilityRentalReadContainer/> } />
+        <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdateContainer/> } />
+        <Route path='/fr/insert' element={ <FacilityRentalInsertContainer/> } />
       </Routes>
     </BrowserRouter>
   );

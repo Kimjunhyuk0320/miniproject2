@@ -75,7 +75,7 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
         int result = facilityRentalMapper.insert(facilityRental);
         String parentTable = "facility_rental";
         int parentNo = facilityRentalMapper.maxPk();
-
+        System.out.println(result);
         // 파일 업로드
         List<MultipartFile> fileList = facilityRental.getFile();
 
@@ -122,9 +122,9 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
         }
 
         if(result>0){
-            return facilityRental.getFrNo();
+            return parentNo;
         }else
-        return result;
+        return 0;
     }
 
 
@@ -178,7 +178,7 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
 
             //기존 썸네일 이미지 파일을 삭제해줘야합니다.
             //여기
-            log.info(uploadFile.toString());
+            log.info(uploadedFile.toString());
             //file테이블에 새로운 썸네일 등록
             int updateResult = fileMapper.update(uploadedFile);
             System.out.println(updateResult);

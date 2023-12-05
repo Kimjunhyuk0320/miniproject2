@@ -19,10 +19,11 @@ import com.joeun.midproject.service.CommentService;
 import com.joeun.midproject.service.TeamAppService;
 import com.joeun.midproject.service.TeamService;
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
-@RequestMapping("/api/user")
+@RequestMapping("/api/user/team")
 public class MypageTeamApiController {
 
 
@@ -42,8 +43,9 @@ public class MypageTeamApiController {
     @GetMapping("/listByLeader")
     public ResponseEntity<List<TeamApp>> listByLeader(TeamApp teamApp, Principal principal) {
 
+        log.info(teamApp.toString());
         try {
-            teamApp.setUsername(principal.getName());
+            // teamApp.setUsername(principal.getName());
             List<TeamApp> teamAppList = teamAppService.listByLeader(teamApp);
             return new ResponseEntity<>(teamAppList, HttpStatus.OK);
         } catch (Exception e) {

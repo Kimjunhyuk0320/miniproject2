@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FacilityRentalList from '../../components/facilityRental/FacilityRentalList'
 import * as frApi from '../../apis/facilityRental/facilityRentalApi'
-import TeamPageBox from '../../components/Team/TeamPageBox';
 import TeamPagenation from '../../components/Team/TeamPagenation';
+import FrPageBox from '../../components/facilityRental/FrPageBox';
 
-const facilityRentalListContainer = () => {
+const FacilityRentalListContainer = () => {
 
     const [pageNo, setPage] = useState(1);
     const [rows, setRows] = useState(8);
@@ -21,6 +21,7 @@ const facilityRentalListContainer = () => {
       const data = await response.data
       console.log(data)
       setFrList(data)
+      console.log(frList)
     }
   
     const initPage = async () => {
@@ -38,7 +39,7 @@ const facilityRentalListContainer = () => {
 
   return (
     <>
-    <TeamPageBox rows={rows}
+    <FrPageBox rows={rows}
          setRows={setRows}
          order={order}
          setOrder={setOrder}
@@ -46,11 +47,11 @@ const facilityRentalListContainer = () => {
          setKeyword={setKeyword}
          searchType={searchType}
          setSearchType={setSearchType}>
-    </TeamPageBox>
-    {/* <FacilityRentalList frList={frList}></FacilityRentalList> */}
+    </FrPageBox>
+    <FacilityRentalList frList={frList}></FacilityRentalList>
     <TeamPagenation pageInfo={pageInfo} setPage={setPage}></TeamPagenation>
     </>
   )
 }
 
-export default facilityRentalListContainer
+export default FacilityRentalListContainer

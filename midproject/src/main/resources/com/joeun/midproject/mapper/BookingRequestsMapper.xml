@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="maxPk">
 
-    SELECT MAX(app_no) FROM `booking_requests`
+    SELECT MAX(br_no) FROM `booking_requests`
     
   </select>
 

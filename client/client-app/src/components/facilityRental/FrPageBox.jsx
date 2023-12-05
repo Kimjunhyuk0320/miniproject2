@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const TeamPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,setSearchType}) => {
+const FrPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,setSearchType}) => {
     
     const [inputValue, setInputValue] = useState('')
 
   return (
     <>
         <div id="topContent">
-            <h1>공연팀 모집</h1>
-            <p>공연팀 모집에 대한 소식을 알려드립니다.</p>
+            <h1>클럽 대관 목록</h1>
+            <p>클럽 대관 목록입니다.</p>
             <hr/>
         </div>
 
@@ -42,7 +42,7 @@ const TeamPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,
                     </div>
                 </div>
                 <div className="item">
-                        <Link to="/team/insert">
+                        <Link to="/fr/insert">
                             <button id="filter-btn">작성하기</button>
                         </Link>
                     <select name="rows" id="rows" className="input-search" value={rows} onChange={
@@ -50,10 +50,10 @@ const TeamPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,
                             setRows(e.target.value)
                         }
                     }>
-                        <option value="5">5개씩 보기</option>
-                        <option value="10">10개씩 보기</option>
-                        <option value="30">30개씩 보기</option>
-                        <option value="50">50개씩 보기</option>
+                        <option value="4">4개씩 보기</option>
+                        <option value="8">8개씩 보기</option>
+                        <option value="32">32개씩 보기</option>
+                        <option value="64">64개씩 보기</option>
                     </select>
                     <select name="order" id="order" className="input-search" value={order} onChange={
                         (e)=>{
@@ -71,4 +71,4 @@ const TeamPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,
   )
 }
 
-export default TeamPageBox
+export default FrPageBox

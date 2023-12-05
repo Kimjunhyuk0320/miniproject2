@@ -22,7 +22,8 @@ import com.joeun.midproject.service.FacilityRentalService;
 import com.joeun.midproject.service.FileService;
 import com.joeun.midproject.service.TeamService;
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
 @RestController
@@ -55,11 +56,11 @@ public class BookingApiController {
     }
     
     @PostMapping()
-    public ResponseEntity<Integer> reservation(@RequestBody BookingRequests bookingRequests) {
-
+    public ResponseEntity<String> reservation(@RequestBody BookingRequests bookingRequests) {
+        log.info(bookingRequests.toString());
         try {
             int result = facilityRentalService.reservation(bookingRequests);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
