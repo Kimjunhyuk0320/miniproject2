@@ -1,25 +1,25 @@
-@media (max-width: 1320px) {
+ @media (max-width: 1320px) {
     /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
-    body {
+    #LiveBoardList body {
         min-width: 1320px; 
          /* 최소 너비를 1000px로 설정 */
     }
 }
 
-html,
-body {
+#LiveBoardList html,
+#LiveBoardList body {
     height: 100%;
 }
-.container {
+#LiveBoardList .container {
     width: 1320px !important;
     min-width: 1320px !important;
 }
 
-.card {
+#LiveBoardList .card {
     /* padding: 12px !important; */
 }
 
-body {
+#LiveBoardList body {
     margin: 0;
     background: rgb(248, 249, 250);
     /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
@@ -27,7 +27,7 @@ body {
     font-weight: 100;
 }
 
-#topContent {
+#LiveBoardList #topContent {
     /* height: 800px;
     margin: 20px 0;
     background: linear-gradient(180deg, #916ea9, rgb(248, 249, 250)); */
@@ -35,49 +35,45 @@ body {
     width: 1320px;
     margin-top: 100px;
 }
-#teamListContainer {
+#LiveBoardList #teamListContainer {
     /* margin-top: 150px; */
 }
 
-#teamListContainer>h1 {
+#LiveBoardList #teamListContainer>h1 {
     color: black;
 }
 
-#teamListContainer .listTopText{
+#LiveBoardList #teamListContainer .listTopText{
     margin: 0 0 20px 75px ;
-
 }
 
-#teamListContainer>.page-box {
+#LiveBoardList #teamListContainer>.page-box {
     display: flex;
     justify-content: space-between;
     margin: auto;
     /* width: 90%; */
     margin-bottom: 10px;
     width: 1320px;
-
 }
 
 /* 이미지 슬라이드 사진 관련 */
-.img-slide {
+#LiveBoardList .img-slide {
     height: 600px;
     object-fit: cover;
 }
 
-
-
 /* 카드 리스트 관련 */
-.card_list{ 
+#LiveBoardList .card_list{ 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     background-color: white;
 }
 
-.card {
+#LiveBoardList .card {
     /* margin-bottom: 20px; */
     border: none;
 }
 
-#teamListContainer>.page-box>.item 
+#LiveBoardList #teamListContainer>.page-box>.item 
 select, input {
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.2);
@@ -87,7 +83,7 @@ select, input {
     outline: none;
 }
 
-#card-img {
+#LiveBoardList #card-img {
     width: 306px; 
     /* width: 100%;  */
     height: 390px; 
@@ -98,24 +94,24 @@ select, input {
     box-shadow: 1px 2px 7px rgb(176, 176, 176);
 }
 
-#card-img:hover {
+#LiveBoardList #card-img:hover {
     scale: 0.98;
 }
 
-.card-text {
+#LiveBoardList .card-text {
     margin: 0;
 }
 
-.card-text-date {
+#LiveBoardList .card-text-date {
     color: red;
 }
 
 /* 페이지네이션 관련 */
-#paginationContainer {
+#LiveBoardList #paginationContainer {
     margin-top: 20px;
 }
 
-#paginationContainer>.pagination_count {
+#LiveBoardList #paginationContainer>.pagination_count {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,13 +119,13 @@ select, input {
 }
 
 /* 페이지네이션 관련 */
-#paginationContainer>.pagination_count a {
+#LiveBoardList #paginationContainer>.pagination_count a {
     padding: 5px;
     text-decoration: none;
     color: black;
     font-size: 25px;
 }
-#paginationContainer>.pagination_count a {
+#LiveBoardList #paginationContainer>.pagination_count a {
     padding: 5px;
     text-decoration: none;
     color: black;
@@ -142,20 +138,20 @@ select, input {
 } */
 
 /* 검색 관련 */
-.search_item a {
+#LiveBoardList .search_item a {
     text-decoration: none;
     color: black;
     height: 45px;
     padding-top: 5px;
 }
-.search_item a:hover {
+#LiveBoardList .search_item a:hover {
     text-decoration: none;
     color: black;
     background-color: rgb(248, 249, 250);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-#filter-btn{
+#LiveBoardList #filter-btn{
     width: 123px; 
     height: 42px; 
     padding: 10px;
@@ -166,39 +162,38 @@ select, input {
 }
 
 /*  */
-.a {
+#LiveBoardList .a {
     background-color: rgb(242, 242, 242);
     margin-bottom: 400px;
-    
 }
-.staticContainer {
+
+#LiveBoardList .staticContainer {
     display: flex;
     width: 1320px;
     /* padding: ; */
     margin: auto;
-    
 }
 
-.staticContainer .staticTextSection {
+#LiveBoardList .staticContainer .staticTextSection {
     padding: 70px 30px;
 }
 
-.staticContainer .staticVideoSection {
+#LiveBoardList .staticContainer .staticVideoSection {
     margin: 20px 0;
 }
 
-.staticVideoSection iframe {
+#LiveBoardList .staticVideoSection iframe {
     border-radius: 20px;
 }
 
-.staticTextSection h1 {
+#LiveBoardList .staticTextSection h1 {
     font-size: 50px;
 }
 
-.staticTextSection h2 {
+#LiveBoardList .staticTextSection h2 {
     font-size: 35px;
 }
 
-.staticTextSection p {
+#LiveBoardList .staticTextSection p {
     font-size: 15px;
 }

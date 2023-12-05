@@ -5,7 +5,7 @@ import ImgSlider from '../../containers/LiveBoard/ImgSlider'
 import './css/cardList.css'
 const LiveBoardList = () => {
   return (
-    <div id="content">
+    <div id="LiveBoardList">
       <ImgSlider/>
       <LiveBoardListContainer/>
       <RecommendContainer/>

@@ -1,6 +1,8 @@
 package com.joeun.midproject.api;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,25 +14,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.joeun.midproject.dto.Comment;
+import com.joeun.midproject.mapper.CommentMapper;
 import com.joeun.midproject.service.CommentService;
 
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
+@RestController
 @RequestMapping("/api/comment")
 public class commentApiController {
     
     @Autowired
-  private CommentService commentService;
+    private CommentService commentService;
+
+    @Autowired
+    private CommentMapper commentMapper;
 
     @GetMapping()
-    public ResponseEntity<List<Comment>> getAll(@RequestBody Comment comment) {
-
+    public ResponseEntity<?> getAll(Comment comment) {
+        
         try {
             List<Comment>commentList = commentService.commentList(comment);
-            return new ResponseEntity<>(commentList, HttpStatus.OK);
+            return new ResponseEntity<List<Comment>>(commentList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -38,31 +47,35 @@ public class commentApiController {
     
     
     @PostMapping()
-    public ResponseEntity<Integer> create(@RequestBody Comment comment) {
+    public ResponseEntity<?> create(@RequestBody Comment comment) {
+        log.info("[POST] - /api/comment   ");
         try {
             int result = commentService.commentInsert(comment);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            Comment comment2 = commentMapper.select(result);
+
+            return new ResponseEntity<Comment>(comment2, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @PutMapping()
-    public ResponseEntity<Integer> update(@RequestBody Comment comment) {
+    public ResponseEntity<?> update(@RequestBody Comment comment) {
         try {
             int result = commentService.commentUpdate(comment);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<Integer>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
-    @DeleteMapping("/{commentNo}")
-    public ResponseEntity<Integer> destroy(@PathVariable Integer commentNo,Comment comment) {
-        comment.setCommentNo(commentNo);
+    @DeleteMapping("/{no}")
+    public ResponseEntity<?> destroy(@PathVariable Integer no) {
+        Comment comment =new Comment();
+        comment.setCommentNo(no);
         try {
             int result = commentService.commentDelete(comment);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<Integer>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

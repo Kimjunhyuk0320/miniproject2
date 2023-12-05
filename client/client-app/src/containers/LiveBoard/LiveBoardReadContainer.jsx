@@ -15,16 +15,17 @@ const LiveBoardReadContainer = ({no}) => {
   const boardNo = liveBoard.boardNo
   const title = liveBoard.title
   const ticketPrice = liveBoard.price
+  const count = ticketCount
+
+  // 로그인 한 사용자 정보 가져오기
   const name = '김준혁'
   const phone = '01012341234'
   const email = 'asdf12341234@naver.com'
-  const count = ticketCount
 
   const getLiveBoard = async () => {
     const response = await liveBoards.getPage(no);
     const data = await response.data
     setLiveBoard(data)
-    console.log(data)
   }
 
   const purchaseticket = async () => {
@@ -160,7 +161,7 @@ const LiveBoardReadContainer = ({no}) => {
   },[])
 
   return (
-    <div>LiveBoardReadContainer
+    <div>
         <div className='topContentContainer'>
           <Image liveBoard={liveBoard}/>
           <Information liveBoard={liveBoard} ticketCount={ticketCount} setTicketCount={setTicketCount}/>

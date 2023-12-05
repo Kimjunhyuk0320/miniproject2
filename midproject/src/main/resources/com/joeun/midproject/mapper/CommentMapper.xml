@@ -29,9 +29,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 </insert>
 
+
+<select id="select" resultType="Comment">
+    SELECT *
+    FROM `comment`
+    WHERE comment_no = #{commentNo}
+</select>
+
 <select id="maxPk">
 
-  SELECT MAX(app_no) FROM `comment`
+  SELECT MAX(comment_no) FROM `comment`
     
 </select>
 
