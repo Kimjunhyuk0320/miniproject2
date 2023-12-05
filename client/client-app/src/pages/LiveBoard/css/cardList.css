@@ -101,6 +101,11 @@ select, input {
 .LiveBoardList .card-text {
     margin: 0;
 }
+.LiveBoardList .card-title .a {
+    text-decoration: none !important;
+    color: black !important;
+    background-color: #ffffff00 !important;
+}
 
 .LiveBoardList .card-text-date {
     color: red;

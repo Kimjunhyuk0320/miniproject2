@@ -17,6 +17,7 @@ import FacilityRentalInsertContainer from './containers/facilityRental/FacilityR
 import MyPage from './pages/MyPage/MyPage';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import TicketSalesList from './components/Mypage/TicketSalesList';
+import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
         <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
         <Route path='/liveBoard' element={ <LiveBoardList/> }/>
+        <Route path='/liveBoard/insert' element={ <LiveBoardInsert/> }/>
         <Route path='/liveBoard/:no' element={ <LiveBoardRead/> }/>
         <Route path='/liveBoard/update/:no' element={ <LiveBoardUpdate/> }/>
         <Route path='/teamList' element={ <TeamListContainer/> } />
