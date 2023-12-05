@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
-// css 임포트
-import './css/MyPage.css';
 
 
 const MyPage = () => {

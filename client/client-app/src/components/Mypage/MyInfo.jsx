@@ -1,14 +1,21 @@
-import React, {useState} from 'react'
-// css 임포트
-import './css/MyInfo.css';
+import React, {useEffect, useState} from 'react'
+import * as userInfo from '../../apis/myPage/myPageApi';
 
 const MyInfo = () => {
 
-  const [isExpanded, setExpanded] = useState(false);
+  // const [userData, setUserData] = useState({});
 
-  const handleExpandClick = () => {
-    setExpanded(!isExpanded);
-  };
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+
+  // 
+  // const getUser = async () => {
+  //   const response = await userInfo.getUser(##);
+  //   const data = await response.data
+  //   console.log(data)
+  //   setUserData(data)
+  // }
 
   return (
     <>
@@ -16,38 +23,18 @@ const MyInfo = () => {
         <div style={{ height: '1000px' }}></div>
       </div>
 
-      <div className={`profile____card ${isExpanded ? 'expand' : ''}`}>
+      <div className={`profile____card`}>
         <div className="cover"></div>
 
         <div className="profile__">
           <div className="pic__">
             {/* 프로필 사진이 있을 때 */}
-            {/* <img
-              alt="프로필사진"
-              id="profile Img"
-              style={{
-                width: '100px',
-                height: '100px',
-                borderRadius: '100%',
-                boxShadow: '0px 0px 15px gray'
-              }}
-            /> */}
-            <img
-              src="/img/defaultProfile.png"
-              alt="프로필사진"
-              id="profile Img"
-              style={{
-                width: '100px',
-                height: '100px',
-                borderRadius: '100%',
-                boxShadow: '0px 0px 15px gray'
-              }}
-            />
+            {/* <img alt="프로필사진" id="profile Img" style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray'}} /> */}
+            <img src="/img/defaultProfile.png" alt="프로필사진" id="profile Img" style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray'}}/>
           </div>
-
           <div className="above-fold">
             <div className="name">
-              <p>dfddd</p>
+              {/* <p>{userData.name}</p> */}
             </div>
             <div className="role">
               <p>dsnfl</p>
@@ -69,7 +56,7 @@ const MyInfo = () => {
               </a>
             </div>
 
-            <div id="expand-button__"  onClick={handleExpandClick}>↓</div>
+            <div id="expand-button__" >↓</div>
           </div>
 
           <div className="below-fold">

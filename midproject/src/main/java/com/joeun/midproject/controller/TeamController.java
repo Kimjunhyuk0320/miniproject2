@@ -298,7 +298,6 @@ public class TeamController {
   }
   
   
-  
 
   @GetMapping(value="/user/listByMember")
   public String listByMember(Model model, TeamApp teamApp, Principal principal) {

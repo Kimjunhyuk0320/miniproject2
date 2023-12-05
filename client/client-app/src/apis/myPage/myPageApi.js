@@ -1,5 +1,8 @@
 
 import axios from "axios";
 
-export const getList = (phone) => axios.get(`/api/listByPhone?phone=${phone}`)
+export const getList = (phone) => axios.get(`/api/user/listByPhone?phone=${phone}`)
 
+// export const getUser = () => axios.get()
+
+export const getList2 = (username) => axios.get(`/api/user/listByUserName?username=${username}`)

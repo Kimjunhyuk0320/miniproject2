@@ -23,7 +23,7 @@ import com.joeun.midproject.dto.Users;
 import com.joeun.midproject.service.UserService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserApiController {
 
     @Autowired
@@ -123,7 +123,7 @@ public class UserApiController {
     }
 
     // 유저 전화번호로 구매한 티켓 리스트 조회하기
-    @RequestMapping("/listByPhone")
+    @GetMapping("/listByPhone")
     public ResponseEntity<List<Ticket>> listByPhone(Users users) throws Exception {
         List<Ticket> ticketList = userService.listByPhone(users);
         ticketList.add(new Ticket());
@@ -131,10 +131,9 @@ public class UserApiController {
     }
 
     // 유저 아이디로 판매한 티켓 리스트 조회하기
-    @RequestMapping("/listByUserName")
+    @GetMapping("/listByUserName")
     public ResponseEntity<List<Ticket>> listByUserName(Users users) throws Exception {
         List<Ticket> ticketList = userService.listByUserName(users);
         return new ResponseEntity<List<Ticket>>(ticketList, HttpStatus.OK);
     }
-    
 }
