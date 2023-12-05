@@ -20,7 +20,25 @@ const TeamRegListContainer = () => {
     }
 
     const accHandler = async (appNo)=>{
-        const response = await teamAppApi.accept(appNo)
+        const response = await teamAppApi.accept({appNo})
+        const data = await response.data
+        navi(`/tllList`)
+    }
+
+    const dniHandler = async (appNo)=>{
+        const response = await teamAppApi.denied({appNo})
+        const data = await response.data
+        navi(`/tllList`)
+    }
+
+    const conHandler = async (appNo)=>{
+        const response = await teamAppApi.confirmed({appNo})
+        const data = await response.data
+        navi(`/tllList`)
+    }
+
+    const readApp = async (appNo)=>{
+        const response = await teamAppApi.readApp({appNo})
         const data = await response.data
         navi(`/tllList`)
     }
@@ -32,6 +50,10 @@ const TeamRegListContainer = () => {
 
     const sets = {
         tllList,
+        accHandler,
+        dniHandler,
+        conHandler,
+        readApp,
     }
 
   return (

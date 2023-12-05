@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.joeun.midproject.dto.PageInfo;
 import com.joeun.midproject.dto.Team;
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequestMapping("/api/user/team")
+@RestController
 public class MypageTeamApiController {
 
 
@@ -41,12 +43,13 @@ public class MypageTeamApiController {
 
 
     @GetMapping("/listByLeader")
-    public ResponseEntity<List<TeamApp>> listByLeader(TeamApp teamApp, Principal principal) {
+    public ResponseEntity<List<TeamApp>> listByLeader(@RequestBody TeamApp teamApp, Principal principal) {
 
         log.info(teamApp.toString());
         try {
             // teamApp.setUsername(principal.getName());
             List<TeamApp> teamAppList = teamAppService.listByLeader(teamApp);
+            log.info(teamAppList.toString());
             return new ResponseEntity<>(teamAppList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,7 +57,7 @@ public class MypageTeamApiController {
     }
 
     @GetMapping("/listByMember")
-    public ResponseEntity<List<TeamApp>> listByMember(TeamApp teamApp, Principal principal) {
+    public ResponseEntity<List<TeamApp>> listByMember(@RequestBody TeamApp teamApp, Principal principal) {
 
         try {
             teamApp.setUsername(principal.getName());
