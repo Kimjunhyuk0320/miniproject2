@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <!-- 게시글 작성자아이디로 판매한 티켓 목록 조회하기 -->
     <select id="listByUserName" resultType="Ticket">
-        SELECT 
+        SELECT
                 t.ticket_no,
                 t.board_no,
                 l.title,

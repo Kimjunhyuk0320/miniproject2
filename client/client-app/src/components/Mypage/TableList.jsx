@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as myPages from '../../apis/myPage/myPageApi';
-import './TableList.css';
 
 
 const TicketPurchaseList = () => {
