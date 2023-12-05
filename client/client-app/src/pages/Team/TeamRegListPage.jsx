@@ -5,7 +5,7 @@ const TeamRegListPage = () => {
     const username = 'gangjinsu'
   return (
     <>
-        <TeamRegListContainer username = {username}></TeamRegListContainer>
+        <TeamRegListContainer username={username}></TeamRegListContainer>
     </>
   )
 }

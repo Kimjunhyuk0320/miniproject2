@@ -34,17 +34,9 @@ const TeamRegListContainer = ({username}) => {
         const data = await response.data
         navi(`/tllList`)
     }
-
-    const readApp = async (appNo)=>{
-        const response = await teamAppApi.readApp({appNo})
-        const data = await response.data
-        navi(`/tllList`)
-    }
   
-    // 현재 페이지가 변화했을 때,  검색을 눌렀을 때, 조회 순서가 변화했을때, 페이지당 게시글 수가 변화했을때 게시글 목록 조회 및 페이지네이션 변경
     useEffect(()=>{
       console.log(`useEffect start`)
-      //ㅅㅂ이거안됨
       getTllList()
     },[])
 
