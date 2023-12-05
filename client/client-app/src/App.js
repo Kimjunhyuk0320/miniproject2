@@ -13,7 +13,6 @@ import MyPage from './pages/MyPage/MyPage';
 import MyInfo from './pages/MyPage/MyInfo';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import TicketSalesList from './pages/MyPage/TicketSalesList';
-import TicketSalesList from './components/Mypage/TicketSalesList';
 import TeamListPage from './pages/Team/TeamListPage';
 import TeamReadPage from './pages/Team/TeamReadPage';
 import TeamUpdatePage from './pages/Team/TeamUpdatePage';
