@@ -15,8 +15,9 @@ import FacilityRentalReadContainer from './containers/facilityRental/FacilityRen
 import FacilityRentalUpdateContainer from './containers/facilityRental/FacilityRentalUpdateContainer';
 import FacilityRentalInsertContainer from './containers/facilityRental/FacilityRentalInsertContainer';
 import MyPage from './pages/MyPage/MyPage';
+import MyInfo from './pages/MyPage/MyInfo';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
-import TicketSalesList from './components/Mypage/TicketSalesList';
+import TicketSalesList from './pages/MyPage/TicketSalesList';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <Index/> } />
         <Route path='/MyPage' element={ <MyPage/> } />
-        <Route path='/MyInfo' element={ <MyInfoContainer/> } />
+        <Route path='/MyInfo' element={ <MyInfo/> } />
         <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
         <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
         <Route path='/liveBoard' element={ <LiveBoardList/> }/>

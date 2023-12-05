@@ -1,16 +1,16 @@
 @media (max-width: 1320px) {
     /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
-    #TicketPurchaseList body {
+    .TicketPurchaseList body {
         min-width: 1320px;
     }
 }
 
-#TicketPurchaseList html,
-#TicketPurchaseList body {
-    height: 100%;
+.TicketPurchaseList html,
+.TicketPurchaseList body {
+    height: 100%; 
 }
 
-#TicketPurchaseList body {
+.TicketPurchaseList body {
     margin: 0;
     background: rgb(248, 249, 250);
     /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
@@ -18,7 +18,7 @@
     font-weight: 100;
 }
 
-#TicketPurchaseList #topContent {
+.TicketPurchaseList #topContent {
     /* height: 800px;
     margin: 20px 0;
     background: linear-gradient(180deg, #916ea9, rgb(248, 249, 250)); */
@@ -27,15 +27,15 @@
     margin-top: 100px;
 }
 
-#TicketPurchaseList #teamListContainer {
+.TicketPurchaseList #teamListContainer {
     margin-top: 50px;
 }
 
-#TicketPurchaseList #teamListContainer>h1 {
+.TicketPurchaseList #teamListContainer>h1 {
     color: black;
 }
 
-#TicketPurchaseList #teamListContainer>.page-box {
+.TicketPurchaseList #teamListContainer>.page-box {
     display: flex;
     justify-content: space-between;
     margin: auto;
@@ -43,7 +43,7 @@
     margin-bottom: 10px;
 }
 
-#TicketPurchaseList #teamListContainer>.page-box>.item select,
+.TicketPurchaseList #teamListContainer>.page-box>.item select,
 input {
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.2);
@@ -53,23 +53,23 @@ input {
     outline: none;
 }
 
-#TicketPurchaseList #teamListContainer>.page-box>.search_item {}
+.TicketPurchaseList #teamListContainer>.page-box>.search_item {}
 
 /* 테이블 관련 */
-#TicketPurchaseList .tableContainer {
+.TicketPurchaseList .tableContainer {
     display: flex;
     justify-content: center;
     margin-bottom: 100px;
 }
 
-#TicketPurchaseList table {
+.TicketPurchaseList table {
     width: 1320px;
     border-collapse: collapse;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-#TicketPurchaseList th,
+.TicketPurchaseList th,
 td {
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.2);
@@ -78,7 +78,7 @@ td {
     font-size: 15px;
 }
 
-#TicketPurchaseList th {
+.TicketPurchaseList th {
     background-color: rgb(41, 43, 50);
     ;
     color: white;
@@ -86,11 +86,11 @@ td {
 }
 
 /* 페이지네이션 관련 */
-#TicketPurchaseList #paginationContainer {
+.TicketPurchaseList #paginationContainer {
     margin-top: 20px;
 }
 
-#TicketPurchaseList #paginationContainer>.pagination_count {
+.TicketPurchaseList #paginationContainer>.pagination_count {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,42 +98,42 @@ td {
 }
 
 /* 페이지네이션 관련 */
-#TicketPurchaseList #paginationContainer>.pagination_count a {
+.TicketPurchaseList #paginationContainer>.pagination_count a {
     padding: 5px;
     text-decoration: none;
     color: black;
     font-size: 25px;
 }
 
-#TicketPurchaseList #paginationContainer>.pagination_count a {
+.TicketPurchaseList #paginationContainer>.pagination_count a {
     padding: 5px;
     text-decoration: none;
     color: black;
     font-size: 25px;
 }
 
-/* #TicketPurchaseList #paginationContainer>.pagination_count>.page-list a {
+/* .TicketPurchaseList #paginationContainer>.pagination_count>.page-list a {
     border: 1px solid black;
     padding: 0 10px;
     border-radius: 100px;
 } */
 
 /* 검색 관련 */
-#TicketPurchaseList .search_item a {
+.TicketPurchaseList .search_item a {
     text-decoration: none;
     color: black;
     height: 45px;
     padding-top: 5px;
 }
 
-#TicketPurchaseList .search_item a:hover {
+.TicketPurchaseList .search_item a:hover {
     text-decoration: none;
     color: black;
     background-color: rgb(248, 249, 250);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-#TicketPurchaseList #filter-btn {
+.TicketPurchaseList #filter-btn {
     width: 123px;
     height: 42px;
     padding: 10px;
@@ -144,43 +144,43 @@ td {
 }
 
 /*  */
-#TicketPurchaseList .a {
+.TicketPurchaseList .a {
     background-color: rgb(242, 242, 242);
 }
 
-#TicketPurchaseList .staticContainer {
+.TicketPurchaseList .staticContainer {
     display: flex;
     width: 1320px;
     /* padding: ; */
     margin: auto;
 }
 
-#TicketPurchaseList .staticContainer .staticTextSection {
+.TicketPurchaseList .staticContainer .staticTextSection {
     padding: 70px 30px;
 }
 
-#TicketPurchaseList .staticContainer .staticVideoSection {
+.TicketPurchaseList .staticContainer .staticVideoSection {
     margin: 20px 0;
 }
 
-#TicketPurchaseList .staticVideoSection iframe {
+.TicketPurchaseList .staticVideoSection iframe {
     border-radius: 20px;
 }
 
 /* 상단 카드 형식 css */
 
-#TicketPurchaseList .liveDom.common_container .bx_slide.only_type .video_wrap {
+.TicketPurchaseList .liveDom.common_container .bx_slide.only_type .video_wrap {
     left: 50%;
     max-width: 1212px;
     transform: translateX(-50%);
 }
 
-#TicketPurchaseList .liveDom.common_container .bx_slide.only_type .txt_area {
+.TicketPurchaseList .liveDom.common_container .bx_slide.only_type .txt_area {
     width: 1120px;
     margin: 0 auto;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .btn_wrap {
+.TicketPurchaseList .liveDom .bx_slide .btn_wrap {
     position: absolute;
     top: 230px;
     left: -102px;
@@ -189,27 +189,27 @@ td {
     pointer-events: none;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .btn_wrap .btn {
+.TicketPurchaseList .liveDom .bx_slide .btn_wrap .btn {
     pointer-events: auto;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .btn_wrap .btn.btn_prev {
+.TicketPurchaseList .liveDom .bx_slide .btn_wrap .btn.btn_prev {
     float: left;
     transform: rotateY(180deg);
 }
 
-#TicketPurchaseList .liveDom .bx_slide .btn_wrap .btn.btn_next {
+.TicketPurchaseList .liveDom .bx_slide .btn_wrap .btn.btn_next {
     float: right;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap {
     position: absolute;
     top: 432px;
     left: 80px;
     font-size: 0;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .index {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .index {
     display: inline-block;
     margin-top: 2px;
     font-size: 20px;
@@ -219,11 +219,11 @@ td {
     vertical-align: top;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .index.active {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .index.active {
     color: #fff;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .index:not(.active):before {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .index:not(.active):before {
     display: inline-block;
     margin: 0 8px;
     vertical-align: top;
@@ -243,7 +243,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     font-size: 0;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle::before {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -256,31 +256,31 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     box-sizing: border-box;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle.btn_pause .ico_pause {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle.btn_pause .ico_pause {
     display: block;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle.btn_play .ico_play {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle.btn_play .ico_play {
     display: block;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle .progress_svg {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle .progress_svg {
     transform: rotate(-90deg);
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle .progress_stroke {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle .progress_stroke {
     transition: .4s;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause {
     position: absolute;
     top: 9px;
     left: 10px;
     font-size: 0;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause:before,
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause:after {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause:before,
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause:after {
     display: inline-block;
     width: 3px;
     height: 11px;
@@ -289,11 +289,11 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     content: '';
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause:after {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_pause:after {
     margin-left: 2px;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_play {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_play {
     display: none;
     position: absolute;
     top: 8px;
@@ -301,7 +301,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     font-size: 0;
 }
 
-#TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_play:before {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .ico_play:before {
     display: block;
     width: 0;
     height: 0;
@@ -312,13 +312,13 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     content: '';
 }
 
-#TicketPurchaseList .liveDom .bx_liveon {
+.TicketPurchaseList .liveDom .bx_liveon {
     max-width: 1120px;
     margin: 0 auto;
     padding: 80px 0 116px;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .bx_tit {
+.TicketPurchaseList .liveDom .bx_liveon .bx_tit {
     display: block;
     text-align: center;
     font-size: 30px;
@@ -326,22 +326,22 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     font-weight: 700;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .lst_liveon {
+.TicketPurchaseList .liveDom .bx_liveon .lst_liveon {
     margin-top: 32px;
     font-size: 0;
     text-align: center;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon {
     display: inline-block;
     vertical-align: top;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon+.item_liveon {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon+.item_liveon {
     margin-left: 48px;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon .img {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon .img {
     display: block;
     position: relative;
     width: 240px;
@@ -352,7 +352,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background-position: center;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon .ico_play {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon .ico_play {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -363,7 +363,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     transform: translate(-50%, -50%);
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon .ico_play:before {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon .ico_play:before {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -372,7 +372,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     content: '';
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon .ico_liveon {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon .ico_liveon {
     position: absolute;
     bottom: -8px;
     left: 50%;
@@ -386,7 +386,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     line-height: 1;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon .tit {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon .tit {
     display: block;
     overflow: hidden;
     margin: 32px auto 0;
@@ -398,7 +398,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     text-overflow: ellipsis;
 }
 
-#TicketPurchaseList .liveDom .bx_liveon .item_liveon .date {
+.TicketPurchaseList .liveDom .bx_liveon .item_liveon .date {
     display: block;
     margin-top: 3px;
     font-size: 15px;
@@ -407,22 +407,22 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
 }
 
 /* 링크 ON - 링크ON 리스트 */
-#TicketPurchaseList .liveDom .bx_info {
+.TicketPurchaseList .liveDom .bx_info {
     padding: 80px 0 120px;
     background-color: #f8f9fa;
 }
 
-#TicketPurchaseList .liveDom .bx_info:last-child {
+.TicketPurchaseList .liveDom .bx_info:last-child {
     margin-bottom: -160px;
     padding-bottom: 160px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner {
+.TicketPurchaseList .liveDom .bx_info .bx_inner {
     width: 1320px;
     margin: 0 auto;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .lst_info {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .lst_info {
     position: relative;
     margin: 100px auto 100px;
     box-sizing: border-box;
@@ -432,27 +432,27 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     width: 100%;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .lst_info:first-of-type {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .lst_info:first-of-type {
     margin-top: 0;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .bx_lst_view {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .bx_lst_view {
     overflow: hidden;
     position: relative;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .lst_wrap {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .lst_wrap {
     display: flex;
     width: 768px;
     height: 430px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .lst_inner {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .lst_inner {
     flex: 0 0 auto;
     height: 430px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info {
     width: 364px;
     height: 205px;
     margin: 0 0 20px 20px;
@@ -462,7 +462,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background-color: #fff;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .lst_poster {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .lst_poster {
     width: 352px;
     height: 430px;
     background-position: center;
@@ -471,7 +471,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background-color: #fff;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lnk_info {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lnk_info {
     display: block;
     width: 100%;
     height: 100%;
@@ -480,11 +480,11 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     box-sizing: border-box;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lnk_info.cast_type {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lnk_info.cast_type {
     padding: 31px 41px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .img {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .img {
     position: absolute;
     top: 0;
     left: 0;
@@ -495,7 +495,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background-size: cover;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .label {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .label {
     display: inline-block;
     padding: 4px 8px;
     border: 1px solid #fa2828;
@@ -507,18 +507,18 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     box-sizing: border-box;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .tit {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .tit {
     display: block;
     font-size: 16px;
     line-height: 24px;
     color: #242428;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .tit:first-of-type {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .tit:first-of-type {
     margin-top: 14px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico_play {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico_play {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -529,7 +529,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     transform: translate(-50%, -50%);
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico_play:before {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico_play:before {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -538,7 +538,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     content: '';
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico_liveon {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico_liveon {
     position: absolute;
     bottom: -8px;
     left: 50%;
@@ -553,13 +553,13 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     line-height: 24px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .ico {
     position: absolute;
     bottom: 30px;
     right: 30px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_cast_wrap {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_cast_wrap {
     overflow: hidden;
     position: absolute;
     top: 31px;
@@ -571,23 +571,23 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     pointer-events: none;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_cast_wrap.type_only {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_cast_wrap.type_only {
     top: 47px;
     text-align: center;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_cast {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_cast {
     font-size: 0;
     white-space: nowrap;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .item_cast {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .item_cast {
     display: inline-block;
     width: 86px;
     vertical-align: top;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .img_cast {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .img_cast {
     display: block;
     width: 80px;
     height: 80px;
@@ -597,7 +597,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background-size: cover;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .name_cast {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .name_cast {
     display: block;
     overflow: hidden;
     margin-top: 8px;
@@ -609,7 +609,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     text-overflow: ellipsis;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast {
     position: absolute;
     top: 49px;
     width: 24px;
@@ -619,17 +619,17 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background-color: transparent;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast_prev {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast_prev {
     left: 4px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast_next {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast_next {
     right: 4px;
     transform: rotateY(180deg);
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:before,
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:after {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:before,
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:after {
     position: absolute;
     left: 16px;
     top: 22px;
@@ -639,22 +639,22 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     content: '';
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:before {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:before {
     transform-origin: top left;
     transform: rotate(45deg);
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:after {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:after {
     transform-origin: bottom left;
     transform: rotate(-45deg);
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:disabled:before,
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:disabled:after {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:disabled:before,
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .btn_cast:disabled:after {
     background-color: #d4d4d4;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_bullet {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .lst_bullet {
     position: absolute;
     bottom: 18px;
     left: 10px;
@@ -663,7 +663,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     text-align: center;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .bullet {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .bullet {
     display: inline-block;
     width: 8px;
     height: 8px;
@@ -673,11 +673,11 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background-color: #878d95;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .bullet:first-of-type {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .item_info .bullet:first-of-type {
     margin-left: 0;
 }
 
-#TicketPurchaseList .liveDom .bx_info .btn_more {
+.TicketPurchaseList .liveDom .bx_info .btn_more {
     width: 140px;
     height: 50px;
     border: 1px solid #242428;
@@ -691,7 +691,7 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     padding-right: 15px;
 }
 
-#TicketPurchaseList .liveDom .bx_info .btn_more:after {
+.TicketPurchaseList .liveDom .bx_info .btn_more:after {
     position: absolute;
     top: 13px;
     right: 29px;
@@ -701,23 +701,23 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     transform: rotate(90deg);
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .btn_next,
-#TicketPurchaseList .liveDom .bx_info .bx_inner .btn_prev {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .btn_next,
+.TicketPurchaseList .liveDom .bx_info .bx_inner .btn_prev {
     position: absolute;
     top: 50%;
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .btn_prev {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .btn_prev {
     left: -100px;
     transform: translateY(-50%) rotate(180deg);
 }
 
-#TicketPurchaseList .liveDom .bx_info .bx_inner .btn_next {
+.TicketPurchaseList .liveDom .bx_info .bx_inner .btn_next {
     right: -100px;
     transform: translateY(-50%);
 }
 
-#TicketPurchaseList .liveDom .bx_info .ly_clip {
+.TicketPurchaseList .liveDom .bx_info .ly_clip {
     position: absolute;
     top: 0;
     right: 0;
@@ -726,15 +726,15 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     z-index: 10;
 }
 
-#TicketPurchaseList .liveDom .bx_info .ly_clip .img,
-#TicketPurchaseList .liveDom .bx_info .ly_clip img,
-#TicketPurchaseList .liveDom .bx_info .ly_clip video {
+.TicketPurchaseList .liveDom .bx_info .ly_clip .img,
+.TicketPurchaseList .liveDom .bx_info .ly_clip img,
+.TicketPurchaseList .liveDom .bx_info .ly_clip video {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-#TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close {
+.TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close {
     position: absolute;
     top: 20px;
     right: 19px;
@@ -743,8 +743,8 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     background: transparent;
 }
 
-#TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:before,
-#TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:after {
+.TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:before,
+.TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:after {
     position: absolute;
     top: 14px;
     left: 3px;
@@ -754,14 +754,14 @@ TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     content: '';
 }
 
-#TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:before {
+.TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:before {
     transform: rotate(45deg);
 }
 
-#TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:after {
+.TicketPurchaseList .liveDom .bx_info .ly_clip .btn_close:after {
     transform: rotate(-45deg);
 }
 
-#TicketPurchaseList .blind {
+.TicketPurchaseList .blind {
     display: none;
 }
