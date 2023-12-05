@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import MyInfoContainer from './containers/MyPage/MyInfoContainer';
 import Index from './pages/Index';
 import LiveBoardList from './pages/LiveBoard/LiveBoardList';
 import LiveBoardRead from './pages/LiveBoard/LiveBoardRead';
