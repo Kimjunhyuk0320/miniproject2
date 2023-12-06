@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.header ul {
+    list-style-type: none;
+}
+
+
+.header a {
+    color: black;
+    text-decoration: none;
+}
+
+
+.header section {
+    min-height: 400px;
+}
+
+
+.header section:first-of-type {
+    margin-top: 86px;
+}
+
+/* 폰트 적용 */
+/* 노토산스 폰트 */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+/* 로고 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@400;700&family=Gowun+Batang:wght@700&family=Parisienne&family=Questrial&family=Song+Myung&display=swap');
+
+.header {
+    font-family: 'Noto Sans KR', sans-serif;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* ✅[수정] 서브 메뉴 여백조정 👩‍💻aloha  @오후 4:40 2023-11-06  */
+
+.header 
+ol,
+.header ul {
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+html {
+    overflow-x: hidden;
+    line-height: 1.15;
+}
+
+/* 라이브러리 */
+/* .con {
+    max-width: 1300px;
+    margin: 0 auto;
+} */
+
+.header .header-row::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+.header .cells {
+    float: left;
+    box-sizing: border-box;
+}
+
+.header .cells-right {
+    float: right;
+}
+
+.header .line-height-0 {
+    line-height: 0;
+}
+
+.header .line-height-0>* {
+    line-height: normal;
+}
+
+.header .visible-on {
+    display: block;
+}
+
+.header .visible-off {
+    display: none;
+}
+
+.header .img_box {
+    overflow: hidden;
+}
+
+.header .img_box img {
+    width: 100%;
+    display: block;
+}
+
+.header .relative {
+    position: relative;
+}
+
+.header .block {
+    display: block;
+}
+
+/* 커스텀 */
+.header {
+    position: sticky;
+    /* position:fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 86px;
+    background-color: #fff;
+    z-index: 100;
+}
+
+.header>.header-inner {
+    max-width: 1220px;
+    width: 1220px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* 상단 로고 */
+.header>.header-inner>.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* ✅[수정] translatex ➡ translateX ➡ translate 👩‍💻aloha  @오후 4:45 2023-11-06 */
+    /* width:128px; */
+}
+
+/* 로고 폰트 */
+.header>.header-inner>.logo>h1.logo-title {
+    font-family: 'Anton', sans-serif;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Gowun Batang', serif;
+    font-family: 'Parisienne', cursive;
+    font-family: 'Questrial', sans-serif;
+    font-family: 'Song Myung', serif;
+}
+
+/* 검색 박스 */
+.header>.header-inner>.search-box {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    /* ✅[수정] translatey ➡ translateY 👩‍💻aloha  @오후 4:45 2023-11-06 */
+    transform: translateY(-50%);
+}
+
+.header>.header-inner>.search-box>a>span {
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    top: -2px;
+}
+
+.header>.header-inner>.search-box>a>img {
+    width: 15px;
+    /* padding-left:5px; */
+    position: relative;
+    top: -1px;
+}
+
+/* 상단 메뉴바 */
+
+.header>.header-inner>.top-menu-bar>ul {
+    display: inline-block;
+}
+
+.header>.header-inner>.top-menu-bar>ul:nth-child(2) {
+    margin-right: 105px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>a {
+    display: block;
+    margin: 0 30px;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    line-height: 86px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>a>* {
+    line-height: normal;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>a::after {
+    content: "";
+    display: block;
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 3px;
+    transform: translatex(-50%);
+    transition: width .3s ease-in-out;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>a.active::after {
+    width: 100%;
+}
+
+/* 2차 메뉴 배경 */
+.header>.header-inner>.top-menu-bar>.sub-menu-bg {
+    position: fixed;
+    top: 86px;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #fff;
+    /* border-top:1px solid #ccc; */
+    z-index: -5;
+    transition: height .3s;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
+}
+
+/* 2차 메뉴 */
+.header>.header-inner>.top-menu-bar ul>li {
+    position: relative;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 1000px;
+    visibility: hidden;
+    transform: translatex(-10px);
+    opacity: 0;
+    padding-top: 20px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li.active ul {
+    visibility: visible;
+    opacity: 1;
+    transform: translatex(0);
+    transition: all .5s;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>ul>li {
+    margin-left: 30px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>ul>li>a {
+    font-weight: bold;
+}
+
+.header>.header-inner>.top-menu-bar>ul ul>li>a {
+    display: inline-block;
+    font-size: 15px;
+    padding: 7px 0;
+    position: relative;
+}
+
+.header>.header-inner>.top-menu-bar>ul ul>li>a::after {
+    content: "";
+    display: block;
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 1px;
+    transform: translatex(-50%);
+    transition: width .3s ease-in-out;
+}
+
+.header>.header-inner>.top-menu-bar>ul ul>li>a:hover::after {
+    width: 100%;
+}
+
+/* 서브메뉴 실질적 width, height */
+.header>.header-inner>.top-menu-bar>ul>li>.sub-menu-width {
+    width: 100%;
+    height: 300px;
+    position: fixed;
+    top: 86px;
+    left: 0;
+    z-index: -3;
+    display: none;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li.active>.sub-menu-width {
+    display: block;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>.sub-menu-width-1 {
+    height: 164px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>.sub-menu-width-2 {
+    height: 238px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>.sub-menu-width-3 {
+    height: 164px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>.sub-menu-width-4 {
+    height: 90px;
+}
+
+.header>.header-inner>.top-menu-bar>ul>li>.sub-menu-width-5 {
+    height: 127px;
+}
+
+/* 3차 메뉴 */
+.header>.header-inner>.top-menu-bar>ul ul ul {}
+
+.header>.header-inner>.top-menu-bar>ul ul ul>li {
+    margin-right: 80px;
+}

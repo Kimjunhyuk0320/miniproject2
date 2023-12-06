@@ -16,6 +16,7 @@ import FacilityRentalUpdateContainer from './containers/facilityRental/FacilityR
 import FacilityRentalInsertContainer from './containers/facilityRental/FacilityRentalInsertContainer';
 import MyPage from './pages/MyPage/MyPage';
 import MyInfo from './pages/MyPage/MyInfo';
+import TotalSearch from './pages/MyPage/TotalSearch';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import TicketSalesList from './pages/MyPage/TicketSalesList';
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/' element={ <Index/> } />
         <Route path='/MyPage' element={ <MyPage/> } />
         <Route path='/MyInfo' element={ <MyInfo/> } />
+        <Route path='/TotalSearch' element={ <TotalSearch/> } />
         <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
         <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
         <Route path='/liveBoard' element={ <LiveBoardList/> }/>
