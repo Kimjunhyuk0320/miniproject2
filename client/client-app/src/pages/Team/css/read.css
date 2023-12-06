@@ -1,45 +1,45 @@
-.LiveBoardRead body {
+.TeamReadPage body {
     min-width: 1320px; /* 최소 너비를 1000px로 설정 */
 }
 
-.LiveBoardRead * {
+.TeamReadPage * {
     margin: 0px;
     padding: 0px;
 }
 
-.LiveBoardRead ul,
-.LiveBoardRead ol {
+.TeamReadPage ul,
+.TeamReadPage ol {
     list-style: none;
 }
 
-.LiveBoardRead body {
+.TeamReadPage body {
     background: rgb(248, 249, 250);
     /* margin-top: 150px; */
 }
 
-.LiveBoardRead a {
+.TeamReadPage a {
     text-decoration: none;
 }
 
-.LiveBoardRead .totalContainer {
+.TeamReadPage .totalContainer {
     width: 1200px;
     margin: auto;
 }
 
-.LiveBoardRead .topContentContainer {
+.TeamReadPage .topContentContainer {
     display: flex;
     justify-content: center;
     margin-top: 50px;
 }
 
-.LiveBoardRead .topContentContainer .imgContainer img {
+.TeamReadPage .topContentContainer .imgContainer img {
     width: 450px;
     height: 550px;
     object-fit: cover;
     border-radius: 15px;
 }
 
-.LiveBoardRead .topContentContainer .contentContainer {
+.TeamReadPage .topContentContainer .contentContainer {
     /* test */
     /* background-color: blanchedalmond; */
     margin-left: 20px;
@@ -47,13 +47,13 @@
 }
 
 /* 테이블 관련 */
-.LiveBoardRead .tableContainer {
+.TeamReadPage .tableContainer {
     display: flex;
     justify-content: center;
     border-radius: 15px;
 }
 
-.LiveBoardRead table {
+.TeamReadPage table {
     width: 1000px;
     border-collapse: collapse;
     overflow: hidden;
@@ -61,12 +61,12 @@
 }
 
 /* 하트 css */
-.LiveBoardRead .titleBox {
+.TeamReadPage .titleBox {
     display: flex;
     justify-content: space-between;
 }
 
-.LiveBoardRead .titleBox h1 {
+.TeamReadPage .titleBox h1 {
     font-size: 45px;
 }
 
@@ -80,7 +80,7 @@
 } */
 
 /* 실질적 하트 모양 */
-.LiveBoardRead .heartInner {
+.TeamReadPage .heartInner {
     position: relative;
     width: 50px;
     margin-top: 8px;
@@ -89,8 +89,8 @@
     animation: beat 1s infinite;
 }
 
-.LiveBoardRead .heartInner::before,
-.LiveBoardRead .heartInner::after {
+.TeamReadPage .heartInner::before,
+.TeamReadPage .heartInner::after {
     content: '';
     position: absolute;
     top: 0;
@@ -100,19 +100,19 @@
     background: red;
 }
 
-.LiveBoardRead .heartInner::before {
+.TeamReadPage .heartInner::before {
     left: 17px;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
 }
 
-.LiveBoardRead .heartInner::after {
+.TeamReadPage .heartInner::after {
     left: 0;
     transform: rotate(45deg);
     transform-origin: 100% 100%;
 }
 
-.LiveBoardRead .heartInner .heartText {
+.TeamReadPage .heartInner .heartText {
     position: absolute;
     right: 20px;
     top: 2px;
@@ -123,7 +123,7 @@
     /* background-color: blue; */
 }
 
-.LiveBoardRead .heartInner .heartText p {
+.TeamReadPage .heartInner .heartText p {
     color: white;
 }
 
@@ -136,28 +136,28 @@
     }
 }
 
-.LiveBoardRead th,
-.LiveBoardRead td {
+.TeamReadPage th,
+.TeamReadPage td {
     padding: 10px 35px;
     background-color: rgba(255, 255, 255, 0.2);
     color: black;
     text-align: left;
 }
 
-.LiveBoardRead th {
+.TeamReadPage th {
     background-color: rgb(41, 43, 50);;
     color: white;
     text-align: center;
 }
 
-.LiveBoardRead #countFor {
+.TeamReadPage #countFor {
     display: flex;
     align-items: center;
     margin-top: 0.5rem;
 }
 
 /* +,- 버튼 관련 */
-.LiveBoardRead .countBtn {
+.TeamReadPage .countBtn {
     border: none;
     height: 0;
     width: 20px;
@@ -167,23 +167,23 @@
     margin-left: 5px;
 }
 
-.LiveBoardRead #aaaa {
+.TeamReadPage #aaaa {
     display: block;
 }
 
 /* 매진여부 */
-.LiveBoardRead #countNum {
+.TeamReadPage #countNum {
     text-align: center;
 }
 
 /* 하단 컨테이너 */
-.LiveBoardRead .bottomContainer {
+.TeamReadPage .bottomContainer {
     display: flex;
     justify-content: center;
     margin: 15px;
 }
 
-.LiveBoardRead .bottomContainer button{
+.TeamReadPage .bottomContainer button{
     width: 150px;
     height: 50px;
     border: none;
@@ -193,18 +193,18 @@
     margin-right: 10px;
 }
 
-.LiveBoardRead .bottomContainerForRental button,
-.LiveBoardRead .bottomContainerForRental th {
+.TeamReadPage .bottomContainerForRental button,
+.TeamReadPage .bottomContainerForRental th {
     display: inline-block;
     margin-right: 10px;
 }
 
-.LiveBoardRead .bottomContainerForRental div {
+.TeamReadPage .bottomContainerForRental div {
     display: inline-block;
 }
 
 /* 티켓 구매 버튼 */
-.LiveBoardRead #btn-purchase {
+.TeamReadPage #btn-purchase {
     width: 200px;
     height: 50px;
     border: none;
@@ -213,13 +213,13 @@
     color: white;
 }
 
-.LiveBoardRead .textContainer {
+.TeamReadPage .textContainer {
     padding: 20px;
     border: 1px black;
 }
 
 /* 댓글 관련 */
-.LiveBoardRead #comment-list {
+.TeamReadPage #comment-list {
     margin-top: 10px;
     padding: 20px;
     margin-bottom: 100px;
@@ -228,40 +228,40 @@
 }
 
 /* 댓글 하나에 대한 css */
-.LiveBoardRead .comment-box {
+.TeamReadPage .comment-box {
     background-color: rgba(248, 248, 255, 0);
     /* border-bottom: 1px solid black; */
     margin: 20px 0 20px 10px ;
 }
 
-.LiveBoardRead .top .itemSt {
+.TeamReadPage .top .itemSt {
     display: flex;
     justify-content: space-between;
 }
 
-.LiveBoardRead .comment-writer {
+.TeamReadPage .comment-writer {
     font-size: 25px;
 }
 
-.LiveBoardRead .comment-date {
+.TeamReadPage .comment-date {
     margin-left: 20px;
 }
 
-.LiveBoardRead .input-box {
+.TeamReadPage .input-box {
     display: flex;
     padding: 20px;
 }
 
 /* 자바스크립트 댓글쪽 */
-.LiveBoardRead .commentContainer {
+.TeamReadPage .commentContainer {
     display: flex
 }
 
-.LiveBoardRead .commentContainer .imgDiv {
+.TeamReadPage .commentContainer .imgDiv {
     /* background-color: bisque; */
 }
 
-.LiveBoardRead .imgDiv img {
+.TeamReadPage .imgDiv img {
     width: 60px;
     height: 60px;
     margin-top: 10px;
@@ -270,7 +270,7 @@
     margin-right: 10px;
 }
 
-.LiveBoardRead #comment-content {
+.TeamReadPage #comment-content {
     margin-left: 10px;
     overflow: hidden;
     width: 1090px;
@@ -282,7 +282,7 @@
     outline: none;
 }
 
-.LiveBoardRead .input-update-content {
+.TeamReadPage .input-update-content {
     margin-left: 10px;
     overflow: hidden;
     width: 1090px;
@@ -294,7 +294,7 @@
     outline: none;
 }
 
-.LiveBoardRead .btn-box-can {
+.TeamReadPage .btn-box-can {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -308,7 +308,7 @@
 }
 
 /* 댓글 취소 버튼 */
-.LiveBoardRead .btn-box-can {
+.TeamReadPage .btn-box-can {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -321,12 +321,12 @@
     margin-left: 10px;
 }
 
-.LiveBoardRead .btn-box-can:hover {
+.TeamReadPage .btn-box-can:hover {
     background-color: rgba(168, 168, 168, 0.404);
 }
 
 /* 댓글 등록 버튼 */
-.LiveBoardRead .btn-box {
+.TeamReadPage .btn-box {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -338,7 +338,7 @@
     font-size: 20px;
 }
 
-.LiveBoardRead .btn-box:hover {
+.TeamReadPage .btn-box:hover {
     display: inline;
     float: right;
     margin-top: 5px;
@@ -350,24 +350,24 @@
     font-size: 20px;
 }
 
-.LiveBoardRead .btn-box a {
+.TeamReadPage .btn-box a {
     color: white;
 }
 
-.LiveBoardRead .btn-box a:hover {
+.TeamReadPage .btn-box a:hover {
     color: white;
 }
 
-.LiveBoardRead .btn-box-can a {
+.TeamReadPage .btn-box-can a {
     color: black;
 }
 
-.LiveBoardRead #red-btn {
+.TeamReadPage #red-btn {
     background-color: rgba(255, 0, 0, 0.551);
     margin-right: auto;
 }
 
-.LiveBoardRead #blue-btn {
+.TeamReadPage #blue-btn {
     background-color: rgba(0, 0, 255, 0.525);
     /* margin-right: auto; */
 }

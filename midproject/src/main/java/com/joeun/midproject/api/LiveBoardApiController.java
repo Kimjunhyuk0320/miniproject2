@@ -50,7 +50,6 @@ public class LiveBoardApiController {
         log.info("[GET] - /liveBoard/liveBoardPageList");
         try {
             List<LiveBoard> pageListResult = liveBoardService.liveBoardPageList(team);
-            log.info(pageListResult + "");
             return new ResponseEntity<>(pageListResult, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -94,7 +93,7 @@ public class LiveBoardApiController {
     
     // 공연 게시글 등록
     @PostMapping("/insert")
-    public ResponseEntity<?> insertPro(@RequestBody LiveBoard liveBoard) {
+    public ResponseEntity<?> insertPro(LiveBoard liveBoard) {
         try {
             // 데이터 처리
             String liveStTime = liveBoard.getLiveStTime();
@@ -105,6 +104,7 @@ public class LiveBoardApiController {
 
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
+            log.error("Error in insertPro:", e); // 로그 추가
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

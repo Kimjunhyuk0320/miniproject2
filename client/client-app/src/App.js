@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import MyInfoContainer from './containers/MyPage/MyInfoContainer';
 import Index from './pages/Index';
 import LiveBoardList from './pages/LiveBoard/LiveBoardList';
 import LiveBoardRead from './pages/LiveBoard/LiveBoardRead';
 import LiveBoardUpdate from './pages/LiveBoard/LiveBoardUpdate';
 import MyPage from './pages/MyPage/MyPage';
+import MyInfo from './pages/MyPage/MyInfo';
+import TotalSearch from './pages/MyPage/TotalSearch';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
-import TicketSalesList from './components/Mypage/TicketSalesList';
+import TicketSalesList from './pages/MyPage/TicketSalesList';
 import TeamListPage from './pages/Team/TeamListPage';
 import TeamReadPage from './pages/Team/TeamReadPage';
 import TeamUpdatePage from './pages/Team/TeamUpdatePage';
@@ -22,6 +23,7 @@ import TeamMyRegListPage from './pages/MyPage/TeamMyRegListPage';
 import FrBookingListPage from './pages/MyPage/FrBookingListPage';
 import FrMyBookingListPage from './pages/MyPage/FrMyBookingListPage';
 import TeamRegReadPage from './pages/MyPage/TeamRegReadPage';
+import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
 
 function App() {
   return (
@@ -29,10 +31,12 @@ function App() {
       <Routes>
         <Route path='/' element={ <Index/> } />
         <Route path='/MyPage' element={ <MyPage/> } />
-        <Route path='/MyInfo' element={ <MyInfoContainer/> } />
+        <Route path='/MyInfo' element={ <MyInfo/> } />
+        <Route path='/TotalSearch' element={ <TotalSearch/> } />
         <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
         <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
         <Route path='/liveBoard' element={ <LiveBoardList/> }/>
+        <Route path='/liveBoard/insert' element={ <LiveBoardInsert/> }/>
         <Route path='/liveBoard/:no' element={ <LiveBoardRead/> }/>
         <Route path='/liveBoard/update/:no' element={ <LiveBoardUpdate/> }/>
         <Route path='/teamList' element={ <TeamListPage/> } />

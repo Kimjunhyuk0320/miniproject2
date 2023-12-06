@@ -1,0 +1,781 @@
+@media (max-width: 1320px) {
+    /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
+    body {
+        min-width: 1320px; /* 최소 너비를 1000px로 설정 */
+    }
+}
+
+.TeamListPage html,
+.TeamListPage body {
+    height: 100%;
+}
+
+.TeamListPage body {
+    margin: 0;
+    background: rgb(248, 249, 250);
+    /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+.TeamListPage #topContent {
+    /* height: 800px;
+    margin: 20px 0;
+    background: linear-gradient(180deg, #916ea9, rgb(248, 249, 250)); */
+    margin: auto;
+    width: 1320px;
+    margin-top: 100px;
+}
+
+.TeamListPage #teamListContainer {
+    margin-top: 50px;
+}
+
+.TeamListPage #teamListContainer>h1 {
+    color: black;
+}
+
+.TeamListPage #teamListContainer>.page-box {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 1320px;
+    margin-bottom: 10px;
+}
+
+.TeamListPage #teamListContainer>.page-box>.item select, input {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-style: none;
+    outline: none;
+}
+
+.TeamListPage #teamListContainer>.page-box>.search_item {
+
+}
+
+/* 테이블 관련 */
+.TeamListPage .tableContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.TeamListPage table {
+    width: 1320px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.TeamListPage th,
+.TeamListPage td {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    text-align: center;
+    font-size: 15px;
+}
+
+.TeamListPage th {
+    background-color: rgb(41, 43, 50);;
+    color: white;
+    text-align: center;
+}
+
+/* 페이지네이션 관련 */
+.TeamListPage #paginationContainer {
+    margin-top: 20px;
+}
+
+.TeamListPage #paginationContainer>.pagination_count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+/* 페이지네이션 관련 */
+.TeamListPage #paginationContainer>.pagination_count a {
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+.TeamListPage #paginationContainer>.pagination_count a {
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+/* #paginationContainer>.pagination_count>.page-list a {
+    border: 1px solid black;
+    padding: 0 10px;
+    border-radius: 100px;
+} */
+
+/* 검색 관련 */
+.TeamListPage .search_item a {
+    text-decoration: none;
+    color: black;
+    height: 45px;
+    padding-top: 5px;
+}
+.TeamListPage .search_item a:hover {
+    text-decoration: none;
+    color: black;
+    background-color: rgb(248, 249, 250);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.a{
+    color: black;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.TeamListPage #filter-btn{
+    width: 123px; 
+    height: 42px; 
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-style: none;
+}
+
+
+/*  */
+.TeamListPage .a {
+    background-color: rgb(242, 242, 242);
+    
+    
+}
+.TeamListPage .staticContainer {
+    display: flex;
+    width: 1320px;
+    /* padding: ; */
+    margin: auto;
+    
+}
+
+.TeamListPage .staticContainer .staticTextSection {
+    padding: 70px 30px;
+}
+
+.TeamListPage .staticContainer .staticVideoSection {
+    margin: 20px 0;
+}
+
+.TeamListPage .staticVideoSection iframe {
+    border-radius: 20px;
+}
+
+/* 상단 카드 형식 css */
+
+.TeamListPage .liveDom.common_container .bx_slide.only_type .video_wrap {
+    left: 50%;
+    max-width: 1212px;
+    transform: translateX(-50%)
+}
+
+.TeamListPage .liveDom.common_container .bx_slide.only_type .txt_area {
+    width: 1120px;
+    margin: 0 auto
+}
+
+.TeamListPage .liveDom .bx_slide .btn_wrap {
+    position: absolute;
+    top: 230px;
+    left: -102px;
+    right: -102px;
+    z-index: 1;
+    pointer-events: none
+}
+
+.TeamListPage .liveDom .bx_slide .btn_wrap .btn {
+    pointer-events: auto
+}
+
+.TeamListPage .liveDom .bx_slide .btn_wrap .btn.btn_prev {
+    float: left;
+    transform: rotateY(180deg)
+}
+
+.TeamListPage .liveDom .bx_slide .btn_wrap .btn.btn_next {
+    float: right;
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap {
+    position: absolute;
+    top: 432px;
+    left: 80px;
+    font-size: 0
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .index {
+    display: inline-block;
+    margin-top: 2px;
+    font-size: 20px;
+    font-family: 'Roboto',-apple-system,BlinkMacSystemFont,Apple SD Gothic Neo,'Malgun Gothic',Arial,sans-serif;
+    line-height: 24px;
+    color: #fff;
+    vertical-align: top
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .index.active {
+    color: #fff
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .index:not(.active):before {
+    display: inline-block;
+    margin: 0 8px;
+    vertical-align: top;
+    content: '/';
+    opacity: 0.6
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .btn_toggle {
+    display: inline-block;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    margin-left: 14px;
+    border-radius: 14px;
+    background-color: rgba(0,0,0,.2);
+    vertical-align: top;
+    font-size: 0;
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .btn_toggle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .btn_toggle.btn_pause .ico_pause {
+    display: block
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .btn_toggle.btn_play .ico_play {
+    display: block
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .btn_toggle .progress_svg {
+    transform: rotate(-90deg)
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .btn_toggle .progress_stroke {
+    transition: .4s
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .ico_pause {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    font-size: 0
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .ico_pause:before, 
+.TeamListPage .liveDom .bx_slide .pagination_wrap .ico_pause:after {
+    display: inline-block;
+    width: 3px;
+    height: 11px;
+    background-color: #fff;
+    vertical-align: top;
+    content: ''
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .ico_pause:after {
+    margin-left: 2px
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .ico_play {
+    display: none;
+    position: absolute;
+    top: 8px;
+    left: 11px;
+    font-size: 0
+}
+
+.TeamListPage .liveDom .bx_slide .pagination_wrap .ico_play:before {
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 6px 0 6px 8px;
+    border-style: solid;
+    border-color: transparent;
+    border-left-color: #fff;
+    content: ''
+}
+
+.TeamListPage .liveDom .bx_liveon {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 80px 0 116px
+}
+
+.TeamListPage .liveDom .bx_liveon .bx_tit {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    line-height: 42px;
+    font-weight: 700
+}
+
+.TeamListPage .liveDom .bx_liveon .lst_liveon {
+    margin-top: 32px;
+    font-size: 0;
+    text-align: center
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon {
+    display: inline-block;
+    vertical-align: top
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon + .item_liveon {
+    margin-left: 48px
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon .img {
+    display: block;
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 85px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon .ico_play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon .ico_play:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: 1px;
+    transform: translate(-50%, -50%);
+    content: ''
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon .ico_liveon {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    padding: 4px 8px 0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #fa2828;
+    text-transform: uppercase;
+    height: 24px;
+    line-height: 24px;
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon .tit {
+    display: block;
+    overflow: hidden;
+    margin: 32px auto 0;
+    max-width: 209px;
+    font-size: 18px;
+    line-height: 36px;
+    color: #242428;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.TeamListPage .liveDom .bx_liveon .item_liveon .date {
+    display: block;
+    margin-top: 3px;
+    font-size: 15px;
+    line-height: 22px;
+    color: #242428
+}
+
+/* 링크 ON - 링크ON 리스트 */
+.TeamListPage .liveDom .bx_info {
+    padding: 80px 0 120px;
+    background-color: #f8f9fa
+}
+
+.TeamListPage .liveDom .bx_info:last-child {
+    margin-bottom: -160px;
+    padding-bottom: 160px
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner {
+    width: 1320px;
+    margin: 0 auto
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .lst_info {
+    position: relative;
+    margin: 100px auto 100px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .lst_info:first-of-type {
+    margin-top: 0
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .bx_lst_view {
+    overflow: hidden;
+    position: relative
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .lst_wrap {
+    display: flex;
+    width: 768px;
+    height: 430px
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .lst_inner {
+    flex: 0 0 auto;
+    height: 430px
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info {
+    display: block;
+    position: relative;
+    flex: 0 0 auto;
+    width: 364px;
+    height: 205px;
+    margin: 0 0 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(/public/img/logo_header.png);
+    background-color: #fff
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .lst_poster {
+    width: 352px;
+    height: 430px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-image: url(../img/teamList1.png); */
+    background-color: #fff;
+    /* z-index: 1 */
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .lnk_info {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background-color: #fff;
+    box-sizing: border-box
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .lnk_info.cast_type {
+    padding: 31px 41px
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .label {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid #fa2828;
+    border-radius: 11px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fa2828;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .tit {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    color: #242428
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .tit:first-of-type {
+    margin-top: 14px
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .ico_play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .ico_play:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: 1px;
+    transform: translate(-50%, -50%);
+    content: ''
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .ico_liveon {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    padding: 0 12px 0;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #fa2828;
+    text-transform: uppercase;
+    height: 24px;
+    line-height: 24px;
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .ico {
+    position: absolute;
+    bottom: 30px;
+    right: 30px
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .lst_cast_wrap {
+    overflow: hidden;
+    position: absolute;
+    top: 31px;
+    bottom: 31px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 258px;
+    pointer-events: none
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .lst_cast_wrap.type_only {
+    top: 47px;
+    text-align: center
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .lst_cast {
+    font-size: 0;
+    white-space: nowrap
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .item_cast {
+    display: inline-block;
+    width: 86px;
+    vertical-align: top
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .img_cast {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .name_cast {
+    display: block;
+    overflow: hidden;
+    margin-top: 8px;
+    width: 80px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #242428;
+    text-align: center;
+    text-overflow: ellipsis
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast {
+    position: absolute;
+    top: 49px;
+    width: 24px;
+    height: 24px;
+    padding: 10px;
+    box-sizing: content-box;
+    background-color: transparent
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast_prev {
+    left: 4px
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast_next {
+    right: 4px;
+    transform: rotateY(180deg)
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast:before, 
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast:after {
+    position: absolute;
+    left: 16px;
+    top: 22px;
+    width: 12px;
+    height: 1px;
+    background-color: #878d95;
+    content: ''
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast:before {
+    transform-origin: top left;
+    transform: rotate(45deg)
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast:after {
+    transform-origin: bottom left;
+    transform: rotate(-45deg)
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast:disabled:before, 
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .btn_cast:disabled:after {
+    background-color: #d4d4d4
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .lst_bullet {
+    position: absolute;
+    bottom: 18px;
+    left: 10px;
+    right: 10px;
+    font-size: 0;
+    text-align: center
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align:     top;
+    background-color: #878d95
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .item_info .bullet:first-of-type {
+    margin-left: 0
+}
+
+.TeamListPage .liveDom .bx_info .btn_more {
+    width: 140px;
+    height: 50px;
+    border: 1px solid #242428;
+    border-radius: 100px;
+    font-size: 18px;
+    line-height: 50px;
+    position: relative;
+    display: block;
+    margin: 50px auto 0;
+    box-sizing: border-box;
+    padding-right: 15px;
+}
+
+.TeamListPage .liveDom .bx_info .btn_more:after {
+    position: absolute;
+    top: 13px;
+    right: 29px;
+    width: auto;
+    height: auto;
+    content: '';
+    transform: rotate(90deg);
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .btn_next, 
+.TeamListPage .liveDom .bx_info .bx_inner .btn_prev {
+    position: absolute;
+    top: 50%
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .btn_prev {
+    left: -100px;
+    transform: translateY(-50%) rotate(180deg)
+}
+
+.TeamListPage .liveDom .bx_info .bx_inner .btn_next {
+    right: -100px;
+    transform: translateY(-50%)
+}
+
+.TeamListPage .liveDom .bx_info .ly_clip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 20px;
+    z-index: 10
+}
+
+.TeamListPage .liveDom .bx_info .ly_clip .img, 
+.TeamListPage .liveDom .bx_info .ly_clip img, 
+.TeamListPage .liveDom .bx_info .ly_clip video {
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.TeamListPage .liveDom .bx_info .ly_clip .btn_close {
+    position: absolute;
+    top: 20px;
+    right: 19px;
+    width: 30px;
+    height: 30px;
+    background: transparent
+}
+
+.TeamListPage .liveDom .bx_info .ly_clip .btn_close:before, 
+.TeamListPage .liveDom .bx_info .ly_clip .btn_close:after {
+    position: absolute;
+    top: 14px;
+    left: 3px;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    content: ''
+}
+
+.TeamListPage .liveDom .bx_info .ly_clip .btn_close:before {
+    transform: rotate(45deg);
+}
+
+.TeamListPage .liveDom .bx_info .ly_clip .btn_close:after {
+    transform: rotate(-45deg);
+}
+
+/* 블라인드 부분 숨기기 */
+.TeamListPage .blind {
+    display: none;
+} 

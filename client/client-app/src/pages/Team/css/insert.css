@@ -1,20 +1,20 @@
 @media (max-width: 1320px) {
     /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
-    .LiveBoardInsert body {
+    .TeamInsertPage body {
         min-width: 1320px; /* 최소 너비를 1000px로 설정 */
     }
 }
 
-.LiveBoardInsert #insertContainer {
+.TeamInsertPage #insertContainer {
     margin: 200px 0;
 }
 
-.LiveBoardInsert html,
-.LiveBoardInsert body {
+.TeamInsertPage html,
+.TeamInsertPage body {
     height: 100%;
 }
 
-.LiveBoardInsert body {
+.TeamInsertPage body {
     margin: 0;
     background: rgb(248, 249, 250);
     /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
@@ -22,7 +22,7 @@
     font-weight: 100;
 }
 
-.LiveBoardInsert #topContent {
+.TeamInsertPage #topContent {
     /* height: 800px;
     margin: 20px 0;
     background: linear-gradient(180deg, #916ea9, rgb(248, 249, 250)); */
@@ -31,25 +31,24 @@
     margin-top: 100px;
 }
 
-.LiveBoardInsert #insertContainer {
+.TeamInsertPage #insertContainer {
     margin-top: 50px;
 }
 
-.LiveBoardInsert #insertContainer>h1 {
+.TeamInsertPage #insertContainer>h1 {
     color: black;
 }
 
-.LiveBoardInsert #insertContainer>.page-box {
+.TeamInsertPage #insertContainer>.page-box {
     display: flex;
     justify-content: space-between;
     margin: auto;
     width: 1320px;
     margin-bottom: 10px;
-
 }
 
-.LiveBoardInsert #insertContainer 
-select, .LiveBoardInsert input {
+.TeamInsertPage #insertContainer select,
+.TeamInsertPage #insertContainer input {
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     color: black;
@@ -59,65 +58,65 @@ select, .LiveBoardInsert input {
     border-bottom: 1px solid rgb(41, 43, 50);
 }
 
-.LiveBoardInsert #insertContainer>.page-box>.search_item {
+.TeamInsertPage #insertContainer>.page-box>.search_item {
 
 }
 
-.LiveBoardInsert .tableContainer {
+.TeamInsertPage .tableContainer {
     display: flex;
     justify-content: center;
 }
 
-.LiveBoardInsert table {
+.TeamInsertPage table {
     width: 1320px;
     border-collapse: collapse;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.LiveBoardInsert th,
-.LiveBoardInsert td {
+.TeamInsertPage th,
+.TeamInsertPage td {
     padding: 15px 35px;
     background-color: rgba(255, 255, 255, 0.2);
     color: black;
     text-align: left;
 }
 
-.LiveBoardInsert td {
+.TeamInsertPage td {
     width: 240px;
 }
 
 /* 카드사 은행 계좌 번호 한 줄에 넣기 */
-.LiveBoardInsert .account-inputs {
+.TeamInsertPage .account-inputs {
     display: flex;
     align-items: center; /* 요소를 수직으로 중앙 정렬 */
 }
 
 /* 선택적으로 각각의 입력 요소에 스타일을 추가할 수 있습니다 */
-.LiveBoardInsert .account-inputs select {
+.TeamInsertPage .account-inputs select {
     margin-right: 10px; /* 선택상자 오른쪽에 여백 추가 */
 }
 
-.LiveBoardInsert th {
+.TeamInsertPage th {
     background-color: rgb(41, 43, 50);;
     color: white;
     text-align: center;
 }
 
-.LiveBoardInsert thead {
-    .LiveBoardInsert th {
+.TeamInsertPage thead {
+    th {
         background-color: #55608f;
     }
 }
 
-.LiveBoardInsert tbody {
-    .LiveBoardInsert tr {
+.TeamInsertPage tbody {
+    tr {
         &:hover {
             background-color: rgba(255, 255, 255, 0.3);
         }
     }
 
-    .LiveBoardInsert td {
+    td {
         position: relative;
 
         &:hover {
@@ -135,23 +134,23 @@ select, .LiveBoardInsert input {
     }
 }
 
-.LiveBoardInsert #textEditer {
+.TeamInsertPage #textEditer {
     width: 900px;
 }
 
-.LiveBoardInsert .submitDiv {
+.TeamInsertPage .submitDiv {
     display: flex;
     justify-content: center;
 }
 
-.LiveBoardInsert .submitDiv > input{
+.TeamInsertPage .submitDiv > input {
     margin: 30px;
     background-color: rgb(41, 43, 50);
     width: 450px;
     color: white;
 }
 
-.LiveBoardInsert .submitDiv > input:hover{
+.TeamInsertPage .submitDiv > input:hover {
     margin: 30px;
     scale: 103%;
     background-color: rgb(58, 59, 63);
@@ -159,34 +158,9 @@ select, .LiveBoardInsert input {
     color: white;
 }
 
-.LiveBoardInsert .img-box > img{
+.TeamInsertPage .img-box > img {
     width: 306px;
     height: 390px;
     object-fit: cover;
     border-radius: 15px;
-}
-
-.LiveBoardInsert .bottomSubmit {
-    text-align: center;
-}
-
-.LiveBoardInsert .centered-buttons {
-    display: inline-block; 
-}
-
-.LiveBoardInsert .centered-buttons button {
-    margin: 0 10px; 
-    background-color: rgb(41, 43, 50);
-    width: 200px;
-    height: 50px;
-    color: white;
-    transition: background-color 0.3s, opacity 0.3s;
-}
-.LiveBoardInsert .centered-buttons button:hover {
-    margin: 0 10px; 
-    scale: 103%;
-    background-color: rgb(58, 59, 63);
-    width: 200px;
-    height: 50px;
-    color: white;
 }

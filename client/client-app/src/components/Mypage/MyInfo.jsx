@@ -17,6 +17,12 @@ const MyInfo = () => {
   //   setUserData(data)
   // }
 
+  const [isExpanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!isExpanded);
+  };
+
   return (
     <>
       <div className="background">

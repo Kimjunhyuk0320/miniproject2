@@ -4,7 +4,7 @@ import './css/TableList.css';
 
 const TicketSalesList = () => {
   return (
-    <div id='TicketPurchaseList'>
+    <div className='TicketPurchaseList'>
         <TicketSalesListContainer/>
     </div>
   )

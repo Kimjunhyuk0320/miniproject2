@@ -49,7 +49,7 @@ const PageBox = ({rows, setRows, searchType, setSearchType, setKeyword, order, s
                 </div>
             </div>
             <div className="item">
-                    <Link href="/liveBoard/insert"><button id="filter-btn">작성하기</button></Link>
+                    <Link to="/liveBoard/insert"><button id="filter-btn">작성하기</button></Link>
                 <select name="rows" id="rows" className="input-search" value={rows} onChange={handleChangeRows}>
                     <option value="4">4개씩 보기</option>
                     <option value="8">8개씩 보기</option>
