@@ -17,6 +17,7 @@ const FacilityRentalInsertContainer = () => {
 
     const username = 'gangjinsu'
     const phone = '01025258725'
+    const writer = 'aster'
 
     const navi = useNavigate();
 
@@ -56,7 +57,8 @@ const FacilityRentalInsertContainer = () => {
         insertHandler,
         file,
         username,
-        phone
+        phone,
+        writer
       }
 
   return (
