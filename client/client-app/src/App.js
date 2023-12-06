@@ -19,6 +19,9 @@ import FacilityRentalReadPage from './pages/FacilityRental/FacilityRentalReadPag
 import FacilityRentalUpdatePage from './pages/FacilityRental/FacilityRentalUpdatePage';
 import FacilityRentalInsertPage from './pages/FacilityRental/FacilityRentalInsertPage';
 import TeamMyRegListPage from './pages/MyPage/TeamMyRegListPage';
+import FrBookingListPage from './pages/MyPage/FrBookingListPage';
+import FrMyBookingListPage from './pages/MyPage/FrMyBookingListPage';
+import TeamRegReadPage from './pages/MyPage/TeamRegReadPage';
 
 function App() {
   return (
@@ -38,7 +41,10 @@ function App() {
         <Route path='/team/insert' element={ <TeamInsertPage/> } />
         <Route path='/team/app/:teamNo' element={ <TeamRegPage/> } />
         <Route path='/mypage/tllList' element={ <TeamRegListPage/> } />
+        <Route path='/mypage/app/:appNo' element={ <TeamRegReadPage/> } />
         <Route path='/mypage/tlmList' element={ <TeamMyRegListPage/> } />
+        <Route path='/mypage/rrList' element={ <FrBookingListPage/> } />
+        <Route path='/mypage/rreqList' element={ <FrMyBookingListPage/> } />
         <Route path='/frList' element={ <FacilityRentalListPage/> } />
         <Route path='/fr/:frNo' element={ <FacilityRentalReadPage/> } />
         <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdatePage/> } />

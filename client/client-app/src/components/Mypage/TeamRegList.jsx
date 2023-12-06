@@ -44,7 +44,7 @@ const TeamRegList = ({ sets,tllList }) => {
                       <tr className="read-app-list-row">
 
                         <td>{tll.teamNo}</td>
-                        <Link to={`/myPage/readApp${tll.appNo}`}>
+                        <Link to={`/myPage/app/${tll.appNo}`}>
                           <td>{tll.title}</td>
                         </Link>
                         <td>{tll.phone}</td>

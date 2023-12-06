@@ -92,7 +92,7 @@ public class MypageTeamApiController {
     }
 
     @GetMapping("/readApp")
-    public ResponseEntity<TeamApp> readApp(@RequestBody TeamApp teamApp) {
+    public ResponseEntity<TeamApp> readApp( TeamApp teamApp) {
         
         try {
             TeamApp readApp = teamAppService.read(teamApp);

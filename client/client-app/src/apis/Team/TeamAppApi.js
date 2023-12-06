@@ -17,7 +17,7 @@ export const delApp = (appNo)=>{
 
 
 export const readApp = (appNo)=>{
-    return axios.put(`/api/user/team/readApp`,appNo)
+    return axios.get(`/api/user/team/readApp?appNo=${appNo}`)
 }
 
 export const confirmedPageInfo = (pageInfo)=>{
