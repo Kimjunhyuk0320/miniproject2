@@ -24,6 +24,7 @@ import FrBookingListPage from './pages/MyPage/FrBookingListPage';
 import FrMyBookingListPage from './pages/MyPage/FrMyBookingListPage';
 import TeamRegReadPage from './pages/MyPage/TeamRegReadPage';
 import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
+import TeamConfirmedLiveListPage from './pages/Team/TeamConfirmedLiveListPage';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path='/mypage/tllList' element={ <TeamRegListPage/> } />
         <Route path='/mypage/app/:appNo' element={ <TeamRegReadPage/> } />
         <Route path='/mypage/tlmList' element={ <TeamMyRegListPage/> } />
+        <Route path='/mypage/clList' element={ <TeamConfirmedLiveListPage/> } />
         <Route path='/mypage/rrList' element={ <FrBookingListPage/> } />
         <Route path='/mypage/rreqList' element={ <FrMyBookingListPage/> } />
         <Route path='/frList' element={ <FacilityRentalListPage/> } />

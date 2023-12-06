@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class MypageTeamApiController {
 
-
     @Autowired
     private TeamService teamService;
 
@@ -68,12 +67,15 @@ public class MypageTeamApiController {
     }
 
     @GetMapping("/pageInfo")
-    public ResponseEntity<PageInfo> pageInfo(@RequestBody PageInfo pageInfo) {
+    public ResponseEntity<PageInfo> pageInfo(PageInfo pageInfo) {
+        log.info(pageInfo.toString());
         pageInfo.setTable("confirmed_live");
         pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
+        log.info(pageInfo.toString());
 
         try {
             PageInfo pageInfoResult = teamService.pageInfo(pageInfo);
+            log.info(pageInfoResult.toString());
             return new ResponseEntity<>(pageInfoResult, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -81,10 +83,12 @@ public class MypageTeamApiController {
     }
 
     @GetMapping("/confirmedLiveList")
-    public ResponseEntity<List<Team>> confirmedLiveList(@RequestBody Team team) {
-        List<Team> pageListResult = teamService.listByConfirmedLive2(team);
-
+    public ResponseEntity<List<Team>> confirmedLiveList( Team team) {
+        
         try {
+            List<Team> pageListResult = teamService.listByConfirmedLive2(team);
+            log.info(team.toString());
+            log.info(pageListResult.toString());
             return new ResponseEntity<>(pageListResult, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

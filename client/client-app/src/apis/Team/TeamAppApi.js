@@ -21,7 +21,11 @@ export const readApp = (appNo)=>{
 }
 
 export const confirmedPageInfo = (pageInfo)=>{
-    return axios.get(`/api/team/pageInfo?pageNo=${pageInfo.pageNo}&rows=${pageInfo.rows}&pageCount=${pageInfo.pageCount}&totalCount=${pageInfo.totalCount}&searchType=${pageInfo.searchType}&keyword=${pageInfo.keyword}`)
+    return axios.get(`/api/user/team/pageInfo?username=${pageInfo.username}&pageNo=${pageInfo.pageNo}&rows=${pageInfo.rows}&pageCount=${pageInfo.pageCount}&totalCount=${pageInfo.totalCount}&searchType=${pageInfo.searchType}&keyword=${pageInfo.keyword}`)
+}
+
+export const confirmedLiveList = (team)=>{
+    return axios.get(`/api/user/team/confirmedLiveList?username=${team.username}&pageNo=${team.pageNo}&rows=${team.rows}&searchType=${team.searchType}&pageCount=${team.pageCount}&totalCount=${team.totalCount}&searchType=${team.searchType}&keyword=${team.keyword}&order=${team.order}`)
 }
 
 export const accept = (appNo)=>{

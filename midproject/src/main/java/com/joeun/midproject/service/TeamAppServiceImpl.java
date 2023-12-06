@@ -179,6 +179,7 @@ public class TeamAppServiceImpl implements TeamAppService {
 
     TeamApp teamApp2 = teamAppMapper.read(teamApp);
     int teamNo = teamApp2.getTeamNo();
+    teamApp.setTeamNo(teamNo);
     Team team1 = new Team();
     team1.setTeamNo(teamNo);
     Team team2 = teamMapper.read(team1);
@@ -245,7 +246,7 @@ public class TeamAppServiceImpl implements TeamAppService {
         }
 
       }
-
+      System.out.println(members);
       teamApp.setMembers(members);
 
       // 공연성사 데이터 삽입
