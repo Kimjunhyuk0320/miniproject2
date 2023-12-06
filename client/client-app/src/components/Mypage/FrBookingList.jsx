@@ -23,7 +23,7 @@ const FrBookingList = ({ sets, rrList }) => {
               <th width="150">대관일자</th>
               <th width="100">입금여부</th>
               <th width="100">승인여부</th>
-              <th width="120">신청일자</th>
+              <th width="140">신청일자</th>
               <th width="120">입금확정</th>
               <th width="80">승인</th>
               <th width="80">거부</th>

@@ -3,7 +3,7 @@ import TeamConfirmedLiveListContainer from '../../containers/Team/TeamConfirmedL
 
 const TeamConfirmedLiveListPage = () => {
 
-    const username = 'gangjinu'
+    const username = 'gangjinsu'
 
   return (
     <>

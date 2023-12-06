@@ -16,7 +16,7 @@ const TeamList = ({teamList}) => {
                 <th width="70">지역</th>
                 <th width="80">가격</th>
                 <th width="100">공연일자</th>
-                <th width="100">갱신일자</th>
+                <th width="140">갱신일자</th>
                 <th width="65">조회수</th>
             </tr>
         </thead>

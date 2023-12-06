@@ -21,7 +21,7 @@ const TeamMyRegList = ({ tlmList, sets }) => {
                                 <th width="300">모집글 제목</th>
                                 <th width="100">참가자 아이디</th>
                                 <th width="100">승인 상태</th>
-                                <th width="100">신청 일자</th>
+                                <th width="140">신청 일자</th>
                                 <th width="100">연락처</th>
                                 <th width="100">입금여부</th>
                                 <th width="100">참가취소</th>
