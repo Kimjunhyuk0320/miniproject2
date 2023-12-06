@@ -1,0 +1,119 @@
+.TotalSearch #keyword {
+    width: 700px;
+    height: 50px;
+}
+
+.TotalSearch #btn-search {
+    position: absolute;
+    right: calc(50% - 300px);
+    bottom: 34px;
+    font-size: 15px;
+}
+
+.TotalSearch .searchContainer {
+    /* background: #c49cde; */
+    font-family: Roboto;
+}
+
+.TotalSearch .wrapper {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+}
+
+.TotalSearch .container_____ {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    position: relative;
+    padding: 20px;
+}
+
+.TotalSearch  .input {
+    width: 300px;
+    /* border: 3px solid #fff; */
+    /* border: 2px solid black; */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    background: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    outline: none;
+    font-size: 18px;
+    /* color: #fff; */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.TotalSearch  .input:hover {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-family: Roboto;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+.TotalSearch .close-btn {
+    /* position: absolute;
+    bottom: 20px;
+    right: 80px; */
+    display: inline-block;
+    font-size: 35px;
+    cursor: pointer;
+    /* color: #fff; */
+    /* background-color: yellowgreen; */
+    color: black;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    margin-left: 10px;
+
+}
+
+.TotalSearch .close-btn.active {
+    opacity: 1;
+    animation: animate 0.5s linear;
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.2);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    75% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.TotalSearch .reco_keword_box {
+    display: flex;
+    text-align: center;
+    /* 가운데 정렬 */
+    justify-content: center;
+}
+
+.TotalSearch .reco_keword_box p {
+    display: inline;
+    margin: 0 10px;
+}
+
+.TotalSearch .reco_keword_box span {
+    margin: 0 5px;
+    /* 각 span 요소 사이의 여백 추가 */
+}

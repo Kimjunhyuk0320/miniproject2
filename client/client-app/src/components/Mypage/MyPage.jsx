@@ -11,8 +11,6 @@ const MyPage = () => {
                 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css' />
             </Helmet>
             <div id="mypage-container">
-                <div>MyPage가 들어올 부분입니다.</div>
-
                 <div class="body_box">
                     {/* 프로필 이미지 : 로그인에 따른 프로필 사진이 여기에 와야 한다. */}
                     <img src="/img/defaultProfile.png" alt="프로필사진" id="profile"
