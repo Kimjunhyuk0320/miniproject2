@@ -1,13 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import TeamUpdate from '../../components/Team/TeamUpdate'
+import TeamUpdateContainer from '../../containers/Team/TeamUpdateContainer'
 
 const TeamUpdatePage = () => {
     const {teamNo} = useParams()
 
   return (
     <>
-    <TeamUpdate teamNo={teamNo}></TeamUpdate>
+    <TeamUpdateContainer teamNo={teamNo}></TeamUpdateContainer>
     </>
   )
 }
