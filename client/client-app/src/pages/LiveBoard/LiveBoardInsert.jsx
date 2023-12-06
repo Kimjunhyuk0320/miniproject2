@@ -1,8 +1,11 @@
 import React from 'react'
-
+import LiveBoardInsertContainer from '../../containers/LiveBoard/LiveBoardInsertContainer'
+import './css/insert.css'
 const LiveBoardInsert = () => {
   return (
-    <div>LiveBoardInsert</div>
+    <div className='LiveBoardInsert'>
+      <LiveBoardInsertContainer/>
+    </div>
   )
 }
 

@@ -31,7 +31,7 @@ const TeamList = ({teamList}) => {
                 <tr className="team-list-row">
                             <td>{team.teamNo}</td>
                             <td>{team.confirmed !=0 ?'마감':'모집중'}</td>
-                      <Link to={`/team/${team.teamNo}`}>
+                      <Link className='a' to={`/team/${team.teamNo}`}>
                             <td>{team.title}</td>
                     </Link>
                             <td>{team.writer}</td>

@@ -1,6 +1,6 @@
 import React from 'react';
 import MyInfoContainer from '../../containers/MyPage/MyInfoContainer';
-import './css/MyInfo.css';
+// import './css/MyInfo.css';
 
 const MyInfo = () => {
   return (

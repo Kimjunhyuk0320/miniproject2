@@ -1,8 +1,11 @@
 import React from 'react'
+import InsertForm from '../../components/LiveBoard/InsertForm'
 
 const LiveBoardInsertContainer = () => {
   return (
-    <div>LiveBoardInsertContainer</div>
+    <div>
+      <InsertForm/>
+    </div>
   )
 }
 

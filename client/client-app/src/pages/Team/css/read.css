@@ -1,0 +1,373 @@
+.TeamReadPage body {
+    min-width: 1320px; /* 최소 너비를 1000px로 설정 */
+}
+
+.TeamReadPage * {
+    margin: 0px;
+    padding: 0px;
+}
+
+.TeamReadPage ul,
+.TeamReadPage ol {
+    list-style: none;
+}
+
+.TeamReadPage body {
+    background: rgb(248, 249, 250);
+    /* margin-top: 150px; */
+}
+
+.TeamReadPage a {
+    text-decoration: none;
+}
+
+.TeamReadPage .totalContainer {
+    width: 1200px;
+    margin: auto;
+}
+
+.TeamReadPage .topContentContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.TeamReadPage .topContentContainer .imgContainer img {
+    width: 450px;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.TeamReadPage .topContentContainer .contentContainer {
+    /* test */
+    /* background-color: blanchedalmond; */
+    margin-left: 20px;
+    width: 700px;
+}
+
+/* 테이블 관련 */
+.TeamReadPage .tableContainer {
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.TeamReadPage table {
+    width: 1000px;
+    border-collapse: collapse;
+    overflow: hidden;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+}
+
+/* 하트 css */
+.TeamReadPage .titleBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.TeamReadPage .titleBox h1 {
+    font-size: 45px;
+}
+
+/* .heart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+} */
+
+/* 실질적 하트 모양 */
+.TeamReadPage .heartInner {
+    position: relative;
+    width: 50px;
+    margin-top: 8px;
+    /* height: 90px; */
+    /* transform: rotate(-45deg); */
+    animation: beat 1s infinite;
+}
+
+.TeamReadPage .heartInner::before,
+.TeamReadPage .heartInner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 18px;
+    height: 30px;
+    border-radius: 42% 42% 0 0;
+    background: red;
+}
+
+.TeamReadPage .heartInner::before {
+    left: 17px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.TeamReadPage .heartInner::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.TeamReadPage .heartInner .heartText {
+    position: absolute;
+    right: 20px;
+    top: 2px;
+    font-size: 14px;
+    z-index: 100;
+    text-align: center;
+    width: 24px;
+    /* background-color: blue; */
+}
+
+.TeamReadPage .heartInner .heartText p {
+    color: white;
+}
+
+@keyframes beat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+}
+
+.TeamReadPage th,
+.TeamReadPage td {
+    padding: 10px 35px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+    text-align: left;
+}
+
+.TeamReadPage th {
+    background-color: rgb(41, 43, 50);;
+    color: white;
+    text-align: center;
+}
+
+.TeamReadPage #countFor {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+/* +,- 버튼 관련 */
+.TeamReadPage .countBtn {
+    border: none;
+    height: 0;
+    width: 20px;
+    border-radius: 5px;
+    /* background-color: ; */
+    color: black;
+    margin-left: 5px;
+}
+
+.TeamReadPage #aaaa {
+    display: block;
+}
+
+/* 매진여부 */
+.TeamReadPage #countNum {
+    text-align: center;
+}
+
+/* 하단 컨테이너 */
+.TeamReadPage .bottomContainer {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+}
+
+.TeamReadPage .bottomContainer button{
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 7px;
+    background-color: black;
+    color: white;
+    margin-right: 10px;
+}
+
+.TeamReadPage .bottomContainerForRental button,
+.TeamReadPage .bottomContainerForRental th {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.TeamReadPage .bottomContainerForRental div {
+    display: inline-block;
+}
+
+/* 티켓 구매 버튼 */
+.TeamReadPage #btn-purchase {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 7px;
+    background-color: red;
+    color: white;
+}
+
+.TeamReadPage .textContainer {
+    padding: 20px;
+    border: 1px black;
+}
+
+/* 댓글 관련 */
+.TeamReadPage #comment-list {
+    margin-top: 10px;
+    padding: 20px;
+    margin-bottom: 100px;
+    /* border-top: 1px solid black; */
+    /* background-color: blanchedalmond; */
+}
+
+/* 댓글 하나에 대한 css */
+.TeamReadPage .comment-box {
+    background-color: rgba(248, 248, 255, 0);
+    /* border-bottom: 1px solid black; */
+    margin: 20px 0 20px 10px ;
+}
+
+.TeamReadPage .top .itemSt {
+    display: flex;
+    justify-content: space-between;
+}
+
+.TeamReadPage .comment-writer {
+    font-size: 25px;
+}
+
+.TeamReadPage .comment-date {
+    margin-left: 20px;
+}
+
+.TeamReadPage .input-box {
+    display: flex;
+    padding: 20px;
+}
+
+/* 자바스크립트 댓글쪽 */
+.TeamReadPage .commentContainer {
+    display: flex
+}
+
+.TeamReadPage .commentContainer .imgDiv {
+    /* background-color: bisque; */
+}
+
+.TeamReadPage .imgDiv img {
+    width: 60px;
+    height: 60px;
+    margin-top: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.TeamReadPage #comment-content {
+    margin-left: 10px;
+    overflow: hidden;
+    width: 1090px;
+    border: none;
+    background-color: rgba(248, 249, 250, 0);
+    border-bottom: 1px solid black;
+    color:  black;
+    resize: none;
+    outline: none;
+}
+
+.TeamReadPage .input-update-content {
+    margin-left: 10px;
+    overflow: hidden;
+    width: 1090px;
+    border: none;
+    background-color: rgba(248, 249, 250, 0);
+    color: black;
+    border-bottom: 1px solid black;
+    resize: none;
+    outline: none;
+}
+
+.TeamReadPage .btn-box-can {
+    display: inline;
+    float: right;
+    margin-top: 5px;
+    text-align: center;
+    width: 60px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: rgb(248, 249, 250);
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+/* 댓글 취소 버튼 */
+.TeamReadPage .btn-box-can {
+    display: inline;
+    float: right;
+    margin-top: 5px;
+    text-align: center;
+    width: 60px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: rgb(248, 249, 250);
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.TeamReadPage .btn-box-can:hover {
+    background-color: rgba(168, 168, 168, 0.404);
+}
+
+/* 댓글 등록 버튼 */
+.TeamReadPage .btn-box {
+    display: inline;
+    float: right;
+    margin-top: 5px;
+    text-align: center;
+    width: 60px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: blue;
+    font-size: 20px;
+}
+
+.TeamReadPage .btn-box:hover {
+    display: inline;
+    float: right;
+    margin-top: 5px;
+    text-align: center;
+    width: 60px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: rgb(142, 142, 213);
+    font-size: 20px;
+}
+
+.TeamReadPage .btn-box a {
+    color: white;
+}
+
+.TeamReadPage .btn-box a:hover {
+    color: white;
+}
+
+.TeamReadPage .btn-box-can a {
+    color: black;
+}
+
+.TeamReadPage #red-btn {
+    background-color: rgba(255, 0, 0, 0.551);
+    margin-right: auto;
+}
+
+.TeamReadPage #blue-btn {
+    background-color: rgba(0, 0, 255, 0.525);
+    /* margin-right: auto; */
+}
