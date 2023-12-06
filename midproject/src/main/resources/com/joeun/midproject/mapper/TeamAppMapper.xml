@@ -83,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="deniedAll">
 
   UPDATE `team_applications` SET approval_status = 2 WHERE deposit_status
-   <![CDATA[ <> ]]>1 AND team_no = #{teamNo}
+   <![CDATA[ <> ]]> 1 AND team_no = #{teamNo}
   
   
   </update>

@@ -57,10 +57,9 @@ public class MypageTeamApiController {
     }
 
     @GetMapping("/listByMember")
-    public ResponseEntity<List<TeamApp>> listByMember(@RequestBody TeamApp teamApp, Principal principal) {
+    public ResponseEntity<List<TeamApp>> listByMember(TeamApp teamApp, Principal principal) {
 
         try {
-            teamApp.setUsername(principal.getName());
             List<TeamApp> teamAppList = teamAppService.listByMember(teamApp);
             return new ResponseEntity<>(teamAppList, HttpStatus.OK);
         } catch (Exception e) {

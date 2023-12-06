@@ -6,6 +6,16 @@ export const teamAppListByLeader = (username)=>{
     return axios.get(`/api/user/team/listByLeader?username=${username}`)
 }
 
+export const teamAppListByMember = (username)=>{
+    return axios.get(`/api/user/team/listByMember?username=${username}`)
+}
+
+export const delApp = (appNo)=>{
+    return axios.delete(`/api/team/app/${appNo}`)
+}
+
+
+
 export const readApp = (appNo)=>{
     return axios.put(`/api/user/team/readApp`,appNo)
 }

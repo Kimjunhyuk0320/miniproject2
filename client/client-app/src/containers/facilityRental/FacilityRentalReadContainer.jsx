@@ -4,8 +4,7 @@ import * as frApi from '../../apis/facilityRental/facilityRentalApi'
 import * as brApi from '../../apis/facilityRental/booking'
 import FacilityRentalRead from '../../components/facilityRental/FacilityRentalRead'
 
-const FacilityRentalReadContainer = () => {
-  const {frNo} = useParams()
+const FacilityRentalReadContainer = ({frNo}) => {
 
   const [fr, setFr] = useState({})
   const navi = useNavigate()

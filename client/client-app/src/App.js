@@ -5,10 +5,6 @@ import Index from './pages/Index';
 import LiveBoardList from './pages/LiveBoard/LiveBoardList';
 import LiveBoardRead from './pages/LiveBoard/LiveBoardRead';
 import LiveBoardUpdate from './pages/LiveBoard/LiveBoardUpdate';
-import FacilityRentalListContainer from './containers/facilityRental/FacilityRentalListContainer';
-import FacilityRentalReadContainer from './containers/facilityRental/FacilityRentalReadContainer';
-import FacilityRentalUpdateContainer from './containers/facilityRental/FacilityRentalUpdateContainer';
-import FacilityRentalInsertContainer from './containers/facilityRental/FacilityRentalInsertContainer';
 import MyPage from './pages/MyPage/MyPage';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import TicketSalesList from './components/Mypage/TicketSalesList';
@@ -17,7 +13,12 @@ import TeamReadPage from './pages/Team/TeamReadPage';
 import TeamUpdatePage from './pages/Team/TeamUpdatePage';
 import TeamInsertPage from './pages/Team/TeamInsertPage';
 import TeamRegPage from './pages/Team/TeamRegPage';
-import TeamRegListPage from './pages/Team/TeamRegListPage';
+import TeamRegListPage from './pages/MyPage/TeamRegListPage';
+import FacilityRentalListPage from './pages/FacilityRental/FacilityRentalListPage';
+import FacilityRentalReadPage from './pages/FacilityRental/FacilityRentalReadPage';
+import FacilityRentalUpdatePage from './pages/FacilityRental/FacilityRentalUpdatePage';
+import FacilityRentalInsertPage from './pages/FacilityRental/FacilityRentalInsertPage';
+import TeamMyRegListPage from './pages/MyPage/TeamMyRegListPage';
 
 function App() {
   return (
@@ -37,10 +38,11 @@ function App() {
         <Route path='/team/insert' element={ <TeamInsertPage/> } />
         <Route path='/team/app/:teamNo' element={ <TeamRegPage/> } />
         <Route path='/mypage/tllList' element={ <TeamRegListPage/> } />
-        <Route path='/frList' element={ <FacilityRentalListContainer/> } />
-        <Route path='/fr/:frNo' element={ <FacilityRentalReadContainer/> } />
-        <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdateContainer/> } />
-        <Route path='/fr/insert' element={ <FacilityRentalInsertContainer/> } />
+        <Route path='/mypage/tlmList' element={ <TeamMyRegListPage/> } />
+        <Route path='/frList' element={ <FacilityRentalListPage/> } />
+        <Route path='/fr/:frNo' element={ <FacilityRentalReadPage/> } />
+        <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdatePage/> } />
+        <Route path='/fr/insert' element={ <FacilityRentalInsertPage/> } />
       </Routes>
     </BrowserRouter>
   );

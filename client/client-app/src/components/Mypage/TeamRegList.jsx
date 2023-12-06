@@ -65,20 +65,20 @@ const TeamRegList = ({ sets,tllList }) => {
 
                         <td>
                           {tll.approvalStatus === 1 && tll.depositStatus === 0 && <input type="button" value="입금확인" className="btn-cancel" onClick={() => {
-                            sets.confirmed(tll.appNo)
+                            sets.conHandler(tll.appNo)
                           }} />}
 
                         </td>
 
                         <td>
                           {tll.approvalStatus === 0 && <input type="button"value="참가승인" className="btn-cancel" onClick={() => {
-                            sets.accept(tll.appNo)
+                            sets.accHandler(tll.appNo)
                           }} />}
                         </td>
 
                         <td>
                           {tll.approvalStatus === 0 && <input type="button" value="참가거절" className="btn-cancel" onClick={() => {
-                            sets.denied(tll.appNo)
+                            sets.dniHandler(tll.appNo)
                           }} />}
                         </td>
 
