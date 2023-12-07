@@ -19,6 +19,7 @@ const FrMyBookingListContainer = ({username}) => {
   
   
     const delHandler = async (brNo) => {
+      if(!window.confirm(`정말로 예약신청을 취소하시겠습니까? `)) return
       const response = await bookingApi.delBooking(brNo)
       const data = await response.data
       navi(`/mypage/rreqList`)

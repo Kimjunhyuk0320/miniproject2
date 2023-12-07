@@ -18,6 +18,7 @@ const TeamRegListContainer = ({ username }) => {
   }
 
   const accHandler = async (appNo) => {
+    if (!window.confirm(`정말로 승인처리하시겠습니까?`)) return
     const response = await teamAppApi.accept({ appNo })
     const data = await response.data
     navi(`/mypage/tllList`)
@@ -25,6 +26,7 @@ const TeamRegListContainer = ({ username }) => {
   }
 
   const dniHandler = async (appNo) => {
+    if (!window.confirm(`정말로 거절처리하시겠습니까?`)) return
     const response = await teamAppApi.denied({ appNo })
     const data = await response.data
     navi(`/mypage/tllList`)
@@ -32,6 +34,7 @@ const TeamRegListContainer = ({ username }) => {
   }
 
   const conHandler = async (appNo) => {
+    if (!window.confirm(`정말로 입금 및 참가확정을 진행하시겠습니까?`)) return
     const response = await teamAppApi.confirmed({ appNo })
     const data = await response.data
     navi(`/mypage/tllList`)

@@ -19,6 +19,36 @@ const FacilityRentalUpdateContainer = ({frNo}) => {
     const navi = useNavigate();
 
     const updateHandler = async ()=>{
+
+
+      function check(regExp, element, msg) {
+        if (regExp.test(element)) {
+          return true
+        }
+        alert(msg)
+        return false
+      }
+  
+      let msg = ''
+  
+      let titleCheck = /^.{3,45}$/
+      msg = '제목은 3 ~ 45 글자 사이로 작성해주십시오.'
+      if (!check(titleCheck, title, msg)) return
+  
+  
+      let addressCheck = /^.{5,20}$/
+      msg = '주소는 5 ~ 20 글자 사이로 작성해주십시오.'
+      if (!check(addressCheck, address, msg)) return
+  
+      let account2Check = /^.{10,20}$/
+      msg = '계좌번호는 알맞은 형태로 작성해주십시오.'
+      if (!check(account2Check, account2, msg)) return
+  
+      let priceCheck = /^\d{1,8}$/
+      msg = '가격은 8자릿수 안의 정수로 입력해주십시오'
+      if (!check(priceCheck, price, msg)) return
+
+      if(!window.confirm(`수정사항을 등록하시겠습니까?`)) return
       const response = await frApi.frUpdate(sets)
       const data = await response.data
       if(data!=null){
@@ -62,6 +92,10 @@ const FacilityRentalUpdateContainer = ({frNo}) => {
         setPrice(data.price)
         setAccount1(data.account.split('/')[0])
         setAccount2(data.account.split('/')[1])
+        if(data.confirmed == 1){
+          window.alert(`예약이 확정된 게시글은 수정이 불가능합니다!`)
+          navi(`/fr/${frNo}`)
+        }
       }
 
      

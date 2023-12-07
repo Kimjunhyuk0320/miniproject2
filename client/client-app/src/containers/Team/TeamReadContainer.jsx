@@ -16,11 +16,14 @@ const TeamReadContainer = ({teamNo}) => {
   }
 
   const delHandler = async ()=>{
+    if(!window.confirm(`정말로 삭제하시겠습니까?`)) return
     const response = await teamApi.teamDelete(teamNo)
     const data = await response.data
-    if(data!=null){
+    if(data>0){
       navi('/teamList')
     }else{
+      window.alert(`참가가 확정된 밴드팀이 있어 삭제가 불가능합니다!`)
+      getTeam(teamNo)
       navi(`/team/${teamNo}`)
     }
   }
