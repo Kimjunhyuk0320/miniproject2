@@ -27,6 +27,7 @@ import FrMyBookingListPage from './pages/MyPage/FrMyBookingListPage';
 import TeamRegReadPage from './pages/MyPage/TeamRegReadPage';
 import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
 import TeamConfirmedLiveListPage from './pages/Team/TeamConfirmedLiveListPage';
+import JoinPage from './pages/Users/JoinPage';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path='/fr/:frNo' element={ <FacilityRentalReadPage/> } />
         <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdatePage/> } />
         <Route path='/fr/insert' element={ <FacilityRentalInsertPage/> } />
+        <Route path='/join' element={ <JoinPage/> } />
       </Routes>
     </BrowserRouter>
   );

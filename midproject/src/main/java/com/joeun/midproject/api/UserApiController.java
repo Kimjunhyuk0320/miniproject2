@@ -22,6 +22,9 @@ import com.joeun.midproject.dto.Ticket;
 import com.joeun.midproject.dto.Users;
 import com.joeun.midproject.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/user")
 public class UserApiController {
@@ -53,7 +56,8 @@ public class UserApiController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<String> joinPro(@RequestBody Users users, HttpServletRequest request) {
+    public ResponseEntity<String> joinPro( Users users, HttpServletRequest request) {
+        log.info(users.toString());
         try {
             int result = userService.insert(users, request);
 

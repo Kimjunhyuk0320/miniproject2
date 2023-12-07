@@ -9,7 +9,7 @@ const JoinContainer = () => {
   const [password,setPassword] = useState('')
   const [userPwCheck,setUserPwCheck] = useState('')
   const [name,setName] = useState('')
-  const [nickName,setNickName] = useState('')
+  const [nickname,setNickname] = useState('')
   const [auth,setAuth] = useState('ROLE_USER')
   const [email,setEmail] = useState('')
   const [phone,setPhone] = useState('')
@@ -21,6 +21,17 @@ const JoinContainer = () => {
 
   const navi = useNavigate();
 
+  const joinHandler = async () =>{
+
+    console.log(sets)
+    const response = await userApi.join(sets)
+    const data = await response.data
+    if(data!=null){
+      navi(`/liveBoard`)
+    }else{
+      navi(`/join`)
+    }
+  }
   const sets = {
     username,
     setUsername,
@@ -30,8 +41,8 @@ const JoinContainer = () => {
     setUserPwCheck,
     name,
     setName,
-    nickName,
-    setNickName,
+    nickname,
+    setNickname,
     auth,
     setAuth,
     email,
@@ -44,21 +55,10 @@ const JoinContainer = () => {
     setFileSource,
     fileName,
     setFileName,
-    insertHandler
+    joinHandler
   }
 
 
-  const insertHandler = async () =>{
-
-    console.log(sets)
-    const response = await userApi.join(sets)
-    const data = await response.data
-    if(data!=null){
-      navi(`/liveBoard`)
-    }else{
-      navi(`/join`)
-    }
-  }
     
 
   return (
