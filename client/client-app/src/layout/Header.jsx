@@ -157,7 +157,7 @@ const Header = () => {
                             <Link to="/myPage">마이페이지</Link>
                             <ul>
                                 <li><Link to="/myInfo">내 정보 보기</Link></li>
-                                <li><Link to="/update">내 정보 수정하기</Link></li>
+                                <li><Link to="/myPage/update">내 정보 수정하기</Link></li>
                             </ul>
                             <div className="sub-menu-width sub-menu-width-4"></div>
                         </li>

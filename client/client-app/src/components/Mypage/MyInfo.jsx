@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as userInfo from '../../apis/myPage/myPageApi';
 import $ from 'jquery';
+import { Link } from 'react-router-dom';
 
 const MyInfo = () => {
 
@@ -45,9 +46,9 @@ const MyInfo = () => {
             </div>
 
             <div className="row__">
-              <a href="/update">
+              <Link to="/myPage/update">
                 <div className="button__">내 정보 수정</div>
-              </a>
+              </Link>
               <a href="#">
                 {/* onClick={logOut}> */}
                 <div className="button__">로그아웃</div>
