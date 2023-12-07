@@ -14,9 +14,9 @@ const UserUpdate = ({ sets }) => {
             <tr>
               <td style={{ width: '150px' }}>프로필사진</td>
               <td>
-                <input type="file" name="file" id="file" onChange={(e)=>{
+                <input type="file" name="file" id="file" onChange={(e) => {
                   sets.setFile(e.target.files[0])
-                }}/>
+                }} />
               </td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@ const UserUpdate = ({ sets }) => {
             <tr>
               <td>비밀번호</td>
               <td>
-                <input type="password" name="password" id="password" value={sets.password} onChange={(e)=>{
+                <input type="password" name="password" id="password" value={sets.password} onChange={(e) => {
                   sets.setPassword(e.target.value)
                 }} />
               </td>
@@ -42,7 +42,7 @@ const UserUpdate = ({ sets }) => {
             <tr>
               <td>비밀번호 확인</td>
               <td>
-                <input type="password" name="userPwCheck" id="passwordCheck" value={sets.userPwCheck} onChange={(e)=>{
+                <input type="password" name="userPwCheck" id="passwordCheck" value={sets.userPwCheck} onChange={(e) => {
                   sets.setUserPwCheck(e.target.value)
                 }} />
               </td>
@@ -50,25 +50,39 @@ const UserUpdate = ({ sets }) => {
             <tr>
               <td>닉네임</td>
               <td>
-                <input type="text" name="nickname" id="nickName" value={sets.nickname} onChange={(e)=>{
-                  sets.setNickname(e.target.value)
+                <input type="text" name="nickname" id="nickName" value={sets.nickname} onChange={(e) => {
+                  if (sets.nicknameChecked) {
+                    sets.setNicknameChecked(false)
+                    sets.setNickname(e.target.value)
+                  } else {
+                    sets.setNickname(e.target.value)
+                  }
                 }} />
-                <button onClick="joinFrom_checkedNicknameDup();" name="btnNicknameDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>닉네임 중복 검사</button>
+                <button onClick={() => {
+                  sets.nicknameCheckedHandler()
+                }} name="btnNicknameDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>닉네임 중복 검사</button>
               </td>
             </tr>
             <tr>
               <td>연락처</td>
               <td>
-                <input type="text" name="phone" id="phone" value={sets.phone} onChange={(e)=>{
-                  sets.setPhone(e.target.value)
+                <input type="text" name="phone" id="phone" value={sets.phone} onChange={(e) => {
+                  if (sets.phoneChecked) {
+                    sets.setPhoneChecked(false)
+                    sets.setPhone(e.target.value)
+                  } else {
+                    sets.setPhone(e.target.value)
+                  }
                 }} />
-                <button onClick="joinFrom_checkedPhoneDup();" name="btnPhoneDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>연락처 중복 검사</button>
+                <button onClick={()=>{
+                  sets.phoneCheckedHandler()
+                }} name="btnPhoneDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>연락처 중복 검사</button>
               </td>
             </tr>
             <tr>
               <td>소속</td>
               <td>
-                <select name="auth" id="group" value={sets.auth} onChange={(e)=>{
+                <select name="auth" id="group" value={sets.auth} onChange={(e) => {
                   sets.setAuth(e.target.value)
                 }}>
                   <option value="ROLE_USER">일반 사용자</option>
@@ -80,7 +94,7 @@ const UserUpdate = ({ sets }) => {
             <tr>
               <td>이메일</td>
               <td>
-                <input type="text" name="email" id="email" value={sets.email} onChange={(e)=>{
+                <input type="text" name="email" id="email" value={sets.email} onChange={(e) => {
                   sets.setEmail(e.target.value)
                 }} />
               </td>
@@ -88,9 +102,9 @@ const UserUpdate = ({ sets }) => {
             <tr>
               <td colSpan="2">
                 <div class="submitDiv">
-                  <input type="button" value="수정" onClick={()=>{
+                  <input type="button" value="수정" onClick={() => {
                     sets.updateHandler()
-                  }}/>
+                  }} />
                 </div>
               </td>
             </tr>
