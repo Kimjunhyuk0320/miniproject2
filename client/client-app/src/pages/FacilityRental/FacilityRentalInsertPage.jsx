@@ -3,9 +3,9 @@ import FacilityRentalInsertContainer from '../../containers/facilityRental/Facil
 
 const FacilityRentalInsertPage = () => {
   return (
-    <>
+    <div className='LiveBoardInsert'>
       <FacilityRentalInsertContainer></FacilityRentalInsertContainer>
-    </>
+    </div>
   )
 }
 

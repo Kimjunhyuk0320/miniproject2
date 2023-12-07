@@ -339,15 +339,6 @@ const InsertForm = () => {
 
               <tr>
                 <td colSpan="2" id="textEditer" className="data">
-                  <textarea
-                    name="content"
-                    id="content"
-                    cols="30"
-                    rows="10"
-                    className="input-textarea"
-                    value={content}
-                    onChange={handleContentChange}
-                  ></textarea>
                   <CKEditor
                     editor={ ClassicEditor }
                     config={{
@@ -365,7 +356,7 @@ const InsertForm = () => {
                             shouldNotGroupWhenFull: false
                         },
                         editorConfig: {
-                            height: 500, // Set the desired height in pixels
+                            height: 1000, // Set the desired height in pixels
                         },
                         alignment: {
                             options: ['left', 'center', 'right', 'justify'],

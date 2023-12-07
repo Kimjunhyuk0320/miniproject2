@@ -190,3 +190,8 @@ select, .LiveBoardInsert input {
     height: 50px;
     color: white;
 }
+
+
+.ck-editor__editable {
+    min-height: 500px;
+}

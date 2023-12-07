@@ -4,9 +4,9 @@ import FacilityRentalListContainer from '../../containers/facilityRental/Facilit
 const FacilityRentalListPage = () => {
     
   return (
-    <>
+    <div className='LiveBoardList'>
         <FacilityRentalListContainer></FacilityRentalListContainer>
-    </>
+    </div>
   )
 }
 

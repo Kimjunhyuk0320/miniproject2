@@ -9,10 +9,12 @@ const FacilityRentalReadPage = () => {
   const parentTable = "facility_rental"
 
   return (
-    <>
-      <FacilityRentalReadContainer frNo={frNo}></FacilityRentalReadContainer>
-      <CommentContainer no={frNo} parentTable={parentTable}></CommentContainer>
-    </>
+    <div className='LiveBoardRead'>
+      <div className='totalContainer'>
+        <FacilityRentalReadContainer frNo={frNo}></FacilityRentalReadContainer>
+        <CommentContainer no={frNo} parentTable={parentTable}></CommentContainer>
+      </div>
+    </div>
   )
 }
 

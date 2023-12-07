@@ -7,9 +7,9 @@ const FacilityRentalUpdatePage = () => {
   const {frNo} = useParams()
 
   return (
-    <>
+    <div className='LiveBoardUpdate'>
       <FacilityRentalUpdateContainer frNo={frNo}></FacilityRentalUpdateContainer>
-    </>
+    </div>
   )
 }
 
