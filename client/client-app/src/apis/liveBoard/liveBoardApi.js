@@ -12,3 +12,5 @@ export const getTicketNum = (boardNo, name, phone, count) => axios.post(`/api/li
 export const ticketPurchase = (boardNo, name, phone, count) => axios.post('/api/liveBoard/purchase', {boardNo, name, phone, count})
 
 export const insertLiveBoard = (liveBoard, headers) => axios.post('/api/liveBoard/insert', liveBoard, headers)
+
+export const updateLiveBoard = (liveBoard, headers) => axios.put('/api/liveBoard/update', liveBoard, headers)

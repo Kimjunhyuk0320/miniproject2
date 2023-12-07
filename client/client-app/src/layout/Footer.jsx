@@ -35,7 +35,7 @@ const Footer = () => {
                                         form.submit()
                                     }
                                 </script> */}
-                                <li><Link to="#" onclick="logout()">로그아웃</Link></li>
+                                <li><Link to="#" onClick="logout()">로그아웃</Link></li>
                                 {/* 비회원일 때 */}
                                 <li><Link to="/login">로그인</Link></li>
                                 <li><Link to="/join">회원가입</Link></li>

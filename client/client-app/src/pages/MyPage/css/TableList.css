@@ -231,7 +231,7 @@ td {
     opacity: 0.6;
 }
 
-TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
+.TicketPurchaseList .liveDom .bx_slide .pagination_wrap .btn_toggle {
     display: inline-block;
     position: relative;
     width: 28px;
