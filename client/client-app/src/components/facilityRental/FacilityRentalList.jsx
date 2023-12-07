@@ -22,9 +22,9 @@ const FacilityRentalList = ({ frList }) => {
                   {!fr.thumbnail && <img src="/img/clubr3.jpeg" id="card-img" alt={fr.title} />}
                 </Link>
                 <div className="card-body">
-                  <Link to={`/fr/${fr.frNo}`}>
-                    <h5 className="card-title">{fr.title}</h5>
-                  </Link>
+                  <h5 className="card-title">
+                  <Link className='a' to={`/fr/${fr.frNo}`}>{fr.title}</Link>
+                  </h5>
                   <p className="card-text">{fr.writer}</p>
                   <p className="card-text">{fr.location}</p>
                   <p className="card-text">{fr.price}</p>

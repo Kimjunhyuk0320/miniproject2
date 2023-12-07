@@ -164,3 +164,30 @@
     object-fit: cover;
     border-radius: 15px;
 }
+
+
+.TeamInsertPage .bottomSubmit {
+    text-align: center;
+}
+
+.TeamInsertPage .centered-buttons {
+    display: inline-block;
+}
+
+.TeamInsertPage .centered-buttons button {
+    margin: 0 10px;
+    background-color: rgb(41, 43, 50);
+    width: 200px;
+    height: 50px;
+    color: white;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.TeamInsertPage .centered-buttons button:hover {
+    margin: 0 10px;
+    scale: 103%;
+    background-color: rgb(58, 59, 63);
+    width: 200px;
+    height: 50px;
+    color: white;
+}

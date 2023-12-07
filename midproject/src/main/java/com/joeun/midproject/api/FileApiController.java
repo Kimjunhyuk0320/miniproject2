@@ -62,7 +62,7 @@ public class FileApiController {
     }
 
     // 파일 업로드
-    @PostMapping("")
+    @PostMapping("/upload")
     public ResponseEntity<?> uploadImg(List<MultipartFile> file) throws Exception {
         log.info("[Post] - /api/file");
         Integer fileNo = fileService.uploadImg(file);

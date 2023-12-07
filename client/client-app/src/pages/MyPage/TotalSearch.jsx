@@ -6,13 +6,12 @@ import './css/TotalSearch.css';
 
 const TotalSearch = () => {
     return (
-        <>
+        
+        <div className='TotalSearch'>
             <Header />
-            <div className='TotalSearch'>
                 <TotalSearchContainer />    
-            </div>
             <Footer />
-        </>
+        </div>
     )
 }
 

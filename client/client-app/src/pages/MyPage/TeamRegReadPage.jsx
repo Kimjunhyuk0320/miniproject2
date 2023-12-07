@@ -1,15 +1,19 @@
 import React from 'react'
 import TeamRegReadContainer from '../../containers/MyPage/TeamRegReadContainer'
 import { useParams } from 'react-router-dom'
+import Header from '../../layout/Header';
+import Footer from '../../layout/Footer';
 
 const TeamRegReadPage = () => {
 
-    const {appNo} = useParams()
+  const { appNo } = useParams()
 
   return (
-    <>
-        <TeamRegReadContainer appNo={appNo}></TeamRegReadContainer>
-    </>
+    <div className='LiveBoardRead'>
+      <Header />
+      <TeamRegReadContainer appNo={appNo}></TeamRegReadContainer>
+      <Footer />
+    </div>
   )
 }
 

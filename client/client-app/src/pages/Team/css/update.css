@@ -81,7 +81,9 @@
     color: black;
     text-align: left;
 }
-
+.TeamUpdatePage td {
+    width: 240px;
+}
 .TeamUpdatePage th {
     background-color: rgb(41, 43, 50);;
     color: white;
@@ -128,6 +130,22 @@
     justify-content: center;
 }
 
+.TeamUpdatePage .submitDiv button{
+    margin: 0 10px; 
+    background-color: rgb(41, 43, 50);
+    width: 200px;
+    height: 50px;
+    color: white;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+.TeamUpdatePage .submitDiv button:hover{
+    margin: 0 10px; 
+    scale: 103%;
+    background-color: rgb(58, 59, 63);
+    width: 200px;
+    height: 50px;
+    color: white;
+}
 .TeamUpdatePage .submitDiv > input {
     margin: 30px;
     background-color: rgb(41, 43, 50);
@@ -149,3 +167,31 @@
     object-fit: cover;
     border-radius: 15px;
 }
+
+
+.TeamUpdatePage .bottomSubmit {
+    text-align: center;
+}
+
+.TeamUpdatePage .centered-buttons {
+    display: inline-block; 
+}
+
+.TeamUpdatePage .centered-buttons button {
+    margin: 0 10px; 
+    background-color: rgb(41, 43, 50);
+    width: 200px;
+    height: 50px;
+    color: white;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+.TeamUpdatePage .centered-buttons button:hover {
+    margin: 0 10px; 
+    scale: 103%;
+    background-color: rgb(58, 59, 63);
+    width: 200px;
+    height: 50px;
+    color: white;
+}
+
+

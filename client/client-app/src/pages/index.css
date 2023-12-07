@@ -2,6 +2,43 @@ body {
   overflow-x: hidden;
 }
 
+
+/* 달력/시계 ⌚/📅 아이콘 색상 */
+input::-webkit-calendar-picker-indicator {
+  /* color 속성으로는 적용❌ */
+  /* filter 로 색상 적용 ✅ */
+  /* 여기서 색상코드를 입력해서 filter 속성값을 만들 수 있다. */
+  /* https://angel-rs.github.io/css-color-filter-generator/ */
+  /* red */
+  /* filter: brightness(0) saturate(100%) invert(12%) sepia(99%) saturate(7434%) hue-rotate(6deg) brightness(110%) contrast(113%);    */
+  /* green */
+  /* filter: brightness(0) saturate(100%) invert(57%) sepia(21%) saturate(4689%) hue-rotate(82deg) brightness(114%) contrast(132%); */
+  /* blue */
+  /* filter: brightness(0) saturate(100%) invert(8%) sepia(97%) saturate(7067%) hue-rotate(247deg) brightness(104%) contrast(145%); */
+  /* black */
+  /* filter: brightness(0) saturate(100%) invert(0%) sepia(78%) saturate(7439%) hue-rotate(355deg) brightness(107%) contrast(102%); */
+}
+
+/* input 달력 📅 아이콘 이미지 */
+input[type='date']::-webkit-calendar-picker-indicator {
+  width: 16px !important;
+  height: 16px !important;
+  background-size: 16px !important;
+  background-image: url('http://localhost:3000/img/calendar.png') !important;
+  background-image: url('http://localhost:3000/img/calendar2.png') !important;
+  background-repeat: no-repeat !important;
+}
+
+/* input 시계 ⌚ 아이콘 */
+input[type='time']::-webkit-calendar-picker-indicator {
+  width: 16px !important;
+  height: 16px !important;
+  background-size: 16px !important;
+  background-image: url('http://localhost:3000/img/time.png') !important;
+  background-image: url('http://localhost:3000/img/time2.png') !important;
+  background-repeat: no-repeat !important;
+}
+
 /* 동영상 관련 css */
 /* .bg-video {
         height: 100vh;

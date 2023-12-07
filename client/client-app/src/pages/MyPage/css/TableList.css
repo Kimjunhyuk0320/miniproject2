@@ -44,7 +44,7 @@
 }
 
 .TicketPurchaseList #teamListContainer>.page-box>.item select,
-input {
+.TicketPurchaseList input {
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     color: black;
