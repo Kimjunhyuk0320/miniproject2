@@ -3,13 +3,13 @@ import JoinContainer from '../../containers/Users/JoinContainer'
 
 const JoinPage = () => {
 
-  
 
-  return (
-    <>
-        <JoinContainer></JoinContainer>
-    </>
-  )
+
+    return (
+        <>
+            <JoinContainer></JoinContainer>
+        </>
+    )
 }
 
 export default JoinPage
