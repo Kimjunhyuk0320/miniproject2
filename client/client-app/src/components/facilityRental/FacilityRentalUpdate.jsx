@@ -1,8 +1,50 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+// 게시글 에디터
+import * as filesApi from '../../apis/file/fileApi'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const FacilityRentalUpdate = ({ sets }) => {
-
+    // 게시글 에디터
+    function uploadPlugin(editor) {
+      editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+          return customUploadAdapter(loader);
+      };
+    }
+    
+    const customUploadAdapter = (loader) => {
+      return {
+        upload() {
+          return new Promise( (resolve, reject) => {
+            const formData = new FormData();
+            loader.file.then( async (file) => {
+                  console.log(file);
+                  formData.append("parentTable", 'editor');
+                  formData.append("file", file);
+  
+                  const headers = {
+                      headers: {
+                          'Content-Type' : 'multipart/form-data',
+                      },
+                  };
+  
+                  let response = await filesApi.upload(formData, headers);
+                  let data = await response.data;
+                  console.log(`data : ${data}`);
+                  
+                  let newFileNo = data;
+  
+                  await resolve({
+                      default: `/file/img/${newFileNo}`
+                  })
+                
+            });
+          });
+        },
+      };
+    };
+  
   return (
     <>
       <div id="topContent">
@@ -121,10 +163,48 @@ const FacilityRentalUpdate = ({ sets }) => {
             <tr>
               <td>게시글 적성 에디터</td>
               <td className="data">
-                <textarea name="content" id="content" cols="30" rows="10"
-                  className="input-textarea" value={sets.content} onChange={(e)=>{
-                    sets.setContent(e.target.value)
-                  }}></textarea>
+                <CKEditor
+                  editor={ ClassicEditor }
+                  config={{
+                      placeholder: "내용을 입력하세요.",
+                      toolbar: {
+                          items: [
+                              'undo', 'redo',
+                              '|', 'heading',
+                              '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
+                              '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                              '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent',
+                              '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                              '|', 'mediaEmbed',
+                          ],
+                          shouldNotGroupWhenFull: false
+                      },
+                      editorConfig: {
+                          height: "1000", // Set the desired height in pixels
+                      },
+                      alignment: {
+                          options: ['left', 'center', 'right', 'justify'],
+                      },
+                      
+                      extraPlugins: [uploadPlugin]            // 업로드 플러그인
+                  }}
+                  data={sets.content}
+                  onReady={ editor => {
+                      // You can store the "editor" and use when it is needed.
+                      console.log( 'Editor is ready to use!', editor );
+                  } }
+                  onChange={ ( event, editor ) => {
+                      const data = editor.getData();
+                      console.log( { event, editor, data } );
+                      sets.setContent(data);
+                  } }
+                  onBlur={ ( event, editor ) => {
+                      console.log( 'Blur.', editor );
+                  } }
+                  onFocus={ ( event, editor ) => {
+                      console.log( 'Focus.', editor );
+                  } }
+                />
               </td>
             </tr>
             <tr>

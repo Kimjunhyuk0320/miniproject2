@@ -9,8 +9,10 @@ const TeamReadPage = () => {
 
   return (
     <div className='LiveBoardRead'>
+      <div className='totalContainer'>
         <TeamReadContainer teamNo={teamNo}></TeamReadContainer>
         <CommentContainer no={teamNo} parentTable={parentTable}></CommentContainer>
+      </div>
     </div>
   )
 }
