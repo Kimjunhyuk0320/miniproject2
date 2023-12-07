@@ -110,8 +110,9 @@ public class LiveBoardApiController {
     }
     
     // 공연 게시글 수정
-    @PutMapping()
-    public ResponseEntity<?> update(@RequestBody LiveBoard liveBoard) {
+    @PutMapping("/update")
+    public ResponseEntity<?> update(LiveBoard liveBoard) {
+        log.info("[PUT] - /api/liveBoard/update");
         try {
             int result = liveBoardService.update(liveBoard);
             int boardNo = liveBoard.getBoardNo();
@@ -122,6 +123,7 @@ public class LiveBoardApiController {
     
             return new ResponseEntity<>(map, HttpStatus.OK);
         } catch (Exception e) {
+             log.error("Error in update:", e); // 로그 추가
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

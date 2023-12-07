@@ -76,12 +76,13 @@ const LiveBoardReadContainer = ({no}) => {
             // 결제 성공
             console.log(rsp);
             //티켓 구매
-            const response3 = await liveBoards.getPage(no);
+            const response3 = await liveBoards.ticketPurchase(boardNo, name, phone, count);
             const data3 = await response3.data
             if( data3 == 'SUCCESS'){
                   alert('티켓 구매가 완료되었습니다.')
                   // 리다이렉트
                   navigate(`/liveBoard/${boardNo}`)
+                  getLiveBoard()
               }
               if( data3 == 'OVERCOUNT' ){
                   alert('잔여티켓보다 구매티켓 수가 많습니다.')

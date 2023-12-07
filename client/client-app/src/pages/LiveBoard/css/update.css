@@ -1,19 +1,20 @@
 @media (max-width: 1320px) {
     /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
-    body {
+    .LiveBoardUpdate body {
         min-width: 1320px; /* 최소 너비를 1000px로 설정 */
     }
 }
 
-#insertContainer {
+.LiveBoardUpdate #insertContainer {
     margin: 200px 0;
 }
-html,
-body {
+
+.LiveBoardUpdate html,
+.LiveBoardUpdate body {
     height: 100%;
 }
 
-body {
+.LiveBoardUpdate body {
     margin: 0;
     background: rgb(248, 249, 250);
     /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
@@ -21,7 +22,7 @@ body {
     font-weight: 100;
 }
 
-#topContent {
+.LiveBoardUpdate #topContent {
     /* height: 800px;
     margin: 20px 0;
     background: linear-gradient(180deg, #916ea9, rgb(248, 249, 250)); */
@@ -30,25 +31,24 @@ body {
     margin-top: 100px;
 }
 
-#insertContainer {
+.LiveBoardUpdate #insertContainer {
     margin-top: 50px;
 }
 
-#insertContainer>h1 {
+.LiveBoardUpdate #insertContainer>h1 {
     color: black;
 }
 
-#insertContainer>.page-box {
+.LiveBoardUpdate #insertContainer>.page-box {
     display: flex;
     justify-content: space-between;
     margin: auto;
     width: 1320px;
     margin-bottom: 10px;
-
 }
 
-#insertContainer 
-select, input {
+.LiveBoardUpdate #insertContainer select,
+.LiveBoardUpdate #insertContainer input {
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     color: black;
@@ -58,43 +58,42 @@ select, input {
     border-bottom: 1px solid rgb(41, 43, 50);
 }
 
-#insertContainer>.page-box>.search_item {
+.LiveBoardUpdate #insertContainer>.page-box>.search_item {}
 
-}
-
-.tableContainer {
+.LiveBoardUpdate .tableContainer {
     display: flex;
     justify-content: center;
 }
 
-table {
+.LiveBoardUpdate table {
     width: 1320px;
     border-collapse: collapse;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-th,
-td {
+.LiveBoardUpdate th,
+.LiveBoardUpdate td {
     padding: 15px 35px;
     background-color: rgba(255, 255, 255, 0.2);
     color: black;
     text-align: left;
 }
 
-th {
-    background-color: rgb(41, 43, 50);;
+.LiveBoardUpdate th {
+    background-color: rgb(41, 43, 50);
+    ;
     color: white;
     text-align: center;
 }
 
-thead {
+.LiveBoardUpdate thead {
     th {
         background-color: #55608f;
     }
 }
 
-tbody {
+.LiveBoardUpdate tbody {
     tr {
         &:hover {
             background-color: rgba(255, 255, 255, 0.3);
@@ -119,24 +118,23 @@ tbody {
     }
 }
 
-#textEditer {
+.LiveBoardUpdate #textEditer {
     width: 900px;
 }
 
-.submitDiv {
+.LiveBoardUpdate .submitDiv {
     display: flex;
     justify-content: center;
 }
 
-
-.submitDiv > input{
+.LiveBoardUpdate .submitDiv > input {
     margin: 30px;
     background-color: rgb(41, 43, 50);
     width: 450px;
     color: white;
 }
 
-.submitDiv > input:hover{
+.LiveBoardUpdate .submitDiv > input:hover {
     margin: 30px;
     scale: 103%;
     background-color: rgb(58, 59, 63);
@@ -144,9 +142,35 @@ tbody {
     color: white;
 }
 
-.img-box > img{
+.LiveBoardUpdate .img-box > img {
     width: 306px;
     height: 390px;
     object-fit: cover;
     border-radius: 15px;
+}
+
+
+.LiveBoardUpdate .bottomSubmit {
+    text-align: center;
+}
+
+.LiveBoardUpdate .centered-buttons {
+    display: inline-block; 
+}
+
+.LiveBoardUpdate .centered-buttons button {
+    margin: 0 10px; 
+    background-color: rgb(41, 43, 50);
+    width: 200px;
+    height: 50px;
+    color: white;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+.LiveBoardUpdate .centered-buttons button:hover {
+    margin: 0 10px; 
+    scale: 103%;
+    background-color: rgb(58, 59, 63);
+    width: 200px;
+    height: 50px;
+    color: white;
 }

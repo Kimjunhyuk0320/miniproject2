@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UpdateForm from '../../components/LiveBoard/UpdateForm'
+import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
 
-const LiveBoardUpdateContainer = () => {
+
+const LiveBoardUpdateContainer = ({no}) => {
+  const [liveBoard, setLiveBoard] = useState({})
+
+  const getLiveBoard = async () => {
+    const response = await liveBoards.getPage(no);
+    const data = await response.data
+    setLiveBoard(data)
+  }
+
+  useEffect(()=>{
+    getLiveBoard()
+    
+  },[])
+
+
+
   return (
     <div>
-        <UpdateForm/>
+        <UpdateForm liveBoard={liveBoard}/>
     </div>
   )
 }
