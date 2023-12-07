@@ -5,13 +5,11 @@ import Footer from '../../layout/Footer';
 import './css/teamList.css'
 const TeamListPage = () => {
   return (
-    <>
-      <Header />
       <div className='TeamListPage'>
-        <TeamListContainer></TeamListContainer>
+        <Header />
+          <TeamListContainer></TeamListContainer>
+        <Footer />
       </div>
-      <Footer />
-    </>
   )
 }
 

@@ -8,13 +8,11 @@ const TeamUpdatePage = () => {
   const { teamNo } = useParams()
 
   return (
-    <>
-      <Header />
       <div className='TeamUpdatePage'>
-        <TeamUpdateContainer teamNo={teamNo}></TeamUpdateContainer>
+        <Header />
+          <TeamUpdateContainer teamNo={teamNo}></TeamUpdateContainer>
+        <Footer />
       </div>
-      <Footer />
-    </>
   )
 }
 

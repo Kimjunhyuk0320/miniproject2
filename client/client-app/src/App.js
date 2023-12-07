@@ -26,6 +26,8 @@ import TeamRegReadPage from './pages/MyPage/TeamRegReadPage';
 import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
 import TeamConfirmedLiveListPage from './pages/Team/TeamConfirmedLiveListPage';
 import JoinPage from './pages/Users/JoinPage';
+import LoginPage from './pages/Users/LoginPage';
+import UserUpdatePage from './pages/Users/UserUpdatePage';
 
 function App() {
   return (

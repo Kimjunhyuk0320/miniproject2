@@ -9,11 +9,11 @@ const TeamMyRegListPage = () => {
 
 
   return (
-    <>
+    <div className='TicketPurchaseList'>
       <Header />
       <TeamMyRegListContainer username={username}></TeamMyRegListContainer>
       <Footer />
-    </>
+    </div>
   )
 }
 

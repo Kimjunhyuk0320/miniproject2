@@ -7,11 +7,11 @@ const FrBookingListPage = () => {
   const username = 'gangjinsu'
 
   return (
-    <>
+    <div className='TicketPurchaseList'>
       <Header />
       <FrBookingListContainer username={username}></FrBookingListContainer>
       <Footer />
-    </>
+    </div>
   )
 }
 

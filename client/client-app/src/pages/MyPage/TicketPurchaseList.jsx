@@ -6,13 +6,11 @@ import Footer from '../../layout/Footer';
 
 const TicketPurchaseList = () => {
   return (
-    <>
-      <Header />
       <div className="TicketPurchaseList">
-        <TicketPurchaseListContainer />
+        <Header />
+          <TicketPurchaseListContainer />
+        <Footer />
       </div>
-      <Footer />
-    </>
   )
 }
 

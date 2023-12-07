@@ -9,7 +9,7 @@ const FacilityRentalInsertPage = () => {
       <Header />
       <FacilityRentalInsertContainer></FacilityRentalInsertContainer>
       <Footer />
-    </>
+    </div>
   )
 }
 

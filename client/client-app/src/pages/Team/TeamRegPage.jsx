@@ -7,13 +7,11 @@ import './css/update.css'
 const TeamRegPage = () => {
   const { teamNo } = useParams();
   return (
-    <>
-      <Header />
       <div className='TeamUpdatePage'>
-        <TeamRegContainer teamNo={teamNo}></TeamRegContainer>
+        <Header />
+          <TeamRegContainer teamNo={teamNo}></TeamRegContainer>
+        <Footer />
       </div>
-      <Footer />
-    </>
   )
 }
 

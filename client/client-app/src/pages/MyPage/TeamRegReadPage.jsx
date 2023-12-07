@@ -9,11 +9,11 @@ const TeamRegReadPage = () => {
   const { appNo } = useParams()
 
   return (
-    <>
+    <div className='LiveBoardRead'>
       <Header />
       <TeamRegReadContainer appNo={appNo}></TeamRegReadContainer>
       <Footer />
-    </>
+    </div>
   )
 }
 

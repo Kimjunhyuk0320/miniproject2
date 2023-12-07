@@ -7,13 +7,13 @@ import Footer from '../../layout/Footer';
 const TeamRegListPage = () => {
   const username = 'gangjinsu'
   return (
-    <>
+    <div className='TicketPurchaseList'>
       <Header />
       <div className='teamList'>
         <TeamRegListContainer username={username}></TeamRegListContainer>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 

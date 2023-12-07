@@ -6,13 +6,11 @@ import './css/insert.css'
 const TeamInsertPage = () => {
 
   return (
-    <>
-      <Header />
-      <div className='TeamInsertPage'>
+    <div className='TeamInsertPage'>
+        <Header />
         <TeamInsertContainer></TeamInsertContainer>
+        <Footer />
       </div>
-      <Footer />
-    </>
   )
 }
 
