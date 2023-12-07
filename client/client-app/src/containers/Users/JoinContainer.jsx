@@ -14,6 +14,10 @@ const JoinContainer = () => {
   const [email,setEmail] = useState('')
   const [phone,setPhone] = useState('')
   const [file,setFile] =useState(null)
+  const [fileSource,setFileSource] = useState('')
+  const [fileName,setFileName] = useState('')
+
+  //중복검사 통과 여부 상태 만들어야합니다.
 
   const navi = useNavigate();
 
@@ -36,6 +40,10 @@ const JoinContainer = () => {
     setPhone,
     file,
     setFile,
+    fileSource,
+    setFileSource,
+    fileName,
+    setFileName,
     insertHandler
   }
 
