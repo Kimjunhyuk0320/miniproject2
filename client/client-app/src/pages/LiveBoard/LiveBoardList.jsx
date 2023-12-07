@@ -3,17 +3,19 @@ import LiveBoardListContainer from '../../containers/LiveBoard/LiveBoardListCont
 import RecommendContainer from '../../containers/LiveBoard/RecommendContainer'
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ImgSlider from '../../containers/LiveBoard/ImgSlider'
-import './css/cardList.css'
+import './css/cardList.css';
+import ImgSliderContainer from '../../containers/LiveBoard/ImgSliderContainer';
 const LiveBoardList = () => {
   return (
-    <div className="LiveBoardList">
+    <>
       <Header />
-      <ImgSlider />
-      <LiveBoardListContainer />
+      <ImgSliderContainer />
+      <div className="LiveBoardList">
+        <LiveBoardListContainer />
+      </div>
       <RecommendContainer />
       <Footer />
-    </div>
+    </>
   )
 }
 export default LiveBoardList

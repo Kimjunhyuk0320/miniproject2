@@ -130,7 +130,7 @@ body {
 }
 
 .Index .total_box {
-  height: 300vh;
+  /* height: 300vh; */
 }
 
 .Index .total_box_inner {
@@ -149,7 +149,7 @@ body {
   align-items: center;
   background: #111;
   transition: 0.5s;
-  /* z-index: 2; */
+  z-index: 2;
 }
 
 .Index .showcase.active {
@@ -322,7 +322,7 @@ body {
 }
 
 /* 클랙했을 때 아래로 내려가는 css */
-.click_for_scroll {
+.clickForScroll {
   font-size: 30px;
   color: white;
   position: absolute;
@@ -330,9 +330,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-
+  cursor: pointer;
   animation: moveUpDown 2s linear infinite;
 }
+
 
 @keyframes moveUpDown {
 

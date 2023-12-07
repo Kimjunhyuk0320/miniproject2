@@ -16,9 +16,9 @@ const Footer = () => {
                         <div className="col-sm-6 col-md-3 item">
                             <h3>Services</h3>
                             <ul>
-                                <li><Link to="/facilityRental/list">클럽 대관</Link></li>
+                                <li><Link to="/frList">클럽 대관</Link></li>
                                 <li><Link to="/liveBoard">공연 보기</Link></li>
-                                <li><Link to="/team">공연팀 모집</Link></li>
+                                <li><Link to="/teamList">공연팀 모집</Link></li>
                             </ul>
                         </div>
                         <div className="col-sm-6 col-md-3 item">

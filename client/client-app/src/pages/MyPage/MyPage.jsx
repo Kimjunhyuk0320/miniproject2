@@ -8,7 +8,9 @@ const MyPage = () => {
   return (
     <>
       <Header />
-      <MyPageContainer />
+      <div className='MyPage'>
+        <MyPageContainer />
+      </div>
       <Footer />
     </>
   )

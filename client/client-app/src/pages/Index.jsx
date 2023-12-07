@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
+import $ from 'jquery';
 import './index.css';
 
 //  app.css 에 공통적인 부분
@@ -8,43 +9,55 @@ import './index.css';
 const Index = () => {
 
   // 아래 버튼을 누르면 아래로 내려가는 코드
-  const clickForScroll = () => {
-    document.querySelector('.section2').scrollIntoView({ behavior: 'smooth' });
-  };
+  // const clickForScroll = () => {
+  //   document.querySelector('.section2').scrollIntoView({ behavior: 'smooth' });
+  // };
 
-  // 햄버거 버튼을 누르면 x로 바뀌는 코드
-  const [toggleActive, setToggleActive] = useState(false);
-  const [showcaseActive, setShowcaseActive] = useState(false);
+  // // 햄버거 버튼을 누르면 x로 바뀌는 코드
+  // const [toggleActive, setToggleActive] = useState(false);
+  // const [showcaseActive, setShowcaseActive] = useState(false);
 
-  const handleToggleClick = () => {
-    setToggleActive(!toggleActive);
-    setShowcaseActive(!showcaseActive);
-  };
+  // const handleToggleClick = () => {
+  //   setToggleActive(!toggleActive);
+  //   setShowcaseActive(!showcaseActive);
+  // };
 
-  //
-  // useEffect(() => {
-  //   const scrollers = document.querySelectorAll(".scroller");
+  useEffect(() => {
+    $(".clickForScroll").click(function () {
+      $('html, body').animate({
+        scrollTop: $(".section2").offset().top
+      }, 0);
+    });
 
-  //   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  //     addAnimation();
-  //   }
+    $(document).ready(function () {
+      $(".toggle").click(function () {
+        $(".toggle").toggleClass("active");
+        $(".showcase").toggleClass("active");
+      });
+    });
 
-  //   function addAnimation() {
-  //     scrollers.forEach((scroller) => {
-  //       scroller.setAttribute("data-animated", true);
 
-  //       const scrollerInner = scroller.querySelector(".scroller__inner");
-  //       const scrollerContent = Array.from(scrollerInner.children);
+    const scrollers = $(".scroller");
 
-  //       scrollerContent.forEach((item) => {
-  //         const duplicatedItem = item.cloneNode(true);
-  //         duplicatedItem.setAttribute("aria-hidden", true);
-  //         scrollerInner.appendChild(duplicatedItem);
-  //       });
-  //     });
-  //   }
-  // }, []);
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      addAnimation();
+    }
 
+    function addAnimation() {
+      scrollers.each(function () {
+        $(this).attr("data-animated", true);
+
+        const scrollerInner = $(this).find(".scroller__inner");
+        const scrollerContent = Array.from(scrollerInner.children());
+
+        scrollerContent.forEach((item) => {
+          const duplicatedItem = $(item).clone(true);
+          duplicatedItem.attr("aria-hidden", true);
+          scrollerInner.append(duplicatedItem);
+        });
+      });
+    }
+  }, [])
 
   return (
     <>
@@ -62,7 +75,7 @@ const Index = () => {
                 <Link to="/liveBoard">
                   <img src="/img/loginWhite.png" style={{ marginTop: '10px', height: '50px', objectFit: 'cover' }} />
                 </Link>
-                <div className={`toggle ${toggleActive ? 'active' : ''}`} onClick={handleToggleClick}></div>
+                <div className='toggle'></div>
               </div>
               {/* 동영상 */}
               <div className="bg-video">
@@ -97,8 +110,9 @@ const Index = () => {
                 </Link>
               </ul>
             </section>
-            <div className="click_for_scroll" onClick={clickForScroll}>
-              <i className="fi fi-rr-angle-down"></i>
+            <div className="clickForScroll">
+              {/* <i className="fi fi-rr-angle-down"></i> */}
+              <h1 >↓</h1>
             </div>
             <div className="menu_">
               <form action="/logout" method="POST" id="logoutForm">
@@ -106,11 +120,11 @@ const Index = () => {
                 <input type="hidden" />
               </form>
               <ul>
-                <li><Link to="/facilityRental/list"><i className="fi fi-rr-calendar-clock"></i>   클럽대관</Link></li>
+                <li><Link to="/frList"><i className="fi fi-rr-calendar-clock"></i>   클럽대관</Link></li>
                 <br />
                 <li><Link to="/liveBoard"><i className="fi fi-rs-music-alt"></i>   공연보기</Link></li>
                 <br />
-                <li><Link to="/team"><i className="fi fi-rs-chart-tree"></i>   공연팀 모집</Link></li>
+                <li><Link to="/teamList"><i className="fi fi-rs-chart-tree"></i>   공연팀 모집</Link></li>
                 <br />
                 {/* <th: block sec: authorize="isAnonymous()"> */}
                 <li><a href="/join"><i className="fi fi-rr-user-add"></i>   회원가입</a></li>
@@ -161,7 +175,7 @@ const Index = () => {
                     <h1 style={{ fontSize: '5.5rem' }}>클럽 대관</h1>
                     <h1>무대가 필요한 순간</h1>
                     <h1>Live Dom이 함께합니다.</h1>
-                    <Link to="/facilityRental/list">
+                    <Link to="/frList">
                       <h1 style={{ textDecoration: 'underline', fontSize: '3rem' }}>자세히 보기</h1>
                     </Link>
                   </div>
@@ -201,7 +215,7 @@ const Index = () => {
                   <div className="box_inner_R_top">
                     <h1 style={{ fontSize: '5.5rem' }}>공연 팀 모집</h1>
                     <h1>음악을 만들어가는 여정</h1>
-                    <Link to="/team">
+                    <Link to="/teamList">
                       <h1 style={{ textDecoration: 'underline', fontSize: '3rem' }}>자세히 보기</h1>
                     </Link>
                   </div>

@@ -98,10 +98,10 @@ const Header = () => {
                 <nav className="top-menu-bar header-row line-height-0">
                     <ul className="header-row">
                         <li className="cells menu-6">
-                            <Link to="##">클럽 대관 서비스</Link>
+                            <Link to="/frList">클럽 대관 서비스</Link>
                             <ul>
                                 {/* 권한이 클럽일 때 */}
-                                <li><Link to="##">클럽 대관 목록</Link></li>
+                                <li><Link to="/frList">클럽 대관 목록</Link></li>
                                 <li className="cell">
                                     <ul>
                                         <li><Link to="##">대관 게시글 작성하기</Link></li>
@@ -134,7 +134,7 @@ const Header = () => {
                             <div className="sub-menu-width sub-menu-width-2"></div>
                         </li>
                         <li className="cells menu-6">
-                            <Link to="/team">공연팀 모집</Link>
+                            <Link to="/teamList">공연팀 모집</Link>
                             <ul>
                                 {/* 권한이 밴드일 떄 */}
                                 <li><Link to="/team">공연팀 모집 목록</Link></li>
@@ -181,7 +181,7 @@ const Header = () => {
                             <div className="sub-menu-width sub-menu-width-5"></div>
                         </li>
                         <li className="cells menu-">
-                            <Link to="/moveTotalSearch">통합 겸색</Link>
+                            <Link to="/TotalSearch">통합 겸색</Link>
                             <div className="sub-menu-width sub-menu-width-2"></div>
                         </li>
                     </ul>

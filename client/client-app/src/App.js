@@ -10,6 +10,8 @@ import FacilityRentalUpdateContainer from './containers/facilityRental/FacilityR
 import FacilityRentalInsertContainer from './containers/facilityRental/FacilityRentalInsertContainer';
 import MyPage from './pages/MyPage/MyPage';
 import MyInfo from './pages/MyPage/MyInfo';
+import Join from './pages/MyPage/Join';
+import Login from './pages/MyPage/Login';
 import TotalSearch from './pages/MyPage/TotalSearch';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import TicketSalesList from './pages/MyPage/TicketSalesList';
@@ -27,6 +29,8 @@ function App() {
       <Routes>
         <Route path='/' element={ <Index/> } />
         <Route path='/MyPage' element={ <MyPage/> } />
+        <Route path='/Join' element={ <Join/> } />
+        <Route path='/Login' element={ <Login/> } />
         <Route path='/MyInfo' element={ <MyInfo/> } />
         <Route path='/TotalSearch' element={ <TotalSearch/> } />
         <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
