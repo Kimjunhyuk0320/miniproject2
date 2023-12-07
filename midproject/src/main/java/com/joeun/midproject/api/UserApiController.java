@@ -6,13 +6,16 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,25 +40,37 @@ public class UserApiController {
      * 
      * @return
      */
-    @GetMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(
-            @CookieValue(value = "remember-id", required = false) Cookie cookie) {
-        String userId = "";
-        boolean rememberId = false;
+    // @GetMapping("/login")
+    // public ResponseEntity<Map<String, Object>> login(
+    //         @CookieValue(value = "remember-id", required = false) Cookie cookie) {
+    //     String userId = "";
+    //     boolean rememberId = false;
 
-        if (cookie != null) {
-            userId = cookie.getValue();
-            rememberId = true;
+    //     if (cookie != null) {
+    //         userId = cookie.getValue();
+    //         rememberId = true;
+    //     }
+
+    //     Map<String, Object> map = new HashMap<>();
+    //     map.put("username", userId);
+    //     map.put("rememberId", rememberId);
+
+    //     return new ResponseEntity<>(map, HttpStatus.OK);
+    // }
+    @GetMapping("/{username}")
+    public ResponseEntity<Users> userInfo(@PathVariable("username") String username) {
+
+        try {
+            Users users = userService.read(username);
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("username", userId);
-        map.put("rememberId", rememberId);
-
-        return new ResponseEntity<>(map, HttpStatus.OK);
     }
+    
 
-    @PostMapping("/join")
+    @PostMapping()
     public ResponseEntity<String> joinPro( Users users, HttpServletRequest request) {
         log.info(users.toString());
         try {
@@ -72,30 +87,45 @@ public class UserApiController {
         }
     }
 
-    @PostMapping("/update")
-    public ResponseEntity<String> updatePro(@RequestBody Users users, HttpServletRequest request) {
+    @PutMapping()
+    public ResponseEntity<String> updatePro( Users users, HttpServletRequest request, HttpServletResponse response) {
         try {
-            // int result = userService.update(users, request);
+            int result = userService.update(users, request,response);
 
-            // if (result > 0) {
-            //     return new ResponseEntity<>("수정 성공", HttpStatus.OK);
-            // } else {
-            //     return new ResponseEntity<>("수정 실패", HttpStatus.BAD_REQUEST);
-            // }
+            if (result > 0) {
+                return new ResponseEntity<>("수정 성공", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("수정 실패", HttpStatus.BAD_REQUEST);
+            }
         } catch (Exception e) {
             // 예외 처리 로직
             return new ResponseEntity<>("서버 오류", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         // result가 0보다 크다면 수정 성공!
         // 나머지는 수정 실패 ㅠ
-        return null;
     }
 
-    // 로그인 중복 검사
+    // 아이디 중복 검사
     @GetMapping("/getLoginIdDup")
-    public ResponseEntity<?> getLoginIdDup(@RequestParam String username) {
+    public ResponseEntity<?> getLoginIdDup(String username) {
         try {
             Users user = userService.read(username);
+            if (user != null) {
+                return new ResponseEntity<>("N", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Y", HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            // 예외 처리 로직
+            return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // 닉네임 중복 검사
+    @GetMapping("/getNicknameDup")
+    public ResponseEntity<?> getNicknameDup(@RequestParam String nickname) {
+        try {
+            Users user = userService.readOnlyNickname(nickname);
 
             if (user != null) {
                 return new ResponseEntity<>("N", HttpStatus.OK);

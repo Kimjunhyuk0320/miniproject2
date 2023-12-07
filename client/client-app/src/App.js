@@ -6,8 +6,6 @@ import LiveBoardRead from './pages/LiveBoard/LiveBoardRead';
 import LiveBoardUpdate from './pages/LiveBoard/LiveBoardUpdate';
 import MyPage from './pages/MyPage/MyPage';
 import MyInfo from './pages/MyPage/MyInfo';
-import Join from './pages/MyPage/Join';
-import Login from './pages/MyPage/Login';
 import TotalSearch from './pages/MyPage/TotalSearch';
 import TicketPurchaseList from './pages/MyPage/TicketPurchaseList';
 import TicketSalesList from './pages/MyPage/TicketSalesList';
@@ -27,18 +25,20 @@ import FrMyBookingListPage from './pages/MyPage/FrMyBookingListPage';
 import TeamRegReadPage from './pages/MyPage/TeamRegReadPage';
 import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
 import TeamConfirmedLiveListPage from './pages/Team/TeamConfirmedLiveListPage';
+import LoginPage from './pages/Users/LoginPage';
 import JoinPage from './pages/Users/JoinPage';
 import Test from './pages/Test/Test';
-
+import UserUpdatePage from './pages/Users/UserUpdatePage';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={ <Index/> } />
+        <Route path='/join' element={ <JoinPage/> } />
+        <Route path='/login' element={ <LoginPage/> } />
+        <Route path='/mypage/update' element={ <UserUpdatePage/> } />
         <Route path='/MyPage' element={ <MyPage/> } />
-        <Route path='/Join' element={ <Join/> } />
-        <Route path='/Login' element={ <Login/> } />
         <Route path='/MyInfo' element={ <MyInfo/> } />
         <Route path='/TotalSearch' element={ <TotalSearch/> } />
         <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
@@ -62,7 +62,7 @@ function App() {
         <Route path='/fr/:frNo' element={ <FacilityRentalReadPage/> } />
         <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdatePage/> } />
         <Route path='/fr/insert' element={ <FacilityRentalInsertPage/> } />
-        <Route path='/join' element={ <JoinPage/> } />
+        
       </Routes>
       <Routes>
         <Route path='/test' element={ <Test /> }></Route>

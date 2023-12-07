@@ -72,11 +72,18 @@ const Join = ({ sets }) => {
                 <tr>
                   <div className="form__group field plus_flex">
                     <input type="text" className="form__field" placeholder="아이디" name="username" id="username" value={sets.username} onChange={(e) => {
-                      sets.setUsername(e.target.value)
+                      if(sets.usernameChecked){
+                        sets.setUsernameChecked(false)
+                        sets.setUsername(e.target.value)
+                      }else{
+                        sets.setUsername(e.target.value)
+                      }
                     }} />
                     <label htmlFor="username" className="form__label">아이디</label>
                     <button name="btnLoginIdDupCheck" type="button"
-                      className="btn btn-outline-dark dul_btn_size">아이디 중복 검사</button>
+                      className="btn btn-outline-dark dul_btn_size" onClick={()=>{
+                        sets.usernameCheckedHandler()
+                      }}>아이디 중복 검사</button>
                   </div>
                 </tr>
                 <tr>
@@ -99,21 +106,35 @@ const Join = ({ sets }) => {
                 <tr>
                   <div className="form__group field plus_flex">
                     <input type="text" className="form__field" placeholder="닉네임" name="nickname" id="nickname" value={sets.nickname} onChange={(e) => {
+                      if(sets.nicknameChecked){
+                        sets.setNicknameChecked(false)
+                        sets.setNickname(e.target.value)
+                      }else{
                       sets.setNickname(e.target.value)
+                      }
                     }} />
                     <label htmlFor="nickname" className="form__label">닉네임</label>
                     <button className="btn btn-outline-dark dul_btn_size"
-                      name="btnNicknameDupCheck" type="button">닉네임 중복 검사</button>
+                      name="btnNicknameDupCheck" type="button" onClick={()=>{
+                        sets.nicknameCheckedHandler()
+                      }}>닉네임 중복 검사</button>
                   </div>
                 </tr>
                 <tr>
                   <div className="form__group field plus_flex">
                     <input type="text" className="form__field" placeholder="연락처" name="phone" id="phone" value={sets.phone} onChange={(e) => {
-                      sets.setPhone(e.target.value)
+                       if(sets.phoneChecked){
+                         sets.setPhoneChecked(false)
+                         sets.setPhone(e.target.value)
+                      }else{
+                        sets.setPhone(e.target.value)
+                      }
                     }} />
                     <label htmlFor="phone" className="form__label">연락처</label>
                     <button className="btn btn-outline-dark dul_btn_size"
-                      name="btnPhoneDupCheck" type="button">연락처 중복 검사</button>
+                      name="btnPhoneDupCheck" type="button" onClick={()=>{
+                        sets.phoneCheckedHandler()
+                      }}>연락처 중복 검사</button>
                   </div>
                 </tr>
                 <tr>
