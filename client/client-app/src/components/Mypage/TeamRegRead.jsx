@@ -9,13 +9,13 @@ const TeamRegRead = ({ teamApp }) => {
     return (
         <>
 
-            <div class="totalContainer" style={{ marginTop: '100px' }}>
-                <div class="contentContainer">
-                    <div class="tableContainer">
+            <div className="totalContainer" style={{ marginTop: '100px' }}>
+                <div className="contentContainer">
+                    <div className="tableContainer">
                         <table style={{ marginBottom: '100px' }}>
                             <tr>
                                 <td colSpan="2">
-                                    <div class="titleBox">
+                                    <div className="titleBox">
                                         <div>
                                             <h1 style={{ width: '1000px' }}>{teamApp.title}</h1>
                                             <div>
@@ -52,13 +52,13 @@ const TeamRegRead = ({ teamApp }) => {
                             </tr>
                         </table>
                     </div>
-                    <div class="textContainer">
+                    <div className="textContainer">
                         <p dangerouslySetInnerHTML={{ __html: teamApp.content }}></p>
                     </div>
                 </div>
 
 
-                <div class="bottomContainer">
+                <div className="bottomContainer">
                     <div>
                         <Link to={`/mypage/tllList`}>
                             <button type="button" style={{width: '300px'}}>신청리스트로 돌아가기</button>

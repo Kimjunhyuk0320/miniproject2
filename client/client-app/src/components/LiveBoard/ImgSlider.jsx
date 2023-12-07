@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+// import 'swiper/css/autoplay'; 
 
 
 const ImgSlider = () => {
@@ -24,6 +25,7 @@ const ImgSlider = () => {
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
             >

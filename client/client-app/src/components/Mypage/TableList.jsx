@@ -45,7 +45,7 @@ const TicketPurchaseList = () => {
             <input type="text" value={phone} onChange={e => setPhone(e.target.value)} />
 
             <div id="teamListContainer">
-                <div class="tableContainer">
+                <div className="tableContainer">
                     <table style={{ marginBottom: '100px' }}>
                         <thead>
                             <tr>

@@ -29,7 +29,7 @@ const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
                                                 </div>
                                             </div>
                                             <div className="heart">
-                                                <div style={{ marginTop: '10px' }}>
+                                                <div style={{ marginTop: '10px', width: '120px'}}>
                                                     <p style={{ display: 'inline-block' }}>조회수 : </p>
                                                     <p style={{ display: 'inline-block' }}>{fr.views}</p>
                                                 </div>
@@ -99,7 +99,7 @@ const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
                             </Link>
                         </div>
                         <div>
-                            <button type="button" id="red-btn" onClick={()=>{
+                            <button type="button" className="red-btn" onClick={()=>{
                                 let result = window.confirm('정말로 삭제하시겠습니까?');
                                 if(result==true)
                                 delHandler()}}>삭제</button>
@@ -107,7 +107,7 @@ const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
                     </div>
                     <div>
                         
-                        {fr.confirmed == 0 && <button type="button" id="red-btn" onClick={resvationHandler}>대관하기</button>}
+                        {fr.confirmed == 0 && <button type="button" className="red-btn" onClick={resvationHandler}>대관하기</button>}
                     </div>
                 </div>
 

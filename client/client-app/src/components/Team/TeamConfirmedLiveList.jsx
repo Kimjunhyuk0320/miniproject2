@@ -5,7 +5,7 @@ import * as format from '../../apis/format/format'
 const TeamConfirmedLiveList = ({ clList }) => {
   return (
     <>
-      <div class="tableContainer">
+      <div className="tableContainer">
         <table>
           <thead>
             <tr>
@@ -25,7 +25,7 @@ const TeamConfirmedLiveList = ({ clList }) => {
                 <td colSpan="8">조회된 데이터가 없습니다.</td>
               </tr>
             ) : clList.map((cl) => (
-              <tr class="read-app-list-row">
+              <tr className="read-app-list-row">
                 <td align="center">{cl.teamNo}</td>
                 <Link to={`/team/${cl.teamNo}`}>
                   <td>{cl.title}</td>

@@ -10,14 +10,16 @@ const TeamReadPage = () => {
   const parentTable = 'team_recruitments'
 
   return (
-    <div className='LiveBoardRead'>
-      <div className='totalContainer'>
+    <>
+      <div className='LiveBoardRead'>
         <Header />
-        <TeamReadContainer teamNo={teamNo}></TeamReadContainer>
-        <CommentContainer no={teamNo} parentTable={parentTable}></CommentContainer>
-        <Footer />
+        <div className='totalContainer'>
+          <TeamReadContainer teamNo={teamNo}></TeamReadContainer>
+          <CommentContainer no={teamNo} parentTable={parentTable}></CommentContainer>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 

@@ -3,6 +3,7 @@ import LiveBoardListContainer from '../../containers/LiveBoard/LiveBoardListCont
 
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import ActiveFooter from '../../layout/ActiveFooter';
 import './css/cardList.css';
 import ImgSliderContainer from '../../containers/LiveBoard/ImgSliderContainer';
 import Recommend from './Recommend';
@@ -15,6 +16,7 @@ const LiveBoardList = () => {
         <LiveBoardListContainer />
       </div>
       <Recommend />
+      <ActiveFooter/>
       <Footer />
     </>
   )

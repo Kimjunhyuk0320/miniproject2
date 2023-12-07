@@ -14,7 +14,7 @@ const Join = ({ sets }) => {
                     <div className="dropzone">
                       {sets.file == null ? (
                         <div className="before-img-box hide">
-                          <img src={`/img/defaultProfile`} alt="프로필사진" />
+                          {/* <img src={`/img/defaultProfile`} alt="프로필사진" /> */}
                         </div>
                       ) : (
                         <div className="img-box">

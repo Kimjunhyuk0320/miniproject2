@@ -3,6 +3,7 @@ import LiveBoardInsertContainer from '../../containers/LiveBoard/LiveBoardInsert
 import './css/insert.css'
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import ActiveFooter from '../../layout/ActiveFooter';
 const LiveBoardInsert = () => {
   return (
     <>
@@ -10,6 +11,7 @@ const LiveBoardInsert = () => {
       <div className='LiveBoardInsert'>
         <LiveBoardInsertContainer />
       </div>
+      <ActiveFooter/>
       <Footer />
     </>
   )

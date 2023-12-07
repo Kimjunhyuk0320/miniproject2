@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const TeamList = ({ teamList }) => {
   return (
     <>
-      <div class="tableContainer">
+      <div className="tableContainer">
         <table>
           <thead>
             <tr>

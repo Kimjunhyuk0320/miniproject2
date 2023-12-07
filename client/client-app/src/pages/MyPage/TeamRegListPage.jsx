@@ -3,7 +3,7 @@ import TeamRegListContainer from '../../containers/MyPage/TeamRegListContainer'
 
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-
+// import ActiveFooter from '../../layout/ActiveFooter';
 const TeamRegListPage = () => {
   const username = 'gangjinsu'
   return (
@@ -12,6 +12,7 @@ const TeamRegListPage = () => {
       <div className='teamList'>
         <TeamRegListContainer username={username}></TeamRegListContainer>
       </div>
+      {/* <ActiveFooter/> */}
       <Footer />
     </div>
   )

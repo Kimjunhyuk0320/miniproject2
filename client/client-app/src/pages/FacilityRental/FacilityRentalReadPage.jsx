@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import CommentContainer from '../../containers/comment/CommentContainer'
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import ActiveFooter from '../../layout/ActiveFooter';
 
 const FacilityRentalReadPage = () => {
 
@@ -11,14 +12,17 @@ const FacilityRentalReadPage = () => {
   const parentTable = "facility_rental"
 
   return (
-    <div className='LiveBoardRead'>
-      <div className='totalContainer'>
+    <>
+      <div className='LiveBoardRead'>
         <Header />
-        <FacilityRentalReadContainer frNo={frNo}></FacilityRentalReadContainer>
-        <CommentContainer no={frNo} parentTable={parentTable}></CommentContainer>
-        <Footer />
+        <div className='totalContainer'>
+          <FacilityRentalReadContainer frNo={frNo}></FacilityRentalReadContainer>
+          <CommentContainer no={frNo} parentTable={parentTable}></CommentContainer>
+        </div>
       </div>
-    </div>
+      <ActiveFooter />
+      <Footer />
+    </>
   )
 }
 

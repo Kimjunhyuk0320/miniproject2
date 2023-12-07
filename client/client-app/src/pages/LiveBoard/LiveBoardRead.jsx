@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/read.css'
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import ActiveFooter from '../../layout/ActiveFooter';
 
 const LiveBoardRead = () => {
   const { no } = useParams()
@@ -21,6 +22,7 @@ const LiveBoardRead = () => {
           <CommentContainer no={no} parentTable={parentTable} />
         </div>
       </div>
+      <ActiveFooter/>
       <Footer />
     </>
   )

@@ -3,6 +3,7 @@ import TeamRegReadContainer from '../../containers/MyPage/TeamRegReadContainer'
 import { useParams } from 'react-router-dom'
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+// import ActiveFooter from '../../layout/ActiveFooter';
 
 const TeamRegReadPage = () => {
 
@@ -12,6 +13,7 @@ const TeamRegReadPage = () => {
     <div className='LiveBoardRead'>
       <Header />
       <TeamRegReadContainer appNo={appNo}></TeamRegReadContainer>
+      {/* <ActiveFooter/> */}
       <Footer />
     </div>
   )

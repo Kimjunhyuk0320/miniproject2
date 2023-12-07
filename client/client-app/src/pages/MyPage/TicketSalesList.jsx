@@ -3,6 +3,7 @@ import TicketSalesListContainer from '../../containers/MyPage/TicketSalesListCon
 import './css/TableList.css';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+// import ActiveFooter from '../../layout/ActiveFooter';
 
 const TicketSalesList = () => {
   return (
@@ -11,6 +12,7 @@ const TicketSalesList = () => {
       <div className='TicketPurchaseList'>
         <TicketSalesListContainer />
       </div>
+      {/* <ActiveFooter/> */}
       <Footer />
     </>
   )

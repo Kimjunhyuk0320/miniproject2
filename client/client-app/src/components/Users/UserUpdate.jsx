@@ -9,7 +9,7 @@ const UserUpdate = ({ sets }) => {
         <hr />
       </div>
       <div id="insertContainer">
-        <div class="tableContainer">
+        <div className="tableContainer">
           <table>
             <tr>
               <td style={{ width: '150px' }}>프로필사진</td>
@@ -53,7 +53,7 @@ const UserUpdate = ({ sets }) => {
                 <input type="text" name="nickname" id="nickName" value={sets.nickname} onChange={(e)=>{
                   sets.setNickname(e.target.value)
                 }} />
-                <button onClick="joinFrom_checkedNicknameDup();" name="btnNicknameDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>닉네임 중복 검사</button>
+                <button onClick="joinFrom_checkedNicknameDup();" name="btnNicknameDupCheck" type="button" className="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>닉네임 중복 검사</button>
               </td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@ const UserUpdate = ({ sets }) => {
                 <input type="text" name="phone" id="phone" value={sets.phone} onChange={(e)=>{
                   sets.setPhone(e.target.value)
                 }} />
-                <button onClick="joinFrom_checkedPhoneDup();" name="btnPhoneDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>연락처 중복 검사</button>
+                <button onClick="joinFrom_checkedPhoneDup();" name="btnPhoneDupCheck" type="button" className="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>연락처 중복 검사</button>
               </td>
             </tr>
             <tr>
@@ -87,7 +87,7 @@ const UserUpdate = ({ sets }) => {
             </tr>
             <tr>
               <td colSpan="2">
-                <div class="submitDiv">
+                <div className="submitDiv">
                   <input type="button" value="수정" onClick={()=>{
                     sets.updateHandler()
                   }}/>

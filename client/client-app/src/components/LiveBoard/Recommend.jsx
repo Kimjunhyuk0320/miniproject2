@@ -3,9 +3,9 @@ import React from 'react'
 const Recommend = () => {
     return (
         <>
-            <div class="a">
-                <div class="staticContainer">
-                    <div class="staticTextSection">
+            <div className="a">
+                <div className="staticContainer">
+                    <div className="staticTextSection">
                         <h1>오늘의 추천밴드</h1>
                         <h2>유다빈 밴드</h2>
                         <hr />
@@ -14,7 +14,7 @@ const Recommend = () => {
                             </h3>
                             <p>이런 식으로 추가하면 될 듯</p>
                     </div>
-                    <div class="staticVideoSection">
+                    <div className="staticVideoSection">
                         {/* YouTube Video Embed Code */}
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/wmMrFpemJNY" frameborder="0" allowfullscreen></iframe>
                     </div>

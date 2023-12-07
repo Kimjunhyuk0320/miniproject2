@@ -3,14 +3,16 @@ import TicketPurchaseListContainer from '../../containers/MyPage/TicketPurchaseL
 import './css/TableList.css';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+// import ActiveFooter from '../../layout/ActiveFooter';
 
 const TicketPurchaseList = () => {
   return (
-      <div className="TicketPurchaseList">
-        <Header />
-          <TicketPurchaseListContainer />
-        <Footer />
-      </div>
+    <div className="TicketPurchaseList">
+      <Header />
+      <TicketPurchaseListContainer />
+      {/* <ActiveFooter /> */}
+      <Footer />
+    </div>
   )
 }
 

@@ -364,7 +364,7 @@
 
 .TeamReadPage #red-btn {
     background-color: rgba(255, 0, 0, 0.551);
-    margin-right: auto;
+    /* margin-right: auto; */
 }
 
 .TeamReadPage #blue-btn {

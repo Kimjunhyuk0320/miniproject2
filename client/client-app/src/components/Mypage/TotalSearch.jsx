@@ -15,6 +15,7 @@ const TotalSearch = () => {
   const [teamList, setTeamList] = useState([])
 
   useEffect(() => {
+    search()
     $(`#btn-search`).on(`click`, function () {
       search()
     })
@@ -123,12 +124,12 @@ const TotalSearch = () => {
         <div className="wrapper">
           <div className="container_____">
             <div>
-              <input type="text" name="keyword" id="keyword" class="input" placeholder="검색어를 입력해주세요." />
-              <div id="btn-search"><i class="fi fi-rs-search"></i></div>
+              <input type="text" name="keyword" id="keyword" className="input" placeholder="검색어를 입력해주세요." />
+              <div id="btn-search"><i className="fi fi-rs-search"></i></div>
             </div>
             <div className="close-btn">&times;</div>
           </div>
-          <div class="reco_keword_box">
+          <div className="reco_keword_box">
             <p><span>#드림아트센터</span></p>
             <p><span>#공연</span></p>
             <p><span>#강남역</span></p>
@@ -136,7 +137,7 @@ const TotalSearch = () => {
           </div>
         </div>
       </div>
-      <div class="container" id="container">
+      <div className="container" id="container">
         {renderTicketData()}
       </div>
 

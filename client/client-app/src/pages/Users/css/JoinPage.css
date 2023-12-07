@@ -1,0 +1,234 @@
+@media (max-width: 1320px) {
+
+    /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
+    body {
+        min-width: 1320px;
+        /* 최소 너비를 1000px로 설정 */
+    }
+}
+
+.JoinPage .joinBody {
+    /* background-color: rgb(242, 242, 242); */
+    /* background-image: url("/img/clubr5.jpeg"); */
+    background-image: url("/public/img/clubr5.jpeg");
+    background-size: cover;
+    /* 이미지가 꽉 차도록 설정 */
+    background-position: center;
+    /* 이미지를 가운데 정렬 */
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+    font-size: 1.5rem;
+}
+
+.JoinPage #join-container {
+    width: 1000px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    /* background-repeat: no-repeat; */
+}
+
+.JoinPage .join-Box {
+    /* margin-left: 250px; */
+    /* position: absolute; */
+    background-color: rgba(242, 242, 242);
+    width: 960px;
+    padding: 30px 75px;
+    border-radius: 20px;
+    /* box-shadow: 3px 3px 10px gray; */
+    /* order: 0; */
+}
+
+.JoinPage .auth_main_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px !important;
+    min-height: 0px !important;
+    /* width: 100px; */
+    /* margin-bottom: 20px; */
+}
+
+.JoinPage table {
+    width: 1200px;
+}
+
+.JoinPage .plus_flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 중복검사 버튼 사이즈 */
+.JoinPage .dul_btn_size {
+    font-size: 11px;
+    width: 150px;
+    margin-left: 10px;
+}
+
+/* 폼 제출 버튼 */
+.JoinPage .submit_button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.JoinPage .submit_button>input {
+    width: 350px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #222222;
+    border: none;
+    color: white;
+}
+
+.JoinPage .submit_button>input:hover {
+    width: 350px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #9b9b9b;
+    border: none;
+    color: white;
+}
+
+.JoinPage .form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 100%;
+    /* height: 50px; */
+}
+
+.JoinPage .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1rem;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.JoinPage .form__field::placeholder {
+    color: transparent;
+}
+
+.JoinPage .form__field:placeholder-shown~.form__label {
+    font-size: 1.2rem;
+    cursor: text;
+    top: 20px;
+}
+
+.JoinPage .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 13px;
+    color: #9b9b9b;
+}
+
+.JoinPage .form__field:focus~.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #166caa;
+    font-weight: 700;
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+}
+
+/* reset input */
+.JoinPage .form__field:required,
+.JoinPage .form__field:invalid {
+    box-shadow: none;
+}
+
+
+
+.JoinPage #group {
+    background-color: rgba(242, 242, 242);
+    padding: 0px 10px;
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    font-size: 11px;
+    text-align: center;
+    color: black;
+}
+
+.before-img-box {
+    background-image: url("/public/img/defaultProfile.png");
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-position: center center;
+    /* 이미지를 가로세로 모두 가운데로 정렬하고 싶을 떄 사용 */
+    margin: auto;
+    box-shadow: 0px 0px 15px gray;
+}
+
+.JoinPage .img-box {
+    display: flex;
+}
+
+.JoinPage .img-box>img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-position: center center;
+    /* 이미지를 가로세로 모두 가운데로 정렬하고 싶을 떄 사용 */
+    margin: auto;
+    box-shadow: 0px 0px 15px gray;
+}
+
+/* 이미지 파일 선택 부분 css */
+.JoinPage .add_thumbnail_box {}
+
+.JoinPage .add_thumbnail {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+    width: 400px;
+}
+
+.JoinPage .select_btn {
+    background-color: white;
+    /* box-sizing: 0px 0px 15px gray; */
+}
+
+/* <!-- 파일 업로드가 될 때 파일 명이 나오는 부분 --> */
+.JoinPage #file-name {
+    background-color: rgba(242, 242, 242);
+    border: none;
+    text-overflow: ellipsis;
+    /* 생략 부호 표시 */
+}
+
+/* 삭제 버튼 css */
+.JoinPage .btn-thumb-remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    /* background-color: red; */
+    /* color: white; */
+    font-size: 16px;
+    /* border-radius: 40px; */
+}

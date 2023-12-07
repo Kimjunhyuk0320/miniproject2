@@ -187,7 +187,7 @@ const Header = () => {
                     </ul>
                     <div className="sub-menu-bg"></div>
                 </nav>
-                <div class="search-box">
+                <div className="search-box">
                     {/* 프로필 사진이 있을 때 */}
                     {/* <a href="/myPage/myInfo">
                         <img src="/file/img/${#authentication.principal.users.profileNo}" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />

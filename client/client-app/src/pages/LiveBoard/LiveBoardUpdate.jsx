@@ -4,6 +4,7 @@ import LiveBoardUpdateContainer from '../../containers/LiveBoard/LiveBoardUpdate
 import './css/update.css'
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import ActiveFooter from '../../layout/ActiveFooter';
 
 const LiveBoardUpdate = () => {
   const { no } = useParams()
@@ -13,6 +14,7 @@ const LiveBoardUpdate = () => {
       <div className='LiveBoardUpdate'>
         <LiveBoardUpdateContainer no={no} />
       </div>
+      <ActiveFooter/>
       <Footer />
     </>
   )

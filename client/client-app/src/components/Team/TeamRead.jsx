@@ -9,7 +9,6 @@ const TeamRead = ({ team, delHandler }) => {
     return (
         <>
             <div className="topContentContainer">
-
                 <div className="contentContainer">
                     <div className="tableContainer">
                         <table>
@@ -113,7 +112,7 @@ const TeamRead = ({ team, delHandler }) => {
                 </th:block> */}
                 </div>
             </div>
-            <div class="textContainer">
+            <div className="textContainer">
                 <p dangerouslySetInnerHTML={{ __html: team.content }}></p>
             </div>
         </>
