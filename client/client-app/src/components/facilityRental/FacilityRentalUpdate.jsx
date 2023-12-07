@@ -214,10 +214,8 @@ const FacilityRentalUpdate = ({ sets }) => {
                     <button type="button">목록</button>
                   </Link>
                   <button type="button" onClick={()=>{
-                    let result = window.confirm(`정말로 수정하시겠습니까?`)
-                    if(result==true){
                       sets.updateHandler()
-                    }}}>수정</button>
+                    }}>수정</button>
                 </div>
               </td>
             </tr>

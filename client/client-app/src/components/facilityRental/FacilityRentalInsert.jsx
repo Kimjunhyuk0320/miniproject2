@@ -219,10 +219,7 @@ const FacilityRentalInsert = ({ sets }) => {
                                         <button type="button" >목록</button>
                                     </Link>
                                     <button type="button" onClick={() => {
-                                        let result = window.confirm(`정말로 등록하겠습니까?`)
-                                        if (result == true) {
                                             sets.insertHandler()
-                                        }
                                     }}>등록</button>
                                 </div>
                             </td>

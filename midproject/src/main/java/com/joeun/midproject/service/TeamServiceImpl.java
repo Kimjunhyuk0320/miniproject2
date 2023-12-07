@@ -44,6 +44,7 @@ public class TeamServiceImpl implements TeamService{
   
   @Override
   public int delete(Team team) {
+    team.setRecStatus(teamMapper.read(team).getRecStatus());
     int result = teamMapper.delete(team);
   
     if(result>0){

@@ -37,6 +37,10 @@ const FacilityRentalReadContainer = ({frNo}) => {
   }
 
   const delHandler = async ()=>{
+    if(fr.confirmed == 1 ){
+      window.alert(`예약이 확정된 게시글은 삭제가 불가능합니다!`)
+      return
+    }
     const response = await frApi.frDelete(frNo)
     const data = await response.data
 
