@@ -1,13 +1,17 @@
 import React from 'react'
 import UserUpdateContainer from '../../containers/Users/UserUpdateContainer'
+import Header from '../../layout/Header';
+import Footer from '../../layout/Footer';
 
 const UserUpdatePage = () => {
 
-    const username = 'gangjinsu'
+  const username = 'gangjinsu'
 
   return (
     <>
-        <UserUpdateContainer username={username}></UserUpdateContainer>
+      <Header />
+      <UserUpdateContainer username={username}></UserUpdateContainer>
+      <Footer />
     </>
   )
 }

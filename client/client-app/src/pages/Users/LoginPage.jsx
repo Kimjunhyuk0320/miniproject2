@@ -1,10 +1,14 @@
 import React from 'react'
 import LoginContainer from '../../containers/Users/LoginContainer'
+import Header from '../../layout/Header';
+import Footer from '../../layout/Footer';
 
 const LoginPage = () => {
   return (
     <>
-    <LoginContainer></LoginContainer>
+      <Header />
+      <LoginContainer></LoginContainer>
+      <Footer />
     </>
   )
 }

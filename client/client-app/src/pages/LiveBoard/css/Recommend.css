@@ -1,0 +1,38 @@
+
+
+.Recommend .a {
+    background-color: white;
+    margin-bottom: 400px;
+    
+}
+.Recommend .staticContainer {
+    display: flex;
+    width: 1320px;
+    /* padding: ; */
+    margin: auto;
+    
+}
+
+.Recommend .staticContainer .staticTextSection {
+    padding: 70px 30px;
+}
+
+.Recommend .staticContainer .staticVideoSection {
+    margin: 20px 0;
+}
+
+.Recommend .staticVideoSection iframe {
+    border-radius: 20px;
+}
+
+.Recommend .staticTextSection h1 {
+    font-size: 50px;
+}
+
+.Recommend .staticTextSection h2 {
+    font-size: 35px;
+}
+
+.Recommend .staticTextSection p {
+    font-size: 15px;
+}

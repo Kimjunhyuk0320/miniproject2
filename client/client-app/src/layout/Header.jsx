@@ -104,15 +104,15 @@ const Header = () => {
                                 <li><Link to="/frList">클럽 대관 목록</Link></li>
                                 <li className="cell">
                                     <ul>
-                                        <li><Link to="##">대관 게시글 작성하기</Link></li>
-                                        <li><Link to="##">받은 대관 신청</Link></li>
+                                        <li><Link to="/fr/insert">대관 게시글 작성하기</Link></li>
+                                        <li><Link to="/mypage/rrList">받은 대관 신청</Link></li>
                                     </ul>
                                 </li>
                                 {/* 권한이 밴드일 때 */}
-                                <li><Link to="##">대관 신청 목록</Link></li>
+                                <li><Link to="/frList">대관 신청 목록</Link></li>
                                 <li className="cell">
                                     <ul>
-                                        <li><Link to="##">대관 신청 내역</Link></li>
+                                        <li><Link to="/mypage/rreqList">대관 신청 내역</Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -122,12 +122,12 @@ const Header = () => {
                             <Link to="/liveBoard">공연</Link>
                             <ul className="header-row">
                                 {/* 권한이 밴드일 때 */}
-                                <li><Link to="##">공연 목록</Link></li>
+                                <li><Link to="/liveBoard">공연 목록</Link></li>
                                 <li className="cell">
                                     <ul>
                                         <li><Link to="/liveBoard/insert">공연 등록하기</Link></li>
-                                        <li><Link to="/myPage/ticket_sales_list">판매한 티켓 내역</Link></li>
-                                        <li><Link to="/myPage/ticket_purchase_list">예매한 티켓 내역</Link></li>
+                                        <li><Link to="/TicketSalesList">판매한 티켓 내역</Link></li>
+                                        <li><Link to="/TicketPurchaseList">예매한 티켓 내역</Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -137,13 +137,13 @@ const Header = () => {
                             <Link to="/teamList">공연팀 모집</Link>
                             <ul>
                                 {/* 권한이 밴드일 떄 */}
-                                <li><Link to="/team">공연팀 모집 목록</Link></li>
+                                <li><Link to="/teamList">공연팀 모집 목록</Link></li>
                                 <li className="cell">
                                     <ul>
                                         <li><Link to="/team/insert">모집글 작성하기</Link></li>
-                                        <li><Link to="/team/user/listByMember">참가신청 내역</Link></li>
-                                        <li><Link to="/team/user/listByLeader">받은 참가신청</Link></li>
-                                        <li><Link to="/team/user/listByConfirmedLive">성사된 공연</Link></li>
+                                        <li><Link to="/mypage/tlmList">참가신청 내역</Link></li>
+                                        <li><Link to="/mypage/tllList">받은 참가신청</Link></li>
+                                        <li><Link to="/mypage/clList">성사된 공연</Link></li>
                                     </ul>
                                 </li>
 
@@ -156,7 +156,7 @@ const Header = () => {
                         <li className="cells menu-5">
                             <Link to="/myPage">마이페이지</Link>
                             <ul>
-                                <li><Link to="/myPage">내 정보 보기</Link></li>
+                                <li><Link to="/myInfo">내 정보 보기</Link></li>
                                 <li><Link to="/update">내 정보 수정하기</Link></li>
                             </ul>
                             <div className="sub-menu-width sub-menu-width-4"></div>
@@ -193,7 +193,7 @@ const Header = () => {
                         <img src="/file/img/${#authentication.principal.users.profileNo}" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />
                     </a> */}
                     {/* 프로필 사진이 없을 때 */}
-                    <a href="/myPage/myInfo">
+                    <a href="/myInfo">
                         <img src="/img/defaultProfile.png" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />
                     </a>
                 </div>

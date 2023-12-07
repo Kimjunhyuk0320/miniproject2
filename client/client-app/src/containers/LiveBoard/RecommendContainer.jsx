@@ -1,10 +1,9 @@
 import React from 'react'
+import Recommend from '../../components/LiveBoard/Recommend'
 
 const RecommendContainer = () => {
   return (
-    <div>
-      <h1>RecommendContainer</h1>
-    </div>
+    <Recommend />
   )
 }
 

@@ -1,24 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import * as userInfo from '../../apis/myPage/myPageApi';
+import $ from 'jquery';
 
 const MyInfo = () => {
 
-  // const [userData, setUserData] = useState({});
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
-
-  // 
-  // const getUser = async () => {
-  //   const response = await userInfo.getUser(##);
-  //   const data = await response.data
-  //   console.log(data)
-  //   setUserData(data)
-  // }
+  useEffect(() => {
+    $('#expand-button__').click(function () {
+      $('.profile____card').toggleClass('expand');
+    })
+  }, [])
 
   const [isExpanded, setExpanded] = useState(false);
-
   const handleExpandClick = () => {
     setExpanded(!isExpanded);
   };
@@ -36,7 +28,7 @@ const MyInfo = () => {
           <div className="pic__">
             {/* 프로필 사진이 있을 때 */}
             {/* <img alt="프로필사진" id="profile Img" style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray'}} /> */}
-            <img src="/img/defaultProfile.png" alt="프로필사진" id="profile Img" style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray'}}/>
+            <img src="/img/defaultProfile.png" alt="프로필사진" id="profile Img" style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray' }} />
           </div>
           <div className="above-fold">
             <div className="name">
@@ -67,22 +59,22 @@ const MyInfo = () => {
 
           <div className="below-fold">
             <div className="about">
-              <h3>아이디</h3>
+              <h5>아이디</h5>
               <p>;kdsafnkls</p>
               <br />
             </div>
             <div className="about">
-              <h3>연락처</h3>
+              <h5>연락처</h5>
               <p>lsadfhosd</p>
               <br />
             </div>
             <div className="about">
-              <h3>이메일</h3>
+              <h5>이메일</h5>
               <p>pisdfhl</p>
               <br />
             </div>
             <div className="about">
-              <h3>정보 수정 일자</h3>
+              <h5>정보 수정 일자</h5>
               <p>dsafas</p>
               <br />
             </div>
