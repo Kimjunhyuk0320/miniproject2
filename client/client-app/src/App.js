@@ -25,10 +25,7 @@ import FrMyBookingListPage from './pages/MyPage/FrMyBookingListPage';
 import TeamRegReadPage from './pages/MyPage/TeamRegReadPage';
 import LiveBoardInsert from './pages/LiveBoard/LiveBoardInsert';
 import TeamConfirmedLiveListPage from './pages/Team/TeamConfirmedLiveListPage';
-import LoginPage from './pages/Users/LoginPage';
 import JoinPage from './pages/Users/JoinPage';
-import Test from './pages/Test/Test';
-import UserUpdatePage from './pages/Users/UserUpdatePage';
 
 function App() {
   return (
@@ -62,10 +59,7 @@ function App() {
         <Route path='/fr/:frNo' element={ <FacilityRentalReadPage/> } />
         <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdatePage/> } />
         <Route path='/fr/insert' element={ <FacilityRentalInsertPage/> } />
-        
-      </Routes>
-      <Routes>
-        <Route path='/test' element={ <Test /> }></Route>
+        <Route path='/join' element={ <JoinPage/> } />
       </Routes>
     </BrowserRouter>
   );

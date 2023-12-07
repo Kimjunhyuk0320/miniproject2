@@ -129,9 +129,9 @@ const ActiveFooter = () => {
         <>
             <div className="activeFooterContainer">
                 <nav className="activeNav">
-                    <Link to="/facilityRental/list" class="activeNav-item" active-color="orange" data-index="2">대관하기</Link>
+                    <Link to="/frList" class="activeNav-item" active-color="orange" data-index="2">대관하기</Link>
                     <Link to="/liveBoard" class="activeNav-item" active-color="green" data-index="1">공연보기</Link>
-                    <Link to="/team" class="activeNav-item" active-color="red" data-index="3">팀모집하기</Link>
+                    <Link to="/teamList" class="activeNav-item" active-color="red" data-index="3">팀모집하기</Link>
                     <Link to="/" class="activeNav-item" active-color="blue" data-index="0">LiveDom</Link>
                     {/* 로그인 되었을 때 */}
                     {/* <Link to="/myPage" class="activeNav-item" active-color="rebeccapurple" data-index="4">마이페이지</Link> */}

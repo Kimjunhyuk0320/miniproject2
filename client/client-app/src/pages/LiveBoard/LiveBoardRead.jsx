@@ -4,19 +4,25 @@ import LiveBoardReadContainer from '../../containers/LiveBoard/LiveBoardReadCont
 import CommentContainer from '../../containers/comment/CommentContainer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/read.css'
+import Header from '../../layout/Header';
+import Footer from '../../layout/Footer';
 
 const LiveBoardRead = () => {
   const { no } = useParams()
   const parentTable = "live_board"
 
-  
+
   return (
-    <div className='LiveBoardRead'>
-      <div className='totalContainer'>
-          <LiveBoardReadContainer no={no}/>
-          <CommentContainer no={no} parentTable={parentTable}/>
+    <>
+      <Header />
+      <div className='LiveBoardRead'>
+        <div className='totalContainer'>
+          <LiveBoardReadContainer no={no} />
+          <CommentContainer no={no} parentTable={parentTable} />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 

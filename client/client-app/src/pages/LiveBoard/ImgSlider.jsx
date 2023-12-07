@@ -1,9 +1,12 @@
 import React from 'react'
 import ImgSliderContainer from '../../containers/LiveBoard/ImgSliderContainer'
+import './css/ImgSlider.css'
 
 const ImgSlider = () => {
   return (
-    <ImgSliderContainer />
+    <div className='ImgSlider'>
+      <ImgSliderContainer />
+    </div>
   )
 }
 
