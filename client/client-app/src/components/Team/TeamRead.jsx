@@ -83,10 +83,14 @@ const TeamRead = ({ team, delHandler }) => {
                     </Link>
                 </div>
                 <div>
-                    {/* th:onclick=" 'moveApplication('+${team.teamNo}+')'  */}
-                    <Link to={`/team/app/${team.teamNo}`}>
-                        <button type="button" id="red-btn">신청</button>
-                    </Link>
+                    {
+                        team.confirmed == 0 && (
+                            <Link to={`/team/app/${team.teamNo}`}>
+                                <button type="button" id="red-btn">신청</button>
+                            </Link>
+                        )
+                    }
+
                     <Link to={`/team/update/${team.teamNo}`}>
                         <button style={{ backgroundColor: 'rgba(0, 0, 255, 0.525)' }}>수정</button>
                     </Link>

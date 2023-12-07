@@ -71,35 +71,35 @@ public class TeamApiController {
     }
     
     @PostMapping()
-    public ResponseEntity<Integer> create(@RequestBody Team team) {
+    public ResponseEntity<String> create(@RequestBody Team team) {
         try {
             team.setAccount(team.getAccount1()+"/"+team.getAccount2());
             int result = teamService.insert(team);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping()
-    public ResponseEntity<Integer> update(@RequestBody Team team) {
+    public ResponseEntity<String> update(@RequestBody Team team) {
         log.info("접근성공");
         team.setAccount(team.getAccount1()+"/"+team.getAccount2());
         int result = teamService.update(team);
         try {
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @DeleteMapping("/{teamNo}")
-    public ResponseEntity<Integer> destroy(@PathVariable Integer teamNo,Team team) {
+    public ResponseEntity<String> destroy(@PathVariable Integer teamNo,Team team) {
         team.setTeamNo(teamNo);
         int result = teamService.delete(team);
 
         try {
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

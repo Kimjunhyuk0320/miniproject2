@@ -18,7 +18,7 @@ const TeamRegContainer = ({teamNo}) => {
         const data = await response.data
 
         if(data!=null){
-            navi(`/`)
+            navi(`/mypage/tlmList`)
         }else{
             navi(`/team/${teamNo}`)
         }

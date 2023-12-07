@@ -3,9 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import * as frApi from '../../apis/facilityRental/facilityRentalApi'
 import FacilityRentalUpdate from '../../components/facilityRental/FacilityRentalUpdate';
 
-const FacilityRentalUpdateContainer = () => {
+const FacilityRentalUpdateContainer = ({frNo}) => {
 
-    const {frNo} = useParams();
     
     const [title,setTitle] = useState('')
     const [content,setContent] = useState('')

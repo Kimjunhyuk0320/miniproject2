@@ -5,17 +5,16 @@ import * as teamApi from '../../apis/Team/TeamApi'
 
 const TeamInsertContainer = () => {
 
-  const {teamNo} = useParams()
   const [title,setTitle] = useState('')
   const [content,setContent] = useState('')
-  const [location,setLocation] = useState('')
+  const [location,setLocation] = useState('경기')
   const [address,setAddress] = useState('')
   const [liveDate,setLiveDate] = useState('')
   const [liveStTime,setLiveStTime] = useState('')
   const [liveEndTime,setLiveEndTime] = useState('')
   const [price,setPrice] = useState('')
-  const [capacity,setCapacity] = useState('')
-  const [account1,setAccount1] = useState('')
+  const [capacity,setCapacity] = useState('1')
+  const [account1,setAccount1] = useState('신한은행')
   const [account2,setAccount2] = useState('')
   const username = 'gangjinsu'
   const writer = 'aster'

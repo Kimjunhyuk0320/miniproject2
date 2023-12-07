@@ -22,7 +22,7 @@ const TeamRegList = ({ sets,tllList }) => {
                 <th width="120">모집글 번호</th>
                 <th width="280">제목</th>
                 <th width="120">연락처</th>
-                <th width="100">신청일자</th>
+                <th width="140">신청일자</th>
                 <th width="110">작성자 아이디</th>
                 <th width="100">승인여부</th>
                 <th width="100">입금여부</th>
@@ -44,7 +44,7 @@ const TeamRegList = ({ sets,tllList }) => {
                       <tr className="read-app-list-row">
 
                         <td>{tll.teamNo}</td>
-                        <Link to={`/myPage/readApp${tll.appNo}`}>
+                        <Link to={`/myPage/app/${tll.appNo}`}>
                           <td>{tll.title}</td>
                         </Link>
                         <td>{tll.phone}</td>
@@ -65,20 +65,20 @@ const TeamRegList = ({ sets,tllList }) => {
 
                         <td>
                           {tll.approvalStatus === 1 && tll.depositStatus === 0 && <input type="button" value="입금확인" className="btn-cancel" onClick={() => {
-                            sets.confirmed(tll.appNo)
+                            sets.conHandler(tll.appNo)
                           }} />}
 
                         </td>
 
                         <td>
                           {tll.approvalStatus === 0 && <input type="button"value="참가승인" className="btn-cancel" onClick={() => {
-                            sets.accept(tll.appNo)
+                            sets.accHandler(tll.appNo)
                           }} />}
                         </td>
 
                         <td>
                           {tll.approvalStatus === 0 && <input type="button" value="참가거절" className="btn-cancel" onClick={() => {
-                            sets.denied(tll.appNo)
+                            sets.dniHandler(tll.appNo)
                           }} />}
                         </td>
 

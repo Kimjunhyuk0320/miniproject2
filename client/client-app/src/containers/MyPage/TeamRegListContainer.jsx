@@ -3,52 +3,55 @@ import * as teamAppApi from '../../apis/Team/TeamAppApi'
 import TeamRegList from '../../components/Mypage/TeamRegList'
 import { useNavigate } from 'react-router-dom'
 
-const TeamRegListContainer = ({username}) => {
+const TeamRegListContainer = ({ username }) => {
 
-    
-    const [tllList, setTllList] = useState([])
 
-    const navi = useNavigate()
-  
-    const getTllList = async () => {
-      const response = await teamAppApi.teamAppListByLeader(username);
-      const data = await response.data
-      console.log(data)
-      setTllList(data)
-    }
+  const [tllList, setTllList] = useState([])
 
-    const accHandler = async (appNo)=>{
-        const response = await teamAppApi.accept({appNo})
-        const data = await response.data
-        navi(`/tllList`)
-    }
+  const navi = useNavigate()
 
-    const dniHandler = async (appNo)=>{
-        const response = await teamAppApi.denied({appNo})
-        const data = await response.data
-        navi(`/tllList`)
-    }
+  const getTllList = async () => {
+    const response = await teamAppApi.teamAppListByLeader(username);
+    const data = await response.data
+    console.log(data)
+    setTllList(data)
+  }
 
-    const conHandler = async (appNo)=>{
-        const response = await teamAppApi.confirmed({appNo})
-        const data = await response.data
-        navi(`/tllList`)
-    }
-  
-    useEffect(()=>{
-      console.log(`useEffect start`)
-      getTllList()
-    },[])
+  const accHandler = async (appNo) => {
+    const response = await teamAppApi.accept({ appNo })
+    const data = await response.data
+    navi(`/mypage/tllList`)
+    getTllList()
+  }
 
-    const sets = {
-        accHandler,
-        dniHandler,
-        conHandler,
-    }
+  const dniHandler = async (appNo) => {
+    const response = await teamAppApi.denied({ appNo })
+    const data = await response.data
+    navi(`/mypage/tllList`)
+    getTllList()
+  }
+
+  const conHandler = async (appNo) => {
+    const response = await teamAppApi.confirmed({ appNo })
+    const data = await response.data
+    navi(`/mypage/tllList`)
+    getTllList()
+  }
+
+  useEffect(() => {
+    console.log(`useEffect start`)
+    getTllList()
+  }, [])
+
+  const sets = {
+    accHandler,
+    dniHandler,
+    conHandler,
+  }
 
   return (
     <>
-        <TeamRegList sets={sets} tllList={tllList}></TeamRegList>
+      <TeamRegList sets={sets} tllList={tllList}></TeamRegList>
     </>
   )
 }

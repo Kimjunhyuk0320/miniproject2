@@ -35,9 +35,9 @@ public class BookingApiController {
     
     
     @GetMapping("/rreq")
-    public ResponseEntity<List<BookingRequests>> rreqList(Principal principal) {
+    public ResponseEntity<List<BookingRequests>> rreqList(String username) {
         try {
-            List<BookingRequests> rreqList = facilityRentalService.rreqList(principal.getName());
+            List<BookingRequests> rreqList = facilityRentalService.rreqList(username);
             return new ResponseEntity<>(rreqList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,10 +45,10 @@ public class BookingApiController {
     }
 
     @GetMapping("/rr")
-    public ResponseEntity<List<BookingRequests>> rrList(Principal principal) {
+    public ResponseEntity<List<BookingRequests>> rrList(String username) {
 
         try {
-            List<BookingRequests> rrList = facilityRentalService.rrList(principal.getName());
+            List<BookingRequests> rrList = facilityRentalService.rrList(username);
             return new ResponseEntity<>(rrList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,39 +67,39 @@ public class BookingApiController {
     }
     
     @PutMapping("/denied")
-    public ResponseEntity<Integer> reqDenied(@RequestBody BookingRequests bookingRequests) {
+    public ResponseEntity<String> reqDenied(@RequestBody BookingRequests bookingRequests) {
         try {
             int result = facilityRentalService.reqDenied(bookingRequests);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PutMapping("/accept")
-    public ResponseEntity<Integer> reqAccept(@RequestBody BookingRequests bookingRequests) {
+    public ResponseEntity<String> reqAccept(@RequestBody BookingRequests bookingRequests) {
         try {
             int result = facilityRentalService.reqAccept(bookingRequests);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PutMapping("/confirm")
-    public ResponseEntity<Integer> reqConfirm(@RequestBody BookingRequests bookingRequests) {
+    public ResponseEntity<String> reqConfirm(@RequestBody BookingRequests bookingRequests) {
         try {
             int result = facilityRentalService.reqConfirm(bookingRequests);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @DeleteMapping("/{brNo}")
-    public ResponseEntity<Integer> destroy(@PathVariable Integer brNo, BookingRequests bookingRequests) {
+    public ResponseEntity<String> destroy(@PathVariable Integer brNo, BookingRequests bookingRequests) {
         bookingRequests.setBrNo(brNo);
         try {
             int result = facilityRentalService.delReq(bookingRequests);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

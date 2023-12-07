@@ -8,16 +8,16 @@ const TeamList = ({ teamList }) => {
         <table>
           <thead>
             <tr>
-              <th width="80">번호</th>
-              <th width="100">마감</th>
-              <th width="200">제목</th>
-              <th width="100">작성자</th>
-              <th width="95">팀 모집 현황</th>
-              <th width="70">지역</th>
-              <th width="80">가격</th>
-              <th width="100">공연일자</th>
-              <th width="100">갱신일자</th>
-              <th width="65">조회수</th>
+                <th width="80">번호</th>
+                <th width="100">마감</th>
+                <th width="200">제목</th>
+                <th width="100">작성자</th>
+                <th width="95">팀 모집 현황</th>
+                <th width="70">지역</th>
+                <th width="80">가격</th>
+                <th width="100">공연일자</th>
+                <th width="140">갱신일자</th>
+                <th width="65">조회수</th>
             </tr>
           </thead>
           <tbody id="team-data">

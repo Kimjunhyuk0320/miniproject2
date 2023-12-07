@@ -106,7 +106,8 @@ const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
                         </div>
                     </div>
                     <div>
-                        <button type="button" id="red-btn" onClick={resvationHandler}>대관하기</button>
+                        
+                        {fr.confirmed == 0 && <button type="button" id="red-btn" onClick={resvationHandler}>대관하기</button>}
                     </div>
                 </div>
 

@@ -113,18 +113,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <when test="table == 'confirmed_live'">
 SELECT
 COUNT(t.team_no)
-FROM ${table} AS l
+FROM confirmed_live AS l
 JOIN team_recruitments t
-ON (l.team_no = t.team_no)
-WHERE
- <choose>
-            <when test="searchType == 0">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%" OR t.writer LIKE "%${keyword}%") </when>
-            <when test="searchType == 1">t.title LIKE "%${keyword}%"</when>
-            <when test="searchType == 2">t.content LIKE "%${keyword}%"</when>
-            <when test="searchType == 3">(t.title LIKE "%${keyword}%" OR t.content LIKE "%${keyword}%")</when>
-            <when test="searchType == 4">t.writer LIKE "%${keyword}%"</when>
-        </choose>
-
+ON (l.team_no = t.team_no AND t.username = #{username})
 </when>
 
 <otherwise>
@@ -153,15 +144,21 @@ WHERE
 
             IF(CEIL(#{pageNo} / #{pageCount}) = 1, 1, (CEIL(#{pageNo} / #{pageCount}) - 1) * #{pageCount} + 1) AS startPage,
             
-            IF(CEIL(#{pageNo} / #{pageCount}) * #{pageCount} > CEIL(#{totalCount} / #{rows}), CEIL(#{totalCount} / #{rows}), CEIL(#{pageNo} / #{pageCount}) * #{pageCount}) AS endPage,
+            IF(CEIL(#{pageNo} / #{pageCount}) * #{pageCount} > CEIL(#{totalCount} / #{rows}),
+        IF(CEIL(#{totalCount} / #{rows}) = 0, 1, CEIL(#{totalCount} / #{rows})), 
+        CEIL(#{pageNo} / #{pageCount}) * #{pageCount}
+    ) AS endPage,
             
             1 AS firstPage,
             
-            CEIL(#{totalCount} / #{rows}) AS lastPage,
+            IF(CEIL(#{totalCount} / #{rows}) = 0, 1, CEIL(#{totalCount} / #{rows})) AS lastPage,
             
             IF(#{pageNo} > 1, #{pageNo} - 1, 1) AS prev,
             
-            IF(#{pageNo} < CEIL(#{totalCount} / #{rows}), #{pageNo} + 1, CEIL(#{totalCount} / #{rows})) AS next,
+            IF(#{pageNo} < CEIL(#{totalCount} / #{rows}),
+        IF(CEIL(#{totalCount} / #{rows}) = 0, 1, #{pageNo} + 1), 
+        IF(CEIL(#{totalCount} / #{rows}) = 0, 1, CEIL(#{totalCount} / #{rows}))
+    ) AS next,
 
             #{totalCount} AS totalCount
   

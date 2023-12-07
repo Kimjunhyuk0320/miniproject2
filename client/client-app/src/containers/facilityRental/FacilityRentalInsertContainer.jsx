@@ -4,20 +4,20 @@ import { useNavigate } from 'react-router-dom'
 import * as frApi from '../../apis/facilityRental/facilityRentalApi'
 
 const FacilityRentalInsertContainer = () => {
-
     
     const [title,setTitle] = useState('')
     const [content,setContent] = useState('')
-    const [price,setPrice] = useState('')
-    const [location,setLocation] = useState('')
+    const [price,setPrice] = useState('0')
+    const [location,setLocation] = useState('경기')
     const [address,setAddress] = useState('')
     const [liveDate,setLiveDate] = useState('')
-    const [account1,setAccount1] = useState('')
+    const [account1,setAccount1] = useState('신한은행')
     const [account2,setAccount2] = useState('')
     const [file,setFile] = useState([])
 
     const username = 'gangjinsu'
     const phone = '01025258725'
+    const writer = 'aster'
 
     const navi = useNavigate();
 
@@ -57,7 +57,8 @@ const FacilityRentalInsertContainer = () => {
         insertHandler,
         file,
         username,
-        phone
+        phone,
+        writer
       }
 
   return (
