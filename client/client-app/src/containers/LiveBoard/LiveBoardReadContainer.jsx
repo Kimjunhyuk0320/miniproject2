@@ -31,7 +31,7 @@ const LiveBoardReadContainer = ({no}) => {
   const purchaseticket = async () => {
     const response1 = await liveBoards.getTicketNum(boardNo, name, phone, ticketCount)
     const data1 = await response1.data
-    console.log(data1)
+    // console.log(data1)
     // 결제 모듈 가져오기
     if( data1 == 'SUCCESS' ){
     // 2️⃣  객체 초기화 하기
@@ -74,7 +74,7 @@ const LiveBoardReadContainer = ({no}) => {
 
         if (rsp.success) {
             // 결제 성공
-            console.log(rsp);
+            // console.log(rsp);
             //티켓 구매
             const response3 = await liveBoards.ticketPurchase(boardNo, name, phone, count);
             const data3 = await response3.data
@@ -106,7 +106,7 @@ const LiveBoardReadContainer = ({no}) => {
               
             } else {
               // 결제 실패
-              console.log(rsp);
+              // console.log(rsp);
               // 리다이렉트
               navigate(`/liveBoard/${boardNo}`)
           }
@@ -129,7 +129,7 @@ const LiveBoardReadContainer = ({no}) => {
     }
 
     let timerId = setInterval(async() => {
-      console.log("Delayed for 1 second.");
+      // console.log("Delayed for 1 second.");
       // 매진 체크
       // 등록 요청
       const response2 = await liveBoards.getTicketNum(boardNo, name, phone, ticketCount)

@@ -52,9 +52,9 @@ const FacilityRentalInsertContainer = () => {
 
     if(!window.confirm(`대관게시글 등록을 완료하시겠습니까?`)) return
     const response = await frApi.frInsert(sets)
-    console.log(response)
+    // console.log(response)
     const data = await response.data
-    console.log(data)
+    // console.log(data)
     if (data != null) {
       navi(`/fr/${data}`)
     } else {

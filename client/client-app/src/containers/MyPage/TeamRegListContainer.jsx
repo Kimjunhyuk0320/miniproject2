@@ -13,7 +13,7 @@ const TeamRegListContainer = ({ username }) => {
   const getTllList = async () => {
     const response = await teamAppApi.teamAppListByLeader(username);
     const data = await response.data
-    console.log(data)
+    // console.log(data)
     setTllList(data)
   }
 
@@ -42,7 +42,7 @@ const TeamRegListContainer = ({ username }) => {
   }
 
   useEffect(() => {
-    console.log(`useEffect start`)
+    // console.log(`useEffect start`)
     getTllList()
   }, [])
 

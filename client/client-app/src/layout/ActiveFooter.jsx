@@ -70,8 +70,8 @@ const ActiveFooter = () => {
       setScrollUp(e.deltaY < 0);
       setScrollDown(e.deltaY > 0);
 
-      console.log('scrollUp : ' + scrollUp);
-      console.log('scrollDown : ' + scrollDown);
+      // console.log('scrollUp : ' + scrollUp);
+      // console.log('scrollDown : ' + scrollDown);
 
       if (scrollUp) {
         // Handle scroll up
@@ -81,7 +81,7 @@ const ActiveFooter = () => {
         // Handle scroll down
       }
 
-      console.log(direction);
+      // console.log(direction);
     };
 
     const items = document.querySelectorAll('.activeNav-item');

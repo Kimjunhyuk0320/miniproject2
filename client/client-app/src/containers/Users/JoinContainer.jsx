@@ -117,7 +117,7 @@ const JoinContainer = () => {
 
   const joinHandler = async () => {
 
-    console.log(sets)
+    // console.log(sets)
 
     if (username.length == 0) {
       alert('로그인 아이디를 입력해주세요.');

@@ -26,8 +26,8 @@ const ImgSlider = () => {
                 navigation
                 pagination={{ clickable: true }}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
+                // onSwiper={(swiper) => console.log(swiper)}
+                // onSlideChange={() => console.log('slide change')}
             >
                 <SwiperSlide><img src="/img/imgslide3.jpg" style={imgSize()} /></SwiperSlide>
                 <SwiperSlide><img src="/img/imgslide1.jpg" style={imgSize()} /></SwiperSlide>

@@ -14,7 +14,7 @@ const TicketPurchaseList = () => {
     const getList = async () => {
         const response = await myPages.getList(phone);
         const data = await response.data
-        console.log(data)
+        // console.log(data)
         setTicketList(data)
     };
 

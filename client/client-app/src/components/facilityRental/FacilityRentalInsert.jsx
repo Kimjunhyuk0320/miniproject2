@@ -19,7 +19,7 @@ const FacilityRentalInsert = ({ sets }) => {
         return new Promise( (resolve, reject) => {
           const formData = new FormData();
           loader.file.then( async (file) => {
-                console.log(file);
+                // console.log(file);
                 formData.append("parentTable", 'editor');
                 formData.append("file", file);
 
@@ -31,7 +31,7 @@ const FacilityRentalInsert = ({ sets }) => {
 
                 let response = await filesApi.upload(formData, headers);
                 let data = await response.data;
-                console.log(`data : ${data}`);
+                // console.log(`data : ${data}`);
                 
                 let newFileNo = data;
 
@@ -156,7 +156,7 @@ const FacilityRentalInsert = ({ sets }) => {
                                     <input type="file" id="thumbnail" accept="image/*" name="file" onChange={(e)=>{
                                         sets.setFile(e.target.files)
                                     }}/>
-                                    <a href="javascript:;" className="btn btn-sm btn-thumb-remove hide">삭제</a>
+                                    <Link className="btn btn-sm btn-thumb-remove hide">삭제</Link>
                                     <div className="drop-img flex col main-center sub-center">
                                         <div className="upload-box">
                                         </div>
@@ -196,18 +196,18 @@ const FacilityRentalInsert = ({ sets }) => {
                                     data=""
                                     onReady={ editor => {
                                         // You can store the "editor" and use when it is needed.
-                                        console.log( 'Editor is ready to use!', editor );
+                                        // console.log( 'Editor is ready to use!', editor );
                                     } }
                                     onChange={ ( event, editor ) => {
                                         const data = editor.getData();
-                                        console.log( { event, editor, data } );
+                                        // console.log( { event, editor, data } );
                                         sets.setContent(data)
                                     } }
                                     onBlur={ ( event, editor ) => {
-                                        console.log( 'Blur.', editor );
+                                        // console.log( 'Blur.', editor );
                                     } }
                                     onFocus={ ( event, editor ) => {
-                                        console.log( 'Focus.', editor );
+                                        // console.log( 'Focus.', editor );
                                     } }
                                 />
                             </td>

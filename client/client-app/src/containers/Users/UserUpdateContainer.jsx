@@ -110,7 +110,7 @@ const UserUpdateContainer = ({ username }) => {
 
   const updateHandler = async () => {
 
-    console.log(sets)
+    // console.log(sets)
 
 
     if (password != userPwCheck) {

@@ -1,0 +1,153 @@
+@media (max-width: 1320px) {
+    /* 화면 너비가 1000px 이하일 때의 스타일 지정 */
+    body {
+        min-width: 1320px; /* 최소 너비를 1000px로 설정 */
+    }
+}
+
+.UserUpdatePage #insertContainer {
+    margin: 200px 0;
+}
+.UserUpdatePage html,
+.UserUpdatePage body {
+    height: 100%;
+}
+
+.UserUpdatePage body {
+    margin: 0;
+    background: rgb(248, 249, 250);
+    /* background: linear-gradient(45deg, #49a09d, #5f2c82); */
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+.UserUpdatePage  #topContent {
+    /* height: 800px;
+    margin: 20px 0;
+    background: linear-gradient(180deg, #916ea9, rgb(248, 249, 250)); */
+    margin: auto;
+    width: 1320px;
+    margin-top: 100px;
+}
+
+.UserUpdatePage #insertContainer {
+    margin-top: 50px;
+}
+
+.UserUpdatePage #insertContainer>h1 {
+    color: black;
+}
+
+.UserUpdatePage #insertContainer>.page-box {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 1320px;
+    margin-bottom: 10px;
+
+}
+
+.UserUpdatePage #insertContainer 
+select, 
+.UserUpdatePage input {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+    border-style: none;
+    width: 1000px;
+    border-bottom: 1px solid rgb(41, 43, 50);
+}
+
+.UserUpdatePage  #insertContainer>.page-box>.search_item {
+
+}
+
+.UserUpdatePage .tableContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.UserUpdatePage table {
+    width: 1320px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.UserUpdatePage th,
+.UserUpdatePage td {
+    padding: 15px 35px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+    text-align: left;
+}
+
+.UserUpdatePage th {
+    background-color: rgb(41, 43, 50);;
+    color: white;
+    text-align: center;
+}
+
+.UserUpdatePage thead {
+    th {
+        background-color: #55608f;
+    }
+}
+
+.UserUpdatePage tbody {
+    tr {
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    td {
+        position: relative;
+
+        &:hover {
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -9999px;
+                bottom: -9999px;
+                background-color: rgba(255, 255, 255, 0.2);
+                z-index: -1;
+            }
+        }
+    }
+}
+
+.UserUpdatePage #textEditer {
+    width: 900px;
+}
+
+.UserUpdatePage .submitDiv {
+    display: flex;
+    justify-content: center;
+}
+
+
+.UserUpdatePage .submitDiv > input{
+    margin: 30px;
+    background-color: rgb(41, 43, 50);
+    width: 450px;
+    color: white;
+}
+
+.UserUpdatePage .submitDiv > input:hover{
+    margin: 30px;
+    scale: 103%;
+    background-color: rgb(58, 59, 63);
+    width: 450px;
+    color: white;
+}
+
+.UserUpdatePage .img-box > img{
+    width: 306px;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 15px;
+}

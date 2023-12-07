@@ -49,10 +49,10 @@ const MyInfo = () => {
               <Link to="/myPage/update">
                 <div className="button__">내 정보 수정</div>
               </Link>
-              <a href="#">
+              <Link>
                 {/* onClick={logOut}> */}
                 <div className="button__">로그아웃</div>
-              </a>
+              </Link>
             </div>
 
             <div id="expand-button__" >↓</div>

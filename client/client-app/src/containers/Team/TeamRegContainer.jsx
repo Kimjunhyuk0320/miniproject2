@@ -13,7 +13,7 @@ const TeamRegContainer = ({teamNo}) => {
     const navi = useNavigate()
 
     const regHandler = async ()=>{
-        console.log(sets)
+        // console.log(sets)
         if(!window.confirm(`참가신청서를 제출하시겠습니까?`)) return
         const response = await teamApi.teamReg(sets)
         const data = await response.data

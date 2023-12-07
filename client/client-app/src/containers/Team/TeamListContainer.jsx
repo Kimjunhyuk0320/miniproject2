@@ -65,14 +65,14 @@ const TeamListContainer = () => {
     const getTeamList = async () => {
       const response = await teamApi.teamList({pageNo, rows, searchType, keyword, order});
       const data = await response.data
-      console.log(data)
+      // console.log(data)
       setTeamList(data)
     }
   
     const initPage = async () => {
       const response = await teamApi.pageInfo({pageNo, rows, pageCount, totalCount, searchType, keyword})
       const data = await response.data
-      console.log(data)
+      // console.log(data)
       setPageInfo(data)
     }
   

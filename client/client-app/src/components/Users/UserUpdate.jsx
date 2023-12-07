@@ -60,7 +60,7 @@ const UserUpdate = ({ sets }) => {
                 }} />
                 <button onClick={() => {
                   sets.nicknameCheckedHandler()
-                }} name="btnNicknameDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>닉네임 중복 검사</button>
+                }} name="btnNicknameDupCheck" type="button" className="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>닉네임 중복 검사</button>
               </td>
             </tr>
             <tr>
@@ -76,7 +76,7 @@ const UserUpdate = ({ sets }) => {
                 }} />
                 <button onClick={()=>{
                   sets.phoneCheckedHandler()
-                }} name="btnPhoneDupCheck" type="button" class="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>연락처 중복 검사</button>
+                }} name="btnPhoneDupCheck" type="button" className="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>연락처 중복 검사</button>
               </td>
             </tr>
             <tr>
@@ -101,7 +101,7 @@ const UserUpdate = ({ sets }) => {
             </tr>
             <tr>
               <td colSpan="2">
-                <div class="submitDiv">
+                <div className="submitDiv">
                   <input type="button" value="수정" onClick={() => {
                     sets.updateHandler()
                   }} />

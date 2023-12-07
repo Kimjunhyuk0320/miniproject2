@@ -20,14 +20,14 @@ const TeamConfirmedLiveListContainer = ({username}) => {
     const getClList = async () => {
         const response = await teamAppApi.confirmedLiveList({pageNo, rows, pageCount, totalCount, searchType,order, keyword, username});
         const data = await response.data
-        console.log(data)
+        // console.log(data)
         setClList(data)
     }
 
     const initPage = async () => {
         const response = await teamAppApi.confirmedPageInfo({ pageNo, rows, pageCount, totalCount, searchType, keyword,order, username });
         const data = await response.data
-        console.log(data)
+        // console.log(data)
         setPageInfo(data)
     }
 

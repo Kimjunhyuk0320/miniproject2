@@ -13,7 +13,7 @@ const FrMyBookingListContainer = ({username}) => {
     const getRreqList = async () => {
       const response = await bookingApi.rreqList(username)
       const data = await response.data
-      console.log(data)
+      // console.log(data)
       setRreqList(data)
     }
   
@@ -27,7 +27,7 @@ const FrMyBookingListContainer = ({username}) => {
     }
   
     useEffect(() => {
-      console.log(`useEffect start`)
+      // console.log(`useEffect start`)
       getRreqList()
     }, [])
   

@@ -40,7 +40,7 @@ const TeamUpdateContainer = ({ teamNo }) => {
       window.alert(`참가가 확정된 밴드팀이 있어 수정이 불가능합니다!`)
       navi(`/team/${teamNo}`)
     }
-    console.log(data)
+    // console.log(data)
   }
 
   const updateHandler = async (team) => {
@@ -73,7 +73,7 @@ const TeamUpdateContainer = ({ teamNo }) => {
     msg = '가격은 8자릿수 안의 정수로 입력해주십시오'
     if (!check(priceCheck, price, msg)) return
 
-    console.log(team)
+    // console.log(team)
     if (!window.confirm(`수정사항을 등록하시겠습니까?`)) return
 
     const response = await teamApi.teamUpdate(team)
@@ -133,7 +133,7 @@ const TeamUpdateContainer = ({ teamNo }) => {
 
 
   useEffect(() => {
-    console.log(teamNo)
+    // console.log(teamNo)
     getUpTeam()
   }, [])
 

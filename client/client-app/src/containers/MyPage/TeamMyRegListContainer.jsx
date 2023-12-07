@@ -13,7 +13,7 @@ const TeamMyRegListContainer = ({ username }) => {
   const getTlmList = async () => {
     const response = await teamAppApi.teamAppListByMember(username)
     const data = await response.data
-    console.log(data)
+    // console.log(data)
     setTlmList(data)
   }
 

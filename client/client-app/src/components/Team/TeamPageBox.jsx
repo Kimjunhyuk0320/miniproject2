@@ -31,13 +31,13 @@ const TeamPageBox = ({rows,setRows,order,setOrder,keyword,setKeyword,searchType,
                                 setInputValue(e.target.value)
                               }
                         }/>
-                        <a href="#" className="btn" id="btn-search" onClick={()=>{
+                        <Link className="btn" id="btn-search" onClick={()=>{
                             setKeyword(inputValue)
                         }
                         }>
                             <img src="https://www.dacorkorea.com/images/icon-search.png" alt="search"
                                 style={{width:'23px',paddingTop:'5px'}}/>
-                        </a>
+                        </Link>
 
                     </div>
                 </div>

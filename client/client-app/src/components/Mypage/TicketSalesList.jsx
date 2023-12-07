@@ -14,7 +14,7 @@ const TicketSalesList = () => {
     try {
       const response = await myPages.getList2(username);
       const data = response.data;
-      console.log(data);
+      // console.log(data);
       setTicketList(data);
     } catch (error) {
       console.error('Error fetching data:', error);

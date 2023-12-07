@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const CommentInsert = ({insertComment, parentNo, parentTable }) => {
   const [inputValue, setInputValue] = useState('')
@@ -38,10 +39,10 @@ const CommentInsert = ({insertComment, parentNo, parentTable }) => {
               <textarea name="content" id="comment-content" 
               cols="10" rows="1" placeholder="댓글 추가..." value={inputValue} onChange={handleChangeInput} ></textarea>
               <div className="btn-box">
-                  <a id="btn-comment-insert" className="btn btn-sm" onClick={onsubmit}>등록</a>
+                  <Link id="btn-comment-insert" className="btn btn-sm" onClick={onsubmit}>등록</Link>
               </div>
               <div className="btn-box-can">
-                  <a id="btn-comment-del" className="btn btn-sm" onClick={onClick}>취소</a>
+                  <Link id="btn-comment-del" className="btn btn-sm" onClick={onClick}>취소</Link>
               </div>
           </div>
       </div>

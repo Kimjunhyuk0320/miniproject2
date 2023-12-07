@@ -193,9 +193,9 @@ const Header = () => {
                         <img src="/file/img/${#authentication.principal.users.profileNo}" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />
                     </a> */}
                     {/* 프로필 사진이 없을 때 */}
-                    <a href="/myInfo">
+                    <Link to="/myInfo">
                         <img src="/img/defaultProfile.png" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

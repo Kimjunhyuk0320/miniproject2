@@ -26,8 +26,8 @@ const ImgSlider = () => {
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
+                // onSwiper={(swiper) => console.log(swiper)}
+                // onSlideChange={() => console.log('slide change')}
             >
                 <SwiperSlide><img src="/img/FRIMGSlide1.png" style={imgSize()} /></SwiperSlide>
                 <SwiperSlide><img src="/img/FRIMGSlide2.jpeg" style={imgSize()} /></SwiperSlide>

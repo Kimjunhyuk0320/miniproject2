@@ -78,7 +78,7 @@ const TeamInsertContainer = () => {
     msg = '가격은 8자릿수 안의 정수로 입력해주십시오'
     if (!check(priceCheck, price, msg)) return
 
-    console.log(sets)
+    // console.log(sets)
     if(!window.confirm(`팀 모집 게시글을 등록하시겠습니까?`)) return
     const response = await teamApi.teamInsert(sets)
     const data = await response.data

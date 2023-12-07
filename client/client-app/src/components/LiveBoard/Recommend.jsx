@@ -16,7 +16,7 @@ const Recommend = () => {
                     </div>
                     <div className="staticVideoSection">
                         {/* YouTube Video Embed Code */}
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/wmMrFpemJNY" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/wmMrFpemJNY" frameBorder="0" allowFullScreen></iframe>
                     </div>
                 </div>
             </div>

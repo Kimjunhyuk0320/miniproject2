@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Join = ({ sets }) => {
 
@@ -41,9 +42,9 @@ const Join = ({ sets }) => {
                             reader.readAsDataURL(selectedFile);
                           }} />
                           <input type="text" name="fileName" id="file-name" value={sets.fileName} readonly />
-                          <a href="javascript:;" className="btn btn-sm btn-thumb-remove hide">
+                          <Link className="btn btn-sm btn-thumb-remove hide">
                             <i className="fi fi-br-cross"></i>
-                          </a>
+                          </Link>
                         </div>
                       </div>
 

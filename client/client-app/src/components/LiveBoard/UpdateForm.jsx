@@ -5,6 +5,7 @@ import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
 import * as filesApi from '../../apis/file/fileApi'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Link } from 'react-router-dom'
 const UpdateForm = ({liveBoard}) => {
    // 로그인 한 사용자 정보
    const writer = '마산 불주먹'
@@ -37,7 +38,7 @@ const UpdateForm = ({liveBoard}) => {
         return new Promise( (resolve, reject) => {
           const formData = new FormData();
           loader.file.then( async (file) => {
-                console.log(file);
+                // console.log(file);
                 formData.append("parentTable", 'editor');
                 formData.append("file", file);
 
@@ -49,7 +50,7 @@ const UpdateForm = ({liveBoard}) => {
 
                 let response = await filesApi.upload(formData, headers);
                 let data = await response.data;
-                console.log(`data : ${data}`);
+                // console.log(`data : ${data}`);
                 
                 let newFileNo = data;
 
@@ -127,7 +128,7 @@ const UpdateForm = ({liveBoard}) => {
 
     try {
       const response = await liveBoards.updateLiveBoard({boardNo, username, writer, title, crew, liveDate, liveTime, location,  address, price, maxTickets, file, content}, headers);
-      console.log(response); // 응답 확인
+      // console.log(response); // 응답 확인
       const data = response.data;
       if (data === 0) {
           alert('게시글 작성 실패');
@@ -212,9 +213,9 @@ const UpdateForm = ({liveBoard}) => {
                       multiple
                     />
                     { thumbnail ? (
-                    <a href="javascript:;" className={`btn btn-sm btn-thumb-remove ${thumbnail ? '' : 'hide'}`} onClick={handleRemoveThumbnail}>
+                    <Link className={`btn btn-sm btn-thumb-remove ${thumbnail ? '' : 'hide'}`} onClick={handleRemoveThumbnail}>
                       삭제
-                    </a>
+                    </Link>
                       ) : (
                       <></>
                     )}
@@ -262,18 +263,18 @@ const UpdateForm = ({liveBoard}) => {
                     data={content}
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
+                        // console.log( 'Editor is ready to use!', editor );
                     } }
                     onChange={ ( event, editor ) => {
                         const data = editor.getData();
-                        console.log( { event, editor, data } );
+                        // console.log( { event, editor, data } );
                         setContent(data);
                     } }
                     onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
+                        // console.log( 'Blur.', editor );
                     } }
                     onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
+                        // console.log( 'Focus.', editor );
                     } }
                   />
                   </td>

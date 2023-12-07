@@ -21,7 +21,7 @@ const FacilityRentalReadContainer = ({ frNo }) => {
   const getFr = async () => {
     const response = await frApi.frRead(frNo)
     const data = await response.data
-    console.log(data)
+    // console.log(data)
     setFr(data)
   }
   const resvationHandler = async () => {

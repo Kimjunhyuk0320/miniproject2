@@ -51,18 +51,18 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="col item social">
-                        <a href="https://www.facebook.com/" target="_blank">
+                        <Link to="https://www.facebook.com/" target="_blank">
                             <i className="icon ion-social-facebook"></i>
-                        </a>
-                        <a href="https://www.twitter.com/" target="_blank">
+                        </Link>
+                        <Link to="https://www.twitter.com/" target="_blank">
                             <i className="icon ion-social-twitter"></i>
-                        </a>
-                        <a href="https://www.snapchat.com/" target="_blank">
+                        </Link>
+                        <Link to="https://www.snapchat.com/" target="_blank">
                             <i className="icon ion-social-snapchat"></i>
-                        </a>
-                        <a href="https://www.instagram.com/" target="_blank">
+                        </Link>
+                        <Link to="https://www.instagram.com/" target="_blank">
                             <i className="icon ion-social-instagram"></i>
-                        </a>
+                        </Link>
                     </div>
                     <p className="copyright">Copyright © LiveDom 2023 All rights reserved.</p>
                 </div>

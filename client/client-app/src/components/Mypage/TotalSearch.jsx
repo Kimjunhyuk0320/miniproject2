@@ -59,7 +59,7 @@ const TotalSearch = () => {
 
       const response = await myPages.search(keyword);
       const data = response.data;
-      console.log(data);
+      // console.log(data);
 
       const { frList, liveBoardList, teamList } = data
       setFrList(frList)
