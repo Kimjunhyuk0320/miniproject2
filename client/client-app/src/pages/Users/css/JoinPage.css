@@ -116,6 +116,7 @@
     padding: 7px 0;
     background: transparent;
     transition: border-color 0.2s;
+    color: black;
 }
 
 .JoinPage .form__field::placeholder {
@@ -218,6 +219,7 @@
     background-color: rgba(242, 242, 242);
     border: none;
     text-overflow: ellipsis;
+    display: none;
     /* 생략 부호 표시 */
 }
 

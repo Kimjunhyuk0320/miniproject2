@@ -12,36 +12,30 @@ const TeamPagenation = ({ pageInfo, setPage }) => {
 
 
   const myArray = Array.from({ length: end - start + 1 }, (_, index) => index + start);
-
-
   const clickPage = (page) => {
     setPage(page)
   }
-
-
-
-
   return (
-        <div id="paginationContainer">
-          <div className="pagination_count">
-            <Link className="page-arrow" id="first" onClick={() => { clickPage(first) }}>
-              <img src="/img/left_B.png" width="15px" />
-            </Link>
-            <Link className="page-arrow" id="prev" onClick={() => { clickPage(prev) }} >&lsaquo;</Link>
+    <div id="paginationContainer">
+      <div className="pagination_count">
+        <Link className="page-arrow" id="first" onClick={() => { clickPage(first) }}>
+          <img src="/img/left_B.png" width="15px" />
+        </Link>
+        <Link className="page-arrow" id="prev" onClick={() => { clickPage(prev) }} >&lsaquo;</Link>
 
-            <div className="page-list">
-              {myArray.map((number) => (
-                <Link key={number} className="page-no" onClick={() => { clickPage(number) }}>{number}</Link>
-              ))
-              }
-            </div>
-
-            <Link className="page-arrow" id="next" onClick={() => { clickPage(next) }}>&rsaquo;</Link>
-            <Link className="page-arrow" id="last" onClick={() => { clickPage(last) }}>
-              <img src="/img/right_B.png" width="15px" />
-            </Link>
-          </div>
+        <div className="page-list">
+          {myArray.map((number) => (
+            <Link key={number} className="page-no" onClick={() => { clickPage(number) }}>{number}</Link>
+          ))
+          }
         </div>
+
+        <Link className="page-arrow" id="next" onClick={() => { clickPage(next) }}>&rsaquo;</Link>
+        <Link className="page-arrow" id="last" onClick={() => { clickPage(last) }}>
+          <img src="/img/right_B.png" width="15px" />
+        </Link>
+      </div>
+    </div>
   )
 }
 

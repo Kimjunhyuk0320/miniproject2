@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 body {
   overflow-x: hidden;
 }
-
 
 /* 달력/시계 ⌚/📅 아이콘 색상 */
 input::-webkit-calendar-picker-indicator {
@@ -38,89 +38,6 @@ input[type='time']::-webkit-calendar-picker-indicator {
   background-image: url('http://localhost:3000/img/time2.png') !important;
   background-repeat: no-repeat !important;
 }
-
-/* 동영상 관련 css */
-/* .bg-video {
-        height: 100vh;
-        z-index: -1;
-    }
-
-    .bg-video__content {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-
-    .video_detail {
-        z-index: 100;
-        color: white;
-    }
-
-    .video_detail a {
-        z-index: 101;
-
-    } */
-
-/* 비디오 위의 텍스트에 관한 설정 */
-/* .video_detail_text {
-        position: absolute;
-        top: 35%;
-        left: 5%;
-        transform: translate(-50%, -50%);
-
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 1s ease-out;
-    }
-
-    .video_detail_text.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .video_detail_text h1 {
-        font-size: 80px;
-    }
-
-    .video_detail img {
-        position: absolute;
-        top: 5%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 100px;
-        width: 300px;
-        object-fit: cover;
-        opacity: 0.75;
-    }
-
-
-    /* 클랙했을 때 아래로 내려가는 css */
-/* .click_for_scroll {
-        font-size: 30px;
-        position: absolute;
-        top: 92%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-    }
-
-    @keyframes moveUpDown {
-
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
-        90% {
-            transform: translateY(5px);
-        }
-    }
-
-    .click_for_scroll {
-        animation: moveUpDown 2s linear infinite;
-    } */
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 
 * {
   margin: 0;
@@ -221,7 +138,7 @@ input[type='time']::-webkit-calendar-picker-indicator {
 }
 
 .Index .text_ h2 {
-  font-size: 4.5em;
+  font-size: 5em;
   font-weight: 800;
   color: #fff;
   line-height: 1em;
@@ -237,7 +154,7 @@ input[type='time']::-webkit-calendar-picker-indicator {
 }
 
 .Index .text_ p {
-  font-size: 1.1em;
+  font-size: 1em;
   color: #fff;
   margin: 20px 0;
   font-weight: 400;

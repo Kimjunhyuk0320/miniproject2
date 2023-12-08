@@ -9,7 +9,7 @@ const TeamConfirmedLiveList = ({ clList }) => {
         <table>
           <thead>
             <tr>
-              <th width="100">번호</th> 
+              <th width="100">번호</th>
               <th width="300">모집글 제목</th>
               <th width="100">작성자</th>
               <th width="150">회원 아이디</th>

@@ -22,29 +22,33 @@ const UserUpdate = ({ sets }) => {
             <tr>
               <td>이름</td>
               <td>
-                <input type="text" name="name" id="name" value={sets.name} readonly />
+                <input type="text" name="name" id="name" value={sets.name} readOnly />
               </td>
             </tr>
             <tr>
               <td>아이디</td>
               <td>
-                <input type="text" name="username" id="username" readonly value={sets.username} />
+                <input type="text" name="username" id="username" readOnly value={sets.username} />
               </td>
             </tr>
             <tr>
               <td>비밀번호</td>
               <td>
-                <input type="password" name="password" id="password" value={sets.password} onChange={(e) => {
-                  sets.setPassword(e.target.value)
-                }} />
+                <form>
+                  <input type="password" autoComplete='off' name="password" id="password" value={sets.password} onChange={(e) => {
+                    sets.setPassword(e.target.value)
+                  }} />
+                </form>
               </td>
             </tr>
             <tr>
               <td>비밀번호 확인</td>
               <td>
-                <input type="password" name="userPwCheck" id="passwordCheck" value={sets.userPwCheck} onChange={(e) => {
+                <form>
+                <input type="password" autoComplete='off' name="userPwCheck" id="passwordCheck" value={sets.userPwCheck} onChange={(e) => {
                   sets.setUserPwCheck(e.target.value)
                 }} />
+                </form>
               </td>
             </tr>
             <tr>
@@ -74,7 +78,7 @@ const UserUpdate = ({ sets }) => {
                     sets.setPhone(e.target.value)
                   }
                 }} />
-                <button onClick={()=>{
+                <button onClick={() => {
                   sets.phoneCheckedHandler()
                 }} name="btnPhoneDupCheck" type="button" className="btn btn-outline-dark dul_btn_size" style={{ marginTop: '20px' }}>연락처 중복 검사</button>
               </td>

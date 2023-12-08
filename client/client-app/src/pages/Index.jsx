@@ -65,6 +65,13 @@ const Index = () => {
         <title>LiveDom</title>
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css' />
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+        <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css' />
+        <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css' />
       </Helmet>
 
       <div className='Index'>
@@ -192,7 +199,7 @@ const Index = () => {
               <div className="box_inner_R_top">
                 <h1 style={{ fontSize: '5.5rem' }}>공연</h1>
                 <h1>음악을 듣고, 함께 만들고,</h1>
-                <h1>당신의 음악, Live Dom이 함께합니다.</h1>
+                <h1>당신의 음악, Live Dom에서.</h1>
                 <Link to="/liveBoard">
                   <h1 style={{ textDecoration: 'underline', fontSize: '3rem' }}>자세히 보기</h1>
                 </Link>
@@ -215,6 +222,7 @@ const Index = () => {
                   <div className="box_inner_R_top">
                     <h1 style={{ fontSize: '5.5rem' }}>공연 팀 모집</h1>
                     <h1>음악을 만들어가는 여정</h1>
+                    <h1>지금 공연 팀 모집을 시작해보세요.</h1>
                     <Link to="/teamList">
                       <h1 style={{ textDecoration: 'underline', fontSize: '3rem' }}>자세히 보기</h1>
                     </Link>
@@ -247,7 +255,6 @@ const Index = () => {
         </section>
       </div>
     </>
-
   )
 }
 
