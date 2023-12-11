@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+// TODO: 여기 코드르 참조해서 에러처리를 해보세요.
 const Test = () => {
     const navigate = useNavigate()
 
