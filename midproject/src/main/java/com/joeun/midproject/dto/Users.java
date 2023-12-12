@@ -20,6 +20,8 @@ public class Users {
     private int enabled;            // 휴면여부
     private Date updDate;
     private int profileNo;
+    private String rememberId;
+    private String rememberMe;
 
 
     //프로필사진

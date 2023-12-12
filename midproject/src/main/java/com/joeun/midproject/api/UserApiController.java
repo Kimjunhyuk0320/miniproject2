@@ -1,8 +1,7 @@
 package com.joeun.midproject.api;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -11,20 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.joeun.midproject.config.JwtProp;
+import com.joeun.midproject.config.SecurityConstants;
 import com.joeun.midproject.dto.Ticket;
 import com.joeun.midproject.dto.Users;
 import com.joeun.midproject.service.UserService;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -35,28 +41,91 @@ public class UserApiController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtProp jwtProp;
+
     /**
      * 로그인 화면
      * 
      * @return
      */
-    // @GetMapping("/login")
-    // public ResponseEntity<Map<String, Object>> login(
-    //         @CookieValue(value = "remember-id", required = false) Cookie cookie) {
-    //     String userId = "";
-    //     boolean rememberId = false;
 
-    //     if (cookie != null) {
-    //         userId = cookie.getValue();
-    //         rememberId = true;
-    //     }
+    @PostMapping(value = "/login")
+    public ResponseEntity<?> login(@RequestBody Users users, HttpServletResponse response) {
+        log.info(users.toString());
+        try {
+            Users dbUsers = userService.read(users.getUsername());
+            log.info("dbUsers : " + dbUsers.toString());
+            log.info(passwordEncoder.matches(users.getPassword(), dbUsers.getPassword())+"");
+            
+            if (dbUsers != null && passwordEncoder.matches(users.getPassword(), dbUsers.getPassword())) {
+                byte[] signingKey = jwtProp.getSecretKey().getBytes();
+                String jwt = Jwts.builder()
+                        .signWith(Keys.hmacShaKeyFor(signingKey), Jwts.SIG.HS512) // 시그니처 사용할 비밀키, 알고리즘 설정
+                        .header() // 헤더 설정
+                        .add("typ", SecurityConstants.TOKEN_TYPE) // typ : JWT
+                        .and()
+                        .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 5)) // 토큰 만료 시간 설정 (5일)
+                        .claim("uid", dbUsers.getUsername()) // Payload : uid : username
+                        .claim("rol", dbUsers.getAuth()) // Payload : rol [ROLE_USER,ROLE_ADMIN]
+                        .claim("users", dbUsers) // Payload : users {해당 회원 객체}
+                        .compact(); // 토큰 세팅 종료 후 생성
 
-    //     Map<String, Object> map = new HashMap<>();
-    //     map.put("username", userId);
-    //     map.put("rememberId", rememberId);
+                if (users.getRememberId() != null && users.getRememberId().equals("on")) {
+                    Cookie cookie = new Cookie("remember-id", users.getUsername());
+                    cookie.setMaxAge(60 * 60 * 24 * 7);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+                if (users.getRememberMe() != null && users.getRememberMe().equals("on")) {
+                    Cookie cookie = new Cookie("refreshToken", jwt);
+                    cookie.setMaxAge(60 * 60 * 24 * 7);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+                log.info("JWT : " + jwt);
+                return new ResponseEntity<String>(jwt, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
 
-    //     return new ResponseEntity<>(map, HttpStatus.OK);
-    // }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
+    @GetMapping("/jwtInfo")
+    public ResponseEntity<?> jwtInfo(@RequestHeader(name = "Authorization") String header) {
+
+        log.info("====header====");
+        log.info("Authorization : " + header);
+
+        // Authorization : Bearer ${jwt}
+        String jwt = header.replace(SecurityConstants.TOKEN_PREFIX, "");
+        byte[] signingKey = jwtProp.getSecretKey().getBytes();
+        Jws<Claims> parsedToken = Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(signingKey))
+                .build()
+                .parseSignedClaims(jwt);
+
+        // uid
+        String username = parsedToken.getPayload().get("uid").toString();
+        log.info("username : " + username);
+
+        // rol
+        Claims claims = parsedToken.getPayload();
+        Object roles = claims.get("rol");
+        log.info("roles : " + roles);
+
+        return new ResponseEntity<String>(parsedToken.toString(), HttpStatus.OK);
+
+    }
+
     @GetMapping("/{username}")
     public ResponseEntity<Users> userInfo(@PathVariable("username") String username) {
 
@@ -68,10 +137,9 @@ public class UserApiController {
         }
 
     }
-    
 
     @PostMapping()
-    public ResponseEntity<String> joinPro( Users users, HttpServletRequest request) {
+    public ResponseEntity<String> joinPro(Users users, HttpServletRequest request) {
         log.info(users.toString());
         try {
             int result = userService.insert(users, request);
@@ -88,9 +156,9 @@ public class UserApiController {
     }
 
     @PutMapping()
-    public ResponseEntity<String> updatePro( Users users, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<String> updatePro(Users users, HttpServletRequest request, HttpServletResponse response) {
         try {
-            int result = userService.update(users, request,response);
+            int result = userService.update(users, request, response);
 
             if (result > 0) {
                 return new ResponseEntity<>("수정 성공", HttpStatus.OK);

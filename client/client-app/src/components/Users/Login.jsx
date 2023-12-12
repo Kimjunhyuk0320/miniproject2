@@ -30,7 +30,7 @@ const Login = ({ sets }) => {
               </div>
 
               <div>
-                <input type="checkbox" name="remember-me" id="remember-me" value={sets['remember-me']} onChange={(e) => {
+                <input type="checkbox" name="remember-me" id="remember-me" value={sets.rememberMe} onChange={(e) => {
                   sets.setRemeberMe(e.target.value)
                 }} />
                 <label for="remember-me">자동 로그인</label> <br />

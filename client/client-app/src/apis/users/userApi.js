@@ -25,7 +25,15 @@ export const phoneCheck = (phone)=>{
 
 
 export const login = (users) => {
-    return axios.post(`/loginPro`, users)
+    return axios.post(`/api/user/login`, users)
+}
+
+export const jwtInfo = (jwt) => {
+    return axios.get(`/api/user/jwtInfo`,{
+        headers:{
+            Authorization : `Bearer ${jwt}`
+        }
+    })
 }
 
 export const userInfo = (username) =>{

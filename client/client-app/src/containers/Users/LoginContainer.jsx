@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Login from '../../components/Users/Login'
 import { useNavigate } from 'react-router-dom'
 import * as userApi from '../../apis/users/userApi'
+import UserContext from '../../context/UserContext'
 
 const LoginContainer = () => {
 
+  const {jwtSets} = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberId, setRememberId] = useState('');
@@ -17,6 +19,13 @@ const LoginContainer = () => {
     const response = await userApi.login(sets)
     const data = response.data
     if(data!=null){
+      const responseJwtInfo = await userApi.jwtInfo(data)
+      const dataJwtInfo = await responseJwtInfo.data
+      //컨텍스트에 토큰등록
+      //컨텍스트에 해석정보등록
+      console.log('this jwtStets',jwtSets)
+      jwtSets.login(data,dataJwtInfo)
+      console.log(jwtSets.isLogin,jwtSets.jwtToken,jwtSets.parsedToken)
       navi(`/`)
     }else{
       getCookies()
@@ -35,7 +44,7 @@ const LoginContainer = () => {
     setPassword,
     rememberId,
     setRememberId,
-    "remember-me" :rememberMe,
+    rememberMe,
     setRemeberMe,
     loginHandler
   }

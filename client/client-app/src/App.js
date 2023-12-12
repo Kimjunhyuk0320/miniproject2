@@ -28,42 +28,43 @@ import TeamConfirmedLiveListPage from './pages/Team/TeamConfirmedLiveListPage';
 import JoinPage from './pages/Users/JoinPage';
 import LoginPage from './pages/Users/LoginPage';
 import UserUpdatePage from './pages/Users/UserUpdatePage';
+import UserContextProvider from './context/UserContextProvider';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={ <Index/> } />
-        <Route path='/join' element={ <JoinPage/> } />
-        <Route path='/login' element={ <LoginPage/> } />
-        <Route path='/mypage/update' element={ <UserUpdatePage/> } />
-        <Route path='/MyPage' element={ <MyPage/> } />
-        <Route path='/MyInfo' element={ <MyInfo/> } />
-        <Route path='/TotalSearch' element={ <TotalSearch/> } />
-        <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
-        <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
-        <Route path='/liveBoard' element={ <LiveBoardList/> }/>
-        <Route path='/liveBoard/insert' element={ <LiveBoardInsert/> }/>
-        <Route path='/liveBoard/:no' element={ <LiveBoardRead/> }/>
-        <Route path='/liveBoard/update/:no' element={ <LiveBoardUpdate/> }/>
-        <Route path='/teamList' element={ <TeamListPage/> } />
-        <Route path='/team/:teamNo' element={ <TeamReadPage/> } />
-        <Route path='/team/update/:teamNo' element={ <TeamUpdatePage/> } />
-        <Route path='/team/insert' element={ <TeamInsertPage/> } />
-        <Route path='/team/app/:teamNo' element={ <TeamRegPage/> } />
-        <Route path='/mypage/tllList' element={ <TeamRegListPage/> } />
-        <Route path='/mypage/app/:appNo' element={ <TeamRegReadPage/> } />
-        <Route path='/mypage/tlmList' element={ <TeamMyRegListPage/> } />
-        <Route path='/mypage/clList' element={ <TeamConfirmedLiveListPage/> } />
-        <Route path='/mypage/rrList' element={ <FrBookingListPage/> } />
-        <Route path='/mypage/rreqList' element={ <FrMyBookingListPage/> } />
-        <Route path='/frList' element={ <FacilityRentalListPage/> } />
-        <Route path='/fr/:frNo' element={ <FacilityRentalReadPage/> } />
-        <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdatePage/> } />
-        <Route path='/fr/insert' element={ <FacilityRentalInsertPage/> } />
-        <Route path='/join' element={ <JoinPage/> } />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Index />} />
+          <Route path='/join' element={<JoinPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/mypage/update' element={<UserUpdatePage />} />
+          <Route path='/MyPage' element={<MyPage />} />
+          <Route path='/MyInfo' element={<MyInfo />} />
+          <Route path='/TotalSearch' element={<TotalSearch />} />
+          <Route path='/TicketSalesList' element={<TicketSalesList />} />
+          <Route path='/TicketPurchaseList' element={<TicketPurchaseList />} />
+          <Route path='/liveBoard' element={<LiveBoardList />} />
+          <Route path='/liveBoard/insert' element={<LiveBoardInsert />} />
+          <Route path='/liveBoard/:no' element={<LiveBoardRead />} />
+          <Route path='/liveBoard/update/:no' element={<LiveBoardUpdate />} />
+          <Route path='/teamList' element={<TeamListPage />} />
+          <Route path='/team/:teamNo' element={<TeamReadPage />} />
+          <Route path='/team/update/:teamNo' element={<TeamUpdatePage />} />
+          <Route path='/team/insert' element={<TeamInsertPage />} />
+          <Route path='/team/app/:teamNo' element={<TeamRegPage />} />
+          <Route path='/mypage/tllList' element={<TeamRegListPage />} />
+          <Route path='/mypage/app/:appNo' element={<TeamRegReadPage />} />
+          <Route path='/mypage/tlmList' element={<TeamMyRegListPage />} />
+          <Route path='/mypage/clList' element={<TeamConfirmedLiveListPage />} />
+          <Route path='/mypage/rrList' element={<FrBookingListPage />} />
+          <Route path='/mypage/rreqList' element={<FrMyBookingListPage />} />
+          <Route path='/frList' element={<FacilityRentalListPage />} />
+          <Route path='/fr/:frNo' element={<FacilityRentalReadPage />} />
+          <Route path='/fr/update/:frNo' element={<FacilityRentalUpdatePage />} />
+          <Route path='/fr/insert' element={<FacilityRentalInsertPage />} />
+          <Route path='/join' element={<JoinPage />} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 

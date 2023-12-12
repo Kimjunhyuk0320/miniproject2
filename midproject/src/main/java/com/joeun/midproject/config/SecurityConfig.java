@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -69,56 +70,55 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 인가 처리
         // 람다식 
-        http.csrf().disable();
-        http
-            .authorizeRequests((authorize) -> authorize
-                                .antMatchers("/**").permitAll()
-                                .antMatchers("/api/**").permitAll()    // /static/~ 정적자원 인가처리
-                                .antMatchers("/css/**", "/js/**", "/img/**").permitAll()    // /static/~ 정적자원 인가처리
-                              )
-        ;
+        http.csrf((csrf)->csrf.disable());
+        // http
+        //     .authorizeRequests((authorize) -> authorize
+        //                         .antMatchers("/**").permitAll()
+        //                         .antMatchers("/api/**").permitAll()    // /static/~ 정적자원 인가처리
+        //                         .antMatchers("/css/**", "/js/**", "/img/**").permitAll()    // /static/~ 정적자원 인가처리
+        //                       )
+        // ;
 
 
         // 로그인 설정
-        http.formLogin( (form) -> form
-                                .defaultSuccessUrl("/")         // 로그인 성공 시, URL : "/"(기본값)
-                                .loginPage("/login")                    // 커스텀 로그인 페이지 지정 (default:/login)
-                                .loginProcessingUrl("/loginPro")// 커스텀 로그인 요청 처리 경로 지정 (default:/login)
-                                .usernameParameter("username")        // 아이디 요청 파라미터 이름 설정  (default:username)
-                                .passwordParameter("password")        // 비밀번호 요청 파라미터 이름 설정 (default:password)
-                                .successHandler( authenticationSuccessHandler() ) // 로그인 성공 처리자 빈을 지정
-                                .permitAll()                                      // 로그인 폼은 모든 사용자에게 허용
-        );
-
+        http.formLogin( (form) -> form.disable()
+                                // .defaultSuccessUrl("/")         // 로그인 성공 시, URL : "/"(기본값)
+                                // .loginPage("/login")                    // 커스텀 로그인 페이지 지정 (default:/login)
+                                // .loginProcessingUrl("/loginPro")// 커스텀 로그인 요청 처리 경로 지정 (default:/login)
+                                // .usernameParameter("username")        // 아이디 요청 파라미터 이름 설정  (default:username)
+                                // .passwordParameter("password")        // 비밀번호 요청 파라미터 이름 설정 (default:password)
+                                // .successHandler( authenticationSuccessHandler() ) // 로그인 성공 처리자 빈을 지정
+                                // .permitAll()                                      // 로그인 폼은 모든 사용자에게 허용
+                                );
+        http.sessionManagement((mn)->mn.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         // 로그아웃 설정
-        http.logout( (logout) -> logout
-                                    .logoutSuccessUrl("/")
-                                    .logoutUrl("/logout")  
-                                    .deleteCookies("remember-id","remember-me","JSESSIONID")
-                                    .invalidateHttpSession(true)
-                                    .permitAll()
-                    );
+        // http.logout( (logout) -> logout
+        //                             .logoutSuccessUrl("/")
+        //                             .logoutUrl("/logout")  
+        //                             .deleteCookies("remember-id","remember-me","JSESSIONID")
+        //                             .invalidateHttpSession(true)
+        //                             .permitAll()
+        //             );
 
       
 
         // 자동로그인 설정
-        http.rememberMe( (remember) -> remember
-                                    .key("midproject")
-                                    .tokenRepository( tokenRepository() )
-                                    .tokenValiditySeconds( 60 * 60 * 24 * 7 )
-                       );
+        // http.rememberMe( (remember) -> remember
+        //                             .key("midproject")
+        //                             .tokenRepository( tokenRepository() )
+        //                             .tokenValiditySeconds( 60 * 60 * 24 * 7 )
+        //                );
 
 
 
         // 인증 예외 처리
-        http.exceptionHandling( (exception) -> exception
-                                                .accessDeniedHandler( accessDeniedHandler() )
+        // http.exceptionHandling( (exception) -> exception
+        //                                         .accessDeniedHandler( accessDeniedHandler() )
                                                 
-                              );
+        //                       );
 
       
-        http.csrf().disable();                    
     }
 
     // 👮‍♂️🔐사용자 인증 관리 메소드

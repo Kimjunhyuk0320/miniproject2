@@ -3,15 +3,16 @@ import LoginContainer from '../../containers/Users/LoginContainer'
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import './css/LoginPage.css';
+import UserContextProvider from '../../context/UserContextProvider';
 
 const LoginPage = () => {
   return (
     <>
-      <Header />
-      <div className='LoginPage'>
-        <LoginContainer></LoginContainer>
-      </div>
-      <Footer />
+        <Header />
+        <div className='LoginPage'>
+          <LoginContainer></LoginContainer>
+        </div>
+        <Footer />
     </>
   )
 }
