@@ -11,15 +11,15 @@ export const join = (users) => {
     })
 }
 
-export const usernameCheck = (username)=>{
+export const usernameCheck = (username) => {
     return axios.get(`/api/user/getLoginIdDup?username=${username}`)
 }
 
-export const nicknameCheck = (nickname)=>{
+export const nicknameCheck = (nickname) => {
     return axios.get(`/api/user/getNicknameDup?nickname=${nickname}`)
 }
 
-export const phoneCheck = (phone)=>{
+export const phoneCheck = (phone) => {
     return axios.get(`/api/user/getPhoneDup?phone=${phone}`)
 }
 
@@ -29,14 +29,14 @@ export const login = (users) => {
 }
 
 export const jwtInfo = (jwt) => {
-    return axios.get(`/api/user/jwtInfo`,{
-        headers:{
-            Authorization : `Bearer ${jwt}`
+    return axios.get(`/api/user/jwtInfo`, {
+        headers: {
+            Authorization: `Bearer ${jwt}`
         }
     })
 }
 
-export const userInfo = (username) =>{
+export const userInfo = (username) => {
     return axios.get(`/api/user/${username}`)
 }
 
@@ -50,4 +50,8 @@ export const update = (users) => {
 
 export const getCookieValue = (cookieName) => {
     return cookies.get(cookieName)
+}
+
+export const delCookieValue = (cookieName) => {
+    return cookies.set(cookieName, '', { expires: new Date(0) });
 }

@@ -24,6 +24,8 @@ const UserContextProvider = ({ children }) => {
         setIsUSER(false)
         setIsCLUB(false)
         setIsBAND(false)
+        //refreshToken쿠키날리기
+        userApi.delCookieValue(`refreshToken`)
     }
     const login = (jwt, parsedJwt) => {
         setIsLogin(true)

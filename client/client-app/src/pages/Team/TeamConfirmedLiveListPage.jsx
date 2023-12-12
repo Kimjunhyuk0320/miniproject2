@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TeamConfirmedLiveListContainer from '../../containers/Team/TeamConfirmedLiveListContainer'
 import Header from '../../layout/Header'
 import Footer from '../../layout/Footer'
+import UserContext from '../../context/UserContext'
 
 const TeamConfirmedLiveListPage = () => {
 
-    const username = 'gangjinsu'
+  const {jwtSets} = useContext(UserContext)
+
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
 
   return (
     <div className='TicketPurchaseList'>

@@ -34,7 +34,10 @@ const LoginContainer = () => {
   }
   
   const getCookies = ()=>{
-    setRememberId(userApi.getCookieValue(`remember-id`))
+    if(userApi.getCookieValue(`remember-id`)!=null){
+      setRememberId(true)
+      setUsername(userApi.getCookieValue(`remember-id`))
+    }
   }
 
   const sets = {
