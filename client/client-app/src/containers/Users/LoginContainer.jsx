@@ -23,10 +23,10 @@ const LoginContainer = () => {
       const dataJwtInfo = await responseJwtInfo.data
       //컨텍스트에 토큰등록
       //컨텍스트에 해석정보등록
-      console.log('this jwtStets',jwtSets)
-      jwtSets.login(data,dataJwtInfo)
+      await jwtSets.login(data,dataJwtInfo)
       console.log(jwtSets.isLogin,jwtSets.jwtToken,jwtSets.parsedToken)
       navi(`/`)
+      console.log('this jwtStets',jwtSets)
     }else{
       getCookies()
       navi(`/login`)
@@ -34,7 +34,7 @@ const LoginContainer = () => {
   }
   
   const getCookies = ()=>{
-    setRememberId(userApi.getCookieValue(`rememberId`))
+    setRememberId(userApi.getCookieValue(`remember-id`))
   }
 
   const sets = {

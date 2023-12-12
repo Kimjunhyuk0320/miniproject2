@@ -24,14 +24,15 @@ const Login = ({ sets }) => {
             <div className="btn-div">
               <div>
                 <input type="checkbox" name="rememberId" id="remember-id" value={sets.rememberId} onChange={(e) => {
-                  sets.setRememberId(e.target.value)
+                  sets.setRememberId(e.target.checked)
                 }} />
                 <label for="remember-id">아이디 저장</label>
               </div>
 
               <div>
                 <input type="checkbox" name="remember-me" id="remember-me" value={sets.rememberMe} onChange={(e) => {
-                  sets.setRemeberMe(e.target.value)
+                  sets.setRemeberMe(e.target.checked)
+                  console.log(e.target.checked)
                 }} />
                 <label for="remember-me">자동 로그인</label> <br />
               </div>

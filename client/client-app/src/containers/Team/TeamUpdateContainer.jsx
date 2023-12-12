@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TeamUpdate from '../../components/Team/TeamUpdate'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
+import UserContext from '../../context/UserContext'
 
 const TeamUpdateContainer = ({ teamNo }) => {
+  const {jwtSets} = useContext(UserContext)
   const [title, setTitle] = useState('')
   const [writer, setWriter] = useState('')
   const [content, setContent] = useState('')
@@ -19,13 +21,12 @@ const TeamUpdateContainer = ({ teamNo }) => {
 
   const navi = useNavigate()
 
-
   const getUpTeam = async () => {
 
     const response = await teamApi.teamRead(teamNo)
     const data = await response.data
     setTitle(data.title)
-    setWriter(data.writer)
+    setWriter(jwtSets.parsedToken.payload.users.nickname)
     setContent(data.content)
     setLocation(data.location)
     setAddress(data.address)

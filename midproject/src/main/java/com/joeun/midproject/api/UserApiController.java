@@ -74,13 +74,15 @@ public class UserApiController {
                         .claim("users", dbUsers) // Payload : users {해당 회원 객체}
                         .compact(); // 토큰 세팅 종료 후 생성
 
-                if (users.getRememberId() != null && users.getRememberId().equals("on")) {
+                if (users.isRememberId()) {
+                    log.info("아이디기억");
                     Cookie cookie = new Cookie("remember-id", users.getUsername());
                     cookie.setMaxAge(60 * 60 * 24 * 7);
                     cookie.setPath("/");
                     response.addCookie(cookie);
                 }
-                if (users.getRememberMe() != null && users.getRememberMe().equals("on")) {
+                if (users.isRememberMe()) {
+                    log.info("자동로그인");
                     Cookie cookie = new Cookie("refreshToken", jwt);
                     cookie.setMaxAge(60 * 60 * 24 * 7);
                     cookie.setPath("/");
@@ -116,13 +118,13 @@ public class UserApiController {
         // uid
         String username = parsedToken.getPayload().get("uid").toString();
         log.info("username : " + username);
-
+        Users users = userService.read(username);
         // rol
         Claims claims = parsedToken.getPayload();
         Object roles = claims.get("rol");
         log.info("roles : " + roles);
 
-        return new ResponseEntity<String>(parsedToken.toString(), HttpStatus.OK);
+        return new ResponseEntity<Users>(users, HttpStatus.OK);
 
     }
 
