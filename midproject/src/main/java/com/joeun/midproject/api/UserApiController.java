@@ -80,6 +80,11 @@ public class UserApiController {
                     cookie.setMaxAge(60 * 60 * 24 * 7);
                     cookie.setPath("/");
                     response.addCookie(cookie);
+                }else{
+                    Cookie cookie = new Cookie("remember-id", "");
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
                 }
                 if (users.isRememberMe()) {
                     log.info("자동로그인");

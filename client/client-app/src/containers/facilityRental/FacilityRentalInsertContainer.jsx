@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import FacilityRentalInsert from '../../components/facilityRental/FacilityRentalInsert'
 import { useNavigate } from 'react-router-dom'
 import * as frApi from '../../apis/facilityRental/facilityRentalApi'
+import UserContext from '../../context/UserContext'
 
 const FacilityRentalInsertContainer = () => {
+
+  const {jwtSets} = useContext(UserContext)
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -15,9 +18,9 @@ const FacilityRentalInsertContainer = () => {
   const [account2, setAccount2] = useState('')
   const [file, setFile] = useState([])
 
-  const username = 'gangjinsu'
-  const phone = '01025258725'
-  const writer = 'aster'
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
+  const phone = jwtSets.parsedToken.phone ?? ''
+  const writer = jwtSets.parsedToken.nickname ?? ''
 
   const navi = useNavigate();
 

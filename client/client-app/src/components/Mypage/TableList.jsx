@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import * as myPages from '../../apis/myPage/myPageApi';
+import UserContext from '../../context/UserContext';
 
 
 const TicketPurchaseList = () => {
+    const {jwtSets} = useContext(UserContext)
     const [ticketList, setTicketList] = useState([]);
-    const [phone, setPhone] = useState('01040115135');
+    const jwtPhone = jwtSets.parsedToken.phone ?? ''
+    const [phone, setPhone] = useState(jwtPhone);
 
     useEffect(() => {
         getList();

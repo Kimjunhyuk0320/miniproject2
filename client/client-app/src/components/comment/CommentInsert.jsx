@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import UserContext from '../../context/UserContext'
 
 const CommentInsert = ({insertComment, parentNo, parentTable }) => {
+  const {jwtSets} = useContext(UserContext)
   const [inputValue, setInputValue] = useState('')
   
   //유저정보 받아오기
-  const username = 'junhyuk'
-  const nickname = '마산 불주먹'
-  const profileNo = '4'
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
+  const nickname = jwtSets.parsedToken.nickname ?? ''
+  const profileNo = jwtSets.parsedToken.profileNo ?? 0
   const onsubmit = () => {
     
     insertComment(parentNo, parentTable, nickname, inputValue, username, profileNo)

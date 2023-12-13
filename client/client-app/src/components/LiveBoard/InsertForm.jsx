@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
 // 게시글 에디터
 import * as filesApi from '../../apis/file/fileApi'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import UserContext from '../../context/UserContext';
+
 const InsertForm = () => {
+  const { jwtSets } = useContext(UserContext)
+
   // 로그인 한 사용자 정보
-  const writer = '마산 불주먹'
-  const username = 'junhyuk'
+  const writer = jwtSets.parsedToken.nickname ?? ''
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
 
   // 게시글 정보
   const [title, setTitle] = useState('');
@@ -24,56 +28,56 @@ const InsertForm = () => {
   const [file, setFile] = useState([]);     // ✅ files state 추가
   const [content, setContent] = useState('');
   const navigate = useNavigate()
-  
+
   // 게시글 에디터
   function uploadPlugin(editor) {
     editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
-        return customUploadAdapter(loader);
+      return customUploadAdapter(loader);
     };
   }
-  
+
   const customUploadAdapter = (loader) => {
     return {
       upload() {
-        return new Promise( (resolve, reject) => {
+        return new Promise((resolve, reject) => {
           const formData = new FormData();
-          loader.file.then( async (file) => {
-                console.log(file);
-                formData.append("parentTable", 'editor');
-                formData.append("file", file);
+          loader.file.then(async (file) => {
+            console.log(file);
+            formData.append("parentTable", 'editor');
+            formData.append("file", file);
 
-                const headers = {
-                    headers: {
-                        'Content-Type' : 'multipart/form-data',
-                    },
-                };
+            const headers = {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            };
 
-                let response = await filesApi.upload(formData, headers);
-                let data = await response.data;
-                console.log(`data : ${data}`);
-                
-                let newFileNo = data;
+            let response = await filesApi.upload(formData, headers);
+            let data = await response.data;
+            console.log(`data : ${data}`);
 
-                await resolve({
-                    default: `/file/img/${newFileNo}`
-                })
-              
+            let newFileNo = data;
+
+            await resolve({
+              default: `/file/img/${newFileNo}`
+            })
+
           });
         });
       },
     };
   };
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
   };
@@ -102,11 +106,11 @@ const InsertForm = () => {
   const handleRemoveThumbnail = () => {
     setThumbnail(null);
     setFile([]);
-     // 파일이 삭제되었으므로 input 태그의 value를 초기화
-     const thumbnailInput = document.getElementById('thumbnail');
-     if (thumbnailInput) {
-       thumbnailInput.value = '';
-     }
+    // 파일이 삭제되었으므로 input 태그의 value를 초기화
+    const thumbnailInput = document.getElementById('thumbnail');
+    if (thumbnailInput) {
+      thumbnailInput.value = '';
+    }
 
   };
 
@@ -115,24 +119,24 @@ const InsertForm = () => {
   };
 
   const onSubmit = async () => {
-      const headers = {
-        headers: {
-            'Content-Type' : 'multipart/form-data',
-        },
-      };
+    const headers = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
 
-      try {
-        const response = await liveBoards.insertLiveBoard({username, writer, title, crew, liveDate, liveStTime, liveEndTime, location,  address, price, maxTickets, file, content}, headers);
-        console.log(response); // 응답 확인
-        const data = response.data;
-        if (data === 0) {
-            alert('게시글 작성 실패');
-        } else {
-            moveList();
-        }
+    try {
+      const response = await liveBoards.insertLiveBoard({ username, writer, title, crew, liveDate, liveStTime, liveEndTime, location, address, price, maxTickets, file, content }, headers);
+      console.log(response); // 응답 확인
+      const data = response.data;
+      if (data === 0) {
+        alert('게시글 작성 실패');
+      } else {
+        moveList();
+      }
     } catch (error) {
-        console.error("Error in onSubmit:", error); // 클라이언트 측 로그 추가
-        alert('서버 오류가 발생했습니다.');
+      console.error("Error in onSubmit:", error); // 클라이언트 측 로그 추가
+      alert('서버 오류가 발생했습니다.');
     }
   };
 
@@ -143,11 +147,11 @@ const InsertForm = () => {
   return (
     <div>
       <div id="topContent">
-          <div>
-              <h1>공연 게시글 작성하기</h1>
-              <p>공연 게시글을 작성합니다. 꼼꼼하게 작성해 주세요.</p>
-              <hr/>
-          </div>
+        <div>
+          <h1>공연 게시글 작성하기</h1>
+          <p>공연 게시글을 작성합니다. 꼼꼼하게 작성해 주세요.</p>
+          <hr />
+        </div>
       </div>
 
       <div id="insertContainer">
@@ -316,17 +320,17 @@ const InsertForm = () => {
                       onChange={handleThumbnailChange}
                       multiple
                     />
-                    { thumbnail ? (
-                    <a href="javascript:;" className={`btn btn-sm btn-thumb-remove ${thumbnail ? '' : 'hide'}`} onClick={handleRemoveThumbnail}>
-                      삭제
-                    </a>
-                      ) : (
+                    {thumbnail ? (
+                      <a href="javascript:;" className={`btn btn-sm btn-thumb-remove ${thumbnail ? '' : 'hide'}`} onClick={handleRemoveThumbnail}>
+                        삭제
+                      </a>
+                    ) : (
                       <></>
                     )}
                     <div className="drop-img flex col main-center sub-center">
                       <div className="upload-box"></div>
                       <div className={thumbnail ? 'img-box' : 'img-box hide'}>
-                        { thumbnail ? (
+                        {thumbnail ? (
                           <img src={thumbnail ? thumbnail.source : ''} alt="Thumbnail" />
                         ) : (
                           <></>
@@ -340,47 +344,47 @@ const InsertForm = () => {
               <tr>
                 <td colSpan="2" id="textEditer" className="data">
                   <CKEditor
-                    editor={ ClassicEditor }
+                    editor={ClassicEditor}
                     config={{
-                        placeholder: "내용을 입력하세요.",
-                        toolbar: {
-                            items: [
-                                'undo', 'redo',
-                                '|', 'heading',
-                                '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                                '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                                '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent',
-                                '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                                '|', 'mediaEmbed',
-                            ],
-                            shouldNotGroupWhenFull: false
-                        },
-                        editorConfig: {
-                            height: 1000, // Set the desired height in pixels
-                        },
-                        alignment: {
-                            options: ['left', 'center', 'right', 'justify'],
-                        },
-                        
-                        extraPlugins: [uploadPlugin]            // 업로드 플러그인
+                      placeholder: "내용을 입력하세요.",
+                      toolbar: {
+                        items: [
+                          'undo', 'redo',
+                          '|', 'heading',
+                          '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
+                          '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+                          '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent',
+                          '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
+                          '|', 'mediaEmbed',
+                        ],
+                        shouldNotGroupWhenFull: false
+                      },
+                      editorConfig: {
+                        height: 1000, // Set the desired height in pixels
+                      },
+                      alignment: {
+                        options: ['left', 'center', 'right', 'justify'],
+                      },
+
+                      extraPlugins: [uploadPlugin]            // 업로드 플러그인
                     }}
                     data=""
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                        setContent(data);
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                />
+                    onReady={editor => {
+                      // You can store the "editor" and use when it is needed.
+                      console.log('Editor is ready to use!', editor);
+                    }}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      console.log({ event, editor, data });
+                      setContent(data);
+                    }}
+                    onBlur={(event, editor) => {
+                      console.log('Blur.', editor);
+                    }}
+                    onFocus={(event, editor) => {
+                      console.log('Focus.', editor);
+                    }}
+                  />
 
 
 
@@ -408,7 +412,7 @@ const InsertForm = () => {
                 <td colSpan="2" className="bottomSubmit">
                   <div className="centered-buttons">
                     <button type="button" onClick={moveList}>
-                    목록
+                      목록
                     </button>
                     <button type="button" onClick={onSubmit}>등록</button>
                   </div>

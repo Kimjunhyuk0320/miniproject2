@@ -139,6 +139,7 @@ const Header = () => {
                                             <ul>
                                                 <li><Link to="/liveBoard/insert">공연 등록하기</Link></li>
                                                 <li><Link to="/TicketSalesList">판매한 티켓 내역</Link></li>
+                                                {/* 티켓 예매 권한은 BAND가 맞나요????*/}
                                                 <li><Link to="/TicketPurchaseList">예매한 티켓 내역</Link></li>
                                             </ul>
                                         </li>
@@ -204,7 +205,7 @@ const Header = () => {
                             <>
                                 <li className="cells">
                                     {/* <a href="#" onclick="logOut()">로그아웃</a> */}
-                                    <Link to="#">로그아웃</Link>
+                                    <Link to="#" onClick={jwtSets.logout}>로그아웃</Link>
                                     <div className="sub-menu-width sub-menu-width-5"></div>
                                 </li>
                             </>

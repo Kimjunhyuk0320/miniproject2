@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import * as userInfo from '../../apis/myPage/myPageApi';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
 
 const MyInfo = () => {
+
+  const {jwtSets} = useContext(UserContext)
 
   useEffect(() => {
     $('#expand-button__').click(function () {
@@ -49,7 +52,7 @@ const MyInfo = () => {
               <Link to="/myPage/update">
                 <div className="button__">내 정보 수정</div>
               </Link>
-              <a href="#">
+              <a href="#" onClick={jwtSets.logout}>
                 {/* onClick={logOut}> */}
                 <div className="button__">로그아웃</div>
               </a>

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import * as myPages from '../../apis/myPage/myPageApi';
+import UserContext from '../../context/UserContext';
 
 const TicketSalesList = () => {
+  const {jwtSets} = useContext(UserContext)
   const [ticketList, setTicketList] = useState([]);
-  const username = 'koogc0724'
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
 
   useEffect(() => {
     getList2();

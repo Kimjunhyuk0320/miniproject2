@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
 import './css/Footer.css'
+import UserContext from '../context/UserContext';
 
 const Footer = () => {
+    const { jwtSets } = useContext(UserContext)
     return (
         <div className="footer-dark" id="footer">
             <Helmet>
@@ -35,7 +37,7 @@ const Footer = () => {
                                         form.submit()
                                     }
                                 </script> */}
-                                <li><Link to="#" onClick="logout()">로그아웃</Link></li>
+                                <li><Link to="#" onClick={jwtSets.logout}>로그아웃</Link></li>
                                 {/* 비회원일 때 */}
                                 <li><Link to="/login">로그인</Link></li>
                                 <li><Link to="/join">회원가입</Link></li>

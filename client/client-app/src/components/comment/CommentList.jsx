@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
 
 const CommentList = ({ commentList, deleteComment, updateComment}) => {
+  const {jwtSets} = useContext(UserContext)
   const [editingComment, setEditingComment] = useState(null);
 
   //유저 아이디 받아오기
-  const username = 'junhyuk'
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
   const onClickDelete = (commentNo) => {
     deleteComment(commentNo);
   }
