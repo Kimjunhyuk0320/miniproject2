@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
 import TeamReg from '../../components/Team/TeamReg';
+import UserContext from '../../context/UserContext';
 
 const TeamRegContainer = ({teamNo}) => {
+
+    const {jwtSets} = useContext(UserContext)
 
     const [title,setTitle] = useState('')
     const [bandName,setBandName] = useState('')
     const [content,setContent] = useState('')
-    const phone = '01012345678'
-    const username = 'gangjinsu'
+    const phone = jwtSets.parsedToken.phone ?? ''
+    const username = jwtSets.parsedToken.username ?? 'GUEST'
     const navi = useNavigate()
 
     const regHandler = async ()=>{

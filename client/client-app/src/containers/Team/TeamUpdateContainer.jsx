@@ -26,7 +26,7 @@ const TeamUpdateContainer = ({ teamNo }) => {
     const response = await teamApi.teamRead(teamNo)
     const data = await response.data
     setTitle(data.title)
-    setWriter(jwtSets.parsedToken.payload.users.nickname)
+    setWriter(jwtSets.parsedToken.nickname)
     setContent(data.content)
     setLocation(data.location)
     setAddress(data.address)

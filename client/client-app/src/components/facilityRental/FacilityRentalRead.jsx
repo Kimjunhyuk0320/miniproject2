@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import UserContext from '../../context/UserContext'
 
-const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
+const FacilityRentalRead = ({ fr, delHandler, resvationHandler }) => {
+
+    const { jwtSets } = useContext(UserContext)
+
     const updDate = new Date(fr.updDate)
     return (
         <>
@@ -9,9 +13,9 @@ const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
                 <div className="topContentContainer">
                     <div className="imgContainer">
                         {
-                            fr.thumbnail!=null && <img src={`/api/file/img/${fr.thumbnail.fileNo}`} />
+                            fr.thumbnail != null && <img src={`/api/file/img/${fr.thumbnail.fileNo}`} />
                         }
-                        {fr.thumbnail!=null || <img src={`/img/clubr3.jpeg`}/>}
+                        {fr.thumbnail != null || <img src={`/img/clubr3.jpeg`} />}
                     </div>
                     <div className="contentContainer">
                         <div className="tableContainer">
@@ -29,7 +33,7 @@ const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
                                                 </div>
                                             </div>
                                             <div className="heart">
-                                                <div style={{ marginTop: '10px', width: '120px'}}>
+                                                <div style={{ marginTop: '10px', width: '120px' }}>
                                                     <p style={{ display: 'inline-block' }}>조회수 : </p>
                                                     <p style={{ display: 'inline-block' }}>{fr.views}</p>
                                                 </div>
@@ -93,21 +97,26 @@ const FacilityRentalRead = ({ fr, delHandler,resvationHandler }) => {
                         <Link to="/frList">
                             <button type="button">목록</button>
                         </Link>
-                        <div>
-                            <Link to={`/fr/update/${fr.frNo}`}>
-                            <button type="button" id="blue-btn">수정</button>
-                            </Link>
-                        </div>
-                        <div>
-                            <button type="button" className="red-btn" onClick={()=>{
-                                let result = window.confirm('정말로 삭제하시겠습니까?');
-                                if(result==true)
-                                delHandler()}}>삭제</button>
-                        </div>
+                        {jwtSets.parsedToken.username == fr.username && (
+                            <>
+                                <div>
+                                    <Link to={`/fr/update/${fr.frNo}`}>
+                                        <button type="button" id="blue-btn">수정</button>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <button type="button" className="red-btn" onClick={() => {
+                                        let result = window.confirm('정말로 삭제하시겠습니까?');
+                                        if (result == true)
+                                            delHandler()
+                                    }}>삭제</button>
+                                </div>
+                            </>
+                        )}
                     </div>
                     <div>
-                        
-                        {fr.confirmed == 0 && <button type="button" className="red-btn" onClick={resvationHandler}>대관하기</button>}
+
+                        {jwtSets.parsedToken.username != fr.username && fr.confirmed == 0 && <button type="button" className="red-btn" onClick={resvationHandler}>대관하기</button>}
                     </div>
                 </div>
 

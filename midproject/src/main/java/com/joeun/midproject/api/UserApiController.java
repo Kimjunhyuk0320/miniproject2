@@ -59,8 +59,8 @@ public class UserApiController {
         try {
             Users dbUsers = userService.read(users.getUsername());
             log.info("dbUsers : " + dbUsers.toString());
-            log.info(passwordEncoder.matches(users.getPassword(), dbUsers.getPassword())+"");
-            
+            log.info(passwordEncoder.matches(users.getPassword(), dbUsers.getPassword()) + "");
+
             if (dbUsers != null && passwordEncoder.matches(users.getPassword(), dbUsers.getPassword())) {
                 byte[] signingKey = jwtProp.getSecretKey().getBytes();
                 String jwt = Jwts.builder()
@@ -80,7 +80,7 @@ public class UserApiController {
                     cookie.setMaxAge(60 * 60 * 24 * 7);
                     cookie.setPath("/");
                     response.addCookie(cookie);
-                }else{
+                } else {
                     Cookie cookie = new Cookie("remember-id", "");
                     cookie.setMaxAge(0);
                     cookie.setPath("/");
@@ -202,10 +202,10 @@ public class UserApiController {
         try {
             Users user = userService.readOnlyNickname(nickname);
 
-            if (user != null) {
-                return new ResponseEntity<>("N", HttpStatus.OK);
-            } else {
+            if (user == null) {
                 return new ResponseEntity<>("Y", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("N", HttpStatus.OK);
             }
         } catch (Exception e) {
             // 예외 처리 로직
@@ -219,10 +219,10 @@ public class UserApiController {
         try {
             Users user = userService.readOnlyPhone(phone);
 
-            if (user != null) {
-                return new ResponseEntity<>("N", HttpStatus.OK);
-            } else {
+            if (user == null) {
                 return new ResponseEntity<>("Y", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("N", HttpStatus.OK);
             }
 
         } catch (Exception e) {

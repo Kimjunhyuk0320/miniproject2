@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as frApi from '../../apis/facilityRental/facilityRentalApi'
 import * as brApi from '../../apis/facilityRental/booking'
 import FacilityRentalRead from '../../components/facilityRental/FacilityRentalRead'
+import UserContext from '../../context/UserContext'
 
 const FacilityRentalReadContainer = ({ frNo }) => {
+
+  const {jwtSets} = useContext(UserContext)
 
   const [fr, setFr] = useState({})
   const navi = useNavigate()
 
-  const username = 'gangjinsu'
-  const phone = '01012341234'
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
+  const phone = jwtSets.parsedToken.phone ?? ''
 
   const reservation = {
     frNo,

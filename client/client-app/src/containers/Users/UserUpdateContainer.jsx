@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import UserUpdate from '../../components/Users/UserUpdate'
 import { useNavigate } from 'react-router-dom'
 import * as userApi from '../../apis/users/userApi'
+import UserContext from '../../context/UserContext'
 
 const UserUpdateContainer = ({ username }) => {
 
-
+  const {jwtSets} = useContext(UserContext)
 
   const [password, setPassword] = useState('')
   const [userPwCheck, setUserPwCheck] = useState('')
@@ -17,6 +18,8 @@ const UserUpdateContainer = ({ username }) => {
   const [file, setFile] = useState(null)
   const [nicknameChecked, setNicknameChecked] = useState(false);
   const [phoneChecked, setPhoneChecked] = useState(false);
+  let [prevNickname,setPrevNickname] = useState('')
+  let [prevPhone,setPrevPhone] = useState('')
 
   //중복검사 통과 여부 상태 만들어야합니다.
 
@@ -76,6 +79,8 @@ const UserUpdateContainer = ({ username }) => {
     setAuth(data.auth)
     setPhone(data.phone)
     setEmail(data.email)
+    setPrevNickname(data.nickname)
+    setPrevPhone(data.phone)
   }
 
   const nicknameCheckedHandler = async () => {
@@ -83,7 +88,7 @@ const UserUpdateContainer = ({ username }) => {
     const data = await response.data
 
     if (data != null) {
-      if (data == 'Y') {
+      if (data == 'Y' || prevNickname == nickname) {
 
         window.alert('사용가능한 닉네임입니다.')
         setNicknameChecked(true)
@@ -96,7 +101,7 @@ const UserUpdateContainer = ({ username }) => {
     const response = await userApi.phoneCheck(phone)
     const data = await response.data
 
-    if (data != null) {
+    if (data != null || prevPhone == phone) {
       if (data == 'Y') {
 
         window.alert('사용가능한 휴대전화입니다.')
@@ -149,6 +154,7 @@ const UserUpdateContainer = ({ username }) => {
     const response = await userApi.update(sets)
     const data = await response.data
     if (data != null) {
+      jwtSets.logout()
       navi(`/liveBoard`)
     } else {
       navi(`/mypage/update`)

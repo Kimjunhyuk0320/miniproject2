@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
 
 
 const TeamRead = ({ team, delHandler }) => {
+
+    const { jwtSets } = useContext(UserContext)
 
     const updDate = new Date(team.updDate);
 
@@ -83,17 +86,20 @@ const TeamRead = ({ team, delHandler }) => {
                 </div>
                 <div>
                     {
-                        team.confirmed == 0 && (
+                        team.username != jwtSets.parsedToken.username && team.confirmed == 0 && (
                             <Link to={`/team/app/${team.teamNo}`}>
                                 <button type="button" id="red-btn">신청</button>
                             </Link>
                         )
                     }
-
-                    <Link to={`/team/update/${team.teamNo}`}>
-                        <button style={{ backgroundColor: 'rgba(0, 0, 255, 0.525)' }}>수정</button>
-                    </Link>
-                    <button type="submit" style={{ backgroundColor: 'red' }} onClick={delHandler}>삭제</button>
+                    {team.username == jwtSets.parsedToken.username && (
+                        <>
+                            <Link to={`/team/update/${team.teamNo}`}>
+                                <button style={{ backgroundColor: 'rgba(0, 0, 255, 0.525)' }}>수정</button>
+                            </Link>
+                            <button type="submit" style={{ backgroundColor: 'red' }} onClick={delHandler}>삭제</button>
+                        </>
+                    )}
                     {/* <input type="hidden" name="username" th:value="${#authentication.principal.users.username}" id="username">
                     <input type="hidden" name="profileNo" th:value="${#authentication.principal.users.profileNo}" id="profileNo">
                     <th:block th:if="${team.confirmed == 0 && team.username != #authentication.principal.username}">

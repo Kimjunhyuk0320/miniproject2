@@ -3,10 +3,11 @@ import * as userInfo from '../../apis/myPage/myPageApi';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
+import * as format from '../../apis/format/format'
 
 const MyInfo = () => {
 
-  const {jwtSets} = useContext(UserContext)
+  const { jwtSets } = useContext(UserContext)
 
   useEffect(() => {
     $('#expand-button__').click(function () {
@@ -36,15 +37,15 @@ const MyInfo = () => {
           </div>
           <div className="above-fold">
             <div className="name">
-              {/* <p>{userData.name}</p> */}
+              <p>{jwtSets.parsedToken.name??''}</p>
             </div>
             <div className="role">
-              <p>dsnfl</p>
+              <p>{jwtSets.parsedToken.nickname??''}</p>
             </div>
             <div className="location">
               <i className="fas fa-map-marker-alt"></i>
               <p style={{ display: 'inline-block' }}>회원님은</p>
-              <p style={{ display: 'inline-block' }}> ### </p>
+              <p style={{ display: 'inline-block' }}>{(jwtSets.parsedToken.auth).split('_')[1]}</p>
               <p style={{ display: 'inline-block' }}>이십니다.</p>
             </div>
 
@@ -64,22 +65,22 @@ const MyInfo = () => {
           <div className="below-fold">
             <div className="about">
               <h5>아이디</h5>
-              <p>;kdsafnkls</p>
+              <p>{jwtSets.parsedToken.username ?? 'GUEST'}</p>
               <br />
             </div>
             <div className="about">
               <h5>연락처</h5>
-              <p>lsadfhosd</p>
+              <p>{jwtSets.parsedToken.phone ?? ''}</p>
               <br />
             </div>
             <div className="about">
               <h5>이메일</h5>
-              <p>pisdfhl</p>
+              <p>{jwtSets.parsedToken.email ?? ''}</p>
               <br />
             </div>
             <div className="about">
               <h5>정보 수정 일자</h5>
-              <p>dsafas</p>
+              <p>{format.formatDate(jwtSets.parsedToken.updDate)}</p>
               <br />
             </div>
           </div>

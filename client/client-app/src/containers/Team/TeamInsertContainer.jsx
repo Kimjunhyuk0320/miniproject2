@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import TeamInsert from '../../components/Team/TeamInsert'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
+import UserContext from '../../context/UserContext'
 
 const TeamInsertContainer = () => {
+
+  const {jwtSets} = useContext(UserContext)
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -16,8 +19,8 @@ const TeamInsertContainer = () => {
   const [capacity, setCapacity] = useState('1')
   const [account1, setAccount1] = useState('신한은행')
   const [account2, setAccount2] = useState('')
-  const username = 'gangjinsu'
-  const writer = 'aster'
+  const username = jwtSets.parsedToken.username ?? 'GUEST'
+  const writer = jwtSets.parsedToken.nickname ?? ''
 
   const navi = useNavigate()
 

@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from '../../components/LiveBoard/Image'
 import Information from '../../components/LiveBoard/Information'
 import Controller from '../../components/LiveBoard/Controller'
 import Content from '../../components/LiveBoard/Content'
 import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
 import { useNavigate } from 'react-router-dom'
-
+import UserContext from '../../context/UserContext'
 
 
 const LiveBoardReadContainer = ({no}) => {
+
+  const {jwtSets} = useContext(UserContext)
+
   const navigate = useNavigate()
   const [liveBoard, setLiveBoard] = useState({})
   const [ticketCount, setTicketCount] = useState(1)
@@ -18,9 +21,9 @@ const LiveBoardReadContainer = ({no}) => {
   const count = ticketCount
 
   // 로그인 한 사용자 정보 가져오기
-  const name = '김준혁'
-  const phone = '01012341234'
-  const email = 'asdf12341234@naver.com'
+  const name = jwtSets.parsedToken.name ?? ''
+  const phone = jwtSets.parsedToken.phone ?? ''
+  const email = jwtSets.parsedToken.email ?? ''
 
   const getLiveBoard = async () => {
     const response = await liveBoards.getPage(no);
@@ -168,7 +171,7 @@ const LiveBoardReadContainer = ({no}) => {
           <Information liveBoard={liveBoard} ticketCount={ticketCount} setTicketCount={setTicketCount}/>
         </div>
         <div className='bottomContainer'>
-          <Controller purchaseticket={purchaseticket} no={no}/>
+          <Controller purchaseticket={purchaseticket} no={no} liveBoard={liveBoard}/>
         </div>
 
         <Content liveBoard={liveBoard}/>
