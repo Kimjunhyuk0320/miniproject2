@@ -116,14 +116,34 @@ const FacilityRentalRead = ({ fr, delHandler, resvationHandler }) => {
                     </div>
                     <div>
 
-                        {jwtSets.parsedToken.username != fr.username && fr.confirmed == 0 && <button type="button" className="red-btn" onClick={resvationHandler}>대관하기</button>}
+                        {jwtSets.parsedToken.username != fr.username && fr.confirmed == 0 && (
+                            <>
+                                {
+                                    jwtSets.isBAND && (
+                                        < button type="button" className="red-btn" onClick={resvationHandler}>대관하기</button>
+
+                                    )
+                                }
+                                {
+                                    !jwtSets.isBAND && jwtSets.isLogin && (
+                                        <button type="button" className="red-btn">밴드회원만 대관 신청 가능</button>
+                                    )
+                                }
+                                {
+                                    !jwtSets.isLogin && (
+                                        <button type="button" className="red-btn">로그인 후 대관하기</button>
+                                    )
+                                }
+                            </>
+                        )
+                        }
                     </div>
                 </div>
 
                 <div className="textContainer">
                     <p dangerouslySetInnerHTML={{ __html: fr.content }}></p>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

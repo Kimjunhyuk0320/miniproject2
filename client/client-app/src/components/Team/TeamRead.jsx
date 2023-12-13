@@ -85,13 +85,14 @@ const TeamRead = ({ team, delHandler }) => {
                     </Link>
                 </div>
                 <div>
-                    {
-                        team.username != jwtSets.parsedToken.username && team.confirmed == 0 && (
+                    {jwtSets.isBAND && team.username != jwtSets.parsedToken.username && team.confirmed == 0 && (
                             <Link to={`/team/app/${team.teamNo}`}>
                                 <button type="button" id="red-btn">신청</button>
                             </Link>
                         )
                     }
+                    {(!jwtSets.isBAND && jwtSets.isLogin) && team.username != jwtSets.parsedToken.username && team.confirmed == 0 && <button type="button" id="red-btn">밴드회원만 대관 신청 가능</button>}
+                    {!jwtSets.isLogin && team.username != jwtSets.parsedToken.username && team.confirmed == 0 && <button type="button" id="red-btn">로그인 후 신청하기</button>}
                     {team.username == jwtSets.parsedToken.username && (
                         <>
                             <Link to={`/team/update/${team.teamNo}`}>
