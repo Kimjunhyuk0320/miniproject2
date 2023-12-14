@@ -6,6 +6,7 @@ const cookies = new Cookies();
 export const join = (users, jwt) => {
     return axios.post(`/api/user`, users, {
         headers: {
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${jwt}`
         }
     })
@@ -68,6 +69,7 @@ export const userInfo = (username, jwt) => {
 export const update = (users, jwt) => {
     return axios.put(`/api/user`, users, {
         headers: {
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${jwt}`
         }
     })

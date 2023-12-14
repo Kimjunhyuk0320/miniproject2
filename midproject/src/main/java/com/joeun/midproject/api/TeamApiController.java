@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +24,12 @@ import com.joeun.midproject.service.TeamAppService;
 import com.joeun.midproject.service.TeamService;
 
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/team")
 public class TeamApiController {
-    
+
     @Autowired
     private TeamService teamService;
 
@@ -35,7 +37,7 @@ public class TeamApiController {
     private TeamMapper teamMapper;
 
     @GetMapping("/pageInfo")
-    public ResponseEntity<PageInfo> getPage( PageInfo pageInfo) {
+    public ResponseEntity<PageInfo> getPage(PageInfo pageInfo) {
         pageInfo.setTable("team_recruitments");
         pageInfo.setTotalCount(teamMapper.totalCount(pageInfo));
 
@@ -48,7 +50,7 @@ public class TeamApiController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Team>> getAll( Team team) {
+    public ResponseEntity<List<Team>> getAll(Team team) {
         log.info("this is /api/team");
         try {
             List<Team> teamList = teamService.pageList(team);
@@ -58,9 +60,9 @@ public class TeamApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @GetMapping("/{teamNo}")
-    public ResponseEntity<Team> getOne(@PathVariable Integer teamNo,Team team) {
+    public ResponseEntity<Team> getOne(@PathVariable Integer teamNo, Team team) {
         try {
             team.setTeamNo(teamNo);
             Team readTeam = teamService.read(team);
@@ -69,11 +71,12 @@ public class TeamApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    @PreAuthorize("hasRole('ROLE_BAND')")
     @PostMapping()
     public ResponseEntity<String> create(@RequestBody Team team) {
         try {
-            team.setAccount(team.getAccount1()+"/"+team.getAccount2());
+            team.setAccount(team.getAccount1() + "/" + team.getAccount2());
             int result = teamService.insert(team);
             return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
         } catch (Exception e) {
@@ -81,10 +84,11 @@ public class TeamApiController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_BAND')")
     @PutMapping()
     public ResponseEntity<String> update(@RequestBody Team team) {
         log.info("접근성공");
-        team.setAccount(team.getAccount1()+"/"+team.getAccount2());
+        team.setAccount(team.getAccount1() + "/" + team.getAccount2());
         int result = teamService.update(team);
         try {
             return new ResponseEntity<>(Integer.toString(result), HttpStatus.OK);
@@ -92,9 +96,10 @@ public class TeamApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    @PreAuthorize("hasRole('ROLE_BAND')")
     @DeleteMapping("/{teamNo}")
-    public ResponseEntity<String> destroy(@PathVariable Integer teamNo,Team team) {
+    public ResponseEntity<String> destroy(@PathVariable Integer teamNo, Team team) {
         team.setTeamNo(teamNo);
         int result = teamService.delete(team);
 

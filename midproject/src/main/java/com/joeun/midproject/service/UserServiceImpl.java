@@ -212,14 +212,6 @@ public class UserServiceImpl implements UserService {
         userMapper.profileSet(users);
       }
 
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-      if (auth != null) {
-
-        new SecurityContextLogoutHandler().logout(request, response, auth);
-
-      }
-
     }
 
     return result;

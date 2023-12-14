@@ -149,6 +149,7 @@ public class UserApiController {
 
     }
 
+    @PreAuthorize("isAnonymous()")
     @PostMapping()
     public ResponseEntity<String> joinPro(Users users, HttpServletRequest request) {
         log.info(users.toString());
@@ -166,8 +167,10 @@ public class UserApiController {
         }
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PutMapping()
     public ResponseEntity<String> updatePro(Users users, HttpServletRequest request, HttpServletResponse response) {
+        log.info(users.toString());
         try {
             int result = userService.update(users, request, response);
 
@@ -201,7 +204,8 @@ public class UserApiController {
     }
 
     // 닉네임 중복 검사
-    // @PreAuthorize("hasRole('ROLE_CLUB')")
+    // @PreAuthorize("hasRole('ROLE_BAND')")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/getNicknameDup")
     public ResponseEntity<?> getNicknameDup(@RequestParam String nickname) {
         try {
@@ -219,6 +223,7 @@ public class UserApiController {
     }
 
     // 연락처 중복 검사
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/getPhoneDup")
     public ResponseEntity<?> getPhoneDup(@RequestParam String phone) {
         try {
@@ -237,6 +242,7 @@ public class UserApiController {
     }
 
     // 유저 전화번호로 구매한 티켓 리스트 조회하기
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/listByPhone")
     public ResponseEntity<List<Ticket>> listByPhone(Users users) throws Exception {
         List<Ticket> ticketList = userService.listByPhone(users);
@@ -245,12 +251,16 @@ public class UserApiController {
     }
 
     // 유저 아이디로 판매한 티켓 리스트 조회하기
+
+    @PreAuthorize("hasRole('ROLE_BAND')")
     @GetMapping("/listByUserName")
     public ResponseEntity<List<Ticket>> listByUserName(Users users) throws Exception {
         List<Ticket> ticketList = userService.listByUserName(users);
         return new ResponseEntity<List<Ticket>>(ticketList, HttpStatus.OK);
     }
-
+    
+    
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
 

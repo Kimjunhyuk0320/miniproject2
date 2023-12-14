@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,6 @@ import com.joeun.midproject.service.TeamService;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @RestController
 @RequestMapping("/api/booking")
@@ -32,8 +32,8 @@ public class BookingApiController {
 
     @Autowired
     private FacilityRentalService facilityRentalService;
-    
-    
+
+    @PreAuthorize("hasRole('ROLE_BAND')")
     @GetMapping("/rreq")
     public ResponseEntity<List<BookingRequests>> rreqList(String username) {
         try {
@@ -44,6 +44,7 @@ public class BookingApiController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_CLUB')")
     @GetMapping("/rr")
     public ResponseEntity<List<BookingRequests>> rrList(String username) {
 
@@ -54,7 +55,8 @@ public class BookingApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    @PreAuthorize("hasRole('ROLE_BAND')")
     @PostMapping()
     public ResponseEntity<String> reservation(@RequestBody BookingRequests bookingRequests) {
         log.info(bookingRequests.toString());
@@ -65,7 +67,8 @@ public class BookingApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    @PreAuthorize("hasRole('ROLE_CLUB')")
     @PutMapping("/denied")
     public ResponseEntity<String> reqDenied(@RequestBody BookingRequests bookingRequests) {
         try {
@@ -75,6 +78,8 @@ public class BookingApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PreAuthorize("hasRole('ROLE_CLUB')")
     @PutMapping("/accept")
     public ResponseEntity<String> reqAccept(@RequestBody BookingRequests bookingRequests) {
         try {
@@ -84,6 +89,8 @@ public class BookingApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PreAuthorize("hasRole('ROLE_CLUB')")
     @PutMapping("/confirm")
     public ResponseEntity<String> reqConfirm(@RequestBody BookingRequests bookingRequests) {
         try {
@@ -93,7 +100,8 @@ public class BookingApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    @PreAuthorize("hasRole('ROLE_BAND')")
     @DeleteMapping("/{brNo}")
     public ResponseEntity<String> destroy(@PathVariable Integer brNo, BookingRequests bookingRequests) {
         bookingRequests.setBrNo(brNo);

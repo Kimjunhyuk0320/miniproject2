@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +46,7 @@ public class commentApiController {
         }
     }
     
-    
+    @PreAuthorize("isAuthenticated()")
     @PostMapping()
     public ResponseEntity<?> create(@RequestBody Comment comment) {
         log.info("[POST] - /api/comment   ");
@@ -58,7 +59,7 @@ public class commentApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+    @PreAuthorize("isAuthenticated()")
     @PutMapping()
     public ResponseEntity<?> update(@RequestBody Comment comment) {
         try {
@@ -68,7 +69,7 @@ public class commentApiController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/{no}")
     public ResponseEntity<?> destroy(@PathVariable Integer no) {
         Comment comment =new Comment();
