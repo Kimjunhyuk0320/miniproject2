@@ -54,7 +54,7 @@ const FacilityRentalInsertContainer = () => {
     if (!check(priceCheck, price, msg)) return
 
     if(!window.confirm(`대관게시글 등록을 완료하시겠습니까?`)) return
-    const response = await frApi.frInsert(sets)
+    const response = await frApi.frInsert(sets,jwtSets.jwtToken)
     console.log(response)
     const data = await response.data
     console.log(data)

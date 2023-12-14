@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -40,6 +41,12 @@ import lombok.extern.slf4j.Slf4j;
 // 🔐 @PostAuthorize    : 메소드 실행 후에 대한 인가(권한) 설정
 // 🔐 @Secured          : 메소드 실행에 대한 인가(권한) 설정
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    /**
+     *
+     */
+    @Autowired
+    private JwtAuthFilter jwtAuthFilter;
 
     @Autowired
     private PasswordEncoder passwordEncoder;        // 비밀번호 암호화 객체 
@@ -92,6 +99,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 );
         http.sessionManagement((mn)->mn.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
+
+        http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         // 로그아웃 설정
         // http.logout( (logout) -> logout
         //                             .logoutSuccessUrl("/")

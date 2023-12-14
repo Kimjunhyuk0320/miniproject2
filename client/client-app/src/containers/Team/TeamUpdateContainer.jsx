@@ -5,7 +5,7 @@ import * as teamApi from '../../apis/Team/TeamApi'
 import UserContext from '../../context/UserContext'
 
 const TeamUpdateContainer = ({ teamNo }) => {
-  const {jwtSets} = useContext(UserContext)
+  const { jwtSets } = useContext(UserContext)
   const [title, setTitle] = useState('')
   const [writer, setWriter] = useState('')
   const [content, setContent] = useState('')
@@ -23,7 +23,7 @@ const TeamUpdateContainer = ({ teamNo }) => {
 
   const getUpTeam = async () => {
 
-    const response = await teamApi.teamRead(teamNo)
+    const response = await teamApi.teamRead(teamNo, jwtSets.jwtToken)
     const data = await response.data
     setTitle(data.title)
     setWriter(jwtSets.parsedToken.nickname)
@@ -77,7 +77,7 @@ const TeamUpdateContainer = ({ teamNo }) => {
     console.log(team)
     if (!window.confirm(`수정사항을 등록하시겠습니까?`)) return
 
-    const response = await teamApi.teamUpdate(team)
+    const response = await teamApi.teamUpdate(team, jwtSets.jwtToken)
     const data = await response.data
     if (data != null) {
       navi(`/team/${teamNo}`)

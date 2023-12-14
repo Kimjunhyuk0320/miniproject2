@@ -6,7 +6,7 @@ import UserContext from '../../context/UserContext'
 
 const TeamInsertContainer = () => {
 
-  const {jwtSets} = useContext(UserContext)
+  const { jwtSets } = useContext(UserContext)
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -82,8 +82,8 @@ const TeamInsertContainer = () => {
     if (!check(priceCheck, price, msg)) return
 
     console.log(sets)
-    if(!window.confirm(`팀 모집 게시글을 등록하시겠습니까?`)) return
-    const response = await teamApi.teamInsert(sets)
+    if (!window.confirm(`팀 모집 게시글을 등록하시겠습니까?`)) return
+    const response = await teamApi.teamInsert(sets, jwtSets.jwtToken)
     const data = await response.data
     if (data != null) {
       navi(`/team/${data}`)

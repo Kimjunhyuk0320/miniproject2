@@ -6,7 +6,7 @@ import UserContext from '../../context/UserContext'
 
 const UserUpdateContainer = ({ username }) => {
 
-  const {jwtSets} = useContext(UserContext)
+  const { jwtSets } = useContext(UserContext)
 
   const [password, setPassword] = useState('')
   const [userPwCheck, setUserPwCheck] = useState('')
@@ -18,8 +18,8 @@ const UserUpdateContainer = ({ username }) => {
   const [file, setFile] = useState(null)
   const [nicknameChecked, setNicknameChecked] = useState(false);
   const [phoneChecked, setPhoneChecked] = useState(false);
-  let [prevNickname,setPrevNickname] = useState('')
-  let [prevPhone,setPrevPhone] = useState('')
+  const [prevNickname, setPrevNickname] = useState('')
+  const [prevPhone, setPrevPhone] = useState('')
 
   //중복검사 통과 여부 상태 만들어야합니다.
 
@@ -72,7 +72,7 @@ const UserUpdateContainer = ({ username }) => {
 
   const getUserInfo = async () => {
 
-    const response = await userApi.userInfo(username)
+    const response = await userApi.userInfo(username, jwtSets.jwtToken)
     const data = await response.data
     setName(data.name)
     setNickname(data.nickname)
@@ -84,31 +84,27 @@ const UserUpdateContainer = ({ username }) => {
   }
 
   const nicknameCheckedHandler = async () => {
-    const response = await userApi.nicknameCheck(nickname)
+    const response = await userApi.nicknameCheck(nickname, jwtSets.jwtToken)
     const data = await response.data
 
-    if (data != null) {
-      if (data == 'Y' || prevNickname == nickname) {
+    if (data == 'Y' || prevNickname == nickname) {
 
-        window.alert('사용가능한 닉네임입니다.')
-        setNicknameChecked(true)
-      } else {
-        window.alert('중복된 닉네임입니다.')
-      }
+      window.alert('사용가능한 닉네임입니다.')
+      setNicknameChecked(true)
+    } else {
+      window.alert('중복된 닉네임입니다.')
     }
   }
   const phoneCheckedHandler = async () => {
-    const response = await userApi.phoneCheck(phone)
+    const response = await userApi.phoneCheck(phone, jwtSets.jwtToken)
     const data = await response.data
 
-    if (data != null || prevPhone == phone) {
-      if (data == 'Y') {
+    if (data == 'Y' || prevPhone == phone) {
 
-        window.alert('사용가능한 휴대전화입니다.')
-        setPhoneChecked(true)
-      } else {
-        window.alert('중복된 휴대전화입니다.')
-      }
+      window.alert('사용가능한 휴대전화입니다.')
+      setPhoneChecked(true)
+    } else {
+      window.alert('중복된 휴대전화입니다.')
     }
   }
 
@@ -151,7 +147,7 @@ const UserUpdateContainer = ({ username }) => {
     }
 
 
-    const response = await userApi.update(sets)
+    const response = await userApi.update(sets, jwtSets.jwtToken)
     const data = await response.data
     if (data != null) {
       jwtSets.logout()

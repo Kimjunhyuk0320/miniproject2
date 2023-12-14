@@ -6,7 +6,7 @@ import UserContext from '../../context/UserContext'
 
 const LoginContainer = () => {
 
-  const {jwtSets} = useContext(UserContext);
+  const { jwtSets } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberId, setRememberId] = useState('');
@@ -14,27 +14,29 @@ const LoginContainer = () => {
 
   const navi = useNavigate()
 
-  const loginHandler = async ()=>{
+  const loginHandler = async () => {
     //csrf토큰이 들어가야합니다!!!!!!!!!!!!!!!!
-    const response = await userApi.login(sets)
-    const data = response.data
-    if(data!=null){
+    try {
+      const response = await userApi.login(sets)
+      const data = response.data
       const responseJwtInfo = await userApi.jwtInfo(data)
       const dataJwtInfo = await responseJwtInfo.data
       //컨텍스트에 토큰등록
       //컨텍스트에 해석정보등록
-      await jwtSets.login(data,dataJwtInfo)
-      console.log(jwtSets.isLogin,jwtSets.jwtToken,jwtSets.parsedToken)
+      await jwtSets.login(data, dataJwtInfo)
+      console.log(jwtSets.isLogin, jwtSets.jwtToken, jwtSets.parsedToken)
       navi(`/`)
-      console.log('this jwtStets',jwtSets)
-    }else{
+      console.log('this jwtStets', jwtSets)
+    } catch (error) {
+      console.error(error)
+      window.alert(`아이디 또는 비밀번호가 일치하지 않습니다.`)
       getCookies()
       navi(`/login`)
     }
   }
-  
-  const getCookies = ()=>{
-    if(userApi.getCookieValue(`remember-id`)!=null){
+
+  const getCookies = () => {
+    if (userApi.getCookieValue(`remember-id`) != null) {
       setRememberId(true)
       setUsername(userApi.getCookieValue(`remember-id`))
     }
@@ -52,13 +54,13 @@ const LoginContainer = () => {
     loginHandler
   }
 
-  
 
-  
 
-  useEffect(()=>{
+
+
+  useEffect(() => {
     getCookies()
-  },[])
+  }, [])
 
 
   return (

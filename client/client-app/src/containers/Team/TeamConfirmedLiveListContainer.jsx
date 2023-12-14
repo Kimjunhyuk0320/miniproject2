@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TeamConfirmedLiveList from '../../components/Team/TeamConfirmedLiveList'
 import * as teamAppApi from '../../apis/Team/TeamAppApi'
 import TeamClPageBox from '../../components/Team/TeamClPageBox';
 import TeamPagenation from '../../components/Team/TeamPagenation';
+import UserContext from '../../context/UserContext'
 
-const TeamConfirmedLiveListContainer = ({username}) => {
+const TeamConfirmedLiveListContainer = ({ username }) => {
+    const { jwtSets } = useContext(UserContext)
 
 
     const [pageNo, setPage] = useState(1);
@@ -18,14 +20,14 @@ const TeamConfirmedLiveListContainer = ({username}) => {
     const [pageInfo, setPageInfo] = useState([])
 
     const getClList = async () => {
-        const response = await teamAppApi.confirmedLiveList({pageNo, rows, pageCount, totalCount, searchType,order, keyword, username});
+        const response = await teamAppApi.confirmedLiveList({ pageNo, rows, pageCount, totalCount, searchType, order, keyword, username }, jwtSets.jwtToken);
         const data = await response.data
         console.log(data)
         setClList(data)
     }
 
     const initPage = async () => {
-        const response = await teamAppApi.confirmedPageInfo({ pageNo, rows, pageCount, totalCount, searchType, keyword,order, username });
+        const response = await teamAppApi.confirmedPageInfo({ pageNo, rows, pageCount, totalCount, searchType, keyword, order, username }, jwtSets.jwtToken);
         const data = await response.data
         console.log(data)
         setPageInfo(data)
@@ -38,20 +40,20 @@ const TeamConfirmedLiveListContainer = ({username}) => {
     }, [pageNo, keyword, order, rows])
 
 
-return (
-    <>
-        <TeamClPageBox rows={rows}
-            setRows={setRows}
-            order={order}
-            setOrder={setOrder}
-            keyword={keyword}
-            setKeyword={setKeyword}
-            searchType={searchType}
-            setSearchType={setSearchType}></TeamClPageBox>
-        <TeamConfirmedLiveList clList={clList}></TeamConfirmedLiveList>
-        <TeamPagenation pageInfo={pageInfo} setPage={setPage}></TeamPagenation>
-    </>
-)
+    return (
+        <>
+            <TeamClPageBox rows={rows}
+                setRows={setRows}
+                order={order}
+                setOrder={setOrder}
+                keyword={keyword}
+                setKeyword={setKeyword}
+                searchType={searchType}
+                setSearchType={setSearchType}></TeamClPageBox>
+            <TeamConfirmedLiveList clList={clList}></TeamConfirmedLiveList>
+            <TeamPagenation pageInfo={pageInfo} setPage={setPage}></TeamPagenation>
+        </>
+    )
 }
 
 export default TeamConfirmedLiveListContainer

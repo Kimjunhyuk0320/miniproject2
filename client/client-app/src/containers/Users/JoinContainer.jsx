@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Join from '../../components/Users/Join'
 import * as userApi from '../../apis/users/userApi'
 import { useNavigate } from 'react-router-dom'
+import UserContext from '../../context/UserContext'
 
 const JoinContainer = () => {
+  const { jwtSets } = useContext(UserContext)
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -73,7 +75,7 @@ const JoinContainer = () => {
 
 
   const usernameCheckedHandler = async () => {
-    const response = await userApi.usernameCheck(username)
+    const response = await userApi.usernameCheck(username, jwtSets.jwtToken)
     const data = await response.data
 
     if (data != null) {
@@ -87,7 +89,7 @@ const JoinContainer = () => {
     }
   }
   const nicknameCheckedHandler = async () => {
-    const response = await userApi.nicknameCheck(nickname)
+    const response = await userApi.nicknameCheck(nickname, jwtSets.jwtToken)
     const data = await response.data
 
     if (data != null) {
@@ -101,7 +103,7 @@ const JoinContainer = () => {
     }
   }
   const phoneCheckedHandler = async () => {
-    const response = await userApi.phoneCheck(phone)
+    const response = await userApi.phoneCheck(phone, jwtSets.jwtToken)
     const data = await response.data
 
     if (data != null) {
@@ -161,7 +163,7 @@ const JoinContainer = () => {
       return
     }
 
-    const response = await userApi.join(sets)
+    const response = await userApi.join(sets, jwtSets.jwtToken)
     const data = await response.data
     if (data != null) {
       navi(`/liveBoard`)

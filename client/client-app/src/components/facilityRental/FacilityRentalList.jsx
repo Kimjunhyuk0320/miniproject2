@@ -23,7 +23,7 @@ const FacilityRentalList = ({ frList }) => {
                 </Link>
                 <div className="card-body">
                   <h5 className="card-title">
-                  <Link className='a' to={`/fr/${fr.frNo}`}>{fr.title}</Link>
+                    <Link className='a' to={`/fr/${fr.frNo}`}>{fr.title}</Link>
                   </h5>
                   <p className="card-text">{fr.writer}</p>
                   <p className="card-text">{fr.location}</p>

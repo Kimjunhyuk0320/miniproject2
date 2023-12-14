@@ -4,26 +4,26 @@ import * as teamApi from '../../apis/Team/TeamApi'
 import TeamReg from '../../components/Team/TeamReg';
 import UserContext from '../../context/UserContext';
 
-const TeamRegContainer = ({teamNo}) => {
+const TeamRegContainer = ({ teamNo }) => {
 
-    const {jwtSets} = useContext(UserContext)
+    const { jwtSets } = useContext(UserContext)
 
-    const [title,setTitle] = useState('')
-    const [bandName,setBandName] = useState('')
-    const [content,setContent] = useState('')
+    const [title, setTitle] = useState('')
+    const [bandName, setBandName] = useState('')
+    const [content, setContent] = useState('')
     const phone = jwtSets.parsedToken.phone ?? ''
     const username = jwtSets.parsedToken.username ?? 'GUEST'
     const navi = useNavigate()
 
-    const regHandler = async ()=>{
+    const regHandler = async () => {
         console.log(sets)
-        if(!window.confirm(`참가신청서를 제출하시겠습니까?`)) return
-        const response = await teamApi.teamReg(sets)
+        if (!window.confirm(`참가신청서를 제출하시겠습니까?`)) return
+        const response = await teamApi.teamReg(sets, jwtSets.jwtToken)
         const data = await response.data
 
-        if(data!=null){
+        if (data != null) {
             navi(`/mypage/tlmList`)
-        }else{
+        } else {
             navi(`/team/${teamNo}`)
         }
     }
@@ -41,11 +41,11 @@ const TeamRegContainer = ({teamNo}) => {
         teamNo
     }
 
-  return (
-    <>
-    <TeamReg sets={sets}></TeamReg>
-    </>
-  )
+    return (
+        <>
+            <TeamReg sets={sets}></TeamReg>
+        </>
+    )
 }
 
 export default TeamRegContainer

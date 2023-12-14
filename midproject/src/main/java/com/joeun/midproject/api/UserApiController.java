@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -197,6 +201,7 @@ public class UserApiController {
     }
 
     // 닉네임 중복 검사
+    // @PreAuthorize("hasRole('ROLE_CLUB')")
     @GetMapping("/getNicknameDup")
     public ResponseEntity<?> getNicknameDup(@RequestParam String nickname) {
         try {
@@ -245,4 +250,18 @@ public class UserApiController {
         List<Ticket> ticketList = userService.listByUserName(users);
         return new ResponseEntity<List<Ticket>>(ticketList, HttpStatus.OK);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+            return new ResponseEntity<String>("Y", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("N", HttpStatus.OK);
+        }
+    }
+
 }

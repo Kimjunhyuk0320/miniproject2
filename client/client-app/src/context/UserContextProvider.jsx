@@ -17,15 +17,23 @@ const UserContextProvider = ({ children }) => {
     const [isCLUB, setIsCLUB] = useState(false)
     const [isBAND, setIsBAND] = useState(false)
 
-    const logout = () => {
-        setIsLogin(false)
-        setJwtToken('')
-        setParsedToken('')
-        setIsUSER(false)
-        setIsCLUB(false)
-        setIsBAND(false)
-        //refreshToken쿠키날리기
-        userApi.delCookieValue(`refreshToken`)
+    const logout = async () => {
+        const response = await userApi.logout(jwtToken)
+        const data = await response.data
+        if (data == 'Y') {
+            setIsLogin(false)
+            setJwtToken('')
+            setParsedToken('')
+            setIsUSER(false)
+            setIsCLUB(false)
+            setIsBAND(false)
+            //refreshToken쿠키날리기
+            userApi.delCookieValue(`refreshToken`)
+            window.location.href = '/'
+        } else {
+            window.alert('로그아웃에 실패하였습니다.')
+            window.location.href = '/'
+        }
     }
     const login = (jwt, parsedJwt) => {
         setIsLogin(true)

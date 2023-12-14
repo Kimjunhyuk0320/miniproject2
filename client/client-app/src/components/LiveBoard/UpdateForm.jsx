@@ -47,6 +47,7 @@ const UpdateForm = ({ liveBoard }) => {
             const headers = {
               headers: {
                 'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${jwtSets.jwtToken}`
               },
             };
 

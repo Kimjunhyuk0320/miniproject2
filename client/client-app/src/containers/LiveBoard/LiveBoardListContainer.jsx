@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PageBox from '../../components/LiveBoard/PageBox'
 import CardList from '../../components/LiveBoard/CardList'
 import Pagenation from '../../components/LiveBoard/Pagenation'
 import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
+import UserContext from '../../context/UserContext'
+
 const LiveBoardListContainer = () => {
+  const { jwtSets } = useContext(UserContext)
   const [pageNo, setPageNo] = useState(1);
   const [rows, setRows] = useState(8);
   const pageCount = 10
@@ -15,13 +18,13 @@ const LiveBoardListContainer = () => {
   const [pageInfo, setPageInfo] = useState([])
 
   const getLiveBoardList = async () => {
-    const response = await liveBoards.getPageList(pageNo, rows, searchType, keyword, order);
+    const response = await liveBoards.getPageList(pageNo, rows, searchType, keyword, order, jwtSets.jwtToken);
     const data = await response.data
     setLiveBoardList(data)
   }
 
   const initPage = async () => {
-    const response = await liveBoards.initPage(pageNo, rows, pageCount, totalCount, searchType, keyword)
+    const response = await liveBoards.initPage(pageNo, rows, pageCount, totalCount, searchType, keyword, jwtSets.jwtToken)
     const data = await response.data
     setPageInfo(data)
   }

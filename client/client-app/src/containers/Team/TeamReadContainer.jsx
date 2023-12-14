@@ -1,42 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TeamRead from '../../components/Team/TeamRead'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
+import UserContext from '../../context/UserContext'
 
-const TeamReadContainer = ({teamNo}) => {
+const TeamReadContainer = ({ teamNo }) => {
+  const { jwtSets } = useContext(UserContext)
   const [team, setTeam] = useState({})
   const navi = useNavigate()
 
-  const getTeam = async (teamNo) =>{
-    const response = await teamApi.teamRead(teamNo)
+  const getTeam = async (teamNo) => {
+    const response = await teamApi.teamRead(teamNo, jwtSets.jwtToken)
     const data = await response.data
     console.log('------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
     console.log(data)
     setTeam(data)
   }
 
-  const delHandler = async ()=>{
-    if(!window.confirm(`정말로 삭제하시겠습니까?`)) return
-    const response = await teamApi.teamDelete(teamNo)
+  const delHandler = async () => {
+    if (!window.confirm(`정말로 삭제하시겠습니까?`)) return
+    const response = await teamApi.teamDelete(teamNo, jwtSets.jwtToken)
     const data = await response.data
-    if(data>0){
+    if (data > 0) {
       navi('/teamList')
-    }else{
+    } else {
       window.alert(`참가가 확정된 밴드팀이 있어 삭제가 불가능합니다!`)
       getTeam(teamNo)
       navi(`/team/${teamNo}`)
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getTeam(teamNo)
-  },[teamNo])
+  }, [teamNo])
   // },[])
 
   return (
     <>
-        <TeamRead team={team} delHandler={delHandler}></TeamRead>
-        
+      <TeamRead team={team} delHandler={delHandler}></TeamRead>
+
     </>
   )
 }

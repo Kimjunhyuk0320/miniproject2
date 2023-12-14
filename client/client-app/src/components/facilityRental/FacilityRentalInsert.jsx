@@ -1,49 +1,53 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 // 게시글 에디터
 import * as filesApi from '../../apis/file/fileApi'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import UserContext from '../../context/UserContext'
 
 const FacilityRentalInsert = ({ sets }) => {
-  // 게시글 에디터
-  function uploadPlugin(editor) {
-    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
-        return customUploadAdapter(loader);
+    const { jwtSets } = useContext(UserContext)
+
+    // 게시글 에디터
+    function uploadPlugin(editor) {
+        editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+            return customUploadAdapter(loader);
+        };
+    }
+
+    const customUploadAdapter = (loader) => {
+        return {
+            upload() {
+                return new Promise((resolve, reject) => {
+                    const formData = new FormData();
+                    loader.file.then(async (file) => {
+                        console.log(file);
+                        formData.append("parentTable", 'editor');
+                        formData.append("file", file);
+
+                        const headers = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                Authorization: `Bearer ${jwtSets.jwtToken}`
+                            },
+                        };
+
+                        let response = await filesApi.upload(formData, headers);
+                        let data = await response.data;
+                        console.log(`data : ${data}`);
+
+                        let newFileNo = data;
+
+                        await resolve({
+                            default: `/file/img/${newFileNo}`
+                        })
+
+                    });
+                });
+            },
+        };
     };
-  }
-  
-  const customUploadAdapter = (loader) => {
-    return {
-      upload() {
-        return new Promise( (resolve, reject) => {
-          const formData = new FormData();
-          loader.file.then( async (file) => {
-                console.log(file);
-                formData.append("parentTable", 'editor');
-                formData.append("file", file);
-
-                const headers = {
-                    headers: {
-                        'Content-Type' : 'multipart/form-data',
-                    },
-                };
-
-                let response = await filesApi.upload(formData, headers);
-                let data = await response.data;
-                console.log(`data : ${data}`);
-                
-                let newFileNo = data;
-
-                await resolve({
-                    default: `/file/img/${newFileNo}`
-                })
-              
-          });
-        });
-      },
-    };
-  };
 
 
     return (
@@ -61,15 +65,15 @@ const FacilityRentalInsert = ({ sets }) => {
                         <tr>
                             <td>제목</td>
                             <td>
-                                <input type="text" name="title" id="title" value={sets.title} onChange={(e)=>{
+                                <input type="text" name="title" id="title" value={sets.title} onChange={(e) => {
                                     sets.setTitle(e.target.value)
-                                }}/>
+                                }} />
                             </td>
                         </tr>
                         <tr>
                             <td>가격</td>
                             <td>
-                                <input type="text" name="price" id="price" value={sets.price} onChange={(e)=>{
+                                <input type="text" name="price" id="price" value={sets.price} onChange={(e) => {
                                     sets.setPrice(e.target.value)
                                 }} />
                             </td>
@@ -77,18 +81,18 @@ const FacilityRentalInsert = ({ sets }) => {
                         <tr>
                             <td>대관일자</td>
                             <td>
-                                <input type="date" name="liveDate" value={sets.liveDate} onChange={(e)=>{
+                                <input type="date" name="liveDate" value={sets.liveDate} onChange={(e) => {
                                     sets.setLiveDate(e.target.value)
-                                }}/>
+                                }} />
                             </td>
                         </tr>
                         <tr>
                             <td>계좌번호</td>
                             <td className="account-inputs">
                                 <select name="account1" id="account1"
-                                value={sets.account1} onChange={(e)=>{
-                                    sets.setAccount1(e.target.value)
-                                }}>
+                                    value={sets.account1} onChange={(e) => {
+                                        sets.setAccount1(e.target.value)
+                                    }}>
                                     <option value="신한은행">신한은행</option>
                                     <option value="우리은행">우리은행</option>
                                     <option value="하나은행">하나은행</option>
@@ -109,16 +113,16 @@ const FacilityRentalInsert = ({ sets }) => {
                                     <option value="신협중앙회">신협중앙회</option>
                                     <option value="우체국">우체국</option>
                                 </select>
-                                <input type="text" name="account2" id="account2" value={sets.account2} onChange={(e)=>{
+                                <input type="text" name="account2" id="account2" value={sets.account2} onChange={(e) => {
                                     sets.setAccount2(e.target.value)
-                                }}/>
+                                }} />
                             </td>
                         </tr>
 
                         <tr>
                             <td>지역</td>
                             <td>
-                                <select name="location" value={sets.location} onChange={(e)=>{
+                                <select name="location" value={sets.location} onChange={(e) => {
                                     sets.setLocation(e.target.value)
                                 }}>
                                     <option value="경기">경기</option>
@@ -144,7 +148,7 @@ const FacilityRentalInsert = ({ sets }) => {
                         <tr>
                             <td>장소</td>
                             <td>
-                                <input type="text" name="address" id="address" value={sets.address} onChange={(e)=>{
+                                <input type="text" name="address" id="address" value={sets.address} onChange={(e) => {
                                     sets.setAddress(e.target.value)
                                 }} />
                             </td>
@@ -153,9 +157,9 @@ const FacilityRentalInsert = ({ sets }) => {
                             <td className="label">썸네일</td>
                             <td className="data">
                                 <div className="dropzone">
-                                    <input type="file" id="thumbnail" accept="image/*" name="file" onChange={(e)=>{
+                                    <input type="file" id="thumbnail" accept="image/*" name="file" onChange={(e) => {
                                         sets.setFile(e.target.files)
-                                    }}/>
+                                    }} />
                                     <a href="javascript:;" className="btn btn-sm btn-thumb-remove hide">삭제</a>
                                     <div className="drop-img flex col main-center sub-center">
                                         <div className="upload-box">
@@ -169,7 +173,7 @@ const FacilityRentalInsert = ({ sets }) => {
                             <td>게시글 적성 에디터</td>
                             <td className="data">
                                 <CKEditor
-                                    editor={ ClassicEditor }
+                                    editor={ClassicEditor}
                                     config={{
                                         placeholder: "내용을 입력하세요.",
                                         toolbar: {
@@ -190,25 +194,25 @@ const FacilityRentalInsert = ({ sets }) => {
                                         alignment: {
                                             options: ['left', 'center', 'right', 'justify'],
                                         },
-                                        
+
                                         extraPlugins: [uploadPlugin]            // 업로드 플러그인
                                     }}
                                     data=""
-                                    onReady={ editor => {
+                                    onReady={editor => {
                                         // You can store the "editor" and use when it is needed.
-                                        console.log( 'Editor is ready to use!', editor );
-                                    } }
-                                    onChange={ ( event, editor ) => {
+                                        console.log('Editor is ready to use!', editor);
+                                    }}
+                                    onChange={(event, editor) => {
                                         const data = editor.getData();
-                                        console.log( { event, editor, data } );
+                                        console.log({ event, editor, data });
                                         sets.setContent(data)
-                                    } }
-                                    onBlur={ ( event, editor ) => {
-                                        console.log( 'Blur.', editor );
-                                    } }
-                                    onFocus={ ( event, editor ) => {
-                                        console.log( 'Focus.', editor );
-                                    } }
+                                    }}
+                                    onBlur={(event, editor) => {
+                                        console.log('Blur.', editor);
+                                    }}
+                                    onFocus={(event, editor) => {
+                                        console.log('Focus.', editor);
+                                    }}
                                 />
                             </td>
                         </tr>
@@ -219,7 +223,7 @@ const FacilityRentalInsert = ({ sets }) => {
                                         <button type="button" >목록</button>
                                     </Link>
                                     <button type="button" onClick={() => {
-                                            sets.insertHandler()
+                                        sets.insertHandler()
                                     }}>등록</button>
                                 </div>
                             </td>

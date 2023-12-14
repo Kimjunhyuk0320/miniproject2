@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
 import $ from 'jquery';
@@ -6,8 +6,12 @@ import CardList from '../../components/LiveBoard/CardList'
 import TeamList from '../../components/Team/TeamList'
 import FacilityRentalList from '../../components/facilityRental/FacilityRentalList'
 import * as myPages from '../../apis/myPage/myPageApi';
+import UserContext from '../../context/UserContext';
 
 const TotalSearch = () => {
+
+  const { jwtSets } = useContext(UserContext)
+
   // const [searchList, setSearchList] = useState({});
 
   const [frList, setFrList] = useState([])
@@ -57,7 +61,7 @@ const TotalSearch = () => {
       let keyword = document.getElementById('keyword').value;
       // alert(keyword)
 
-      const response = await myPages.search(keyword);
+      const response = await myPages.search(keyword, jwtSets.jwtToken);
       const data = response.data;
       console.log(data);
 
@@ -94,17 +98,17 @@ const TotalSearch = () => {
       <>
         <h1>클럽 대관 목록</h1>
         <p>클럽 대관 목록 검색 결과압니다.</p>
-        <hr/>
+        <hr />
         <FacilityRentalList frList={frList}></FacilityRentalList>
-        <br/><br/><br/><br/>
+        <br /><br /><br /><br />
         <h1>공연 목록</h1>
         <p>공연 목록 검색 결과압니다.</p>
-        <hr/>
+        <hr />
         <CardList liveBoardList={liveBoardList} />
-        <br/><br/><br/><br/>
+        <br /><br /><br /><br />
         <h1>공연 팀 모집 목록</h1>
         <p>공연 팀 모집 목록 검색 결과압니다.</p>
-        <hr/>
+        <hr />
         <TeamList teamList={teamList}></TeamList>
       </>
 

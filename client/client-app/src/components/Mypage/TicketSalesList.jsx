@@ -14,7 +14,7 @@ const TicketSalesList = () => {
   // 게시글 목록
   const getList2 = async () => {
     try {
-      const response = await myPages.getList2(username);
+      const response = await myPages.getList2(username,jwtSets.jwtToken);
       const data = response.data;
       console.log(data);
       setTicketList(data);
