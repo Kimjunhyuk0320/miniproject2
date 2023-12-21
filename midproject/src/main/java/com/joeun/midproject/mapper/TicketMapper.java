@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.joeun.midproject.dto.Ticket;
-import com.joeun.midproject.dto.Users;
 
 @Mapper
 public interface TicketMapper {

@@ -34,7 +34,7 @@ public class TeamAppServiceImpl implements TeamAppService {
   private SMSService smsService;
 
   @Override
-  public int insert(TeamApp teamApp) {
+  public int insert(TeamApp teamApp) throws Exception {
 
     int result = teamAppMapper.insert(teamApp);
     int teamNo = teamApp.getTeamNo();
@@ -42,7 +42,7 @@ public class TeamAppServiceImpl implements TeamAppService {
     team1.setTeamNo(teamNo);
     Team team = teamMapper.read(team1);
     String id = team.getUsername();
-    Users users = userMapper.read(id);
+    Users users = userMapper.select(id);
     String phone = users.getPhone();
     MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
     // ✅ 필수 정보
@@ -172,7 +172,7 @@ public class TeamAppServiceImpl implements TeamAppService {
   }
 
   @Override
-  public int confirmed(TeamApp teamApp) {
+  public int confirmed(TeamApp teamApp) throws Exception {
 
     // 해당신청서 확정
     int result = teamAppMapper.confirmed(teamApp);
@@ -236,7 +236,7 @@ public class TeamAppServiceImpl implements TeamAppService {
 
       List<TeamApp> confirmedTeamAppList = teamAppMapper.listByTeamNo(tempTeam.getTeamNo());
 
-      String members = userMapper.read(team.getUsername()).getNickname() + ", ";
+      String members = userMapper.select(team.getUsername()).getNickname() + ", ";
       for (int i = 0; i < confirmedTeamAppList.size(); i++) {
         if (i < confirmedTeamAppList.size() - 1) {
           members += (confirmedTeamAppList.get(i).getBandName() + ", ");
@@ -260,7 +260,7 @@ public class TeamAppServiceImpl implements TeamAppService {
           tempString += confirmedTeamAppList.get(i).getPhone();
       }
       String username = team.getUsername();
-      String phonenumber = userMapper.read(username).getPhone();
+      String phonenumber = userMapper.select(username).getPhone();
       MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
       // ✅ 필수 정보
       // - receiver : 1) 01012341234
