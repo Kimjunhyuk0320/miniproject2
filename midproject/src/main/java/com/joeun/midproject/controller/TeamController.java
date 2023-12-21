@@ -1,22 +1,16 @@
 package com.joeun.midproject.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,17 +18,12 @@ import com.joeun.midproject.dto.Comment;
 import com.joeun.midproject.dto.PageInfo;
 import com.joeun.midproject.dto.Team;
 import com.joeun.midproject.dto.TeamApp;
-import com.joeun.midproject.mapper.CommentMapper;
 import com.joeun.midproject.mapper.TeamMapper;
 import com.joeun.midproject.service.CommentService;
 import com.joeun.midproject.service.TeamAppService;
 import com.joeun.midproject.service.TeamService;
 
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Slf4j
@@ -236,7 +225,7 @@ public class TeamController {
   }
 
   @PostMapping(value="/app")
-  public String applicationPro(TeamApp teamApp) {
+  public String applicationPro(TeamApp teamApp) throws Exception {
 
     int result = teamAppService.insert(teamApp);
       
@@ -275,7 +264,7 @@ public class TeamController {
   }
 
   @PostMapping(value="/app/confirmed")
-  public String confirmedPro(TeamApp teamApp) {
+  public String confirmedPro(TeamApp teamApp) throws Exception {
    
       int result = teamAppService.confirmed(teamApp);
 
