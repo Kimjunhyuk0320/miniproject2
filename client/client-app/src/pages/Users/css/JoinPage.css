@@ -172,7 +172,7 @@
     color: black;
 }
 
-.before-img-box {
+.JoinPage .before-img-box {
     background-image: url("/public/img/defaultProfile.png");
     width: 150px;
     height: 150px;
@@ -233,4 +233,16 @@
     /* color: white; */
     font-size: 16px;
     /* border-radius: 40px; */
+}
+
+.JoinPage .submit_button button {
+    width: 50%;
+    height: 50px;
+    /* margin: 0px 10px; */
+    color: #fff;
+    background: #082c46;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
 }

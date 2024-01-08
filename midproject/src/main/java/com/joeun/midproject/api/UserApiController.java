@@ -136,6 +136,7 @@ public class UserApiController {
     // 연락처 중복 검사
     @GetMapping("/getPhoneDup")
     public ResponseEntity<?> getPhoneDup(@RequestParam String phone) {
+        log.info(phone);
         try {
             Users user = userService.readOnlyPhone(phone);
 
@@ -163,6 +164,9 @@ public class UserApiController {
     @GetMapping("/listByUserName")
     public ResponseEntity<List<Ticket>> listByUserName(Users users) throws Exception {
         List<Ticket> ticketList = userService.listByUserName(users);
+        // if(ticketList == null) {
+        //     return new ResponseEntity<List<Ticket>>(null, HttpStatus.OK);
+        // }
         return new ResponseEntity<List<Ticket>>(ticketList, HttpStatus.OK);
     }
 }

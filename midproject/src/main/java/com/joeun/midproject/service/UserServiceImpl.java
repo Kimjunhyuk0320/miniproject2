@@ -1,6 +1,5 @@
 package com.joeun.midproject.service;
 
-
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
@@ -59,31 +58,36 @@ public class UserServiceImpl implements UserService {
     private String uploadPath;
 
     @Override
-    public int insert(Users user,HttpServletRequest request) throws Exception {
+    public int insert(Users user, HttpServletRequest request) throws Exception {
         // 비밀번호 암호화
         String password = user.getPassword();
-        String encodedPw = passwordEncoder.encode(password);
-        user.setPassword(encodedPw);
+        if (password != null) {
+            String encodedPw = passwordEncoder.encode(password);
+            user.setPassword(encodedPw);
+        } else {
+            // 처리할 내용이나 예외 처리를 추가할 수 있음
+            throw new IllegalArgumentException("Password cannot be null");
+        }
         // 회원 등록
         int result = userMapper.insert(user);
 
         // 권한 등록
-        if( result > 0 ) {
+        if (result > 0) {
             UserAuth userAuth = new UserAuth();
-            userAuth.setUsername( user.getUsername() );
-            if ( user.getAuth() == 0){
+            userAuth.setUsername(user.getUsername());
+            if (user.getAuth() == 0) {
                 userAuth.setAuth("ROLE_USER");
             }
-            if ( user.getAuth() == 1){
+            if (user.getAuth() == 1) {
                 userAuth.setAuth("ROLE_CLUB");
             }
-            if ( user.getAuth() == 2){
+            if (user.getAuth() == 2) {
                 userAuth.setAuth("ROLE_BAND");
             }
             result = userMapper.insertAuth(userAuth);
         }
 
-        if( result > 0 ){
+        if (result > 0) {
             // 파일 업로드
             MultipartFile file = user.getFile();
 
@@ -146,13 +150,11 @@ public class UserServiceImpl implements UserService {
         String password = user.getUserPwCheck();
         log.info("username : " + username);
         log.info("password : " + password);
-
         // 아이디, 패스워드 인증 토큰 생성
-        UsernamePasswordAuthenticationToken token 
-            = new UsernamePasswordAuthenticationToken(username, password);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
 
         // 토큰에 요청정보를 등록
-        token.setDetails( new WebAuthenticationDetails(requset) );
+        token.setDetails(new WebAuthenticationDetails(requset));
 
         // 토큰을 이용하여 인증(로그인)
         Authentication authentication = authenticationManager.authenticate(token);
@@ -164,67 +166,85 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int update(Users user,HttpServletRequest request,HttpServletResponse response) throws Exception {
+    public int update(Users user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 비밀번호 암호화
         String userPw = user.getPassword();
+
         String encodedPw = passwordEncoder.encode(userPw);
         user.setPassword(encodedPw);
 
         int result = userMapper.update(user);
+        // 권한 등록
+        if (result > 0) {
+            UserAuth userAuth = new UserAuth();
+            userAuth.setUsername(user.getUsername());
+            log.info("테스트 : 권환 정보 = " + user.getAuth());
+            if (user.getAuth() == 0) {
+                userAuth.setAuth("ROLE_USER");
+            }
+            if (user.getAuth() == 1) {
+                userAuth.setAuth("ROLE_CLUB");
+            }
+            if (user.getAuth() == 2) {
+                userAuth.setAuth("ROLE_BAND");
+            }
+            result = userMapper.updateAuth(userAuth);
+        }
+
         if (result > 0) {
             // 파일 업로드
             MultipartFile file = user.getFile();
-      
+
             if (file != null && !file.isEmpty()) {
-      
-              // 파일 정보 : 원본파일명, 파일 용량, 파일 데이터
-              String originName = file.getOriginalFilename();
-              long fileSize = file.getSize();
-              byte[] fileData = file.getBytes();
-      
-              // 업로드 경로
-              // 파일명 중복 방지 방법(정책)
-              // - 날짜_파일명.확장자
-              // - UID_파일명.확장자
-      
-              // UID_강아지.png
-              String fileName = UUID.randomUUID().toString() + "_" + originName;
-      
-              // c:/upload/UID_강아지.png
-              String filePath = uploadPath + "/" + fileName;
-      
-              // 파일업로드
-              // - 서버 측, 파일 시스템에 파일 복사
-              // - DB 에 파일 정보 등록
-              File uploadFile = new File(uploadPath, fileName);
-              FileCopyUtils.copy(fileData, uploadFile); // 파일 업로드
-      
-              // FileOutputStream fos = new FileOutputStream(uploadFile);
-              // fos.write(fileData);
-              // fos.close();
-      
-              Files uploadedFile = new Files();
-              uploadedFile.setParentTable("users");
-              uploadedFile.setParentUsername(user.getUsername());
-              uploadedFile.setFileName(fileName);
-              uploadedFile.setPath(filePath);
-              uploadedFile.setOriginName(originName);
-              uploadedFile.setFileSize(fileSize);
-              uploadedFile.setFileCode(2);
-              // 파일DB등록
-              fileMapper.insert(uploadedFile);
-      
-              Integer preProfileNo = userMapper.select(user.getUsername()).getProfileNo();
-      
-              if (preProfileNo != null) {
-      
-                fileMapper.delete(preProfileNo);
-      
-              }
-      
-              // 유저DB에서 방금등록한 fileNo가져와 객체에 담기
-              user.setProfileNo(fileMapper.maxPk());
-              result = userMapper.profileSet(user);
+
+                // 파일 정보 : 원본파일명, 파일 용량, 파일 데이터
+                String originName = file.getOriginalFilename();
+                long fileSize = file.getSize();
+                byte[] fileData = file.getBytes();
+
+                // 업로드 경로
+                // 파일명 중복 방지 방법(정책)
+                // - 날짜_파일명.확장자
+                // - UID_파일명.확장자
+
+                // UID_강아지.png
+                String fileName = UUID.randomUUID().toString() + "_" + originName;
+
+                // c:/upload/UID_강아지.png
+                String filePath = uploadPath + "/" + fileName;
+
+                // 파일업로드
+                // - 서버 측, 파일 시스템에 파일 복사
+                // - DB 에 파일 정보 등록
+                File uploadFile = new File(uploadPath, fileName);
+                FileCopyUtils.copy(fileData, uploadFile); // 파일 업로드
+
+                // FileOutputStream fos = new FileOutputStream(uploadFile);
+                // fos.write(fileData);
+                // fos.close();
+
+                Files uploadedFile = new Files();
+                uploadedFile.setParentTable("users");
+                uploadedFile.setParentUsername(user.getUsername());
+                uploadedFile.setFileName(fileName);
+                uploadedFile.setPath(filePath);
+                uploadedFile.setOriginName(originName);
+                uploadedFile.setFileSize(fileSize);
+                uploadedFile.setFileCode(2);
+                // 파일DB등록
+                fileMapper.insert(uploadedFile);
+
+                Integer preProfileNo = userMapper.select(user.getUsername()).getProfileNo();
+
+                if (preProfileNo != null) {
+
+                    fileMapper.delete(preProfileNo);
+
+                }
+
+                // 유저DB에서 방금등록한 fileNo가져와 객체에 담기
+                user.setProfileNo(fileMapper.maxPk());
+                result = userMapper.profileSet(user);
             }
         }
         return result;
@@ -246,10 +266,10 @@ public class UserServiceImpl implements UserService {
         String phone = users.getPhone();
         List<Ticket> ticketList = ticketMapper.listByPhone(phone);
         for (int i = 0; i < ticketList.size(); i++) {
-        int boardNo = ticketList.get(i).getBoardNo();
-        LiveBoard LiveBoard = liveBoardMapper.select(boardNo);
-        ticketList.get(i).setTitle(LiveBoard.getTitle());
-        ticketList.get(i).setLiveDate(LiveBoard.getLiveDate());
+            int boardNo = ticketList.get(i).getBoardNo();
+            LiveBoard LiveBoard = liveBoardMapper.select(boardNo);
+            ticketList.get(i).setTitle(LiveBoard.getTitle());
+            ticketList.get(i).setLiveDate(LiveBoard.getLiveDate());
         }
         return ticketList;
     }
@@ -267,6 +287,4 @@ public class UserServiceImpl implements UserService {
         return userMapper.readOnlyNickname(nickname);
     }
 
-    
-    
 }

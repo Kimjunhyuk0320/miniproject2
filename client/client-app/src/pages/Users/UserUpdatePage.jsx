@@ -6,14 +6,14 @@ import './css/UserUpdatePage.css';
 
 const UserUpdatePage = () => {
 
-  const username = 'gangjinsu'
+  // const username = 'gangjinsu'
 
   return (
     <>
       <Header />
       <div className='UserUpdatePage'>
 
-      <UserUpdateContainer username={username}></UserUpdateContainer>
+      <UserUpdateContainer></UserUpdateContainer>
       </div>
       <Footer />
     </>

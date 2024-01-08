@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import UserUpdate from '../../components/Users/UserUpdate'
 import { useNavigate } from 'react-router-dom'
-import * as userApi from '../../apis/users/userApi'
+import * as userAuth from '../../apis/users/userAuth'
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
-const UserUpdateContainer = ({ username }) => {
+const UserUpdateContainer = () => {
 
 
-
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [userPwCheck, setUserPwCheck] = useState('')
   const [name, setName] = useState('')
@@ -15,13 +16,14 @@ const UserUpdateContainer = ({ username }) => {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [file, setFile] = useState(null)
+  const [fileSource, setFileSource] = useState('')
+  const [fileName, setFileName] = useState('')
   const [nicknameChecked, setNicknameChecked] = useState(false);
   const [phoneChecked, setPhoneChecked] = useState(false);
 
-  //중복검사 통과 여부 상태 만들어야합니다.
+  // 중복검사 통과 여부 상태 만들어야합니다.
 
   const navi = useNavigate();
-
 
   // 유효성 검사 함수
   // 1. 비밀번호에 대한 부분
@@ -67,19 +69,8 @@ const UserUpdateContainer = ({ username }) => {
     return true;
   }
 
-  const getUserInfo = async () => {
-
-    const response = await userApi.userInfo(username)
-    const data = await response.data
-    setName(data.name)
-    setNickname(data.nickname)
-    setAuth(data.auth)
-    setPhone(data.phone)
-    setEmail(data.email)
-  }
-
   const nicknameCheckedHandler = async () => {
-    const response = await userApi.nicknameCheck(nickname)
+    const response = await userAuth.nicknameCheck(nickname)
     const data = await response.data
 
     if (data != null) {
@@ -93,7 +84,7 @@ const UserUpdateContainer = ({ username }) => {
     }
   }
   const phoneCheckedHandler = async () => {
-    const response = await userApi.phoneCheck(phone)
+    const response = await userAuth.phoneCheck(phone)
     const data = await response.data
 
     if (data != null) {
@@ -123,30 +114,30 @@ const UserUpdateContainer = ({ username }) => {
       return
     }
 
-    if (!phoneChecked) {
-      alert('연락처 중복검사를 실시해주세요.');
-      return
-    }
+    // if (!phoneChecked) {
+    //   alert('연락처 중복검사를 실시해주세요.');
+    //   return
+    // }
 
     // 유효성 검사 부분
     // 1. 비밀번호에 대한 유효성 검사
-    if (!validatePassword()) {
-      return
-    }
+    // if (!validatePassword()) {
+    //   return
+    // }
     // 2. 이메일에 대한 유효성 검사 실시
-    if (!validateEmail()) {
+    // if (!validateEmail()) {
 
-      alert('잘못된 이메일 형식입니다.')
-      return
-    }
+    //   alert('잘못된 이메일 형식입니다.')
+    //   return
+    // }
     // 3. 연락처에 대한 유효성 검사 실시
-    if (!validatePhone()) {
-      alert('잘못된 연락처 형식입니다. ( - 제외)')
-      return
-    }
+    // if (!validatePhone()) {
+    //   alert('잘못된 연락처 형식입니다. ( - 제외)')
+    //   return
+    // }
 
 
-    const response = await userApi.update(sets)
+    const response = await userAuth.update(sets)
     const data = await response.data
     if (data != null) {
       navi(`/liveBoard`)
@@ -173,6 +164,10 @@ const UserUpdateContainer = ({ username }) => {
     setPhone,
     file,
     setFile,
+    fileSource,
+    setFileSource,
+    fileName,
+    setFileName,
     nicknameChecked,
     setNicknameChecked,
     phoneChecked,
@@ -180,18 +175,78 @@ const UserUpdateContainer = ({ username }) => {
     updateHandler,
     nicknameCheckedHandler,
     phoneCheckedHandler,
+  }
 
+
+
+  const [userInfo, setUserInfo] = useState();
+  
+  const { isLogin, roles, logout } = useContext(LoginContext);
+
+  // 회원 정보 조회 - /user/info
+  const getUserInfo = async () => {
+    const response = await userAuth.userInfo()
+    const data = response.data
+    console.log(`getUserInfo`)
+    console.log(data)
+    setUserInfo(data)
+  }
+  
+  // 권한 설정
+  const getAuthInfo = async () => {
+    if (userInfo) {
+      alert('접근할 수 없는 요청입니다.')
+      navi("/liveBoard");
+      return;
+    }
+    return true;
+  }
+
+  // 회원 정보 수정
+  const updateUser = async(form) => {
+    console.log(form)
+
+    let response
+    let data
+    const headers = {
+      headers: {
+        'Content-Type' : 'multipart/form-data',
+      },
+    };
+    try {
+      response = await userAuth.update(form, headers)
+    } catch (error) {
+      console.error(`${error}`)
+      console.error(`회원정보 수정 중 에러가 발생했습니다.`)
+    }
+    data = response.data
+    const status = response.status
+    console.log(`data : ${data}`)
+    console.log(`status : ${status}`)
+
+    if(status === 200) {
+      console.log(`회원정보 수정 성공!`)
+      alert(`회원정보 수정 성공!`)
+      logout()
+      navi(`/login`)
+    } else {
+      console.log(`회원정보 수정 실패!`)
+      alert(`회원정보 수정 실패!`)
+    }
   }
 
   useEffect(() => {
+
+    // 유저 정보 가져오기
     getUserInfo()
-  }, [])
 
-
+    // 권한 설정
+    getAuthInfo()
+  }, [isLogin, userInfo])
 
   return (
     <>
-      <UserUpdate sets={sets}></UserUpdate>
+      <UserUpdate sets={sets} userInfo={userInfo} updateUser={updateUser}></UserUpdate>
     </>
   )
 }

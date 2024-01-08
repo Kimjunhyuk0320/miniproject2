@@ -15,6 +15,16 @@
     text-decoration: none;
 }
 
+.header button {
+    all: unset;
+    color: black;
+    text-decoration: none;
+    line-height: 86px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
 
 .header section {
     min-height: 400px;

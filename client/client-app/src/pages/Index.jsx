@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
 import $ from 'jquery';
 import './index.css';
+import LoginContextConsumer from '../contexts/LoginContextConsumer';
+import { LoginContext } from '../contexts/LoginContextProvider';
 
 //  app.css 에 공통적인 부분
 
@@ -59,7 +61,10 @@ const Index = () => {
     }
   }, [])
 
+  const { isLogin, login, logout } = useContext(LoginContext);
+
   return (
+    // isLogin : 로그인 여부 - Y(true), N(false)
     <>
       <Helmet>
         <title>LiveDom</title>
@@ -93,6 +98,7 @@ const Index = () => {
               </div>
               <div className="overlay"></div>
               <div className="text_">
+                <LoginContextConsumer />
                 <h2>Making live shows</h2>
                 <h3>more accessible than ever before</h3>
                 <p>
@@ -134,12 +140,23 @@ const Index = () => {
                 <li><Link to="/teamList"><i className="fi fi-rs-chart-tree"></i>   공연팀 모집</Link></li>
                 <br />
                 {/* <th: block sec: authorize="isAnonymous()"> */}
-                <li><a href="/join"><i className="fi fi-rr-user-add"></i>   회원가입</a></li>
+                <li><Link href="/join"><i className="fi fi-rr-user-add"></i>   회원가입</Link></li>
                 <br />
-                <li><Link to="/login"><i className="fi fi-rr-sign-in-alt"></i>   로그인</Link></li>
+                {
+                  !isLogin
+                    // 비로그인 시
+                    ?
+                    <li><Link to="/login"><i className="fi fi-rr-sign-in-alt"></i>   로그인</Link></li>
+                    :
+                    // 로그인 시
+                    <>
+                      <li><Link to="/myPage"><i className="fi fi-rr-sign-in-alt"></i>   마이페이지</Link></li>
+                      <br/>
+                      <li><Link  onClick={ () => logout() }><i className="fi fi-rr-user-add"></i>   로그아웃</Link></li>
+                    </>
+                }
                 {/* </th: block> */}
                 {/* <th: block sec: authorize="isAuthenticated()"> */}
-                <li><Link to="/myPage"><i className="fi fi-rr-sign-in-alt"></i>   마이페이지</Link></li>
                 <br />
                 {/* logOut onclick속성 */}
                 {/* <li><a href="#" onClick={logOut}><i className="fi fi-rr-sign-out-alt"></i>   로그아웃</a></li> */}

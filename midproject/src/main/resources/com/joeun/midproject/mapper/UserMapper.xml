@@ -12,9 +12,11 @@
         <result property="username" column="username" />
         <result property="password" column="password" />
         <result property="name" column="name" />
+        <result property="nickname" column="nickname" />
         <result property="email" column="email" />
+        <result property="phone" column="phone" />
         <result property="enabled" column="enabled" />
-        <result property="regDate" column="reg_date" />
+        <!-- <result property="regDate" column="reg_date" /> -->
         <result property="updDate" column="upd_date" />
         
         <collection property="authList" resultMap="authMap"></collection>
@@ -72,6 +74,14 @@
         INSERT INTO user_auth( user_id, auth ) 
         VALUES ( #{username}, #{auth} )
     </insert>
+
+    <!-- 회원 수정 -->
+    <update id="updateAuth">
+        UPDATE user_auth
+        SET 
+            auth = #{auth}
+        WHERE user_id = #{username}
+    </update>
 
     <!-- 회원 수정 -->
     <update id="update">

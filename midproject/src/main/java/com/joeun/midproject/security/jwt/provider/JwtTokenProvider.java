@@ -105,6 +105,7 @@ public class JwtTokenProvider {
 
             log.info("parsedToken : " + parsedToken);
 
+        
             // 인증된 사용자 아이디
             String userId = parsedToken.getPayload().get("uid").toString();
             log.info("userId : " + userId);

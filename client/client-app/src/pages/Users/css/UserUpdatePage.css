@@ -151,3 +151,94 @@ select,
     object-fit: cover;
     border-radius: 15px;
 }
+
+.UserUpdatePage .submit_button {
+    margin-top: 20px;
+    display: flex;
+    justify-self: center;
+}
+
+
+.UserUpdatePage .submit_button button {
+    width: 800px;
+    /* width: 50%; */
+    height: 50px;
+    /* margin: 0px 10px; */
+    margin: 0 auto;
+    color: #fff;
+    background: #082c46;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* 사용자 이미지 관련  */
+
+.UserUpdatePage .dropzone {
+    margin-top: 40px;
+}
+
+.UserUpdatePage .before-img-box {
+    background-image: url("/public/img/defaultProfile.png");
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-position: center center;
+    /* 이미지를 가로세로 모두 가운데로 정렬하고 싶을 떄 사용 */
+    margin: auto;
+    box-shadow: 0px 0px 15px gray;
+}
+
+.UserUpdatePage .img-box {
+    display: flex;
+}
+
+.UserUpdatePage .img-box>img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-position: center center;
+    /* 이미지를 가로세로 모두 가운데로 정렬하고 싶을 떄 사용 */
+    margin: auto;
+    box-shadow: 0px 0px 15px gray;
+}
+
+/* 이미지 파일 선택 부분 css */
+.UserUpdatePage .add_thumbnail_box {}
+
+.UserUpdatePage .add_thumbnail {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+    width: 400px;
+}
+
+.UserUpdatePage .select_btn {
+    background-color: white;
+    /* box-sizing: 0px 0px 15px gray; */
+}
+
+/* <!-- 파일 업로드가 될 때 파일 명이 나오는 부분 --> */
+.UserUpdatePage #file-name {
+    background-color: rgba(242, 242, 242);
+    border: none;
+    text-overflow: ellipsis;
+    display: none;
+    /* 생략 부호 표시 */
+}
+
+/* 삭제 버튼 css */
+.UserUpdatePage .btn-thumb-remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    /* background-color: red; */
+    /* color: white; */
+    font-size: 16px;
+    /* border-radius: 40px; */
+}

@@ -1,90 +1,93 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './css/Header.css'
 import $ from 'jquery';
+import { LoginContext } from '../contexts/LoginContextProvider';
 
 const Header = () => {
 
+    const { isLogin, login, logout, userInfo } = useContext(LoginContext);
+
+
     useEffect(() => {
 
+        let auth = $('#auth').val()
+        // 상단 메뉴 관련
+        $(' .header > .header-inner > .top-menu-bar > ul > li').mouseenter(function () {
+            $(this).addClass('active');
+            $(this).find('> a').addClass('active');
+        });
 
-    let auth = $('#auth').val()
-    // 상단 메뉴 관련
-    $(' .header > .header-inner > .top-menu-bar > ul > li').mouseenter(function(){
-        $(this).addClass('active');
-        $(this).find('> a').addClass('active');
-    });
+        $('.header > .header-inner > .top-menu-bar > ul > li').mouseleave(function () {
+            $(this).removeClass('active');
+            $(this).find('> a').removeClass('active');
+        });
 
-    $('.header > .header-inner > .top-menu-bar > ul > li').mouseleave(function(){
-        $(this).removeClass('active');
-        $(this).find('> a').removeClass('active');
-    });
+        // 상단 2차 메뉴 배경
+        if (auth == 'ROLE_CLUB' || auth == 'ROLE_BAND') {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-1').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '140px');
+            });
+        } else {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-1').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '');
+            });
+        }
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-1').mouseleave(function () {
+            $('.sub-menu-bg').css('height', '');
+        });
+        if (auth == 'ROLE_CLUB' || auth == 'ROLE_BAND') {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-2').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '180px');
+            });
+        } else {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-2').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '');
+            });
+        }
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-2').mouseleave(function () {
+            $('.sub-menu-bg').css('height', '');
+        });
 
-    // 상단 2차 메뉴 배경
-    if(auth == 'ROLE_CLUB' || auth == 'ROLE_BAND'){
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-1').mouseenter(function(){
-            $('.sub-menu-bg').css('height','140px');
+        if (auth == 'ROLE_BAND') {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-3').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '220px');
+            });
+        } else {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-3').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '');
+            });
+        }
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-3').mouseleave(function () {
+            $('.sub-menu-bg').css('height', '');
         });
-    }else{
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-1').mouseenter(function(){
-            $('.sub-menu-bg').css('height','');
+        if (auth == 'ROLE_CLUB' || auth == 'ROLE_BAND' || auth == 'ROLE_USER') {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-4').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '120px');
+            });
+        } else {
+            $('.header > .header-inner > .top-menu-bar > ul > .menu-4').mouseenter(function () {
+                $('.sub-menu-bg').css('height', '');
+            });
+        }
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-4').mouseleave(function () {
+            $('.sub-menu-bg').css('height', '');
         });
-    }
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-1').mouseleave(function(){
-        $('.sub-menu-bg').css('height','');
-    });
-    if(auth == 'ROLE_CLUB' || auth == 'ROLE_BAND'){
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-2').mouseenter(function(){
-            $('.sub-menu-bg').css('height','180px');
-        });
-    }else{
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-2').mouseenter(function(){
-            $('.sub-menu-bg').css('height','');
-        });
-    }
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-2').mouseleave(function(){
-        $('.sub-menu-bg').css('height','');
-    });
 
-    if(auth == 'ROLE_BAND'){
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-3').mouseenter(function(){
-            $('.sub-menu-bg').css('height','220px');
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-5').mouseenter(function () {
+            $('.sub-menu-bg').css('height', '110px');
         });
-    }else{
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-3').mouseenter(function(){
-            $('.sub-menu-bg').css('height','');
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-5').mouseleave(function () {
+            $('.sub-menu-bg').css('height', '');
         });
-    }
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-3').mouseleave(function(){
-        $('.sub-menu-bg').css('height','');
-    });
-    if(auth == 'ROLE_CLUB' || auth == 'ROLE_BAND' || auth == 'ROLE_USER'){
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-4').mouseenter(function(){
-            $('.sub-menu-bg').css('height','120px');
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-6').mouseenter(function () {
+            $('.sub-menu-bg').css('height', '240px');
         });
-    }else{
-        $('.header > .header-inner > .top-menu-bar > ul > .menu-4').mouseenter(function(){
-            $('.sub-menu-bg').css('height','');
+        $('.header > .header-inner > .top-menu-bar > ul > .menu-6').mouseleave(function () {
+            $('.sub-menu-bg').css('height', '');
         });
-    }
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-4').mouseleave(function(){
-        $('.sub-menu-bg').css('height','');
-    });
 
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-5').mouseenter(function(){
-        $('.sub-menu-bg').css('height','110px');
-    });
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-5').mouseleave(function(){
-        $('.sub-menu-bg').css('height','');
-    });
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-6').mouseenter(function(){
-        $('.sub-menu-bg').css('height','240px');
-    });
-    $('.header > .header-inner > .top-menu-bar > ul > .menu-6').mouseleave(function(){
-        $('.sub-menu-bg').css('height','');
-    });
-
-    }, [])
+    }, [userInfo])
 
     return (
         <div className='header'>
@@ -152,51 +155,81 @@ const Header = () => {
                         </li>
                     </ul>
                     <ul className="header-row cells-right">
-                        {/* 로그인 되었을 때 */}
-                        <li className="cells menu-5">
-                            <Link to="/myPage">마이페이지</Link>
-                            <ul>
-                                <li><Link to="/myInfo">내 정보 보기</Link></li>
-                                <li><Link to="/myPage/update">내 정보 수정하기</Link></li>
-                            </ul>
-                            <div className="sub-menu-width sub-menu-width-4"></div>
-                        </li>
-                        {/* 비회원일 때 */}
-                        <li className="cells menu-5">
-                            <Link to="/login">로그인</Link>
-                            <ul>
-                                <li><Link to="/login">로그인</Link></li>
-                                <li><Link to="/join">회원가입</Link></li>
-                            </ul>
-                            <div className="sub-menu-width sub-menu-width-5"></div>
-                        </li>
-                        <li className="cells">
-                            <Link to="/join">회원가입</Link>
-                            <div className="sub-menu-width sub-menu-width-5"></div>
-                        </li>
-                        {/* 로그인 되었을 때 */}
-                        <li className="cells">
-                            {/* <a href="#" onclick="logOut()">로그아웃</a> */}
-                            <Link to="#">로그아웃</Link>
-                            <div className="sub-menu-width sub-menu-width-5"></div>
-                        </li>
+                        {
+                            isLogin
+                                ?
+                                // {/* 로그인 되었을 때 */}
+                                <li className="cells menu-5">
+                                    <Link to="/myPage">마이페이지</Link>
+                                    <ul>
+                                        <li><Link to="/myInfo">내 정보 보기</Link></li>
+                                        <li><Link to="/myPage/update">내 정보 수정하기</Link></li>
+                                    </ul>
+                                    <div className="sub-menu-width sub-menu-width-4"></div>
+                                </li>
+                                :
+                                // {/* 비로그인 시 */}
+                                <>
+                                    <li className="cells menu-5">
+                                        <Link to="/login">로그인</Link>
+                                        <ul>
+                                            <li><Link to="/login">로그인</Link></li>
+                                            <li><Link to="/join">회원가입</Link></li>
+                                        </ul>
+                                        <div className="sub-menu-width sub-menu-width-5"></div>
+                                    </li>
+                                    <li className="cells">
+                                        <Link to="/join">회원가입</Link>
+                                        <div className="sub-menu-width sub-menu-width-5"></div>
+                                    </li>
+                                </>
+                        }
+                        {
+                            // {/* 로그인 되었을 때 */}
+                            !isLogin
+                                ?
+                                <></>
+                                :
+                                <li className="cells">
+                                    {/* <a href="#" onclick="logOut()">로그아웃</a> */}
+                                    <button onClick={() => logout()}>로그아웃</button>
+                                    {/* <Link to="#" onClick={() => logout()}>로그아웃</Link> */}
+                                    <div className="sub-menu-width sub-menu-width-5"></div>
+                                </li>
+                        }
+
                         <li className="cells menu-">
                             <Link to="/TotalSearch">통합 겸색</Link>
                             <div className="sub-menu-width sub-menu-width-2"></div>
                         </li>
+
                     </ul>
                     <div className="sub-menu-bg"></div>
                 </nav>
-                <div className="search-box">
-                    {/* 프로필 사진이 있을 때 */}
-                    {/* <a href="/myPage/myInfo">
-                        <img src="/file/img/${#authentication.principal.users.profileNo}" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />
-                    </a> */}
-                    {/* 프로필 사진이 없을 때 */}
-                    <Link to="/myInfo">
-                        <img src="/img/defaultProfile.png" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />
-                    </Link>
-                </div>
+                {
+                    isLogin && userInfo.profileNo ? (
+                        // userInfo가 있을 때
+                        <div className="search-box">
+                            <Link href="/myPage/myInfo">
+                                <img
+                                    src={`/file/img/${userInfo.profileNo}`}
+                                    alt="프로필사진"
+                                    id="profile"
+                                    style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray', objectFit: 'cover' }}
+                                />
+                            </Link>
+                        </div>
+                    ) : (
+                        // userInfo가 없을 때
+                        isLogin && (
+                            <div className="search-box">
+                                <Link to="/myInfo">
+                                    <img src="/img/defaultProfile.png" alt="프로필사진" id="profile" style={{ width: '50px', height: '50px', borderRadius: '50%', boxShadow: '0px 0px 8px gray' }} />
+                                </Link>
+                            </div>
+                        )
+                    )
+                }
             </div>
         </div>
     )

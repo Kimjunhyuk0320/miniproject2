@@ -31,47 +31,50 @@ import UserUpdatePage from './pages/Users/UserUpdatePage';
 import NotFound from './pages/Error/NotFound';
 import ServerError from './pages/Error/ServerError';
 import Test from './pages/Error/Test';
+import LoginContextProvider from './contexts/LoginContextProvider';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={ <Index/> } />
-        <Route path='/join' element={ <JoinPage/> } />
-        <Route path='/login' element={ <LoginPage/> } />
-        <Route path='/mypage/update' element={ <UserUpdatePage/> } />
-        <Route path='/MyPage' element={ <MyPage/> } />
-        <Route path='/MyInfo' element={ <MyInfo/> } />
-        <Route path='/TotalSearch' element={ <TotalSearch/> } />
-        <Route path='/TicketSalesList' element={ <TicketSalesList/> } />
-        <Route path='/TicketPurchaseList' element={ <TicketPurchaseList/> } />
-        <Route path='/liveBoard' element={ <LiveBoardList/> }/>
-        <Route path='/liveBoard/insert' element={ <LiveBoardInsert/> }/>
-        <Route path='/liveBoard/:no' element={ <LiveBoardRead/> }/>
-        <Route path='/liveBoard/update/:no' element={ <LiveBoardUpdate/> }/>
-        <Route path='/teamList' element={ <TeamListPage/> } />
-        <Route path='/team/:teamNo' element={ <TeamReadPage/> } />
-        <Route path='/team/update/:teamNo' element={ <TeamUpdatePage/> } />
-        <Route path='/team/insert' element={ <TeamInsertPage/> } />
-        <Route path='/team/app/:teamNo' element={ <TeamRegPage/> } />
-        <Route path='/mypage/tllList' element={ <TeamRegListPage/> } />
-        <Route path='/mypage/app/:appNo' element={ <TeamRegReadPage/> } />
-        <Route path='/mypage/tlmList' element={ <TeamMyRegListPage/> } />
-        <Route path='/mypage/clList' element={ <TeamConfirmedLiveListPage/> } />
-        <Route path='/mypage/rrList' element={ <FrBookingListPage/> } />
-        <Route path='/mypage/rreqList' element={ <FrMyBookingListPage/> } />
-        <Route path='/frList' element={ <FacilityRentalListPage/> } />
-        <Route path='/fr/:frNo' element={ <FacilityRentalReadPage/> } />
-        <Route path='/fr/update/:frNo' element={ <FacilityRentalUpdatePage/> } />
-        <Route path='/fr/insert' element={ <FacilityRentalInsertPage/> } />
-        <Route path='/join' element={ <JoinPage/> } />
-        <Route path="/error/400" element={ <NotFound /> } />      {/* TODO : 404 페이지 꾸미기 */}
-        <Route path="/error/500" element={ <ServerError /> } />  {/* TODO : 500 페이지 꾸미기 */}
-        <Route path="/error/test" element={ <Test /> } />  {/* TODO : 500 페이지 꾸미기 */}
-        <Route path="/*" element={ <NotFound /> } />             {/* Info : 맨 마지막에 있어야합니다. */}
-      </Routes>
+      <LoginContextProvider>    {/* 로그인, 로그아웃 관련 context */}
+        <Routes>
+          <Route path='/' element={<Index />} />
+          <Route path='/join' element={<JoinPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/mypage/update' element={<UserUpdatePage />} />  {/* v */}
+          <Route path='/MyPage' element={<MyPage />} />
+          <Route path='/MyInfo' element={<MyInfo />} />
+          <Route path='/TotalSearch' element={<TotalSearch />} />
+          <Route path='/TicketSalesList' element={<TicketSalesList />} />
+          <Route path='/TicketPurchaseList' element={<TicketPurchaseList />} />   {/* v */}
+          <Route path='/liveBoard' element={<LiveBoardList />} />
+          <Route path='/liveBoard/insert' element={<LiveBoardInsert />} />
+          <Route path='/liveBoard/:no' element={<LiveBoardRead />} />
+          <Route path='/liveBoard/update/:no' element={<LiveBoardUpdate />} />
+          <Route path='/teamList' element={<TeamListPage />} />
+          <Route path='/team/:teamNo' element={<TeamReadPage />} />
+          <Route path='/team/update/:teamNo' element={<TeamUpdatePage />} />
+          <Route path='/team/insert' element={<TeamInsertPage />} />
+          <Route path='/team/app/:teamNo' element={<TeamRegPage />} />
+          <Route path='/mypage/tllList' element={<TeamRegListPage />} />
+          <Route path='/mypage/app/:appNo' element={<TeamRegReadPage />} />
+          <Route path='/mypage/tlmList' element={<TeamMyRegListPage />} />
+          <Route path='/mypage/clList' element={<TeamConfirmedLiveListPage />} />
+          <Route path='/mypage/rrList' element={<FrBookingListPage />} />
+          <Route path='/mypage/rreqList' element={<FrMyBookingListPage />} />
+          <Route path='/frList' element={<FacilityRentalListPage />} />
+          <Route path='/fr/:frNo' element={<FacilityRentalReadPage />} />
+          <Route path='/fr/update/:frNo' element={<FacilityRentalUpdatePage />} />
+          <Route path='/fr/insert' element={<FacilityRentalInsertPage />} />
+          <Route path='/join' element={<JoinPage />} />
+          <Route path="/error/400" element={<NotFound />} />      {/* TODO : 404 페이지 꾸미기 */}
+          <Route path="/error/500" element={<ServerError />} />   {/* TODO : 500 페이지 꾸미기 */}
+          <Route path="/error/test" element={<Test />} />         {/* TODO : 500 페이지 꾸미기 */}
+          <Route path="/*" element={<NotFound />} />              {/* Info : 맨 마지막에 있어야합니다. */}
+        </Routes>
+      </LoginContextProvider>
       {/* Error */}
-      
+
     </BrowserRouter>
   );
 }
