@@ -16,9 +16,9 @@ const FacilityRentalInsertContainer = () => {
   const [account2, setAccount2] = useState("");
   const [file, setFile] = useState([]);
 
-  const username = "gangjinsu";
-  const phone = "01025258725";
-  const writer = "aster";
+  const username = userInfo.username;
+  const phone = userInfo.phone;
+  const writer = userInfo.nickname;
 
   const navi = useNavigate();
 

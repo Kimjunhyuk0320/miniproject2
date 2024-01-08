@@ -6,7 +6,6 @@ const Join = ({ sets, join }) => {
 
   const onJoin = (e) => {
     e.preventDefault()
-    // alert("안녕~!")
     const form = e.target
 
     const file = sets.file
@@ -20,7 +19,6 @@ const Join = ({ sets, join }) => {
     const email = form.email.value;
 
     console.log(file, username, name, auth, password, userPwCheck, nickname, phone, email)
-
     join( {file, username, name, auth, password, nickname, phone, email} )
   }
 
@@ -196,7 +194,7 @@ const Join = ({ sets, join }) => {
                           <input type="text" className="form__field" placeholder="이메일" name="email" id="email" value={sets.email} onChange={(e) => {
                             sets.setEmail(e.target.value)
                           }} />
-                          <label htmlFor="phone" className="form__label">이메일</label>
+                          <label htmlFor="phone" className="form__label" >이메일</label>
                         </div>
                       </td>
                     </tr>

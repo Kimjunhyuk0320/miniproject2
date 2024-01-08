@@ -11,7 +11,7 @@ export const login = (username, password) => userApi.post(`/login?username=${use
 // }
 
 // 사용자 정보
-export const userInfo = (username) => {
+export const userInfo = () => {
     return userApi.get(`/users/info`)
 }
 
