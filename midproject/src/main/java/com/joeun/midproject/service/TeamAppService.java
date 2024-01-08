@@ -7,7 +7,7 @@ import com.joeun.midproject.dto.TeamApp;
 
 public interface TeamAppService {
   
-  public int insert(TeamApp teamApp);
+  public int insert(TeamApp teamApp) throws Exception;
   
   public List<TeamApp> listByLeader(TeamApp teamApp);
 
@@ -21,6 +21,6 @@ public interface TeamAppService {
 
   public int denied(TeamApp teamApp);
 
-  public int confirmed(TeamApp teamApp);
+  public int confirmed(TeamApp teamApp) throws Exception;
 
 }

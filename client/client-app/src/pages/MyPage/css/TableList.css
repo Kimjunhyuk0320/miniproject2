@@ -27,6 +27,14 @@
     margin-top: 100px;
 }
 
+.TicketPurchaseList .phoneInput {
+    margin: auto;
+    width: 1320px;
+    /* margin-top: 100px; */
+
+}
+
+
 .TicketPurchaseList #teamListContainer {
     margin-top: 50px;
 }

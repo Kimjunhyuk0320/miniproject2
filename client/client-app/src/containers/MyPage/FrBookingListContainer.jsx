@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import FrBookingList from '../../components/Mypage/FrBookingList'
 import { useNavigate } from 'react-router-dom'
 import * as bookingApi from '../../apis/facilityRental/booking'
+import * as userAuth from '../../apis/users/userAuth'
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
 const FrBookingListContainer = ({ username }) => {
 
   const [rrList, setRrList] = useState([])
 
   const navi = useNavigate()
+  const { isLogin, roles } = useContext(LoginContext);
 
   const getRrList = async () => {
     const response = await bookingApi.rrList(username)
@@ -40,10 +43,35 @@ const FrBookingListContainer = ({ username }) => {
     getRrList()
   }
 
+   // 권한 관련 설정 정보
+   const [userInfo, setUserInfo] = useState();
+ 
+   // 회원 정보 조회 - /MyPage
+   const getUserInfo = async () => {
+    if (!userInfo) {
+      navi("/login");
+      return;
+    }
+    if (Object.keys(userInfo).length === 0) {
+      return;
+    }
+    
+    if (!(roles.isUser || !roles.isBand || roles.isClub)) {
+      alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
+      navi('/liveBoard');
+      return;
+    }
+    return true;
+   }
+ 
+
   useEffect(() => {
     // console.log(`useEffect start`)
     getRrList()
-  }, [])
+
+    // 관한 설정 관련
+    getUserInfo()
+  }, [isLogin, userInfo])
 
   const sets = {
     accHandler,

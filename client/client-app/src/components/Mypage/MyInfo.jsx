@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import * as userInfo from '../../apis/myPage/myPageApi';
+import React, { useEffect, useState, useContext } from 'react'
 import $ from 'jquery';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginContext } from '../../contexts/LoginContextProvider';
 
-const MyInfo = () => {
+const MyInfo = ({ sets, userInfo, roles }) => {
+
+  const { isLogin, login, logout } = useContext(LoginContext);
+  const navigate = useNavigate;
 
   useEffect(() => {
     $('#expand-button__').click(function () {
       $('.profile____card').toggleClass('expand');
     })
+
   }, [])
 
   const [isExpanded, setExpanded] = useState(false);
@@ -27,30 +31,38 @@ const MyInfo = () => {
 
         <div className="profile__">
           <div className="pic__">
-            {/* 프로필 사진이 있을 때 */}
-            {/* <img alt="프로필사진" id="profile Img" style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray'}} /> */}
-            <img src="/img/defaultProfile.png" alt="프로필사진" id="profile Img" style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray' }} />
+            {userInfo?.profileNo === 0 || sets.fileSource ? (
+              <img src={sets.fileSource ? sets.fileSource : "/img/defaultProfile.png"} alt="프로필사진" id="profile"
+                style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray' }} />
+            ) : (
+              <img src={`/file/img/${userInfo?.profileNo}`} alt="프로필사진"
+                style={{ width: '100px', height: '100px', borderRadius: '100%', boxShadow: '0px 0px 15px gray' }} />
+            )}
           </div>
           <div className="above-fold">
             <div className="name">
-              {/* <p>{userData.name}</p> */}
+              <p>{userInfo?.name}</p>
             </div>
             <div className="role">
-              <p>dsnfl</p>
+              {/* <p>{userInfo?.username}</p> */}
             </div>
             <div className="location">
               <i className="fas fa-map-marker-alt"></i>
-              <p style={{ display: 'inline-block' }}>회원님은</p>
-              <p style={{ display: 'inline-block' }}> ### </p>
-              <p style={{ display: 'inline-block' }}>이십니다.</p>
+              <p style={{ display: 'inline-block' }}>회원님의 권한은&nbsp;</p>
+              <p style={{ display: 'inline-block' }}>"</p>
+              <p style={{ display: 'inline-block' }}>
+                {roles?.isUser === true ? "일반회원" : roles?.isBand === true ? "밴드회원" : "클럽회원"}
+              </p>
+              <p style={{ display: 'inline-block' }}>"</p>
+              <p style={{ display: 'inline-block' }}>&nbsp;입니다.</p>
             </div>
+
 
             <div className="row__">
               <Link to="/myPage/update">
                 <div className="button__">내 정보 수정</div>
               </Link>
-              <Link>
-                {/* onClick={logOut}> */}
+              <Link onClick={() => logout()}>
                 <div className="button__">로그아웃</div>
               </Link>
             </div>
@@ -61,22 +73,22 @@ const MyInfo = () => {
           <div className="below-fold">
             <div className="about">
               <h5>아이디</h5>
-              <p>;kdsafnkls</p>
+              <p>{userInfo?.username}</p>
               <br />
             </div>
             <div className="about">
-              <h5>연락처</h5>
-              <p>lsadfhosd</p>
+              <h5>개인 연락처</h5>
+              <p>{userInfo?.phone}</p>
               <br />
             </div>
             <div className="about">
               <h5>이메일</h5>
-              <p>pisdfhl</p>
+              <p>{userInfo?.email}</p>
               <br />
             </div>
             <div className="about">
               <h5>정보 수정 일자</h5>
-              <p>dsafas</p>
+              <p>{new Date(userInfo?.updDate).toLocaleDateString('ko-KR')}</p>
               <br />
             </div>
           </div>

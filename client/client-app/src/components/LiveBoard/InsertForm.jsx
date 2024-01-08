@@ -58,7 +58,6 @@ const InsertForm = () => {
                 await resolve({
                     default: `/file/img/${newFileNo}`
                 })
-              
           });
         });
       },

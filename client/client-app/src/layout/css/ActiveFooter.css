@@ -82,3 +82,12 @@
         overflow: auto;
     }
 }
+
+.activeFooterContainer .logoutbtn {
+    all: unset;
+    color: #83818c;
+    margin: 0 15px 0 15px;    
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}

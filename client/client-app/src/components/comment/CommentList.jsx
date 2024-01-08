@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
 const CommentList = ({ commentList, deleteComment, updateComment}) => {
   const [editingComment, setEditingComment] = useState(null);
+  const {userInfo} = useContext(LoginContext)
 
   //유저 아이디 받아오기
-  const username = 'junhyuk'
+  const username = userInfo.username
   const onClickDelete = (commentNo) => {
     deleteComment(commentNo);
   }

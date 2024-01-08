@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Login from '../../components/Users/Login'
 import { useNavigate } from 'react-router-dom'
-import * as userApi from '../../apis/users/userApi'
+import * as userAuth from '../../apis/users/userAuth'
 
 const LoginContainer = () => {
 
@@ -12,20 +12,25 @@ const LoginContainer = () => {
 
   const navi = useNavigate()
 
-  const loginHandler = async ()=>{
+  const loginHandler = async () => {
     //csrf토큰이 들어가야합니다!!!!!!!!!!!!!!!!
-    const response = await userApi.login(sets)
+    const response = await userAuth.login(sets)
     const data = response.data
-    if(data!=null){
+    if (data != null) {
       navi(`/`)
-    }else{
+    } else {
       getCookies()
       navi(`/login`)
     }
   }
-  
-  const getCookies = ()=>{
-    setRememberId(userApi.getCookieValue(`rememberId`))
+
+  const getCookies = () => {
+    if(userAuth.getCookieValue('rememberId') != null){
+      setRememberId(true)
+      setUsername(userAuth.getCookieValue('rememberId'))
+    }else{
+      setRememberId(false)
+    }
   }
 
   const sets = {
@@ -35,18 +40,14 @@ const LoginContainer = () => {
     setPassword,
     rememberId,
     setRememberId,
-    "remember-me" :rememberMe,
+    "remember-me": rememberMe,
     setRemeberMe,
     loginHandler
   }
 
-  
-
-  
-
-  useEffect(()=>{
+  useEffect(() => {
     getCookies()
-  },[])
+  }, [])
 
 
   return (

@@ -15,15 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.joeun.midproject.dto.Files;
 import com.joeun.midproject.dto.LiveBoard;
-import com.joeun.midproject.dto.PageInfo;
 import com.joeun.midproject.dto.Team;
 import com.joeun.midproject.dto.Ticket;
-import com.joeun.midproject.dto.Users;
 import com.joeun.midproject.mapper.FileMapper;
 import com.joeun.midproject.mapper.LiveBoardMapper;
 import com.joeun.midproject.mapper.TeamMapper;
 import com.joeun.midproject.mapper.TicketMapper;
-import com.joeun.midproject.service.SMSService;
 
 import lombok.extern.slf4j.Slf4j;
 

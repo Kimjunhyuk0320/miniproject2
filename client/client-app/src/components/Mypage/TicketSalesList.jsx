@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import * as myPages from '../../apis/myPage/myPageApi';
 
-const TicketSalesList = () => {
+const TicketSalesList = (userInfo) => {
   const [ticketList, setTicketList] = useState([]);
-  const username = 'koogc0724'
+  const username = userInfo.username
 
   useEffect(() => {
     getList2();

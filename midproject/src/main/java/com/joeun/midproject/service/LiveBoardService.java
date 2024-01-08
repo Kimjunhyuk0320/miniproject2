@@ -2,12 +2,9 @@ package com.joeun.midproject.service;
 
 import java.util.List;
 
-
 import com.joeun.midproject.dto.LiveBoard;
-import com.joeun.midproject.dto.PageInfo;
 import com.joeun.midproject.dto.Team;
 import com.joeun.midproject.dto.Ticket;
-import com.joeun.midproject.dto.Users;
 
 
 public interface LiveBoardService {

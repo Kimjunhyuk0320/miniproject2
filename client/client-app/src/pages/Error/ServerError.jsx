@@ -8,8 +8,6 @@ const ServerError = () => {
 
       <>
         <Header />
-        {/* FIXME: 여기 꾸며줘 
-        */}
         <div className=''>
             <h1>500 Page</h1>
         </div>

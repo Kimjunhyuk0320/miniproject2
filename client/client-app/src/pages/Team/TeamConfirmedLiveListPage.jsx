@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TeamConfirmedLiveListContainer from '../../containers/Team/TeamConfirmedLiveListContainer'
 import Header from '../../layout/Header'
 import Footer from '../../layout/Footer'
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
 const TeamConfirmedLiveListPage = () => {
 
-    const username = 'gangjinsu'
+  const {userInfo} = useContext(LoginContext)
+  
+  const username = userInfo.username
 
   return (
     <div className='TicketPurchaseList'>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import * as teamAppApi from '../../apis/Team/TeamAppApi'
 import TeamRegList from '../../components/Mypage/TeamRegList'
+import * as userAuth from '../../apis/users/userAuth'
+import { LoginContext } from '../../contexts/LoginContextProvider'
 import { useNavigate } from 'react-router-dom'
 
 const TeamRegListContainer = ({ username }) => {
-
-
   const [tllList, setTllList] = useState([])
 
   const navi = useNavigate()
@@ -41,10 +41,34 @@ const TeamRegListContainer = ({ username }) => {
     getTllList()
   }
 
+  // const [userInfo, setUserInfo] = useState();
+  const { isLogin, roles, userInfo } = useContext(LoginContext);
+
+  // 권한 설정 관련
+  const getUserInfo = async () => {
+    if (!userInfo) {
+      navi("/login");
+      return;
+    }
+    if (Object.keys(userInfo).length === 0) {
+      return;
+    }
+    if (!(!roles.isUser || roles.isBand || !roles.isClub)) {
+      alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
+      navi("/liveBoard");
+      return;
+    }
+    return true;
+  }
+
+
   useEffect(() => {
-    // console.log(`useEffect start`)
+    // 권한 정보 관련 설정
+    getUserInfo()
+    
+    // 
     getTllList()
-  }, [])
+  }, [isLogin, userInfo])
 
   const sets = {
     accHandler,

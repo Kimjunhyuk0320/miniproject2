@@ -1,26 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- namespace="매퍼 인터페이스 경로" -->
 <mapper namespace="com.joeun.midproject.mapper.UserMapper">
+
+    <!-- Users 매핑-->
+    <resultMap type="Users" id="userMap">
+        <id property="username" column="username" />
+        
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="name" column="name" />
+        <result property="nickname" column="nickname" />
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+        <result property="enabled" column="enabled" />
+        <!-- <result property="regDate" column="reg_date" /> -->
+        <result property="updDate" column="upd_date" />
+        
+        <collection property="authList" resultMap="authMap"></collection>
+    </resultMap>
+        
+    <!-- UserAuth 매핑 -->
+    <resultMap type="UserAuth" id="authMap">
+        <result property="username" column="username" />
+        <result property="auth" column="auth" />
+    </resultMap>
 
 
     <!-- 회원 등록 -->
     <insert id="insert">
-        INSERT INTO `user`( username, password, name, nickname,auth,email,phone,enabled,upd_date )
-        VALUES ( #{username}, #{password}, #{name} ,#{nickname},#{auth},#{email}, #{phone}, 0, now() )
+        INSERT INTO user( username, password, name, nickname,auth,email,phone,enabled, upd_date )
+        VALUES (  #{username}, #{password}, #{name} ,#{nickname}, #{auth},#{email}, #{phone}, 1, now() )
     </insert>
 
     <!-- 회원 조회 -->
-    <select id="read" resultType="Users">
-        SELECT * FROM `user` WHERE username = #{username}
+    <select id="select" resultType="Users">
+        SELECT *
+        FROM user
+        WHERE username = #{username}
+    </select>
+
+    <!-- 회원 조회 - id -->
+    <select id="login" resultMap="userMap">
+        SELECT
+              u.username
+              ,password
+              ,name
+              ,nickname
+              ,email
+              ,enabled
+              ,upd_date
+              ,aut.auth
+        FROM user u LEFT OUTER JOIN user_auth aut 
+                    ON u.username = aut.user_id
+        WHERE u.username = #{username}
     </select>
 
     <!-- 회원 닉네임 조회 -->
     <select id="readOnlyNickname" resultType="Users">
-        SELECT * FROM `user` WHERE nickname = #{nickname}
+        SELECT * 
+        FROM user 
+        WHERE nickname = #{nickname}
     </select>
 
     <!-- 회원 연락처 조회 -->
@@ -28,8 +70,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM `user` WHERE phone = #{phone}
     </select>
 
-    <!-- 회원 정보 수정 -->
-	<update id="update">
+
+    <!-- 회원 권한 등록 -->
+    <insert id="insertAuth">
+        INSERT INTO user_auth( user_id, auth ) 
+        VALUES ( #{username}, #{auth} )
+    </insert>
+
+    <!-- 회원 수정 -->
+    <update id="updateAuth">
+        UPDATE user_auth
+        SET 
+            auth = #{auth}
+        WHERE user_id = #{username}
+    </update>
+
+    <!-- 회원 수정 -->
+    <update id="update">
         UPDATE user
         SET 
             password = #{password}
@@ -37,8 +94,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             ,phone = #{phone}
             ,auth = #{auth}
             ,email = #{email}
+            ,upd_date = now()
         WHERE username = #{username}
     </update>
+
+
+    <!-- 회원 삭제 -->
+    <delete id="delete">
+        DELETE FROM user
+        WHERE username = #{username}
+    </delete>
 
     <update id="profileSet">
         UPDATE `user`
@@ -46,4 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE username = #{username}
     </update>
 
+
+
+    
 </mapper>

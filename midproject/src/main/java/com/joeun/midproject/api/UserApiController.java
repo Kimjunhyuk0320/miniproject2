@@ -1,22 +1,17 @@
 package com.joeun.midproject.api;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,7 +56,7 @@ public class UserApiController {
     public ResponseEntity<Users> userInfo(@PathVariable("username") String username) {
 
         try {
-            Users users = userService.read(username);
+            Users users = userService.select(username);
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -109,7 +104,7 @@ public class UserApiController {
     @GetMapping("/getLoginIdDup")
     public ResponseEntity<?> getLoginIdDup(String username) {
         try {
-            Users user = userService.read(username);
+            Users user = userService.select(username);
             if (user != null) {
                 return new ResponseEntity<>("N", HttpStatus.OK);
             } else {
@@ -123,10 +118,9 @@ public class UserApiController {
 
     // 닉네임 중복 검사
     @GetMapping("/getNicknameDup")
-    public ResponseEntity<?> getNicknameDup(@RequestParam String nickname) {
+    public ResponseEntity<?> getNicknameDup(String nickname) {
         try {
             Users user = userService.readOnlyNickname(nickname);
-
             if (user != null) {
                 return new ResponseEntity<>("N", HttpStatus.OK);
             } else {
@@ -140,7 +134,8 @@ public class UserApiController {
 
     // 연락처 중복 검사
     @GetMapping("/getPhoneDup")
-    public ResponseEntity<?> getPhoneDup(@RequestParam String phone) {
+    public ResponseEntity<?> getPhoneDup(String phone) {
+        log.info(phone);
         try {
             Users user = userService.readOnlyPhone(phone);
 
@@ -168,6 +163,9 @@ public class UserApiController {
     @GetMapping("/listByUserName")
     public ResponseEntity<List<Ticket>> listByUserName(Users users) throws Exception {
         List<Ticket> ticketList = userService.listByUserName(users);
+        // if(ticketList == null) {
+        //     return new ResponseEntity<List<Ticket>>(null, HttpStatus.OK);
+        // }
         return new ResponseEntity<List<Ticket>>(ticketList, HttpStatus.OK);
     }
 }

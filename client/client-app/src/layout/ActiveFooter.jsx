@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import './css/ActiveFooter.css';
+import { LoginContext } from '../contexts/LoginContextProvider';
 
 const ActiveFooter = () => {
   const [scrollUp, setScrollUp] = useState(false);
   const [scrollDown, setScrollDown] = useState(false);
+
+  const { isLogin, logout } = useContext(LoginContext);
 
   useEffect(() => {
     const handleIndicator = (el) => {
@@ -112,8 +115,19 @@ const ActiveFooter = () => {
           <Link to="/liveBoard" className="activeNav-item" active-color="green" data-index="1">공연보기</Link>
           <Link to="/teamList" className="activeNav-item" active-color="red" data-index="3">팀모집하기</Link>
           <Link to="/" className="activeNav-item" active-color="blue" data-index="0">LiveDom</Link>
-          <Link to="/login" className="activeNav-item" active-color="rebeccapurple" data-index="5">로그인</Link>
-          <span className="activeNav-indicator"></span>
+          {/* 로그인 되었을 때 */}
+          {
+            !isLogin
+              ?
+              <>
+                <Link to="/login" className="activeNav-item" active-color="rebeccapurple" data-index="5">로그인</Link>
+                <span className="activeNav-indicator"></span>
+              </>
+              :
+              // <Link to="#" onClick={() => logout()} className="activeNav-item" active-color="rebeccapurple" data-index="5">로그아웃</Link>
+
+              <button className='logoutbtn' onClick={() => logout()}>로그아웃</button>
+          }
           <span className="activeNav-indicator"></span>
         </nav>
       </div>

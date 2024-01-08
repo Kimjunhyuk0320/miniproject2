@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TeamUpdate from '../../components/Team/TeamUpdate'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
 const TeamUpdateContainer = ({ teamNo }) => {
   const [title, setTitle] = useState('')
@@ -37,7 +38,7 @@ const TeamUpdateContainer = ({ teamNo }) => {
     setAccount1(data.account.split('/')[0])
     setAccount2(data.account.split('/')[1])
     if (data.recStatus > 0) {
-      window.alert(`참가가 확정된 밴드팀이 있어 수정이 불가능합니다!`)
+      // window.alert(`참가가 확정된 밴드팀이 있어 수정이 불가능합니다!`)
       navi(`/team/${teamNo}`)
     }
     // console.log(data)
@@ -131,11 +132,31 @@ const TeamUpdateContainer = ({ teamNo }) => {
     teamNo
   }
 
+  const { isLogin, roles, userInfo } = useContext(LoginContext);
+
+  // 권한 정보 설정
+  const getUserInfo = () => {
+    if (!userInfo) {
+      navi("/login");
+      return;
+    }
+    if (Object.keys(userInfo).length === 0) {
+      return;
+    }
+    if (!(roles.isUser || roles.isBand || roles.isClub)) {
+      alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
+      navi("/liveBoard");
+      return;
+    }
+    return true;
+  };
+
 
   useEffect(() => {
     // console.log(teamNo)
     getUpTeam()
-  }, [])
+    getUserInfo()
+  }, [userInfo, isLogin])
 
   return (
     <>

@@ -1,0 +1,99 @@
+.pianoCon {
+    height: 100vh;
+}
+
+.CDEFGABCContainer {
+    /* width: 1200px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.CDEFGABCContainer button {
+    width: 80px;
+    height: 500px;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    /* 그림자 크기와 투명도 조절 */
+}
+
+.CDEFGABCContainer button:hover,
+.CDEFGABCContainer button.active {
+    background-color: #f0f0f0;
+    /* 더 어두운 배경 색상으로 변경 */
+    box-shadow: none;
+}
+
+.SContainer-L {
+    position: absolute;
+    top: 37%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+}
+
+.SContainer-L button {
+    margin-left: 18px;
+    width: 60px;
+    height: 290px;
+    background-color: black;
+    border: 2px solid black;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    color: white;
+}
+
+.SContainer-L button:hover,
+.SContainer-L button:active {
+    /* background-color: #f0f0f0; */
+    /* 더 어두운 배경 색상으로 변경 */
+    box-shadow: none;
+}
+
+.SContainer-R {
+    position: absolute;
+    top: 37%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.SContainer-R button {
+    margin-left: 18px;
+    width: 60px;
+    height: 290px;
+    background-color: black;
+    border: 2px solid black;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.SContainer-R button:hover,
+.SContainer-R button:active {
+    /* background-color: #f0f0f0; */
+    /* 더 어두운 배경 색상으로 변경 */
+    box-shadow: none;
+}
+.SContainer button:hover,
+.SContainer button.active {
+    background-color: #555;
+}
+
+
+
+.btnPurple.btnPush {
+    box-shadow: 0px 5px 0px 0px #6D184B;
+}
+
+.btnPush:hover {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.btnPurple.btnPush:hover {
+    box-shadow: 0px 0px 0px 0px #6D184B;
+}

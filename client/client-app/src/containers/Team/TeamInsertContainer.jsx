@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TeamInsert from '../../components/Team/TeamInsert'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as teamApi from '../../apis/Team/TeamApi'
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
 const TeamInsertContainer = () => {
 
@@ -90,6 +91,29 @@ const TeamInsertContainer = () => {
   }
 
 
+
+  // 권한 설정 관련 (이게 기준이다.)
+  const { isLogin, roles, userInfo } = useContext(LoginContext);
+  const getUserInfo = () => {
+    if (!userInfo) {
+      navi("/login");
+      return;
+    }
+    if (Object.keys(userInfo).length === 0) {
+      return;
+    }
+    if (!(!roles.isUser || roles.isBand || roles.isClub)) {
+      alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
+      navi("/liveBoard");
+      return;
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    // 권한 관련 설정
+    getUserInfo()
+  }, [userInfo, isLogin]);
 
   return (
     <>
