@@ -4,6 +4,7 @@ import userApi from '../apis/users/userApi'
 import * as userAuth from '../apis/users/userAuth'
 import { useNavigate } from 'react-router-dom';
 
+
 export const LoginContext = React.createContext();
 LoginContext.displayName = 'LoginContextName'
 
@@ -100,7 +101,7 @@ const LoginContextProvider = ({ children }) => {
 
         console.log(`username : ${username}`)
         console.log(`password : ${password}`)
-        console.log(`rememberId : ${rememberId}`);
+        console.log(`rememberId : ${rememberId}`)
 
         const response = await userAuth.login(username, password);
 
@@ -223,11 +224,8 @@ const LoginContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
-
         // 로그인 체크
         loginCheck()
-
-
     }, [])
 
     return (

@@ -25,7 +25,12 @@ const LoginContainer = () => {
   }
 
   const getCookies = () => {
-    setRememberId(userAuth.getCookieValue(`rememberId`))
+    if(userAuth.getCookieValue('rememberId') != null){
+      setRememberId(true)
+      setUsername(userAuth.getCookieValue('rememberId'))
+    }else{
+      setRememberId(false)
+    }
   }
 
   const sets = {
@@ -39,7 +44,6 @@ const LoginContainer = () => {
     setRemeberMe,
     loginHandler
   }
-
 
   useEffect(() => {
     getCookies()
