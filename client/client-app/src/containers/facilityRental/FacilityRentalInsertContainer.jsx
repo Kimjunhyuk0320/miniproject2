@@ -5,6 +5,7 @@ import * as frApi from "../../apis/facilityRental/facilityRentalApi";
 import { LoginContext } from "../../contexts/LoginContextProvider";
 
 const FacilityRentalInsertContainer = () => {
+  const { isLogin, roles, userInfo } = useContext(LoginContext);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [price, setPrice] = useState("0");
@@ -105,7 +106,7 @@ const FacilityRentalInsertContainer = () => {
 
   useEffect(() => {
     // console.log(`useEffect start`)
-    getRreqList();
+    // getRreqList();
 
     // 관한 설정 관련
     getUserInfo();
