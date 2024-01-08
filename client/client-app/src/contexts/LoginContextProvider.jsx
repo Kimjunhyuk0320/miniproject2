@@ -106,7 +106,7 @@ const LoginContextProvider = ({ children }) => {
         const response = await userAuth.login(username, password);
 
         // 아이디 저장
-        if (rememberId) Cookies.set("rememberId", username)
+        if (rememberId) Cookies.set("rememberId", username, {expires:7})
         else Cookies.remove("rememberId")
 
         try {
@@ -172,8 +172,15 @@ const LoginContextProvider = ({ children }) => {
         // axios 객체의 header(Authorization : `Bearer ${accessToken}`)
         userApi.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
+
+        if(Cookies.get('rememberMe')!=null){
+            Cookies.set("accessToken", accessToken,{expires:7});
+
+        }else{
+            Cookies.set("accessToken", accessToken);
+
+        }
         // 쿠키에 accessToken(jwt) 저장
-        Cookies.set("accessToken", accessToken);
 
         // 로그인 여부 : true
         setLogin(true)
