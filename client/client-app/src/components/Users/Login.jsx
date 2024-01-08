@@ -7,13 +7,11 @@ const Login = ({ sets }) => {
 
   const { login, isLogin } = useContext(LoginContext)
 
-  
-
   const onLogin = (e) => {
     e.preventDefault()
     const username = e.target.username.value
     const password = e.target.password.value
-    login(username, password)
+    login(username, password, sets.rememberId)
   }
 
   return (
@@ -50,12 +48,11 @@ const Login = ({ sets }) => {
 
               <div className="btn-div">
                 <div>
-                  <input type="checkbox" name="rememberId" id="remember-id" value={sets.rememberId} onChange={(e) => {
-                    sets.setRememberId(e.target.value)
+                  <input type="checkbox" name="rememberId" id="remember-id" checked={sets.rememberId} onChange={(e) => {
+                    sets.setRememberId(e.target.checked)
                   }} />
                   <label htmlFor="remember-id">아이디 저장</label>
                 </div>
-
                 <div>
                   <input type="checkbox" name="remember-me" id="remember-me" value={sets['remember-me']} onChange={(e) => {
                     sets.setRemeberMe(e.target.value)
