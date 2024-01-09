@@ -3,12 +3,13 @@ import Login from '../../components/Users/Login'
 import { useNavigate } from 'react-router-dom'
 import * as userAuth from '../../apis/users/userAuth'
 
+
 const LoginContainer = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberId, setRememberId] = useState('');
-  const [rememberMe, setRemeberMe] = useState('');
+  const [rememberMe, setRememberMe] = useState('');
 
   const navi = useNavigate()
 
@@ -31,6 +32,13 @@ const LoginContainer = () => {
     }else{
       setRememberId(false)
     }
+
+    if(userAuth.getCookieValue('rememberMe') != null){
+      setRememberMe(true)
+      setUsername(userAuth.getCookieValue('rememberMe'))
+    }else{
+      setRememberMe(false)
+    }
   }
 
   const sets = {
@@ -40,8 +48,8 @@ const LoginContainer = () => {
     setPassword,
     rememberId,
     setRememberId,
-    "remember-me": rememberMe,
-    setRemeberMe,
+    rememberMe: rememberMe,
+    setRememberMe,
     loginHandler
   }
 

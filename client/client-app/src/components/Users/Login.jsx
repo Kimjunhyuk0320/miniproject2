@@ -11,7 +11,7 @@ const Login = ({ sets }) => {
     e.preventDefault()
     const username = e.target.username.value
     const password = e.target.password.value
-    login(username, password, sets.rememberId)
+    login(username, password, sets.rememberId, sets.rememberMe)
   }
 
   return (
@@ -48,15 +48,27 @@ const Login = ({ sets }) => {
 
               <div className="btn-div">
                 <div>
-                  <input type="checkbox" name="rememberId" id="remember-id" checked={sets.rememberId} onChange={(e) => {
-                    sets.setRememberId(e.target.checked)
-                  }} />
+                  <input 
+                    type="checkbox" 
+                    name="rememberId" 
+                    id="remember-id" 
+                    checked={sets.rememberId} 
+                    onChange={(e) => {
+                      sets.setRememberId(e.target.checked)
+                    }} 
+                  />
                   <label htmlFor="remember-id">아이디 저장</label>
                 </div>
                 <div>
-                  <input type="checkbox" name="remember-me" id="remember-me" value={sets['remember-me']} onChange={(e) => {
-                    sets.setRemeberMe(e.target.value)
-                  }} />
+                  <input 
+                    type="checkbox" 
+                    name="rememberMe" 
+                    id="remember-me" 
+                    checked={sets.rememberMe}  
+                    onChange={(e) => {
+                      sets.setRememberMe(e.target.checked)
+                    }}
+                   />
                   <label htmlFor="remember-me">자동 로그인</label> <br />
                 </div>
               </div>

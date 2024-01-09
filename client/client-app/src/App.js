@@ -32,8 +32,12 @@ import NotFound from './pages/Error/NotFound';
 import ServerError from './pages/Error/ServerError';
 import Test from './pages/Error/Test';
 import LoginContextProvider from './contexts/LoginContextProvider';
+import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 function App() {
+
+
   return (
     <BrowserRouter>
       <LoginContextProvider>    {/* 로그인, 로그아웃 관련 context */}

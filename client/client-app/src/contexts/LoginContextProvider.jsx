@@ -1,9 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react'
 import Cookies from 'js-cookie';
-import userApi from '../apis/users/userApi'
-import * as userAuth from '../apis/users/userAuth'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import userApi from '../apis/users/userApi';
+import * as userAuth from '../apis/users/userAuth';
 
 export const LoginContext = React.createContext();
 LoginContext.displayName = 'LoginContextName'
@@ -38,6 +37,9 @@ const LoginContextProvider = ({ children }) => {
 
     // 아이디 저장
     const [rememberId, setRememberId] = useState();
+
+    // 자동 로그인
+    const [rememberMe, setRememberMe] = useState();
 
     // 페이지 이동
     const navigate = useNavigate();
@@ -97,17 +99,22 @@ const LoginContextProvider = ({ children }) => {
     }
 
     // 로그인
-    const login = async (username, password, rememberId) => {
+    const login = async (username, password, rememberId, rememberMe) => {
 
         console.log(`username : ${username}`)
         console.log(`password : ${password}`)
         console.log(`rememberId : ${rememberId}`)
+        console.log(`rememberMe : ${rememberMe}`)
 
         const response = await userAuth.login(username, password);
 
         // 아이디 저장
         if (rememberId) Cookies.set("rememberId", username)
         else Cookies.remove("rememberId")
+
+        // 자동 로그인
+        if (rememberMe) Cookies.set("rememberMe", username)
+        else Cookies.remove("rememberMe")
 
         try {
             const response = await userAuth.login(username, password)
@@ -172,7 +179,14 @@ const LoginContextProvider = ({ children }) => {
         userApi.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
         // 쿠키에 accessToken(jwt) 저장
-        Cookies.set("accessToken", accessToken);
+        if(Cookies.get('rememberMe') != null){
+            Cookies.set("accessToken", accessToken, {expires:7});
+            // Cookies.set("rememberMe", rememberMe, {expires:7});
+            // window.alert("rememberMe가 null이 아닐 때 7일 설정.")
+        }else{
+            Cookies.set("accessToken", accessToken);
+            // window.alert("rememberMe가 null일 때 설정하지 않음.")
+        }
 
         // 로그인 여부 : true
         setLogin(true)
@@ -211,6 +225,7 @@ const LoginContextProvider = ({ children }) => {
 
         // 쿠키에 accessToken(jwt) 초기화
         Cookies.remove("accessToken")
+        Cookies.remove("rememberMe")
 
         // 로그인 여부 : false
         setLogin(false)
