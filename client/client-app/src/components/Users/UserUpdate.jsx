@@ -5,15 +5,12 @@ import { LoginContext } from '../../contexts/LoginContextProvider';
 
 const UserUpdate = ({ sets, userInfo, updateUser }) => {
 
-  // const { userInfo } = useContext(LoginContext);
 
   const onUpdate = (e) => {
     e.preventDefault()
-    // alert("안녕~!")
     const form = e.target
 
     const file = sets.file
-    // const file = form.file.value
     const username = form.username.value
     const name = form.name.value
     const auth = form.auth.value
@@ -25,11 +22,7 @@ const UserUpdate = ({ sets, userInfo, updateUser }) => {
 
     console.log(file, username, name, auth, password, userPwCheck, nickname, phone, email)
 
-    if (sets.phoneChecked) {
       updateUser({ file, username, name, auth, password, nickname, phone, email })
-    } else {
-      alert("전화번호 중복검사를 실행해주세요.")
-    }
   }
 
   return (
@@ -108,7 +101,7 @@ const UserUpdate = ({ sets, userInfo, updateUser }) => {
                 <tr>
                   <td>이름</td>
                   <td>
-                    <input type="text" name="name" id="name" readOnly defaultValue={userInfo?.name} />
+                    <input type="text" name="name" id="name" defaultValue={userInfo?.name} />
                   </td>
                 </tr>
                 <tr>
@@ -121,7 +114,9 @@ const UserUpdate = ({ sets, userInfo, updateUser }) => {
                   <td>비밀번호</td>
                   <td>
                     {/* <form> */}
-                    <input type="password" autoComplete='off' name="password" id="password" />
+                    <input type="password" autoComplete='off' name="password" id="password" onChange={(e) => {
+                              sets.setPassword(e.target.value)
+                            }}/>
                     {/* </form> */}
                   </td>
                 </tr>
@@ -129,7 +124,9 @@ const UserUpdate = ({ sets, userInfo, updateUser }) => {
                   <td>비밀번호 확인</td>
                   <td>
                     {/* <form> */}
-                    <input type="password" autoComplete='off' name="userPwCheck" id="passwordCheck" />
+                    <input type="password" autoComplete='off' name="userPwCheck" id="passwordCheck" onChange={(e) => {
+                                sets.setUserPwCheck(e.target.value)
+                              }}/>
                     {/* </form> */}
                   </td>
                 </tr>
@@ -143,6 +140,9 @@ const UserUpdate = ({ sets, userInfo, updateUser }) => {
                         sets.setNickname(e.target.value)
                       } else {
                         sets.setNickname(e.target.value)
+                      }
+                      if( userInfo.nickname == e.target.value){
+                        sets.setNicknameChecked(true)
                       }
                     }
                     }
@@ -162,6 +162,9 @@ const UserUpdate = ({ sets, userInfo, updateUser }) => {
                         sets.setPhone(e.target.value)
                       } else {
                         sets.setPhone(e.target.value)
+                      }
+                      if( userInfo.phone == e.target.value){
+                        sets.setPhoneChecked(true)
                       }
                     }} 
                     />
@@ -183,7 +186,9 @@ const UserUpdate = ({ sets, userInfo, updateUser }) => {
                 <tr>
                   <td>이메일</td>
                   <td>
-                    <input type="text" name="email" id="email" defaultValue={userInfo?.email} />
+                    <input type="text" name="email" id="email" defaultValue={userInfo?.email} onChange={(e) => {
+                            sets.setEmail(e.target.value)
+                          }}/>
                   </td>
                 </tr>
                 <tr>

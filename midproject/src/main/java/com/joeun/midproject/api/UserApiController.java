@@ -118,10 +118,9 @@ public class UserApiController {
 
     // 닉네임 중복 검사
     @GetMapping("/getNicknameDup")
-    public ResponseEntity<?> getNicknameDup(@RequestParam String nickname) {
+    public ResponseEntity<?> getNicknameDup(String nickname) {
         try {
             Users user = userService.readOnlyNickname(nickname);
-
             if (user != null) {
                 return new ResponseEntity<>("N", HttpStatus.OK);
             } else {
@@ -135,7 +134,7 @@ public class UserApiController {
 
     // 연락처 중복 검사
     @GetMapping("/getPhoneDup")
-    public ResponseEntity<?> getPhoneDup(@RequestParam String phone) {
+    public ResponseEntity<?> getPhoneDup(String phone) {
         log.info(phone);
         try {
             Users user = userService.readOnlyPhone(phone);

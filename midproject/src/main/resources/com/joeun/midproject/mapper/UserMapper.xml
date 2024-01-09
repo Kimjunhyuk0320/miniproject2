@@ -60,7 +60,9 @@
 
     <!-- 회원 닉네임 조회 -->
     <select id="readOnlyNickname" resultType="Users">
-        SELECT * FROM `user` WHERE nickname = #{nickname}
+        SELECT * 
+        FROM user 
+        WHERE nickname = #{nickname}
     </select>
 
     <!-- 회원 연락처 조회 -->

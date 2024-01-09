@@ -12,35 +12,35 @@ const MyInfoContainer = () => {
   
   const { isLogin, roles, userInfo } = useContext(LoginContext);
   const navigate = useNavigate()
-
+  const [info, setInfo] = useState()
   // 회원 정보 조회 - /MyPage
   const getUserInfo = async () => {
    // alert("getUserInfo 안으로 들어옴.")
     // alert(`roles.isUser : ${roles.isUser} roles.isBand : ${roles.isBand} roles.isClub : ${roles.isClub}`)
+    const response = await userAuth.userInfo()
+    const data = await response.data
+    setInfo(data)
 
-    if (!isLogin || !userInfo) {
+    if (!userInfo) {
       navigate("/login");
-      return false
+      return;
     }
-
-    if (!(roles.isUser || roles.isBand || roles.isClub)) {
-      alert("권한이 설정되어있지 않아 접급할 수 없습니다.")
+    if (Object.keys(userInfo).length === 0) {
+      return;
+    }
+    if (!(!roles.isUser || roles.isBand || !roles.isClub)) {
+      alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
       navigate("/liveBoard");
-      return false
+      return;
     }
-    
+    return true;
 
-    // const response = await userAuth.userInfo()
-    // const data = response.data
-    // console.log(`getUserInfo`)
-    // console.log(data)
-    // setUserInfo(data)
-    return true
+    
   }
 
   useEffect(() => {
     getUserInfo()
-  }, [])
+  }, [userInfo, isLogin])
 
   const sets = {
     file,
@@ -52,7 +52,7 @@ const MyInfoContainer = () => {
   }
 
   return (
-    <MyInfo sets={sets} userInfo={userInfo} roles={roles} />
+    <MyInfo sets={sets} userInfo={info} roles={roles} />
   )
 }
 

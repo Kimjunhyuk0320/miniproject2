@@ -34,7 +34,7 @@ const JoinContainer = () => {
     }
 
     let complexityRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]+$/;
     if (!complexityRegex.test(password)) {
       alert(
         "비밀번호는 영문 대문자, 영문 소문자, 숫자, 특수문자를 포함해야 합니다."
@@ -109,16 +109,53 @@ const JoinContainer = () => {
     }
   };
 
-  const joinHandler = async () => {
-    // console.log(sets)
+ 
+
+  const sets = {
+    username,
+    setUsername,
+    password,
+    setPassword,
+    userPwCheck,
+    setUserPwCheck,
+    name,
+    setName,
+    nickname,
+    setNickname,
+    auth,
+    setAuth,
+    email,
+    setEmail,
+    phone,
+    setPhone,
+    file,
+    setFile,
+    fileSource,
+    setFileSource,
+    fileName,
+    setFileName,
+    usernameChecked,
+    setUsernameChecked,
+    nicknameChecked,
+    setNicknameChecked,
+    phoneChecked,
+    setPhoneChecked,
+    usernameCheckedHandler,
+    nicknameCheckedHandler,
+    phoneCheckedHandler,
+  };
+
+  // 회원가입 요청
+  const join = async (form) => {
+    console.log(sets)
 
     if (username.length == 0) {
-      alert("로그인 아이디를 입력해주세요.");
+      alert("아이디를 입력해주세요.");
       return;
     }
 
     if (!usernameChecked) {
-      alert("로그인 아이디 중복검사를 실시해주세요.");
+      alert("아이디 중복검사를 실시해주세요.");
       return;
     }
 
@@ -153,56 +190,7 @@ const JoinContainer = () => {
       return;
     }
 
-    const response = await userAuth.join(sets);
-    const data = await response.data;
-    if (data != null) {
-      navi(`/liveBoard`);
-    } else {
-      navi(`/join`);
-    }
-  };
-
-  const sets = {
-    username,
-    setUsername,
-    password,
-    setPassword,
-    userPwCheck,
-    setUserPwCheck,
-    name,
-    setName,
-    nickname,
-    setNickname,
-    auth,
-    setAuth,
-    email,
-    setEmail,
-    phone,
-    setPhone,
-    file,
-    setFile,
-    fileSource,
-    setFileSource,
-    fileName,
-    setFileName,
-    usernameChecked,
-    setUsernameChecked,
-    nicknameChecked,
-    setNicknameChecked,
-    phoneChecked,
-    setPhoneChecked,
-    joinHandler,
-    usernameCheckedHandler,
-    nicknameCheckedHandler,
-    phoneCheckedHandler,
-  };
-
-  // 회원가입 요청
-  const join = async (form) => {
     console.log(form);
-
-    alert(`form : ${form}`);
-
     let response;
     let data;
     const headers = {
@@ -232,20 +220,12 @@ const JoinContainer = () => {
     }
   };
 
-  // 회원 정보 조회 - /MyPage
-  const { isLogin, roles, userInfo } = useContext(LoginContext);
-  const getUserInfo = async () => {
-    if (userInfo) {
-      alert('접근할 수 없는 요청입니다.')
-      navi("/liveBoard");
-      return;
-    }
-    return true;
-  };
+
+
 
   useEffect(() => {
-    getUserInfo();
-  }, [isLogin, userInfo]);
+   
+  }, []);
 
   return (
     <>

@@ -167,10 +167,11 @@ const LoginContextProvider = ({ children }) => {
     // - 로그인 세팅
     // userData, accessToken (jwt)
     const loginSetting = (userData, accessToken) => {
-        const { username, authList, profileNo, phone } = userData
+        const { username, authList, profileNo, phone, nickname } = userData
         const roleList = authList.map((auth) => auth.auth)
 
         console.log(`username : ${username}`)
+        console.log(`nickname : ${nickname}`)
         console.log(`authList : ${authList}`)
         console.log(`roleList : ${roleList}`)
         console.log(`profileNo : ${profileNo}`)
@@ -192,7 +193,7 @@ const LoginContextProvider = ({ children }) => {
         setLogin(true)
 
         // 유저정보 세팅
-        const updatedUserInfo = { username, roleList, profileNo, phone }
+        const updatedUserInfo = { username, roleList, profileNo, phone, nickname }
         setUserInfo(updatedUserInfo)
 
         // 권한 정보 세팅

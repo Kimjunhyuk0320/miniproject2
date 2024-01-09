@@ -5,38 +5,36 @@ import { LoginContext } from "../../contexts/LoginContextProvider";
 import { useNavigate } from "react-router-dom";
 
 const MyPageConatiner = () => {
-  const [userInfo, setUserInfo] = useState();
-  const { isLogin, roles, logout } = useContext(LoginContext);
+  const { isLogin, roles, logout, userInfo } = useContext(LoginContext);
   const navigate = useNavigate();
-
+  const [info, setInfo] = useState()
   const [file, setFile] = useState(null);
   const [fileSource, setFileSource] = useState("");
   const [fileName, setFileName] = useState("");
 
   // 회원 정보 조회 - /MyPage
   const getUserInfo = async () => {
-    // alert("getUserInfo 안으로 들어옴.")
+    const response = await userAuth.userInfo()
+    const data = await response.data
+    setInfo(data)
 
-    if (!isLogin) {
+    if (!userInfo) {
       navigate("/login");
       return;
     }
-
-    if (!(roles.isUser || roles.isBand || roles.isClub)) {
-      navigate("/login");
+    if (Object.keys(userInfo).length === 0) {
       return;
     }
-
-    const response = await userAuth.userInfo();
-    const data = response.data;
-    console.log(`getUserInfo`);
-    console.log(data);
-    setUserInfo(data);
+    if (!(!roles.isUser || roles.isBand || !roles.isClub)) {
+      alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
+      navigate("/liveBoard");
+      return;
+    }
   };
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [userInfo, isLogin]);
 
   const sets = {
     file,
@@ -48,7 +46,7 @@ const MyPageConatiner = () => {
   };
 
   return (
-    <MyPage isLogin={isLogin} sets={sets} userInfo={userInfo} roles={roles} />
+    <MyPage isLogin={isLogin} sets={sets} userInfo={info} roles={roles} />
   );
 };
 
