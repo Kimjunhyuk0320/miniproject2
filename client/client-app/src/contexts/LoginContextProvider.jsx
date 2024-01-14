@@ -97,54 +97,53 @@ const LoginContextProvider = ({ children }) => {
         // 로그인 세팅
         loginSetting(data, accessToken)
     }
-
+    
     // 로그인
     const login = async (username, password, rememberId, rememberMe) => {
-
-        console.log(`username : ${username}`)
-        console.log(`password : ${password}`)
-        console.log(`rememberId : ${rememberId}`)
-        console.log(`rememberMe : ${rememberMe}`)
-
-        const response = await userAuth.login(username, password);
-
+        console.log(`username : ${username}`);
+        console.log(`password : ${password}`);
+        console.log(`rememberId : ${rememberId}`);
+        console.log(`rememberMe : ${rememberMe}`);
+    
         // 아이디 저장
         if (rememberId) Cookies.set("rememberId", username)
         else Cookies.remove("rememberId")
-
+    
         // 자동 로그인
         if (rememberMe) Cookies.set("rememberMe", username)
         else Cookies.remove("rememberMe")
-
+    
         try {
-            const response = await userAuth.login(username, password)
+            const response = await userAuth.login(username, password);
             const data = response.data;
             const status = response.status;
             const headers = response.headers;
             const authorization = headers.authorization;
             const accessToken = authorization.replace("Bearer ", "");
-
+    
             console.log(`data : ${data}`);
             console.log(`status : ${status}`);
             console.log(`headers : ${headers}`);
             console.log(`jwt : ${accessToken}`);
-
+    
             // 로그인 성공
             if (status === 200) {
                 // 로그인 체크
                 Cookies.set("accessToken", accessToken);
-
                 loginCheck();
-
-                // alert("로그인 성공");
-
                 // 라이브보드 페이지로 이동
                 navigate("/liveBoard")
             }
-
+    
         } catch (error) {
             // 로그인 실패
-            alert("로그인을 실패했습니다.")
+            console.error("로그인 에러:", error);
+    
+            if (error.response && error.response.status === 401) {
+                alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+            } else {
+                alert('로그인에 실패했습니다.');
+            }
         }
     }
 

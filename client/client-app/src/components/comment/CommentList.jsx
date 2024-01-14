@@ -1,35 +1,43 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LoginContext } from '../../contexts/LoginContextProvider'
 
 const CommentList = ({ commentList, deleteComment, updateComment}) => {
   const [editingComment, setEditingComment] = useState(null);
-  const {userInfo} = useContext(LoginContext)
+  const { userInfo } = useContext(LoginContext);
+  const [username, setUsername] = useState('');
 
-  //유저 아이디 받아오기
-  const username = userInfo.username
+  useEffect(() => {
+    if (userInfo && userInfo.username) {
+      setUsername(userInfo.username);
+    }
+  }, [userInfo]);
+
   const onClickDelete = (commentNo) => {
     deleteComment(commentNo);
-  }
+  };
 
   const onClickUpdate = (commentNo) => {
     setEditingComment(commentNo);
-  }
+  };
 
   const onCancelUpdate = () => {
     setEditingComment(null);
-  }
+  };
 
-  const onUpdateComment = async (commentNo, writer, updatedContent) => {
-      const response = updateComment(commentNo, writer, updatedContent)
-      if (response !== '0') {
-        setEditingComment(null);
-      } else {
-        alert('댓글 수정 실패')
-      }
-   
-  }
-
+  const onUpdateComment = (commentNo, writer, updatedContent) => {
+    updateComment(commentNo, writer, updatedContent)
+      .then((response) => {
+        if (response !== '0') {
+          setEditingComment(null);
+        } else {
+          alert('댓글 수정 실패');
+        }
+      })
+      .catch((error) => {
+        console.error('댓글 수정 오류:', error);
+      });
+  };
   return (
     <div id='comment-list'>
       {commentList.length === 0 ? (
