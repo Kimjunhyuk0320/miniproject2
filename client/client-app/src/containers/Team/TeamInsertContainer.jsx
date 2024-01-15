@@ -17,8 +17,8 @@ const TeamInsertContainer = () => {
   const [capacity, setCapacity] = useState('1')
   const [account1, setAccount1] = useState('신한은행')
   const [account2, setAccount2] = useState('')
-  const username = 'gangjinsu'
-  const writer = 'aster'
+  const [username, setUsername] = useState('');
+  const [writer, setWriter] = useState('');
 
   const navi = useNavigate()
 
@@ -113,6 +113,10 @@ const TeamInsertContainer = () => {
   useEffect(() => {
     // 권한 관련 설정
     getUserInfo()
+    if (userInfo && userInfo.username) {
+      setUsername(userInfo.username);
+      setWriter(userInfo.nickname);
+    }
   }, [userInfo, isLogin]);
 
   return (

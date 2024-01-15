@@ -6,10 +6,10 @@ import * as filesApi from '../../apis/file/fileApi'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Link } from 'react-router-dom'
-const UpdateForm = ({liveBoard}) => {
+const UpdateForm = ({liveBoard,username, writer}) => {
    // 로그인 한 사용자 정보
-   const writer = '마산 불주먹'
-   const username = 'junhyuk'
+   // const writer = writer
+   // const username = username
    // 게시글 정보
    const [title, setTitle] = useState('');
    const [crew, setCrew] = useState('');

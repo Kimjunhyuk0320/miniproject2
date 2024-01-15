@@ -15,10 +15,9 @@ const FacilityRentalInsertContainer = () => {
   const [account1, setAccount1] = useState("신한은행");
   const [account2, setAccount2] = useState("");
   const [file, setFile] = useState([]);
-
-  const username = userInfo.username;
-  const phone = userInfo.phone;
-  const writer = userInfo.nickname;
+  const [username, setUsername] = useState('');
+  const [phone, setPhone] = useState('');
+  const [writer, setWriter] = useState('');
 
   const navi = useNavigate();
 
@@ -110,6 +109,11 @@ const FacilityRentalInsertContainer = () => {
 
     // 관한 설정 관련
     getUserInfo();
+    if (userInfo && userInfo.username) {
+      setUsername(userInfo.username);
+      setPhone(userInfo.phone);
+      setWriter(userInfo.nickname);
+    }
   }, [isLogin, userInfo]);
 
   return (

@@ -9,6 +9,8 @@ const LiveBoardUpdateContainer = ({no}) => {
   const [liveBoard, setLiveBoard] = useState({})
   const { isLogin, roles, userInfo } = useContext(LoginContext);
   const navigate = useNavigate()
+  const [username, setUsername] = useState('');
+  const [writer, setWriter] = useState('');
 
   const getLiveBoard = async () => {
     const response = await liveBoards.getPage(no);
@@ -37,11 +39,16 @@ const LiveBoardUpdateContainer = ({no}) => {
     getLiveBoard()
     // 권한 관련 설정
     if( !getUserInfo ) return
+    if (userInfo && userInfo.username) {
+      setUsername(userInfo.username);
+      setWriter(userInfo.nickname);
+    }
+
   },[isLogin, userInfo])
 
   return (
     <div>
-        <UpdateForm liveBoard={liveBoard}/>
+        <UpdateForm liveBoard={liveBoard} username={username} writer={writer}/>
     </div>
   )
 }

@@ -98,7 +98,7 @@ const Index = () => {
               </div>
               <div className="overlay"></div>
               <div className="text_">
-                <LoginContextConsumer />
+                {/* <LoginContextConsumer /> */}
                 <h2>Making live shows</h2>
                 <h3>more accessible than ever before</h3>
                 <p>

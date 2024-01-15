@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as frApi from '../../apis/facilityRental/facilityRentalApi'
 import * as brApi from '../../apis/facilityRental/booking'
 import FacilityRentalRead from '../../components/facilityRental/FacilityRentalRead'
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
 const FacilityRentalReadContainer = ({ frNo }) => {
-
+  const { userInfo } = useContext(LoginContext);
   const [fr, setFr] = useState({})
   const navi = useNavigate()
+  const [username, setUsername] = useState('');
+  const [phone, setPhone] = useState('');
 
-  const username = 'gangjinsu'
-  const phone = '01012341234'
 
   const reservation = {
     frNo,
@@ -53,7 +54,11 @@ const FacilityRentalReadContainer = ({ frNo }) => {
   }
   useEffect(() => {
     getFr()
-  }, [frNo])
+    if (userInfo && userInfo.username) {
+      setUsername(userInfo.username);
+      setPhone(userInfo.phone);
+    }
+  }, [frNo, userInfo])
 
   return (
     <>

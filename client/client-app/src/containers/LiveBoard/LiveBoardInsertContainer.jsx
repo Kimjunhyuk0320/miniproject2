@@ -6,7 +6,8 @@ import { LoginContext } from '../../contexts/LoginContextProvider'
 const LiveBoardInsertContainer = () => {
   const { isLogin, roles, userInfo } = useContext(LoginContext);
   const navigate = useNavigate()
-
+  const [username, setUsername] = useState('');
+  const [writer, setWriter] = useState('');
   // 권한 설정 관련 (이게 기준이다.)
   const getUserInfo = () => {
     if (!userInfo) {
@@ -27,11 +28,15 @@ const LiveBoardInsertContainer = () => {
   useEffect(() => {
     // 권한 관련 설정
     getUserInfo()
+    if (userInfo && userInfo.username) {
+      setUsername(userInfo.username);
+      setWriter(userInfo.nickname);
+    }
   }, [userInfo, isLogin]);
 
   return (
     <div>
-      <InsertForm />
+      <InsertForm username={username} writer={writer}/>
     </div>
   );
 };
