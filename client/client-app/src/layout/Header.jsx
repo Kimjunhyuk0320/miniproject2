@@ -199,7 +199,7 @@ const Header = () => {
                         }
 
                         <li className="cells menu-">
-                            <Link to="/TotalSearch">통합 겸색</Link>
+                            <Link to="/TotalSearch">통합 검색</Link>
                             <div className="sub-menu-width sub-menu-width-2"></div>
                         </li>
 
