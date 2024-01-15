@@ -1,26 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from '../../components/LiveBoard/Image'
 import Information from '../../components/LiveBoard/Information'
 import Controller from '../../components/LiveBoard/Controller'
 import Content from '../../components/LiveBoard/Content'
 import * as liveBoards from '../../apis/liveBoard/liveBoardApi'
 import { useNavigate } from 'react-router-dom'
-
+import { LoginContext } from '../../contexts/LoginContextProvider'
 
 
 const LiveBoardReadContainer = ({no}) => {
   const navigate = useNavigate()
   const [liveBoard, setLiveBoard] = useState({})
   const [ticketCount, setTicketCount] = useState(1)
+  const { userInfo } = useContext(LoginContext);
+  
   const boardNo = liveBoard.boardNo
   const title = liveBoard.title
   const ticketPrice = liveBoard.price
   const count = ticketCount
 
   // 로그인 한 사용자 정보 가져오기
-  const name = '김준혁'
-  const phone = '01012341234'
-  const email = 'asdf12341234@naver.com'
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    if (userInfo && userInfo.username) {
+      setName(userInfo.name);
+      setPhone(userInfo.phone)
+      setEmail(userInfo.email)
+    }
+  }, [userInfo]);
+
 
   const getLiveBoard = async () => {
     const response = await liveBoards.getPage(no);
@@ -70,7 +81,7 @@ const LiveBoardReadContainer = ({no}) => {
           // m_redirect_url : "success"          //  "리디렉션 URL", (리디렉션 방식의 경우 callback은 실행되지 않습니다.)
       }, async function (rsp) { // callback
 
-        clearInterval(timerId)
+        // clearInterval(timerId)
 
         if (rsp.success) {
             // 결제 성공
@@ -128,29 +139,29 @@ const LiveBoardReadContainer = ({no}) => {
         navigate(`/liveBoard/${boardNo}`)
     }
 
-    let timerId = setInterval(async() => {
-      // console.log("Delayed for 1 second.");
-      // 매진 체크
-      // 등록 요청
-      const response2 = await liveBoards.getTicketNum(boardNo, name, phone, ticketCount)
-      const data2 = await response2.data
-              if( data2 == 'OVERCOUNT' ){
-                  alert('잔여티켓보다 구매티켓 수가 많습니다.')
+  //   let timerId = setInterval(async() => {
+  //     // console.log("Delayed for 1 second.");
+  //     // 매진 체크
+  //     // 등록 요청
+  //     const response2 = await liveBoards.getTicketNum(boardNo, name, phone, ticketCount)
+  //     const data2 = await response2.data
+  //             if( data2 == 'OVERCOUNT' ){
+  //                 alert('잔여티켓보다 구매티켓 수가 많습니다.')
 
-                      // 결제 모듈 강제 종료
-                      // 리다이렉트
-                      navigate(`/liveBoard/${boardNo}`)
+  //                     // 결제 모듈 강제 종료
+  //                     // 리다이렉트
+  //                     navigate(`/liveBoard/${boardNo}`)
                   
-              }
-              if( data2 == 'ZERO' ){
-                  alert('매진 되었습니다.')
-                      // 결제 모듈 강제 종료
-                      // 리다이렉트
-                      navigate(`/liveBoard/${boardNo}`)
-              }
+  //             }
+  //             if( data2 == 'ZERO' ){
+  //                 alert('매진 되었습니다.')
+  //                     // 결제 모듈 강제 종료
+  //                     // 리다이렉트
+  //                     navigate(`/liveBoard/${boardNo}`)
+  //             }
 
 
-  }, 1000);
+  // }, 1000);
 
 
 

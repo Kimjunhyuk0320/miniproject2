@@ -25,17 +25,22 @@ const TicketPurchaseList = ({ userInfo }) => {
         setTicketList(data)
     };
 
-    // 티켓 데이터를 테이블로 렌더링
     const renderTicketData = () => {
-        if (ticketList.size === 0 ){
+        if (ticketList.size === 0) {
             return (
                 <tr>
                     <td colSpan={6}>조회된 데이터가 없습니다.</td>
                 </tr>
-            )
+            );
         }
-            return ticketList.map((ticket, index) => {
-                return (
+    
+        return ticketList.map((ticket, index) => {
+            // Check if ticket.reservationNo exists
+            if (!ticket.reservationNo) {
+                return null; // Skip rendering this row
+            }
+    
+            return (
                 <tr key={index}>
                     <td>{ticket.reservationNo}</td>
                     <td>{ticket.title}</td>
@@ -56,12 +61,6 @@ const TicketPurchaseList = ({ userInfo }) => {
                 <hr />
             </div>
 
-            {/* phone 값을 입력받는 부분 추가 */}
-            <div className="phoneInput">
-                <p>고객님이 예약한 핸드폰 번호입니다.</p>
-                <input type="text" value={userInfo?.phone} />
-            </div>
-
             <div id="teamListContainer">
                 <div className="tableContainer">
                     <table style={{ marginBottom: '100px' }}>
@@ -73,6 +72,7 @@ const TicketPurchaseList = ({ userInfo }) => {
                                 <th width="100">예매자명</th>
                                 <th width="80">예매상태</th>
                                 <th width="100">구매일자</th>
+                                <th width="100">qr코드</th>
                             </tr>
                         </thead>
 
