@@ -231,7 +231,7 @@ public class LiveBoardServiceImpl implements LiveBoardService{
         String receiver = phone;
         String msg = "LiveDom 공연\n \"" + title + "\"에 대한 티켓 구매가 완료되었습니다. \n" + "예매번호 : " + reservationNo + 
         "\n예매자 명 : " + name + "\n공연일자 : " + liveDate + "\n공연시간 : " + time + "\n주소 : " + address;
-        String testmode_yn = "Y";
+        String testmode_yn = "N";
         map.add("receiver", receiver);
         map.add("msg", msg);
         map.add("testmode_yn", testmode_yn);

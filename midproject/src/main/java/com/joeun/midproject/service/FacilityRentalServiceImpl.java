@@ -216,7 +216,7 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
         // receiver에 문자 받는 사람의 전화번호를 넣어주세요.
         String receiver = facilityRental.getPhone();
         String msg = "LiveDom 대관 서비스\n" +"1개의 대관신청이 도착했습니다. 웹사이트를 방문해 확인해주시기 바랍니다.";
-        String testmode_yn = "Y";
+        String testmode_yn = "N";
         map.add("receiver", receiver);
         map.add("msg", msg);
         map.add("testmode_yn", testmode_yn);
@@ -306,7 +306,7 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
         String bank = facilityRental.getAccount();
         Integer price = facilityRental.getPrice();
         String msg = "LiveDom 대관 서비스\n" +"대관 신청이 승인되었습니다." + bank + "로" + price + "원을 입금해주시기 바랍니다.";
-        String testmode_yn = "Y";
+        String testmode_yn = "N";
         map.add("receiver", receiver);
         map.add("msg", msg);
         map.add("testmode_yn", testmode_yn);
@@ -360,7 +360,7 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
             
             String msg1 = "LiveDom 대관 서비스\n\"" + title1 + "\"에 대한 대관료 입금이 획인되었습니다 \n" +
             "공연장 : " + address1 + "\n대관일자 : " + liveDate1;
-            String testmode_yn1 = "Y";
+            String testmode_yn1 = "N";
             map1.add("receiver", receiver1);
             map1.add("msg", msg1);
             map1.add("testmode_yn", testmode_yn1);
@@ -413,7 +413,7 @@ public class FacilityRentalServiceImpl implements FacilityRentalService {
         
         String msg = "LiveDom 대관 서비스\n\"" + title + "\"의 대관이 성사되었습니다. \n" +
         "공연장 : " + address + "\n대관일자 : " + liveDate;
-        String testmode_yn = "Y";
+        String testmode_yn = "N";
         map.add("receiver", receiver);
         map.add("msg", msg);
         map.add("testmode_yn", testmode_yn);

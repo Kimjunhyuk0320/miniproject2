@@ -53,7 +53,7 @@ public class TeamAppServiceImpl implements TeamAppService {
     // receiver에 문자 받는 사람의 전화번호를 넣어주세요.
     String receiver = phone;
     String msg = "LiveDom 팀 모집 서비스\n" + "1개의 참가신청서가 도착했습니다. 웹사이트를 방문해 확인해주시기 바랍니다.";
-    String testmode_yn = "Y";
+    String testmode_yn = "N";
     map.add("receiver", receiver);
     map.add("msg", msg);
     map.add("testmode_yn", testmode_yn);
@@ -126,7 +126,7 @@ public class TeamAppServiceImpl implements TeamAppService {
     Integer price = team.getPrice();
     String msg = "LiveDom 팀 모집 서비스\n" + "\"" + title + "\"에 대한 참가 신청이 승인되었습니다.\n" + bank + "로" + price
         + "원을 입금해주시기 바랍니다.";
-    String testmode_yn = "Y";
+    String testmode_yn = "N";
     map.add("receiver", receiver);
     map.add("msg", msg);
     map.add("testmode_yn", testmode_yn);
@@ -202,7 +202,7 @@ public class TeamAppServiceImpl implements TeamAppService {
 
     String msg1 = "LiveDom 팀 모집 서비스\n\"" + title1 + "\"에 대한 입금이 획인되었습니다 \n" +
         "공연장 : " + address1 + "\n대관일자 : " + liveDate1;
-    String testmode_yn1 = "Y";
+    String testmode_yn1 = "N";
     map1.add("receiver", receiver1);
     map1.add("msg", msg1);
     map1.add("testmode_yn", testmode_yn1);
@@ -278,7 +278,7 @@ public class TeamAppServiceImpl implements TeamAppService {
 
       String msg = "LiveDom 팀 모집 서비스\n\"" + title + "\"의 공연이 성사되었습니다. \n" +
           "공연장 : " + address + "\n공연일자 : " + liveDate;
-      String testmode_yn = "Y";
+      String testmode_yn = "N";
       map.add("receiver", receiver);
       map.add("msg", msg);
       map.add("testmode_yn", testmode_yn);
