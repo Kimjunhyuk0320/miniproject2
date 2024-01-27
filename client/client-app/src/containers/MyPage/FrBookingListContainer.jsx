@@ -13,7 +13,7 @@ const FrBookingListContainer = ({ username }) => {
   const { isLogin, roles } = useContext(LoginContext);
 
   const getRrList = async () => {
-    const response = await bookingApi.rrList(username)
+    const response = await bookingApi.rrList(userInfo.username)
     const data = await response.data
     // console.log(data)
     setRrList(data)
@@ -56,7 +56,7 @@ const FrBookingListContainer = ({ username }) => {
       return;
     }
     
-    if (!(roles.isUser || !roles.isBand || roles.isClub)) {
+    if (!(!roles.isUser || !roles.isBand || roles.isClub)) {
       alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
       navi('/liveBoard');
       return;

@@ -36,7 +36,7 @@ const FrMyBookingListContainer = ({ username }) => {
       return;
     }
 
-    if (!(roles.isUser || !roles.isBand || roles.isClub)) {
+    if (!(!roles.isUser || roles.isBand || roles.isClub)) {
       alert("권한이 설정 되어있지 않아 접근할 수 없습니다.");
       navi("/liveBoard");
       return;
